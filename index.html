@@ -4,246 +4,292 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raven O'Joy Leigertwood | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --navy: #0f172a;
-      --blue: #2563eb;
-      --blue-soft: #dbeafe;
-      --slate: #334155;
-      --text: #1e293b;
-      --muted: #64748b;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --line: #e2e8f0;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
+    :root{
+      --bg:#f7f5f0;
+      --paper:#fcfbf8;
+      --card:#ffffff;
+      --ink:#1e2430;
+      --muted:#5f6775;
+      --rule:#d8d3ca;
+      --navy:#0f1b2d;
+      --shadow:0 10px 28px rgba(20, 26, 40, 0.08);
+      --radius:18px;
+      --max:1160px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:'Inter', Arial, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
-    body {
-      margin: 0;
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(to bottom, #f8fafc 0%, #eef2ff 100%);
-      color: var(--text);
-      line-height: 1.65;
+    img{
+      display:block;
+      max-width:100%;
     }
 
-    a {
-      text-decoration: none;
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    .container {
-      width: min(1120px, 92%);
-      margin: 0 auto;
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
     }
 
-    header {
-      background:
-        radial-gradient(circle at top right, rgba(59,130,246,0.16), transparent 28%),
-        linear-gradient(135deg, #0f172a 0%, #111827 55%, #172554 100%);
-      color: white;
-      padding: 88px 0 76px;
-      position: relative;
-      overflow: hidden;
+    header{
+      background:linear-gradient(135deg, #0d1727 0%, #14233c 70%, #1d2f4d 100%);
+      color:#fff;
+      padding:92px 0 82px;
     }
 
-    .hero-kicker {
-      display: inline-block;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #bfdbfe;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      padding: 7px 12px;
-      border-radius: 999px;
-      margin-bottom: 18px;
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:16px;
+      padding:6px 12px;
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:999px;
+      color:#d9e4ff;
+      font-size:12px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      background:rgba(255,255,255,0.06);
     }
 
-    header h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.5rem, 5vw, 4.15rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      max-width: 900px;
+    h1{
+      margin:0 0 16px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(3rem, 6vw, 5rem);
+      line-height:0.96;
+      font-weight:600;
+      letter-spacing:-0.03em;
+      max-width:850px;
     }
 
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: #e2e8f0;
-      max-width: 880px;
-      margin: 0 0 18px;
+    .hero-sub{
+      max-width:900px;
+      font-size:1.18rem;
+      color:#ebeff8;
+      margin:0 0 14px;
     }
 
-    .hero-note {
-      max-width: 820px;
-      color: #cbd5e1;
-      font-size: 1rem;
-      margin: 0;
+    .hero-note{
+      max-width:820px;
+      margin:0;
+      color:#c7d0e0;
+      font-size:1rem;
     }
 
-    main {
-      padding: 54px 0 70px;
+    main{
+      padding:56px 0 76px;
     }
 
-    section {
-      margin-bottom: 42px;
+    section{
+      margin-bottom:54px;
     }
 
-    .section-heading {
-      margin-bottom: 18px;
+    .section-head{
+      margin-bottom:18px;
     }
 
-    .section-heading h2 {
-      margin: 0 0 6px;
-      font-size: 1.9rem;
-      letter-spacing: -0.03em;
-      color: var(--navy);
+    .section-label{
+      font-size:12px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
     }
 
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.98rem;
+    h2{
+      margin:0 0 6px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2.2rem;
+      line-height:1.05;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      color:var(--navy);
     }
 
-    .panel {
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(226,232,240,0.9);
-      backdrop-filter: blur(6px);
-      border-radius: var(--radius);
-      padding: 28px 30px;
-      box-shadow: var(--shadow);
+    .section-desc{
+      margin:0;
+      color:var(--muted);
+      font-size:0.98rem;
     }
 
-    .panel p:last-child {
-      margin-bottom: 0;
+    .panel{
+      background:var(--paper);
+      border:1px solid var(--rule);
+      border-radius:20px;
+      padding:28px 30px;
+      box-shadow:var(--shadow);
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
-      gap: 22px;
+    .panel p:last-child{
+      margin-bottom:0;
     }
 
-    .card {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(226,232,240,0.95);
-      border-radius: 20px;
-      padding: 24px 22px 22px;
-      box-shadow: var(--shadow);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      display: flex;
-      flex-direction: column;
-      min-height: 315px;
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(255px, 1fr));
+      gap:24px;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.11);
-      border-color: #bfdbfe;
+    .card{
+      background:var(--card);
+      border:1px solid #e7e2d8;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
     }
 
-    .card h3 {
-      margin: 0 0 14px;
-      font-size: 1.35rem;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      color: #1d4ed8;
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 34px rgba(20, 26, 40, 0.12);
     }
 
-    .card p {
-      margin: 0 0 16px;
-      color: #334155;
-      flex-grow: 1;
+    .card-image{
+      aspect-ratio:16 / 10;
+      overflow:hidden;
+      background:#e9edf5;
+      border-bottom:1px solid #ebe6dc;
     }
 
-    .tags {
-      margin-bottom: 16px;
+    .card-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .tag {
-      display: inline-block;
-      background: #eff6ff;
-      color: #1e40af;
-      border: 1px solid #dbeafe;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      margin: 0 6px 8px 0;
+    .card-body{
+      padding:18px 18px 20px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
     }
 
-    .button {
-      display: inline-block;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      font-weight: 600;
-      padding: 11px 16px;
-      border-radius: 12px;
-      text-align: center;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    .project-type{
+      font-size:11px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:#6b7280;
+      margin-bottom:10px;
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
+    h3{
+      margin:0 0 12px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:1.8rem;
+      line-height:1.02;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      color:var(--navy);
     }
 
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+    .card p{
+      margin:0 0 16px;
+      color:#3f4756;
+      font-size:0.97rem;
+      flex-grow:1;
     }
 
-    .skill-pill {
-      background: #ffffff;
-      border: 1px solid var(--line);
-      color: var(--slate);
-      padding: 9px 13px;
-      border-radius: 999px;
-      font-size: 0.94rem;
-      box-shadow: 0 4px 10px rgba(15,23,42,0.04);
+    .tags{
+      margin-bottom:16px;
     }
 
-    .note-box {
-      background: linear-gradient(135deg, #fff7ed, #fffbeb);
-      border: 1px solid #fed7aa;
-      border-left: 5px solid #f97316;
-      border-radius: 16px;
-      padding: 22px 22px;
-      box-shadow: 0 8px 22px rgba(249, 115, 22, 0.08);
+    .tag{
+      display:inline-block;
+      padding:5px 10px;
+      margin:0 6px 8px 0;
+      font-size:12px;
+      border-radius:999px;
+      color:#3d4c67;
+      background:#f0f3f8;
+      border:1px solid #dfe5ee;
     }
 
-    .note-box p {
-      margin: 0;
-      color: #7c2d12;
+    .button{
+      display:inline-block;
+      padding:11px 15px;
+      border-radius:12px;
+      background:var(--navy);
+      color:#fff;
+      font-weight:600;
+      font-size:0.95rem;
+      text-align:center;
+      transition:opacity .16s ease, transform .16s ease;
     }
 
-    footer {
-      padding: 28px 0 48px;
-      text-align: center;
-      color: #64748b;
-      font-size: 0.95rem;
+    .button:hover{
+      opacity:.94;
+      transform:translateY(-1px);
     }
 
-    @media (max-width: 700px) {
-      header {
-        padding: 72px 0 62px;
+    .skills-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .skill-pill{
+      padding:9px 13px;
+      border:1px solid #ddd8ce;
+      border-radius:999px;
+      background:#fff;
+      color:#404857;
+      font-size:0.94rem;
+    }
+
+    .note-box{
+      background:#fffaf1;
+      border:1px solid #eadfc9;
+      border-left:5px solid #b98c43;
+      border-radius:18px;
+      padding:22px 22px;
+    }
+
+    .note-box p{
+      margin:0;
+      color:#5e4a2a;
+    }
+
+    footer{
+      padding:20px 0 46px;
+      text-align:center;
+      color:#6d7480;
+      font-size:0.95rem;
+    }
+
+    @media (max-width: 720px){
+      header{
+        padding:76px 0 64px;
       }
 
-      .panel,
-      .card {
-        padding: 22px 20px;
+      .panel{
+        padding:22px 22px;
       }
 
-      .section-heading h2 {
-        font-size: 1.55rem;
+      h2{
+        font-size:1.9rem;
+      }
+
+      h3{
+        font-size:1.55rem;
       }
     }
   </style>
@@ -252,13 +298,13 @@
 
   <header>
     <div class="container">
-      <div class="hero-kicker">Public Data & Research Portfolio</div>
+      <div class="eyebrow">Public Data & Research Portfolio</div>
       <h1>Raven O'Joy Leigertwood</h1>
-      <p class="hero-subtitle">
+      <p class="hero-sub">
         Justice policy researcher, public safety data visualization builder, and system-impacted scholar.
       </p>
       <p class="hero-note">
-        My work focuses on mass incarceration, racial equity, neighborhood-level harm, public health, and criminal legal reform. This portfolio highlights public-facing projects that combine open data, spatial thinking, and accessible visual analysis.
+        My work focuses on mass incarceration, racial equity, neighborhood-level harm, public health, and criminal legal reform. This portfolio highlights public-facing projects that combine open data, spatial analysis, and accessible visual storytelling.
       </p>
     </div>
   </header>
@@ -267,9 +313,10 @@
     <div class="container">
 
       <section>
-        <div class="section-heading">
+        <div class="section-head">
+          <div class="section-label">Overview</div>
           <h2>About</h2>
-          <p>A brief overview of my research and visualization work.</p>
+          <p class="section-desc">A brief overview of my research and visualization work.</p>
         </div>
         <div class="panel">
           <p>
@@ -282,75 +329,101 @@
       </section>
 
       <section>
-        <div class="section-heading">
+        <div class="section-head">
+          <div class="section-label">Selected Work</div>
           <h2>Featured Portfolio Projects</h2>
-          <p>Selected interactive mapping and data visualization projects.</p>
+          <p class="section-desc">Interactive mapping and data visualization projects.</p>
         </div>
 
         <div class="project-grid">
 
           <div class="card">
-            <h3>NYC Shooting Redistribution Map</h3>
-            <p>
-              Interactive public safety visualization analyzing shooting redistribution across New York City neighborhoods from 2016–2025.
-            </p>
-            <div class="tags">
-              <span class="tag">NYC Open Data</span>
-              <span class="tag">Public Safety</span>
-              <span class="tag">Mapping</span>
-              <span class="tag">Dashboard</span>
+            <div class="card-image">
+              <img src="images/nyc_analytics_and_spatial_trends.png" alt="Preview of NYC Shooting Redistribution Map">
             </div>
-            <a class="button" href="https://roo100.github.io/nyc-shootings-map/" target="_blank">View Project</a>
+            <div class="card-body">
+              <div class="project-type">Public Safety Visualization</div>
+              <h3>NYC Shooting Redistribution Map</h3>
+              <p>
+                Interactive public safety visualization analyzing shooting redistribution across New York City neighborhoods from 2016–2025.
+              </p>
+              <div class="tags">
+                <span class="tag">NYC Open Data</span>
+                <span class="tag">Public Safety</span>
+                <span class="tag">Mapping</span>
+                <span class="tag">Dashboard</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/nyc-shootings-map/" target="_blank">View Project</a>
+            </div>
           </div>
 
           <div class="card">
-            <h3>NYC Youth Asthma Map</h3>
-            <p>
-              Public health visualization examining youth asthma patterns across New York City neighborhoods.
-            </p>
-            <div class="tags">
-              <span class="tag">Public Health</span>
-              <span class="tag">NYC Data</span>
-              <span class="tag">Health Equity</span>
-              <span class="tag">Mapping</span>
+            <div class="card-image">
+              <img src="images/breathing_patterns_over_city_data_map.png" alt="Preview of NYC Youth Asthma Map">
             </div>
-            <a class="button" href="https://roo100.github.io/NYC-Youth-Asthma-/" target="_blank">View Project</a>
+            <div class="card-body">
+              <div class="project-type">Public Health Visualization</div>
+              <h3>NYC Youth Asthma Map</h3>
+              <p>
+                Public health visualization examining youth asthma patterns across New York City neighborhoods.
+              </p>
+              <div class="tags">
+                <span class="tag">Public Health</span>
+                <span class="tag">NYC Data</span>
+                <span class="tag">Health Equity</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/NYC-Youth-Asthma-/" target="_blank">View Project</a>
+            </div>
           </div>
 
           <div class="card">
-            <h3>NYC Political Demographic Map</h3>
-            <p>
-              Interactive map examining neighborhood-level demographic and political patterns across New York City.
-            </p>
-            <div class="tags">
-              <span class="tag">Demographics</span>
-              <span class="tag">Political Geography</span>
-              <span class="tag">Mapping</span>
+            <div class="card-image">
+              <img src="images/geopolitical_nyc_map_and_data_design.png" alt="Preview of NYC Political Demographic Map">
             </div>
-            <a class="button" href="https://roo100.github.io/NYC-political-demographic-map/" target="_blank">View Project</a>
+            <div class="card-body">
+              <div class="project-type">Demographic Mapping</div>
+              <h3>NYC Political Demographic Map</h3>
+              <p>
+                Interactive map examining neighborhood-level demographic and political patterns across New York City.
+              </p>
+              <div class="tags">
+                <span class="tag">Demographics</span>
+                <span class="tag">Political Geography</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/NYC-political-demographic-map/" target="_blank">View Project</a>
+            </div>
           </div>
 
           <div class="card">
-            <h3>European Crime and Prison Indicators Map</h3>
-            <p>
-              Comparative visualization using European crime and prison indicator data to examine cross-national justice trends.
-            </p>
-            <div class="tags">
-              <span class="tag">Eurostat</span>
-              <span class="tag">Crime Trends</span>
-              <span class="tag">Comparative Justice</span>
-              <span class="tag">Mapping</span>
+            <div class="card-image">
+              <img src="images/justice_and_data_in_europe_mapping.png" alt="Preview of European Crime and Prison Indicators Map">
             </div>
-            <a class="button" href="https://roo100.github.io/eurostat-crime-prison-indicators-map/" target="_blank">View Project</a>
+            <div class="card-body">
+              <div class="project-type">Comparative Justice Visualization</div>
+              <h3>European Crime and Prison Indicators Map</h3>
+              <p>
+                Comparative visualization using European crime and prison indicator data to examine cross-national justice trends.
+              </p>
+              <div class="tags">
+                <span class="tag">Eurostat</span>
+                <span class="tag">Crime Trends</span>
+                <span class="tag">Comparative Justice</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/eurostat-crime-prison-indicators-map/" target="_blank">View Project</a>
+            </div>
           </div>
 
         </div>
       </section>
 
       <section>
-        <div class="section-heading">
+        <div class="section-head">
+          <div class="section-label">Methods</div>
           <h2>Skills & Tools</h2>
-          <p>Core methods and software reflected across these projects.</p>
+          <p class="section-desc">Core methods and software reflected across these projects.</p>
         </div>
         <div class="panel">
           <div class="skills-list">
@@ -369,9 +442,10 @@
       </section>
 
       <section>
-        <div class="section-heading">
+        <div class="section-head">
+          <div class="section-label">Research Interests</div>
           <h2>Current Focus</h2>
-          <p>Research themes and areas of ongoing development.</p>
+          <p class="section-desc">Themes guiding ongoing research and public work.</p>
         </div>
         <div class="panel">
           <p>
@@ -381,9 +455,10 @@
       </section>
 
       <section>
-        <div class="section-heading">
+        <div class="section-head">
+          <div class="section-label">Interpretation</div>
           <h2>Interpretive Note</h2>
-          <p>How demographic and contextual variables are used in these projects.</p>
+          <p class="section-desc">How demographic and contextual variables are used in these projects.</p>
         </div>
         <div class="note-box">
           <p>
@@ -396,7 +471,7 @@
   </main>
 
   <footer>
-    Portfolio Website | Roo100.github.io
+    Portfolio Website | roo100.github.io
   </footer>
 
 </body>
