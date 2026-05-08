@@ -3,545 +3,575 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raven O’Joy Leigertwood | Portfolio</title>
+  <title>Raven O'Joy Leigertwood | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --navy: #1d2540;
-      --ink: #394554;
-      --muted: #657185;
-      --lavender: #fbf9ff;
-      --rule: #d9d7e6;
-      --accent: #6b5f89;
-      --white: #ffffff;
+    :root{
+      --bg:#f7f5f0;
+      --paper:#fcfbf8;
+      --card:#ffffff;
+      --ink:#1e2430;
+      --muted:#5f6775;
+      --rule:#d8d3ca;
+      --navy:#0f1b2d;
+      --shadow:0 10px 28px rgba(20, 26, 40, 0.08);
+      --radius:18px;
+      --max:1160px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:'Inter', Arial, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
-    body {
-      margin: 0;
-      background: #ffffff;
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+    img{
+      display:block;
+      max-width:100%;
     }
 
-    a {
-      color: inherit;
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    .page {
-      width: min(1180px, 100%);
-      margin: 0 auto;
-      padding: 0 24px;
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
     }
 
-    header {
-      padding: 84px 0 54px;
-      border-bottom: 1px solid var(--rule);
+    header{
+      position:relative;
+      min-height:440px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(247,245,240,0.96) 0%,
+          rgba(247,245,240,0.88) 38%,
+          rgba(247,245,240,0.46) 68%,
+          rgba(247,245,240,0.20) 100%
+        ),
+        url("portfolio-header.png");
+      background-size:cover;
+      background-position:center;
+      color:var(--navy);
+      padding:82px 0 72px;
+      border-bottom:1px solid #ded8ce;
     }
 
-    .eyebrow {
-      margin: 0 0 12px;
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .hero-wrap{
+      max-width:760px;
     }
 
-    h1,
-    h2,
-    h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--navy);
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      color:#7a6f63;
+      font-size:12px;
+      letter-spacing:0.13em;
+      text-transform:uppercase;
+      font-weight:600;
     }
 
-    h1 {
-      margin: 0 0 16px;
-      max-width: 900px;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+    h1{
+      margin:0;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(3.6rem, 7vw, 6.6rem);
+      line-height:0.9;
+      font-weight:600;
+      letter-spacing:-0.045em;
+      max-width:760px;
     }
 
-    .tagline {
-      max-width: 880px;
-      margin: 0;
-      color: var(--ink);
-      font-size: clamp(18px, 2vw, 23px);
-      line-height: 1.45;
+    .hero-sub{
+      font-size:1rem;
+      color:#7a6f63;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin:20px 0 18px;
+      font-weight:600;
     }
 
-    .hero-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+    .hero-note{
+      margin:0;
+      color:#334155;
+      font-size:1.05rem;
+      line-height:1.75;
+      max-width:620px;
+      border-left:3px solid #b98c43;
+      padding-left:22px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      border: 1px solid var(--navy);
-      transition: opacity 0.15s ease, transform 0.15s ease;
+    main{
+      padding:56px 0 76px;
     }
 
-    .button:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
+    section{
+      margin-bottom:54px;
     }
 
-    .button.primary {
-      background: var(--navy);
-      color: var(--white);
+    .section-head{
+      margin-bottom:18px;
     }
 
-    .button.secondary {
-      background: var(--white);
-      color: var(--navy);
+    .section-label{
+      font-size:12px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
     }
 
-    section {
-      padding: 68px 0;
-      border-bottom: 1px solid var(--rule);
+    h2{
+      margin:0 0 6px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2.2rem;
+      line-height:1.05;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      color:var(--navy);
     }
 
-    section:last-of-type {
-      border-bottom: none;
+    .section-desc{
+      margin:0;
+      color:var(--muted);
+      font-size:0.98rem;
     }
 
-    .section-header {
-      margin-bottom: 30px;
+    .panel{
+      background:var(--paper);
+      border:1px solid var(--rule);
+      border-radius:20px;
+      padding:28px 30px;
+      box-shadow:var(--shadow);
     }
 
-    .section-header h2 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
+    .panel p:last-child{
+      margin-bottom:0;
     }
 
-    .about-text {
-      max-width: 920px;
+    .featured-panel{
+      margin-bottom:28px;
+      background:linear-gradient(135deg, #fcfbf8 0%, #f1eee7 100%);
+      border:1px solid var(--rule);
+      border-radius:22px;
+      padding:32px 34px;
+      box-shadow:var(--shadow);
     }
 
-    .about-text p {
-      margin: 0 0 18px;
-      font-size: 17px;
-      line-height: 1.72;
+    .featured-kicker{
+      margin:0 0 8px;
+      color:#6b7280;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      font-size:12px;
+      font-weight:600;
     }
 
-    .featured-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 30px;
-      align-items: center;
-      background: var(--lavender);
-      border: 1px solid var(--rule);
-      border-radius: 18px;
-      padding: 28px;
+    .featured-panel h3{
+      margin:0 0 12px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2.15rem;
+      line-height:1;
+      color:var(--navy);
     }
 
-    .project-image {
-      background: #f1eff8;
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      overflow: hidden;
-      min-height: 320px;
+    .featured-panel p{
+      margin:0;
+      max-width:860px;
+      color:#3f4756;
     }
 
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      min-height: 320px;
-      object-fit: cover;
-      display: block;
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:28px;
     }
 
-    .featured-card h3 {
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.08;
+    .card{
+      background:var(--card);
+      border:1px solid #e7e2d8;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
     }
 
-    .project-subtitle {
-      margin: 0 0 20px;
-      color: var(--muted);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 21px;
-      line-height: 1.35;
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 34px rgba(20, 26, 40, 0.12);
     }
 
-    .featured-card p {
-      margin: 0 0 16px;
-      font-size: 16px;
-      line-height: 1.7;
+    .card-image{
+      aspect-ratio:21 / 9;
+      overflow:hidden;
+      background:#e9edf5;
+      border-bottom:1px solid #ebe6dc;
     }
 
-    .meta-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 22px 0 0;
+    .card-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .meta-tags span {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 10px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      background: var(--white);
-      color: #4f5870;
-      font-size: 12px;
-      font-weight: 700;
+    .card-body{
+      padding:22px 22px 24px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
     }
 
-    .project-actions {
-      margin-top: 24px;
+    .project-type{
+      font-size:11px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:#6b7280;
+      margin-bottom:10px;
+      font-weight:600;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
+    h3{
+      margin:0 0 12px;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2rem;
+      line-height:1.02;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      color:var(--navy);
     }
 
-    .project-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 22px rgba(29, 37, 64, 0.04);
+    .card p{
+      margin:0 0 18px;
+      color:#3f4756;
+      font-size:0.98rem;
+      flex-grow:1;
     }
 
-    .project-card img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-      background: #f1eff8;
-      border-bottom: 1px solid var(--rule);
+    .tags{
+      margin-bottom:18px;
     }
 
-    .project-card-body {
-      padding: 20px;
+    .tag{
+      display:inline-block;
+      padding:5px 10px;
+      margin:0 6px 8px 0;
+      font-size:12px;
+      border-radius:999px;
+      color:#3d4c67;
+      background:#f0f3f8;
+      border:1px solid #dfe5ee;
     }
 
-    .project-card h3 {
-      margin: 0 0 10px;
-      font-size: 23px;
-      line-height: 1.15;
+    .button{
+      display:inline-block;
+      padding:11px 16px;
+      border-radius:999px;
+      background:#f5f1ea;
+      color:var(--navy);
+      border:1px solid #d8d3ca;
+      font-weight:600;
+      font-size:0.95rem;
+      text-align:center;
+      transition:all .16s ease;
     }
 
-    .project-card p {
-      margin: 0 0 14px;
-      color: var(--ink);
-      font-size: 15px;
-      line-height: 1.62;
+    .button:hover{
+      background:var(--navy);
+      color:#fff;
+      transform:translateY(-1px);
     }
 
-    .text-link {
-      color: var(--navy);
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      border-bottom: 1px solid var(--navy);
+    .skills-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
 
-    .policy-note {
-      max-width: 920px;
-      background: var(--lavender);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 26px;
+    .skill-pill{
+      padding:9px 13px;
+      border:1px solid #ddd8ce;
+      border-radius:999px;
+      background:#fff;
+      color:#404857;
+      font-size:0.94rem;
     }
 
-    .policy-note p {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.72;
+    .note-box{
+      background:#fffaf1;
+      border:1px solid #eadfc9;
+      border-left:5px solid #b98c43;
+      border-radius:18px;
+      padding:22px 22px;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+    .note-box p{
+      margin:0;
+      color:#5e4a2a;
     }
 
-    .skills-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 8px 22px rgba(29, 37, 64, 0.04);
+    footer{
+      padding:20px 0 46px;
+      text-align:center;
+      color:#6d7480;
+      font-size:0.95rem;
     }
 
-    .skills-card h3 {
-      margin: 0 0 8px;
-      color: var(--navy);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .skills-card p {
-      margin: 0;
-      color: var(--ink);
-      font-size: 15px;
-      line-height: 1.68;
-    }
-
-    footer {
-      padding: 34px 0 48px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 960px) {
-      .featured-card,
-      .project-grid,
-      .skills-grid {
-        grid-template-columns: 1fr;
+    @media (max-width:850px){
+      header{
+        min-height:auto;
+        padding:72px 0 64px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(247,245,240,0.96) 0%,
+            rgba(247,245,240,0.88) 100%
+          ),
+          url("portfolio-header.png");
+        background-size:cover;
+        background-position:center;
       }
 
-      header {
-        padding-top: 60px;
+      .hero-wrap{
+        max-width:100%;
+      }
+
+      .project-grid{
+        grid-template-columns:1fr;
       }
     }
 
-    @media (max-width: 560px) {
-      .page {
-        padding: 0 18px;
+    @media (max-width:720px){
+      header{
+        padding:70px 0 60px;
       }
 
-      section {
-        padding: 48px 0;
+      .panel,
+      .featured-panel{
+        padding:22px 22px;
       }
 
-      .featured-card {
-        padding: 20px;
+      h1{
+        font-size:clamp(3rem, 15vw, 4.3rem);
       }
 
-      .hero-links {
-        flex-direction: column;
-        align-items: stretch;
+      h2{
+        font-size:1.9rem;
       }
 
-      .button {
-        width: 100%;
+      h3{
+        font-size:1.65rem;
+      }
+
+      .featured-panel h3{
+        font-size:1.85rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <p class="eyebrow">Portfolio</p>
-      <h1>Raven O’Joy Leigertwood</h1>
 
-      <p class="tagline">
-        Justice policy researcher, public safety data visualization builder, and system-impacted scholar focused on
-        mass incarceration, prison oversight, racial equity, public safety, and community violence prevention.
+  <header>
+    <div class="container hero-wrap">
+      <div class="eyebrow">Public Data & Research Portfolio</div>
+
+      <h1>Raven O'Joy Leigertwood</h1>
+
+      <p class="hero-sub">
+        Justice Policy • Public Safety Data • Spatial Analysis
       </p>
 
-      <div class="hero-links">
-        <a class="button primary" href="#featured-project">View Featured Dashboard</a>
-        <a class="button secondary" href="#projects">Browse Projects</a>
-      </div>
-    </header>
+      <p class="hero-note">
+        A public-facing portfolio of data visualization projects examining neighborhood-level harm, health equity, political geography, and comparative justice trends through open data, mapping, and responsible demographic framing.
+      </p>
+    </div>
+  </header>
 
-    <main>
-      <section id="about">
-        <div class="section-header">
-          <p class="eyebrow">About</p>
-          <h2>Policy research, spatial analysis, and public-facing visualization.</h2>
+  <main>
+    <div class="container">
+
+      <section>
+        <div class="section-head">
+          <div class="section-label">Overview</div>
+          <h2>About</h2>
+          <p class="section-desc">A brief overview of my research and visualization work.</p>
         </div>
-
-        <div class="about-text">
+        <div class="panel">
           <p>
-            I am a justice policy researcher and John Jay graduate student whose work focuses on mass incarceration,
-            prison oversight, racial equity, public safety, and community violence prevention. My portfolio brings
-            together policy research, spatial analysis, and public-facing data visualization to translate complex legal
-            and empirical issues into accessible tools for advocacy, research, and public understanding.
+            I am a John Jay College graduate student whose work combines public data, spatial analysis, research writing, and accessible visualization. My projects examine how public safety, health, demographic, and criminal justice outcomes are distributed across communities.
           </p>
-
           <p>
-            I am currently completing an M.A. in International Crime and Justice at John Jay College of Criminal Justice,
-            where my academic work focuses on public safety, crime mapping, comparative criminal justice, racial equity,
-            and evidence-based interventions. I previously earned an M.A. in Human Rights from John Jay, graduating with
-            distinction and receiving the inaugural Human Rights Excellence Award.
+            This portfolio highlights public-facing visualization projects using open data, mapping tools, and responsible demographic-data framing.
           </p>
         </div>
       </section>
 
-      <section id="featured-project">
-        <div class="section-header">
-          <p class="eyebrow">Featured Interactive Data Visualization</p>
-          <h2>NYC Shooting Redistribution Dashboard</h2>
+      <section>
+        <div class="section-head">
+          <div class="section-label">Selected Work</div>
+          <h2>Featured Portfolio Projects</h2>
+          <p class="section-desc">Selected public-facing projects using open data, spatial analysis, and accessible visual storytelling.</p>
         </div>
 
-        <article class="featured-card">
-          <div class="project-image">
-            <!-- Replace this image file with your dashboard screenshot -->
-            <img src="visualizing_neighborhood_shooting_trends_2016_2025.png" alt="Preview of the NYC Shooting Redistribution Dashboard">
-          </div>
-
-          <div>
-            <h3>Visualizing Uneven Public Safety</h3>
-            <p class="project-subtitle">NYC Shooting Redistribution by Neighborhood, 2016–2025</p>
-
-            <p>
-              This interactive HTML dashboard analyzes shooting redistribution across New York City Neighborhood
-              Tabulation Areas from 2016 to 2025. Users can select baseline and comparison years, filter by borough
-              or change category, and hover over each neighborhood to view shooting change, citywide share shift,
-              race/ethnicity population context, and employment context.
-            </p>
-
-            <p>
-              The dashboard defaults to 2021 and 2025 to compare the post-pandemic shooting surge with the most recent
-              full year of incident-level data. It is designed to show how citywide public safety trends can obscure
-              uneven neighborhood-level exposure to gun violence.
-            </p>
-
-            <div class="meta-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>NYPD Shooting Data</span>
-              <span>NTA Geography</span>
-              <span>ACS Demographics</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="button primary" href="NYC_Shooting_Redistribution_BrennanStyle_NoGraphics_Colorway3_YTD.html">
-                View Interactive Dashboard
-              </a>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section id="projects">
-        <div class="section-header">
-          <p class="eyebrow">Selected Projects</p>
-          <h2>Research, data, and policy work.</h2>
+        <div class="featured-panel">
+          <p class="featured-kicker">Featured Project</p>
+          <h3>NYC Shooting Redistribution Map</h3>
+          <p>
+            This project is the centerpiece of the portfolio. It analyzes how shooting incidents shifted across New York City neighborhoods from 2016–2025, with a focus on how citywide public safety gains can obscure persistent neighborhood-level exposure to gun violence.
+          </p>
         </div>
 
         <div class="project-grid">
-          <article class="project-card">
-            <img src="nyc-shooting-hotspot-analysis.png" alt="NYC shooting hotspot analysis project preview">
-            <div class="project-card-body">
-              <h3>NYC Shooting Hotspot Analysis</h3>
-              <p>
-                ArcGIS spatial analysis comparing shooting patterns across 2021, 2023, and 2025 to examine whether
-                citywide public safety gains obscure persistent neighborhood-level exposure to gun violence.
-              </p>
-              <a class="text-link" href="#">View Project</a>
-            </div>
-          </article>
 
-          <article class="project-card">
-            <img src="youth-asthma-dashboard.png" alt="Youth asthma dashboard project preview">
-            <div class="project-card-body">
-              <h3>Youth Asthma Data Visualization</h3>
-              <p>
-                Public-facing visualization project examining health, geography, and inequality through accessible
-                data storytelling and dashboard design.
-              </p>
-              <a class="text-link" href="#">View Project</a>
+          <div class="card">
+            <div class="card-image">
+              <img src="nyc_analytics_and_spatial_trends.png" alt="Preview of NYC Shooting Redistribution Map">
             </div>
-          </article>
+            <div class="card-body">
+              <div class="project-type">Public Safety Visualization</div>
+              <h3>NYC Shooting Redistribution Map</h3>
+              <p>
+                Interactive public safety visualization analyzing shooting redistribution across New York City neighborhoods from 2016–2025.
+              </p>
+              <div class="tags">
+                <span class="tag">NYC Open Data</span>
+                <span class="tag">Public Safety</span>
+                <span class="tag">Mapping</span>
+                <span class="tag">Dashboard</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/nyc-shootings-map/" target="_blank">View Project</a>
+            </div>
+          </div>
 
-          <article class="project-card">
-            <img src="european-crime-prison-indicators.png" alt="European crime and prison indicators project preview">
-            <div class="project-card-body">
-              <h3>European Crime & Prison Indicators</h3>
-              <p>
-                Comparative data visualization project using public indicators to examine crime, incarceration, and
-                institutional patterns across European contexts.
-              </p>
-              <a class="text-link" href="#">View Project</a>
+          <div class="card">
+            <div class="card-image">
+              <img src="breathing_patterns_over_city_data_map.png" alt="Preview of NYC Youth Asthma Map">
             </div>
-          </article>
+            <div class="card-body">
+              <div class="project-type">Public Health Visualization</div>
+              <h3>NYC Youth Asthma Map</h3>
+              <p>
+                Public health visualization examining youth asthma patterns across New York City neighborhoods.
+              </p>
+              <div class="tags">
+                <span class="tag">Public Health</span>
+                <span class="tag">NYC Data</span>
+                <span class="tag">Health Equity</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/NYC-Youth-Asthma-/" target="_blank">View Project</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image">
+              <img src="geopolitical_nyc_map_and_data_design.png" alt="Preview of NYC Political Demographic Map">
+            </div>
+            <div class="card-body">
+              <div class="project-type">Demographic Mapping</div>
+              <h3>NYC Political Demographic Map</h3>
+              <p>
+                Interactive map examining neighborhood-level demographic and political patterns across New York City.
+              </p>
+              <div class="tags">
+                <span class="tag">Demographics</span>
+                <span class="tag">Political Geography</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/NYC-political-demographic-map/" target="_blank">View Project</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image">
+              <img src="justice_and_data_in_europe_mapping.png" alt="Preview of European Crime and Prison Indicators Map">
+            </div>
+            <div class="card-body">
+              <div class="project-type">Comparative Justice Visualization</div>
+              <h3>European Crime and Prison Indicators Map</h3>
+              <p>
+                Comparative visualization using European crime and prison indicator data to examine cross-national justice trends.
+              </p>
+              <div class="tags">
+                <span class="tag">Eurostat</span>
+                <span class="tag">Crime Trends</span>
+                <span class="tag">Comparative Justice</span>
+                <span class="tag">Mapping</span>
+              </div>
+              <a class="button" href="https://roo100.github.io/eurostat-crime-prison-indicators-map/" target="_blank">View Project</a>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section id="policy-work">
-        <div class="section-header">
-          <p class="eyebrow">Applied Policy Work</p>
-          <h2>Correctional oversight, advocacy, and reform.</h2>
+      <section>
+        <div class="section-head">
+          <div class="section-label">Methods</div>
+          <h2>Skills & Tools</h2>
+          <p class="section-desc">Core methods and software reflected across these projects.</p>
         </div>
+        <div class="panel">
+          <div class="skills-list">
+            <span class="skill-pill">Public Data Analysis</span>
+            <span class="skill-pill">ArcGIS</span>
+            <span class="skill-pill">Spatial Analysis</span>
+            <span class="skill-pill">Crime Mapping</span>
+            <span class="skill-pill">Microsoft Excel</span>
+            <span class="skill-pill">SPSS</span>
+            <span class="skill-pill">Dashboard Planning</span>
+            <span class="skill-pill">Research Writing</span>
+            <span class="skill-pill">Basic HTML/CSS/JavaScript</span>
+            <span class="skill-pill">Responsible Demographic Framing</span>
+          </div>
+        </div>
+      </section>
 
-        <div class="policy-note">
+      <section>
+        <div class="section-head">
+          <div class="section-label">Research Interests</div>
+          <h2>Current Focus</h2>
+          <p class="section-desc">Themes guiding ongoing research and public work.</p>
+        </div>
+        <div class="panel">
           <p>
-            As a Tow Policy Advocacy Fellow with the Correctional Association of New York, I conduct policy and
-            legislative research on New York State prison oversight, correctional health, prison labor, conditions of
-            confinement, and accountability mechanisms. My work includes drafting policy memos, reviewing oversight
-            materials, developing legislative recommendations, and translating complex legal and institutional issues
-            into accessible materials for advocates, policymakers, and impacted communities.
+            I am developing public-facing research and visualization projects on uneven public safety, neighborhood exposure to violence, public health disparities, prison oversight, racial equity, and community-centered approaches to criminal legal reform.
           </p>
         </div>
       </section>
 
-      <section id="skills">
-        <div class="section-header">
-          <p class="eyebrow">Skills Snapshot</p>
-          <h2>Research, policy, data, and visualization.</h2>
+      <section>
+        <div class="section-head">
+          <div class="section-label">Interpretation</div>
+          <h2>Interpretive Note</h2>
+          <p class="section-desc">How demographic and contextual variables are used in these projects.</p>
         </div>
-
-        <div class="skills-grid">
-          <div class="skills-card">
-            <h3>Research & Policy</h3>
-            <p>
-              Policy analysis, legislative research, literature reviews, public-facing research writing, policy memos,
-              source synthesis, and criminal legal reform analysis.
-            </p>
-          </div>
-
-          <div class="skills-card">
-            <h3>Data & Visualization</h3>
-            <p>
-              Public data analysis, data cleaning, descriptive statistics, dashboard planning, interactive visualization
-              design, Excel, SPSS, and public data workflows.
-            </p>
-          </div>
-
-          <div class="skills-card">
-            <h3>GIS & Spatial Analysis</h3>
-            <p>
-              ArcGIS, crime mapping, hotspot analysis, spatial aggregation, and neighborhood-level public safety
-              analysis.
-            </p>
-          </div>
-
-          <div class="skills-card">
-            <h3>Technical Exposure</h3>
-            <p>
-              HTML, CSS, JavaScript syntax, interactive chart logic, and public-facing dashboard design.
-            </p>
-          </div>
+        <div class="note-box">
+          <p>
+            Demographic data in these projects are used as neighborhood or population context. They should not be interpreted as individual-level claims about victims, offenders, patients, voters, or residents.
+          </p>
         </div>
       </section>
-    </main>
 
-    <footer>
-      <p>
-        © Raven O’Joy Leigertwood. Portfolio focused on justice policy research, public safety data visualization,
-        prison oversight, racial equity, and system-impacted scholarship.
-      </p>
-    </footer>
-  </div>
+    </div>
+  </main>
+
+  <footer>
+    Portfolio Website | roo100.github.io
+  </footer>
+
 </body>
 </html>
