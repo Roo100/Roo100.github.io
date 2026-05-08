@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raven O’Joy Leigertwood | Justice Policy Research Portfolio</title>
+  <title>Raven O’Joy Leigertwood | Portfolio</title>
 
   <style>
     :root {
@@ -33,13 +33,13 @@
     }
 
     .page {
-      width: min(1120px, 100%);
+      width: min(1180px, 100%);
       margin: 0 auto;
       padding: 0 24px;
     }
 
     header {
-      padding: 84px 0 58px;
+      padding: 84px 0 54px;
       border-bottom: 1px solid var(--rule);
     }
 
@@ -61,14 +61,14 @@
 
     h1 {
       margin: 0 0 16px;
-      max-width: 880px;
+      max-width: 900px;
       font-size: clamp(42px, 7vw, 76px);
       line-height: 0.98;
       letter-spacing: -0.04em;
     }
 
     .tagline {
-      max-width: 860px;
+      max-width: 880px;
       margin: 0;
       color: var(--ink);
       font-size: clamp(18px, 2vw, 23px);
@@ -111,7 +111,7 @@
     }
 
     section {
-      padding: 64px 0;
+      padding: 68px 0;
       border-bottom: 1px solid var(--rule);
     }
 
@@ -120,7 +120,7 @@
     }
 
     .section-header {
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .section-header h2 {
@@ -142,12 +142,29 @@
 
     .featured-card {
       display: grid;
-      grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
       background: var(--lavender);
       border: 1px solid var(--rule);
-      border-radius: 16px;
-      padding: 30px;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .project-image {
+      background: #f1eff8;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: 320px;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
     }
 
     .featured-card h3 {
@@ -157,7 +174,7 @@
     }
 
     .project-subtitle {
-      margin: 0 0 22px;
+      margin: 0 0 20px;
       color: var(--muted);
       font-family: Georgia, "Times New Roman", serif;
       font-size: 21px;
@@ -168,35 +185,6 @@
       margin: 0 0 16px;
       font-size: 16px;
       line-height: 1.7;
-    }
-
-    .project-sidebar {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 22px;
-      align-self: start;
-    }
-
-    .project-sidebar h4,
-    .skills-card h3,
-    .mini-card h3 {
-      margin: 0 0 8px;
-      color: var(--navy);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .project-sidebar p {
-      margin: 0 0 18px;
-      color: var(--ink);
-      font-size: 14px;
-      line-height: 1.62;
-    }
-
-    .project-sidebar p:last-child {
-      margin-bottom: 0;
     }
 
     .meta-tags {
@@ -222,35 +210,52 @@
       margin-top: 24px;
     }
 
-    .mini-grid,
-    .skills-grid {
+    .project-grid {
       display: grid;
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
     }
 
-    .mini-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .skills-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .mini-card,
-    .skills-card {
+    .project-card {
       background: var(--white);
       border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 22px;
+      border-radius: 16px;
+      overflow: hidden;
       box-shadow: 0 8px 22px rgba(29, 37, 64, 0.04);
     }
 
-    .mini-card p,
-    .skills-card p {
-      margin: 0;
+    .project-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: #f1eff8;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .project-card-body {
+      padding: 20px;
+    }
+
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-size: 23px;
+      line-height: 1.15;
+    }
+
+    .project-card p {
+      margin: 0 0 14px;
       color: var(--ink);
       font-size: 15px;
-      line-height: 1.68;
+      line-height: 1.62;
+    }
+
+    .text-link {
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
     }
 
     .policy-note {
@@ -267,6 +272,35 @@
       line-height: 1.72;
     }
 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .skills-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 8px 22px rgba(29, 37, 64, 0.04);
+    }
+
+    .skills-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skills-card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
     footer {
       padding: 34px 0 48px;
       color: var(--muted);
@@ -274,15 +308,15 @@
       line-height: 1.5;
     }
 
-    @media (max-width: 900px) {
-      header {
-        padding-top: 60px;
-      }
-
+    @media (max-width: 960px) {
       .featured-card,
-      .mini-grid,
+      .project-grid,
       .skills-grid {
         grid-template-columns: 1fr;
+      }
+
+      header {
+        padding-top: 60px;
       }
     }
 
@@ -296,7 +330,7 @@
       }
 
       .featured-card {
-        padding: 22px;
+        padding: 20px;
       }
 
       .hero-links {
@@ -316,6 +350,7 @@
     <header>
       <p class="eyebrow">Portfolio</p>
       <h1>Raven O’Joy Leigertwood</h1>
+
       <p class="tagline">
         Justice policy researcher, public safety data visualization builder, and system-impacted scholar focused on
         mass incarceration, prison oversight, racial equity, public safety, and community violence prevention.
@@ -323,7 +358,7 @@
 
       <div class="hero-links">
         <a class="button primary" href="#featured-project">View Featured Dashboard</a>
-        <a class="button secondary" href="#about">About My Work</a>
+        <a class="button secondary" href="#projects">Browse Projects</a>
       </div>
     </header>
 
@@ -348,12 +383,6 @@
             and evidence-based interventions. I previously earned an M.A. in Human Rights from John Jay, graduating with
             distinction and receiving the inaugural Human Rights Excellence Award.
           </p>
-
-          <p>
-            My work is shaped by graduate research training, direct-service experience, policy advocacy, and lived
-            experience with the criminal legal system. I use public data, spatial analysis, and policy research to examine
-            how justice systems distribute harm, resources, accountability, and protection across communities.
-          </p>
         </div>
       </section>
 
@@ -364,6 +393,11 @@
         </div>
 
         <article class="featured-card">
+          <div class="project-image">
+            <!-- Replace this image file with your dashboard screenshot -->
+            <img src="visualizing_neighborhood_shooting_trends_2016_2025.png" alt="Preview of the NYC Shooting Redistribution Dashboard">
+          </div>
+
           <div>
             <h3>Visualizing Uneven Public Safety</h3>
             <p class="project-subtitle">NYC Shooting Redistribution by Neighborhood, 2016–2025</p>
@@ -396,50 +430,50 @@
               </a>
             </div>
           </div>
-
-          <aside class="project-sidebar">
-            <h4>Policy Focus</h4>
-            <p>
-              Public safety equity, neighborhood-level exposure to gun violence, community violence prevention, and
-              responsible demographic-data framing.
-            </p>
-
-            <h4>Methods & Tools</h4>
-            <p>
-              Public data workflows, spatial aggregation, interactive chart logic, demographic overlays, dashboard
-              design, and policy-facing analysis.
-            </p>
-
-            <h4>Responsible Framing</h4>
-            <p>
-              Demographic indicators are presented as neighborhood population context, not as victim or offender
-              characteristics.
-            </p>
-          </aside>
         </article>
       </section>
 
-      <section id="selected-work">
+      <section id="projects">
         <div class="section-header">
-          <p class="eyebrow">Selected Work</p>
-          <h2>Research and policy projects.</h2>
+          <p class="eyebrow">Selected Projects</p>
+          <h2>Research, data, and policy work.</h2>
         </div>
 
-        <div class="mini-grid">
-          <article class="mini-card">
-            <h3>NYC Shooting Hotspot Analysis</h3>
-            <p>
-              ArcGIS spatial analysis comparing shooting patterns across 2021, 2023, and 2025 to examine whether
-              citywide public safety gains obscure persistent neighborhood-level exposure to gun violence.
-            </p>
+        <div class="project-grid">
+          <article class="project-card">
+            <img src="nyc-shooting-hotspot-analysis.png" alt="NYC shooting hotspot analysis project preview">
+            <div class="project-card-body">
+              <h3>NYC Shooting Hotspot Analysis</h3>
+              <p>
+                ArcGIS spatial analysis comparing shooting patterns across 2021, 2023, and 2025 to examine whether
+                citywide public safety gains obscure persistent neighborhood-level exposure to gun violence.
+              </p>
+              <a class="text-link" href="#">View Project</a>
+            </div>
           </article>
 
-          <article class="mini-card">
-            <h3>Policy Research and Advocacy</h3>
-            <p>
-              Legislative and policy research on prison oversight, correctional health, prison labor, conditions of
-              confinement, accountability mechanisms, and criminal legal reform.
-            </p>
+          <article class="project-card">
+            <img src="youth-asthma-dashboard.png" alt="Youth asthma dashboard project preview">
+            <div class="project-card-body">
+              <h3>Youth Asthma Data Visualization</h3>
+              <p>
+                Public-facing visualization project examining health, geography, and inequality through accessible
+                data storytelling and dashboard design.
+              </p>
+              <a class="text-link" href="#">View Project</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img src="european-crime-prison-indicators.png" alt="European crime and prison indicators project preview">
+            <div class="project-card-body">
+              <h3>European Crime & Prison Indicators</h3>
+              <p>
+                Comparative data visualization project using public indicators to examine crime, incarceration, and
+                institutional patterns across European contexts.
+              </p>
+              <a class="text-link" href="#">View Project</a>
+            </div>
           </article>
         </div>
       </section>
