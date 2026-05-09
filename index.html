@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Raven O'Joy Leigertwood | Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +24,9 @@
       --max:1160px;
     }
 
-    *{box-sizing:border-box;}
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -275,6 +278,13 @@
       border:1px solid #dfe5ee;
     }
 
+    .button-stack{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:auto;
+    }
+
     .button{
       display:inline-block;
       padding:11px 16px;
@@ -291,6 +301,18 @@
     .button:hover{
       background:var(--navy);
       color:#fff;
+      transform:translateY(-1px);
+    }
+
+    .secondary-button{
+      background:#ffffff;
+      color:var(--navy);
+      border:1px solid #d8d3ca;
+    }
+
+    .secondary-button:hover{
+      background:#f5f1ea;
+      color:var(--navy);
       transform:translateY(-1px);
     }
 
@@ -409,10 +431,12 @@
           <h2>About</h2>
           <p class="section-desc">A brief overview of my research and visualization work.</p>
         </div>
+
         <div class="panel">
           <p>
             I am a John Jay College graduate student whose work combines public data, spatial analysis, research writing, and accessible visualization. My projects examine how public safety, health, demographic, and criminal justice outcomes are distributed across communities.
           </p>
+
           <p>
             This portfolio highlights public-facing visualization projects using open data, mapping tools, and responsible demographic-data framing.
           </p>
@@ -423,12 +447,16 @@
         <div class="section-head">
           <div class="section-label">Selected Work</div>
           <h2>Featured Portfolio Projects</h2>
-          <p class="section-desc">Selected public-facing projects using open data, spatial analysis, and accessible visual storytelling.</p>
+          <p class="section-desc">
+            Selected public-facing projects using open data, spatial analysis, and accessible visual storytelling.
+          </p>
         </div>
 
         <div class="featured-panel">
           <p class="featured-kicker">Featured Project</p>
+
           <h3>NYC Shooting Redistribution Map</h3>
+
           <p>
             This project is the centerpiece of the portfolio. It analyzes how shooting incidents shifted across New York City neighborhoods from 2016–2025, with a focus on how citywide public safety gains can obscure persistent neighborhood-level exposure to gun violence.
           </p>
@@ -440,19 +468,32 @@
             <div class="card-image">
               <img src="nyc_analytics_and_spatial_trends.png" alt="Preview of NYC Shooting Redistribution Map">
             </div>
+
             <div class="card-body">
               <div class="project-type">Public Safety Visualization</div>
+
               <h3>NYC Shooting Redistribution Map</h3>
+
               <p>
                 Interactive public safety visualization analyzing shooting redistribution across New York City neighborhoods from 2016–2025.
               </p>
+
               <div class="tags">
                 <span class="tag">NYC Open Data</span>
                 <span class="tag">Public Safety</span>
                 <span class="tag">Mapping</span>
                 <span class="tag">Dashboard</span>
               </div>
-              <a class="button" href="https://roo100.github.io/nyc-shootings-map/" target="_blank">View Project</a>
+
+              <div class="button-stack">
+                <a class="button" href="https://roo100.github.io/nyc-shootings-map/" target="_blank">
+                  View Project
+                </a>
+
+                <a class="button secondary-button" href="writing-sample.html" target="_blank">
+                  View Writing Sample
+                </a>
+              </div>
             </div>
           </div>
 
@@ -460,19 +501,28 @@
             <div class="card-image">
               <img src="breathing_patterns_over_city_data_map.png" alt="Preview of NYC Youth Asthma Map">
             </div>
+
             <div class="card-body">
               <div class="project-type">Public Health Visualization</div>
+
               <h3>NYC Youth Asthma Map</h3>
+
               <p>
                 Public health visualization examining youth asthma patterns across New York City neighborhoods.
               </p>
+
               <div class="tags">
                 <span class="tag">Public Health</span>
                 <span class="tag">NYC Data</span>
                 <span class="tag">Health Equity</span>
                 <span class="tag">Mapping</span>
               </div>
-              <a class="button" href="https://roo100.github.io/NYC-Youth-Asthma-/" target="_blank">View Project</a>
+
+              <div class="button-stack">
+                <a class="button" href="https://roo100.github.io/NYC-Youth-Asthma-/" target="_blank">
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
 
@@ -480,18 +530,27 @@
             <div class="card-image">
               <img src="geopolitical_nyc_map_and_data_design.png" alt="Preview of NYC Political Demographic Map">
             </div>
+
             <div class="card-body">
               <div class="project-type">Demographic Mapping</div>
+
               <h3>NYC Political Demographic Map</h3>
+
               <p>
                 Interactive map examining neighborhood-level demographic and political patterns across New York City.
               </p>
+
               <div class="tags">
                 <span class="tag">Demographics</span>
                 <span class="tag">Political Geography</span>
                 <span class="tag">Mapping</span>
               </div>
-              <a class="button" href="https://roo100.github.io/NYC-political-demographic-map/" target="_blank">View Project</a>
+
+              <div class="button-stack">
+                <a class="button" href="https://roo100.github.io/NYC-political-demographic-map/" target="_blank">
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
 
@@ -499,19 +558,28 @@
             <div class="card-image">
               <img src="justice_and_data_in_europe_mapping.png" alt="Preview of European Crime and Prison Indicators Map">
             </div>
+
             <div class="card-body">
               <div class="project-type">Comparative Justice Visualization</div>
+
               <h3>European Crime and Prison Indicators Map</h3>
+
               <p>
                 Comparative visualization using European crime and prison indicator data to examine cross-national justice trends.
               </p>
+
               <div class="tags">
                 <span class="tag">Eurostat</span>
                 <span class="tag">Crime Trends</span>
                 <span class="tag">Comparative Justice</span>
                 <span class="tag">Mapping</span>
               </div>
-              <a class="button" href="https://roo100.github.io/eurostat-crime-prison-indicators-map/" target="_blank">View Project</a>
+
+              <div class="button-stack">
+                <a class="button" href="https://roo100.github.io/eurostat-crime-prison-indicators-map/" target="_blank">
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
 
@@ -524,6 +592,7 @@
           <h2>Skills & Tools</h2>
           <p class="section-desc">Core methods and software reflected across these projects.</p>
         </div>
+
         <div class="panel">
           <div class="skills-list">
             <span class="skill-pill">Public Data Analysis</span>
@@ -546,6 +615,7 @@
           <h2>Current Focus</h2>
           <p class="section-desc">Themes guiding ongoing research and public work.</p>
         </div>
+
         <div class="panel">
           <p>
             I am developing public-facing research and visualization projects on uneven public safety, neighborhood exposure to violence, public health disparities, prison oversight, racial equity, and community-centered approaches to criminal legal reform.
@@ -559,6 +629,7 @@
           <h2>Interpretive Note</h2>
           <p class="section-desc">How demographic and contextual variables are used in these projects.</p>
         </div>
+
         <div class="note-box">
           <p>
             Demographic data in these projects are used as neighborhood or population context. They should not be interpreted as individual-level claims about victims, offenders, patients, voters, or residents.
