@@ -89,9 +89,37 @@
   }
   .controls{
     display:grid;
-    grid-template-columns:repeat(4,minmax(160px,1fr));
+    grid-template-columns:repeat(5,minmax(150px,1fr));
     gap:12px;
     margin-bottom:16px;
+  }
+  .download-cell{
+    display:flex;
+    flex-direction:column;
+  }
+  .download-btn{
+    width:100%;
+    min-height:38px;
+    padding:10px 11px;
+    border:1px solid #c7dbe3;
+    border-radius:6px;
+    background:linear-gradient(180deg,#ffffff 0%,#f2f9fb 100%);
+    color:var(--teal);
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    text-align:center;
+    transition:border-color .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
+  }
+  .download-btn:hover{
+    border-color:#97c8c4;
+    background:linear-gradient(180deg,#fbfeff 0%,#eaf6f8 100%);
+    color:#0a6e69;
+  }
+  .download-btn:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(15,127,122,.16);
   }
   label{
     font-size:10.5px;
@@ -330,6 +358,16 @@
     line-height:1.55;
     box-shadow:var(--shadow);
   }
+  .footer a{
+    color:var(--teal);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px solid #9fcfc9;
+  }
+  .footer a:hover,.footer a:focus{
+    color:#0a6e69;
+    border-bottom-color:#0a6e69;
+  }
   .caption{font-size:12px;color:var(--muted);margin-top:8px}
   .svg-text{
     font-family:Arial,Helvetica,sans-serif;
@@ -441,6 +479,7 @@
     <div><label for="countyMetric">County metric</label><select id="countyMetric"><option value="return_rate">Overall return rate</option><option value="parole_rate">Parole violation return rate</option><option value="felony_rate">New felony return rate</option><option value="total">Total release records</option></select></div>
     <div><label for="topN">County chart count</label><select id="topN"><option>5</option><option selected>10</option></select></div>
     <div><label for="countySearch">Search counties</label><input id="countySearch" placeholder="Example: Albany, Erie, Bronx" /></div>
+    <div class="download-cell"><label for="downloadDataBtn">Download data</label><button id="downloadDataBtn" class="download-btn" type="button">Download dashboard data (.csv)</button></div>
   </section>
 
   <section class="cards" id="kpiCards"></section>
@@ -485,7 +524,7 @@
       </div>
     </aside>
   </div>
-  <div class="footer"><strong>Sources:</strong> NYS DOCCS Recidivism: Beginning 2008; NYS prison facility point layer prepared from public facility information; county boundaries from ArcGIS Living Atlas/Esri. <strong>Method note:</strong> Public DOCCS recidivism data are reported by county of indictment and do not identify the correctional facility from which a person was released.</div>
+  <div class="footer"><strong>Sources:</strong> NYS DOCCS Recidivism: Beginning 2008; NYS prison facility point layer prepared from public facility information; county boundaries from ArcGIS Living Atlas/Esri. <strong>Method note:</strong> Public DOCCS recidivism data are reported by county of indictment and do not identify the correctional facility from which a person was released. <strong>Contact:</strong> <a href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a></div>
   <div id="mapModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="mapModalTitle">
     <div class="map-modal-dialog">
       <div class="map-modal-header">
@@ -679,6 +718,160 @@ function drawBarChart(svg, rows, labelKey, valueKey, opts={}){
 function drawStatus(svg, rows){ const mapped=rows.map(d=>({label:d.status.replace('Returned ','').replace('New Felony Offense','New felony offense'), value:d.pct, count:d.count})); drawBarChart(svg,mapped,'label','value',{left:132,percent:true}); }
 function updateKpis(){ const y=getYear(); const k=DATA.kpis[y]; const cards=[['Release records',num(k.total)],['Returned to custody',num(k.returned)],['Return rate',pct(k.return_rate)],['Parole violation returns',num(k.parole)],['New felony returns',num(k.felony)]]; const root=document.getElementById('kpiCards'); root.innerHTML=cards.map(c=>`<div class="card"><div class="label">${c[0]}</div><div class="num">${c[1]}</div></div>`).join(''); }
 function updateCounty(){ const y=getYear(), metric=document.getElementById('countyMetric').value, n=Math.min(+document.getElementById('topN').value,10), q=document.getElementById('countySearch').value.trim().toLowerCase(); let rows=(DATA.county[y]||[]).slice(); rows=rows.filter(d=>!q || d.county.toLowerCase().includes(q)); rows.sort((a,b)=>(+b[metric]||0)-(+a[metric]||0)); let chartRows=rows.slice(0,n).map(d=>({county:d.county.replace(' County',''), value:d[metric]})); drawBarChart(document.getElementById('countyChart'), chartRows, 'county','value',{left:126, percent:metric.includes('rate')}); let thead=document.querySelector('#countyTable thead'), tbody=document.querySelector('#countyTable tbody'); thead.innerHTML='<tr><th>County</th><th>Total</th><th>Returned</th><th>Return rate</th><th>Parole rate</th><th>New felony rate</th></tr>'; tbody.innerHTML=rows.map(d=>`<tr><td>${d.county}</td><td>${num(d.total)}</td><td>${num(d.returned)}</td><td>${pct(d.return_rate)}</td><td>${pct(d.parole_rate)}</td><td>${pct(d.felony_rate)}</td></tr>`).join(''); }
+function csvEscape(value){
+  if(value===null || value===undefined) return '';
+  const str=String(value);
+  return /[",\n]/.test(str) ? `"${str.replace(/"/g,'""')}"` : str;
+}
+function toCsv(rows, headers){
+  const lines=[headers.join(',')];
+  rows.forEach((row)=>{ lines.push(headers.map((h)=>csvEscape(row[h])).join(',')); });
+  return lines.join('\n');
+}
+function downloadDashboardData(){
+  const year=getYear();
+  const metric=document.getElementById('countyMetric').value;
+  const topN=Math.min(+document.getElementById('topN').value,10);
+  const countySearchRaw=document.getElementById('countySearch').value.trim();
+  const countySearch=countySearchRaw.toLowerCase();
+
+  let countyRows=(DATA.county[year]||[]).slice();
+  countyRows=countyRows.filter(d=>!countySearch || d.county.toLowerCase().includes(countySearch));
+  countyRows.sort((a,b)=>(+b[metric]||0)-(+a[metric]||0));
+
+  const shared={
+    exported_at:new Date().toISOString(),
+    dashboard:'NYS DOCCS Recidivism Interactive Dashboard',
+    selected_release_cohort:year,
+    selected_county_metric:metric,
+    selected_county_chart_count:topN,
+    selected_county_search:countySearchRaw||''
+  };
+  const headers=[
+    'section','metric_name','metric_value','year','group','status','county','fips','is_chart_top',
+    'total','returned','not_returned','parole','felony','return_rate','parole_rate','felony_rate','pct','count',
+    'exported_at','dashboard','selected_release_cohort','selected_county_metric','selected_county_chart_count','selected_county_search'
+  ];
+  const rows=[];
+
+  rows.push({
+    ...shared,
+    section:'filters',
+    metric_name:'release_cohort',
+    metric_value:year
+  });
+  rows.push({
+    ...shared,
+    section:'filters',
+    metric_name:'county_metric',
+    metric_value:metric
+  });
+  rows.push({
+    ...shared,
+    section:'filters',
+    metric_name:'county_chart_count',
+    metric_value:topN
+  });
+  rows.push({
+    ...shared,
+    section:'filters',
+    metric_name:'county_search',
+    metric_value:countySearchRaw||''
+  });
+
+  const k=DATA.kpis[year]||{};
+  ['total','returned','not_returned','parole','felony','return_rate'].forEach((key)=>{
+    rows.push({
+      ...shared,
+      section:'summary_kpi',
+      metric_name:key,
+      metric_value:k[key]
+    });
+  });
+
+  (DATA.annual||[]).forEach((d)=>{
+    rows.push({
+      ...shared,
+      section:'annual_return_trend',
+      year:d.year,
+      total:d.total,
+      returned:d.returned,
+      not_returned:d.not_returned,
+      parole:d.parole,
+      felony:d.felony,
+      return_rate:d.return_rate,
+      parole_rate:d.parole_rate,
+      felony_rate:d.felony_rate
+    });
+  });
+
+  (DATA.age[year]||[]).forEach((d)=>{
+    rows.push({
+      ...shared,
+      section:'age_at_release',
+      year:year==='All' ? 'All' : Number(year),
+      group:d.group,
+      total:d.total,
+      returned:d.returned,
+      return_rate:d.return_rate
+    });
+  });
+
+  (DATA.status[year]||[]).forEach((d)=>{
+    rows.push({
+      ...shared,
+      section:'return_status_breakdown',
+      year:year==='All' ? 'All' : Number(year),
+      status:d.status,
+      count:d.count,
+      pct:d.pct
+    });
+  });
+
+  (DATA.gender[year]||[]).forEach((d)=>{
+    rows.push({
+      ...shared,
+      section:'gender_breakdown',
+      year:year==='All' ? 'All' : Number(year),
+      group:d.group,
+      total:d.total,
+      returned:d.returned,
+      return_rate:d.return_rate
+    });
+  });
+
+  countyRows.forEach((d,idx)=>{
+    rows.push({
+      ...shared,
+      section:'county_rows_filtered',
+      year:year==='All' ? 'All' : Number(year),
+      county:d.county,
+      fips:d.fips,
+      is_chart_top:idx<topN ? 'yes' : 'no',
+      total:d.total,
+      returned:d.returned,
+      not_returned:d.not_returned,
+      parole:d.parole,
+      felony:d.felony,
+      return_rate:d.return_rate,
+      parole_rate:d.parole_rate,
+      felony_rate:d.felony_rate
+    });
+  });
+
+  const cohortLabel=year==='All' ? 'all-cohorts' : String(year);
+  const metricLabel=String(metric).replace(/_/g,'-');
+  const fileName=`nys-doccs-recidivism-${cohortLabel}-${metricLabel}.csv`;
+  const blob=new Blob([toCsv(rows,headers)],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1200);
+}
 function updateCharts(){ const y=getYear(); updateKpis(); drawLineChart(document.getElementById('annualChart'),DATA.annual,y==='All'?null:y); drawBarChart(document.getElementById('ageChart'),(DATA.age[y]||[]).map(d=>({group:d.group,value:d.return_rate})),'group','value',{left:58,percent:true}); drawStatus(document.getElementById('statusChart'),DATA.status[y]||[]); drawBarChart(document.getElementById('genderChart'),(DATA.gender[y]||[]).map(d=>({group:d.group,value:d.return_rate})),'group','value',{left:70,percent:true}); updateCounty(); }
 function initMapDialog(){
   const modal=document.getElementById('mapModal');
@@ -731,7 +924,7 @@ function initMapDialog(){
   modal.addEventListener('click',(evt)=>{ if(evt.target===modal){ closeModal(); } });
   document.addEventListener('keydown',(evt)=>{ if(evt.key==='Escape' && modal.classList.contains('is-open')) closeModal(); });
 }
-function init(){ const ys=['All',...DATA.years.map(String)]; document.getElementById('yearSelect').innerHTML=ys.map(y=>`<option value="${y}" ${y==='All'?'selected':''}>${y==='All'?'All release cohorts':y}</option>`).join(''); ['yearSelect','countyMetric','topN'].forEach(id=>document.getElementById(id).addEventListener('change',updateCharts)); document.getElementById('countySearch').addEventListener('input',updateCounty); window.addEventListener('resize',()=>{clearTimeout(window.__resize); window.__resize=setTimeout(updateCharts,120)}); updateCharts(); initMapDialog(); }
+function init(){ const ys=['All',...DATA.years.map(String)]; document.getElementById('yearSelect').innerHTML=ys.map(y=>`<option value="${y}" ${y==='All'?'selected':''}>${y==='All'?'All release cohorts':y}</option>`).join(''); ['yearSelect','countyMetric','topN'].forEach(id=>document.getElementById(id).addEventListener('change',updateCharts)); document.getElementById('countySearch').addEventListener('input',updateCounty); const downloadBtn=document.getElementById('downloadDataBtn'); if(downloadBtn) downloadBtn.addEventListener('click',downloadDashboardData); window.addEventListener('resize',()=>{clearTimeout(window.__resize); window.__resize=setTimeout(updateCharts,120)}); updateCharts(); initMapDialog(); }
 init();
 </script>
 </body>
