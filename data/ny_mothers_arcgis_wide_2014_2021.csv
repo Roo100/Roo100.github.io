@@ -1,0 +1,9 @@
+year,report_date,mothers_share_total_pct,mothers_share_known_pct,mothers_count,women_total,no_children,unknown_children,known_children_status_total,avg_age_women,avg_min_sentence_months,avg_max_sentence_months,source_label,source_url
+2014,2014-01-01,69.7472,70.3301,1683,2413,710,20,2393,37.7,74.7,99.1,"DOCCS Under Custody Report: As of January 1, 2014 (Table 7)",https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2014.pdf
+2015,2015-01-01,71.6199,72.1028,1711,2389,662,16,2373,37.6,73.2,97.4,"DOCCS Under Custody Report: As of January 1, 2015 (Table 7)",https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2015.pdf
+2016,2016-01-01,71.1011,71.2762,1737,2443,700,6,2437,37.3,70.8,94.5,"DOCCS Under Custody Report: As of January 1, 2016 (Table 7)",https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2016.pdf
+2017,2017-01-01,72.175,72.5448,1699,2354,643,12,2342,37.7,73.4,97.2,"DOCCS Under Custody Report: As of January 1, 2017 (Table 7)",https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202017.pdf
+2018,2018-01-01,72.6423,72.9211,1710,2354,635,9,2345,37.9,74.5,97.4,"DOCCS Under Custody Report: As of January 1, 2018 (Table 7)",https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202018.pdf
+2019,2019-01-01,70.7172,71.8329,1548,2189,607,34,2155,38.0,77.6,99.4,"DOCCS Under Custody Report: As of January 1, 2019 (Table 7)",https://doccs.ny.gov/system/files/documents/2021/05/under-custody-report-2019.pdf
+2020,2020-01-01,70.0855,70.7974,1394,1989,575,20,1969,38.0,81.1,102.6,"DOCCS Under Custody Report: As of January 1, 2020 (Table 7)",https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2020.pdf
+2021,2021-01-01,69.962,70.122,920,1315,392,3,1312,38.9,102.9,125.0,"DOCCS Under Custody Report: As of January 1, 2021 (Table 7)",https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2021.pdf

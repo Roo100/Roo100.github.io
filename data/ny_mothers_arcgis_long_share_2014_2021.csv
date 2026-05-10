@@ -1,0 +1,17 @@
+year,report_date,series,value_pct,value_label,source_url
+2014,2014-01-01,Mothers share (female total),69.7472,69.7%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2014.pdf
+2014,2014-01-01,Mothers share (known status),70.3301,70.3%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2014.pdf
+2015,2015-01-01,Mothers share (female total),71.6199,71.6%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2015.pdf
+2015,2015-01-01,Mothers share (known status),72.1028,72.1%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2015.pdf
+2016,2016-01-01,Mothers share (female total),71.1011,71.1%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2016.pdf
+2016,2016-01-01,Mothers share (known status),71.2762,71.3%,https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2016.pdf
+2017,2017-01-01,Mothers share (female total),72.175,72.2%,https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202017.pdf
+2017,2017-01-01,Mothers share (known status),72.5448,72.5%,https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202017.pdf
+2018,2018-01-01,Mothers share (female total),72.6423,72.6%,https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202018.pdf
+2018,2018-01-01,Mothers share (known status),72.9211,72.9%,https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202018.pdf
+2019,2019-01-01,Mothers share (female total),70.7172,70.7%,https://doccs.ny.gov/system/files/documents/2021/05/under-custody-report-2019.pdf
+2019,2019-01-01,Mothers share (known status),71.8329,71.8%,https://doccs.ny.gov/system/files/documents/2021/05/under-custody-report-2019.pdf
+2020,2020-01-01,Mothers share (female total),70.0855,70.1%,https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2020.pdf
+2020,2020-01-01,Mothers share (known status),70.7974,70.8%,https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2020.pdf
+2021,2021-01-01,Mothers share (female total),69.962,70.0%,https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2021.pdf
+2021,2021-01-01,Mothers share (known status),70.122,70.1%,https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2021.pdf
