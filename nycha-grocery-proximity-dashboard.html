@@ -1,0 +1,4283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYCHA Grocery Access Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --paper: #fcfbf8;
+      --ink: #1e2430;
+      --muted: #5f6775;
+      --line: #d8d3ca;
+      --accent: #b98c43;
+      --accent-deep: #0f1b2d;
+      --teal: #3f5d80;
+      --teal-soft: #e3ebf4;
+      --card: #ffffff;
+      --dist-1: #5a7896;
+      --dist-2: #6f8ca7;
+      --dist-3: #8e9faf;
+      --dist-4: #a59a82;
+      --dist-5: #b98c43;
+      --dist-6: #8d5f23;
+      --income-1: #2166ac;
+      --income-2: #67a9cf;
+      --income-3: #d1e5f0;
+      --income-4: #fddbc7;
+      --income-5: #ef8a62;
+      --income-6: #b2182b;
+      --race-metric-1: #fff5f0;
+      --race-metric-2: #fcbba1;
+      --race-metric-3: #fc9272;
+      --race-metric-4: #ef3b2c;
+      --race-metric-5: #cb181d;
+      --race-metric-6: #67000d;
+      --race-white: #0072b2;
+      --race-black: #e69f00;
+      --race-asian: #009e73;
+      --race-other: #cc79a7;
+      --shadow: 0 10px 28px rgba(20, 26, 40, 0.08);
+      --radius: 20px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      min-height: 100vh;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+      padding: 34px 0 36px;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 30px 32px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(252, 251, 248, 0.96) 0%,
+          rgba(252, 251, 248, 0.88) 45%,
+          rgba(252, 251, 248, 0.68) 72%,
+          rgba(252, 251, 248, 0.54) 100%
+        ),
+        url("portfolio-header.png");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      animation: riseIn 680ms ease;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4c5966;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--accent-deep);
+    }
+
+    .hero p {
+      margin: 0;
+      color: #374556;
+      font-size: 1rem;
+      max-width: 920px;
+    }
+
+    .source-note {
+      margin-top: 11px;
+      font-size: 0.86rem;
+      color: #536172;
+      line-height: 1.62;
+    }
+
+    .source-note strong {
+      color: #23354a;
+    }
+
+    .meta-section {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px 22px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .meta-section h3 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #1f3145;
+    }
+
+    .meta-section .source-note {
+      margin-top: 8px;
+    }
+
+    .meta-section .source-note a {
+      display: inline-block;
+      padding: 0 4px;
+      border-radius: 6px;
+      color: #0c457f;
+      background: #eaf1fb;
+      border: 1px solid #c9dcf3;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+
+    .meta-section .source-note a:hover {
+      color: #072f59;
+    }
+
+    .meta-section .source-note a:focus-visible {
+      outline: 2px solid #0d4f9b;
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    .howto-card {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid #d8d3ca;
+      border-left: 5px solid var(--accent);
+      border-radius: 16px;
+      background: #fffaf1;
+    }
+
+    .howto-title {
+      margin: 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #32455b;
+      font-weight: 700;
+    }
+
+    .howto-list {
+      margin: 7px 0 0;
+      padding-left: 19px;
+      color: #3f5063;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .howto-list + .howto-title {
+      margin-top: 10px;
+    }
+
+    .howto-list li {
+      margin: 4px 0;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+      gap: 10px;
+      align-items: end;
+      background: linear-gradient(180deg, #fcfbf8 0%, #f6f2ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+      animation: riseIn 760ms ease;
+    }
+
+    .control {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .control.hidden {
+      display: none;
+    }
+
+    .control label {
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5d6776;
+      font-weight: 700;
+    }
+
+    select,
+    input[type="text"],
+    input[type="range"],
+    button {
+      font: inherit;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid #d8d3ca;
+      border-radius: 14px;
+      padding: 11px 13px;
+      background: #ffffff;
+      color: #1e2430;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .range-value {
+      font-size: 0.87rem;
+      color: #374353;
+      font-weight: 600;
+    }
+
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #d8d3ca;
+      white-space: nowrap;
+      font-size: 0.92rem;
+      color: #283242;
+    }
+
+    .toggle-wrap input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--teal);
+    }
+
+    .reset-btn {
+      border: 1px solid #d5cfc2;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: #f5f1ea;
+      color: var(--accent-deep);
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 9px;
+      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(20, 30, 48, 0.1);
+      background: var(--accent-deep);
+      color: #fff;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 10px 0 0;
+      font-size: 0.82rem;
+      color: #2f4664;
+      background: #eaf0f8;
+      border: 1px solid #ccd9ea;
+      padding: 7px 11px;
+      border-radius: 999px;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 0 rgba(63, 93, 128, 0.55);
+      animation: pulse 1.9s infinite;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(360px, 1fr);
+      gap: 14px;
+      animation: riseIn 860ms ease;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-dashboard {
+      overflow: visible;
+    }
+
+    .panel-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fdfcf9 0%, #f4f1ea 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--accent-deep);
+    }
+
+    .panel-sub {
+      margin: 0;
+      font-size: 0.84rem;
+      color: #536172;
+    }
+
+    #map {
+      width: 100%;
+      height: 660px;
+      background: #edf1f6;
+    }
+
+    .side {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      border: 1px solid #ded8ce;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .metric-label {
+      margin: 0 0 4px;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #667385;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      margin: 0;
+      font-size: 1.52rem;
+      font-weight: 700;
+      color: #172233;
+      line-height: 1.05;
+    }
+
+    .metric-note {
+      margin: 4px 0 0;
+      font-size: 0.78rem;
+      color: #5c6778;
+    }
+
+    .distribution {
+      border: 1px solid #ded8ce;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .price-card {
+      border: 1px solid #ded8ce;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card h3 {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #4f5b6c;
+    }
+
+    .price-note {
+      margin: 0 0 8px;
+      font-size: 0.82rem;
+      color: #526074;
+    }
+
+    .price-input {
+      width: 100%;
+      min-height: 88px;
+      resize: vertical;
+      border: 1px solid #d8d3ca;
+      border-radius: 9px;
+      padding: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      color: #1e2430;
+      background: #fcfbf8;
+    }
+
+    .price-live-row {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .price-live-input {
+      min-width: 142px;
+      max-width: 180px;
+      border: 1px solid #d8d3ca;
+      border-radius: 9px;
+      padding: 6px 8px;
+      font-size: 0.78rem;
+      color: #1e2430;
+      background: #fcfbf8;
+    }
+
+    .price-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .price-btn {
+      border: 1px solid #d5cfc2;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: #f5f1ea;
+      color: var(--accent-deep);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+    }
+
+    .price-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(20, 30, 48, 0.1);
+      background: var(--accent-deep);
+      color: #fff;
+    }
+
+    .price-status {
+      margin: 8px 0 0;
+      font-size: 0.8rem;
+      color: #4d5d71;
+    }
+
+    .price-meta {
+      margin: 4px 0 0;
+      font-size: 0.76rem;
+      color: #607083;
+      line-height: 1.35;
+    }
+
+    .price-chart {
+      margin-top: 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: min(100%, 640px);
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 4px;
+      scrollbar-gutter: stable;
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 1.25fr) minmax(130px, 2fr) auto;
+      gap: 7px;
+      align-items: center;
+      font-size: 0.77rem;
+      color: #324154;
+    }
+
+    .price-store-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .price-bar {
+      height: 8px;
+      background: #e6e0d5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .price-bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), var(--accent));
+    }
+
+    .price-value {
+      font-weight: 700;
+      color: #223549;
+      min-width: 52px;
+      text-align: right;
+    }
+
+    .distribution h3,
+    .table-wrap h3,
+    .focus-card h3 {
+      margin: 0 0 9px;
+      font-size: 0.9rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #4f5b6c;
+    }
+
+    .bin-row {
+      display: grid;
+      grid-template-columns: 86px 1fr 46px;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: #364457;
+    }
+
+    .bar {
+      height: 10px;
+      background: #e6e0d5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--accent));
+      width: 0;
+      transition: width 240ms ease;
+    }
+
+    .table-wrap {
+      border: 1px solid #ded8ce;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+    }
+
+    .table-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      color: #4f5d70;
+    }
+
+    .table-controls select {
+      width: auto;
+      min-width: 132px;
+      padding: 7px 8px;
+      font-size: 0.82rem;
+      border-radius: 8px;
+    }
+
+    .table-scroll {
+      overflow: auto;
+      border: 1px solid #e4dac8;
+      border-radius: 10px;
+      background: #fff;
+      min-height: 190px;
+      max-height: 290px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f6f2e8;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid #f0e9da;
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #526074;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+
+    tbody tr:hover {
+      background: #f5f3ee;
+    }
+
+    tbody tr.active {
+      background: #ece8df;
+    }
+
+    .focus-card {
+      border: 1px solid #d8d2c7;
+      border-radius: 16px;
+      padding: 12px;
+      background: linear-gradient(165deg, #fcfbf8, #f1eee7);
+    }
+
+    .focus-main {
+      margin: 0;
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: #1f2f42;
+    }
+
+    .focus-sub,
+    .focus-distance,
+    .focus-store {
+      margin: 5px 0 0;
+      color: #445467;
+      font-size: 0.9rem;
+    }
+
+    .focus-demographics {
+      margin: 8px 0 0;
+      padding-top: 8px;
+      border-top: 1px solid #ddd6ca;
+      color: #3d4f63;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .compare-card {
+      border: 1px solid #d8d2c7;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .compare-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #243548;
+    }
+
+    .compare-note {
+      margin: 0 0 8px;
+      font-size: 0.86rem;
+      color: #4a596b;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .compare-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .compare-actions .price-btn {
+      padding: 8px 10px;
+    }
+
+    .compare-results {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #e0d9cc;
+      color: #33465c;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .compare-table {
+      width: 100%;
+      margin-top: 8px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dfd8cd;
+      padding: 6px 7px;
+      vertical-align: middle;
+    }
+
+    .compare-table th {
+      background: #f7f4ed;
+      color: #2b3d51;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .compare-source {
+      margin-top: 7px;
+      font-size: 0.79rem;
+      color: #5b697a;
+    }
+
+    .scope-card {
+      margin: 8px 14px 0;
+      padding: 14px;
+      border: 1px solid #d8d3ca;
+      border-radius: 16px;
+      background: #f8f5ee;
+    }
+
+    .scope-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #243548;
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .scope-item {
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid #ded8ce;
+      background: #ffffff;
+    }
+
+    .scope-label {
+      margin: 0;
+      font-size: 0.72rem;
+      color: #526173;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .scope-value {
+      margin: 4px 0 0;
+      font-size: 1.15rem;
+      color: #1f3145;
+      font-weight: 700;
+    }
+
+    .scope-note {
+      margin: 10px 0 0;
+      font-size: 0.81rem;
+      color: #4a596b;
+    }
+
+    .legend-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--line);
+      background: #f5f2eb;
+    }
+
+    .map-price-wrap {
+      padding: 0;
+      border-top: 0;
+      background: transparent;
+    }
+
+    .map-price-wrap .price-card {
+      margin: 0;
+      width: 100%;
+    }
+
+    .map-compare-wrap {
+      padding: 14px;
+      border-top: 1px solid var(--line);
+      background: #f7f4ed;
+    }
+
+    .legend {
+      flex: 1 1 260px;
+      background: #ffffff;
+      border: 1px solid #d8d3ca;
+      border-radius: 14px;
+      box-shadow: 0 6px 14px rgba(20, 30, 48, 0.06);
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      color: #324154;
+    }
+
+    .legend.hidden {
+      display: none;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 4px;
+      white-space: normal;
+    }
+
+    .swatch {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      border: 1px solid rgba(10, 10, 10, 0.2);
+    }
+
+    .leaflet-popup.popup-shift .leaflet-popup-content-wrapper {
+      border-radius: 12px;
+      box-shadow: 0 10px 22px rgba(20, 30, 48, 0.16);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(35, 53, 73, 0.22);
+      backdrop-filter: blur(3px);
+    }
+
+    .leaflet-popup.popup-shift .leaflet-popup-tip {
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .leaflet-popup.popup-shift .leaflet-popup-content {
+      margin: 10px 12px;
+      line-height: 1.36;
+      font-size: 0.93rem;
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .income-moe {
+      color: #5f6775;
+      font-size: 0.86em;
+    }
+
+    .empty-msg {
+      font-size: 0.85rem;
+      color: #5c6878;
+      padding: 10px;
+    }
+
+    .footer {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #5c6877;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(63, 93, 128, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(63, 93, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(63, 93, 128, 0); }
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .controls {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        grid-template-rows: auto auto minmax(0, auto) auto;
+      }
+
+      #map {
+        height: 560px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(96%, 720px);
+        padding-top: 18px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .scope-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #map {
+        height: 470px;
+      }
+
+      .legend {
+        flex-basis: 100%;
+      }
+
+      .price-row {
+        grid-template-columns: minmax(90px, 1fr) minmax(90px, 1fr) auto;
+      }
+
+      .price-chart {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <p class="eyebrow">NYC Housing + Food Access</p>
+      <h1>Public Housing and Grocery Access in New York City</h1>
+      <div class="howto-card" aria-label="Dashboard instructions">
+        <p class="howto-title">How To Use</p>
+        <ul class="howto-list">
+          <li>Start with Borough, Search Development, and Highlight Max Distance to focus the map.</li>
+          <li>Choose Nearest Store Mode to compare access to the closest grocery point versus the closest full supermarket.</li>
+          <li>Click any NYCHA development to update the Selected Development card and automatically set that site as Development A in the comparison panel.</li>
+          <li>Use Compare Two Developments to pick Development A and B and review side-by-side distance and 4-item staple basket differences.</li>
+          <li>Use the Staple Price Chart panel (right side, under Selected Development) to load live ZIP-based prices or apply manual CSV prices.</li>
+          <li>Use Include FHA Repossessed Groups, Show Mapped Store Points, Clear Selected NYCHA, and Reset View as needed.</li>
+        </ul>
+        <p class="howto-title">How To Use The Data</p>
+        <ul class="howto-list">
+          <li>Use distance and neighborhood demographics together to identify developments with higher food-access pressure.</li>
+          <li>Average 4-item price values reflect standardized units: eggs (12 ct), milk (1 gal), bread (20 oz), and chicken (1 lb).</li>
+          <li>Price fields may use loaded live/manual values when available, otherwise modeled estimates are used and labeled in the dashboard.</li>
+          <li>Income and race are ACS neighborhood context values and should not be interpreted as direct NYCHA resident-level household data.</li>
+          <li>Distance values are straight-line estimates from development footprints to mapped stores, not walking-route travel times.</li>
+        </ul>
+      </div>
+      <div class="status" id="statusBadge" aria-live="polite">
+        <span class="status-dot"></span>
+        <span id="statusText">Loading NYCHA and grocery data...</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Dashboard controls">
+      <div class="control">
+        <label for="boroughSelect">Borough</label>
+        <select id="boroughSelect">
+          <option value="ALL">All Boroughs</option>
+          <option value="BRONX">Bronx</option>
+          <option value="BROOKLYN">Brooklyn</option>
+          <option value="MANHATTAN">Manhattan</option>
+          <option value="QUEENS">Queens</option>
+          <option value="STATEN ISLAND">Staten Island</option>
+          <option value="UNKNOWN">Unknown</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="distanceSlider">Highlight Max Distance</label>
+        <input id="distanceSlider" type="range" min="0.25" max="3" step="0.05" value="1.00">
+        <div class="range-value" id="distanceValue">1.00 mi</div>
+      </div>
+
+      <div class="control">
+        <label for="searchInput">Search Development</label>
+        <input id="searchInput" type="text" placeholder="Type development name..." autocomplete="off">
+      </div>
+
+      <div class="control">
+        <label for="demographicLayerSelect">Demographic Layer</label>
+        <select id="demographicLayerSelect">
+          <option value="none">None</option>
+          <option value="income_post">Median Household Income (ACS 2020-2024)</option>
+          <option value="race_metric_post">Race Metric (%) (ACS 2020-2024)</option>
+          <option value="race_dominant_post">Dominant Race Group (ACS 2020-2024)</option>
+        </select>
+      </div>
+
+      <div class="control hidden" id="raceMetricControl">
+        <label for="raceMetricSelect">Race Metric</label>
+        <select id="raceMetricSelect">
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="asian">Asian</option>
+          <option value="other">Other / Multiracial</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="storeModeSelect">Nearest Store Mode</label>
+        <select id="storeModeSelect">
+          <option value="grocery">Closest grocery point</option>
+          <option value="supermarket">Closest full supermarket only</option>
+        </select>
+      </div>
+
+      <label class="toggle-wrap" for="toggleStores">
+        <input id="toggleStores" type="checkbox">
+        Show mapped store points
+      </label>
+
+      <label class="toggle-wrap" for="toggleFhaGroups">
+        <input id="toggleFhaGroups" type="checkbox">
+        Include FHA repossessed groups
+      </label>
+
+      <button class="reset-btn" id="resetBtn" type="button">Reset View</button>
+    </section>
+
+    <section class="dashboard">
+      <article class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Map View</h2>
+          <p class="panel-sub">Public housing scope by default; color shows nearest-store distance for the selected store mode</p>
+        </div>
+        <div id="map" role="region" aria-label="Map of NYCHA developments"></div>
+        <div class="legend-stack" aria-label="Map legends">
+          <div class="legend" id="distanceLegend" aria-hidden="true">
+            <div><strong>Distance Legend (miles)</strong></div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-1);"></span> 0.00 - 0.25</div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-2);"></span> 0.25 - 0.50</div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-3);"></span> 0.50 - 1.00</div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-4);"></span> 1.00 - 1.50</div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-5);"></span> 1.50 - 2.00</div>
+            <div class="legend-row"><span class="swatch" style="background:var(--dist-6);"></span> 2.00+</div>
+          </div>
+          <div class="legend hidden" id="demographicLegend" aria-hidden="true"></div>
+        </div>
+        <div class="map-compare-wrap">
+          <div class="compare-card">
+            <h3>Compare Two Developments</h3>
+            <p class="compare-note">Choose two NYCHA developments and compare distance and average 4-item staple price.</p>
+            <div class="compare-grid">
+              <div class="control">
+                <label for="compareASelect">Development A</label>
+                <select id="compareASelect"></select>
+              </div>
+              <div class="control">
+                <label for="compareBSelect">Development B</label>
+                <select id="compareBSelect"></select>
+              </div>
+            </div>
+            <div class="compare-actions">
+              <button id="useSelectedAsABtn" class="price-btn" type="button">Use Selected As A</button>
+              <button id="useSelectedAsBBtn" class="price-btn" type="button">Use Selected As B</button>
+              <button id="swapCompareBtn" class="price-btn" type="button">Swap A/B</button>
+            </div>
+            <div class="compare-results" id="compareResults">Select two developments to view side-by-side comparison.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel panel-dashboard">
+        <div class="panel-head">
+          <h2 class="panel-title">Summary</h2>
+          <p class="panel-sub">Filter-driven summary</p>
+        </div>
+
+        <div class="side">
+          <div class="metrics" id="metricsGrid">
+            <div class="metric">
+              <p class="metric-label">Mapped Developments</p>
+              <p class="metric-value" id="metricComplexes">-</p>
+              <p class="metric-note">In current filter and scope</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Median Distance</p>
+              <p class="metric-value" id="metricMedian">-</p>
+              <p class="metric-note">Miles to nearest grocery</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Within 0.5 Miles</p>
+              <p class="metric-value" id="metricHalfMile">-</p>
+              <p class="metric-note">Share of complexes</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Farthest Case</p>
+              <p class="metric-value" id="metricMax">-</p>
+              <p class="metric-note">Maximum distance</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Avg 4-Item Price (Filter)</p>
+              <p class="metric-value" id="metricPriceFilter">-</p>
+              <p class="metric-note" id="metricPriceFilterNote">Unique nearest stores in current filter</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Avg 4-Item Price (City)</p>
+              <p class="metric-value" id="metricPriceCity">-</p>
+              <p class="metric-note" id="metricPriceCityNote">Unique nearest stores citywide</p>
+            </div>
+          </div>
+
+          <div class="scope-card">
+            <h3>Public Housing Scope</h3>
+            <div class="scope-grid">
+              <div class="scope-item">
+                <p class="scope-label">Official Public Housing Apartments</p>
+                <p class="scope-value" id="scopeOfficialApartments">152,926</p>
+              </div>
+              <div class="scope-item">
+                <p class="scope-label">Mapped Developments (Current Scope)</p>
+                <p class="scope-value" id="scopeMappedDevelopments">-</p>
+              </div>
+              <div class="scope-item">
+                <p class="scope-label">FHA/Unknown Records</p>
+                <p class="scope-value" id="scopeUnknownRecords">-</p>
+              </div>
+              <div class="scope-item">
+                <p class="scope-label">Coverage vs Official 243</p>
+                <p class="scope-value" id="scopeCoverage">-</p>
+              </div>
+            </div>
+            <p class="scope-note" id="scopeNote">Map scope summary.</p>
+          </div>
+
+          <div class="focus-card">
+            <h3>Selected Development</h3>
+            <p class="focus-main" id="focusName">Click a development on the map.</p>
+            <p class="focus-sub" id="focusBorough"></p>
+            <p class="focus-distance" id="focusDistance"></p>
+            <p class="focus-store" id="focusStore"></p>
+            <p class="focus-sub" id="focusBenchmark"></p>
+            <p class="focus-demographics" id="focusDemographics"></p>
+            <div style="margin-top:10px;">
+              <button id="clearSelectionBtn" class="price-btn" type="button">Clear Selected NYCHA</button>
+            </div>
+          </div>
+
+          <div class="map-price-wrap">
+            <div class="price-card">
+              <h3>Staple Price Chart</h3>
+              <p class="price-note">Average standardized basket price for stores in the current NYCHA filter: eggs (12 ct), milk (1 gal), bread (20 oz loaf), and chicken (1 lb).</p>
+              <textarea
+                id="priceCsvInput"
+                class="price-input"
+                rows="5"
+                placeholder="store_id,store,eggs,milk,bread,chicken_lb"
+                aria-label="Store staple price CSV input"
+              ></textarea>
+              <div class="price-live-row">
+                <input
+                  id="liveZipInput"
+                  class="price-live-input"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="5"
+                  placeholder="ZIP code"
+                  aria-label="ZIP code for live grocery price loading"
+                >
+                <button id="loadLivePricesBtn" class="price-btn" type="button">Load Live Web Prices</button>
+              </div>
+              <div class="price-actions">
+                <button id="applyPriceBtn" class="price-btn" type="button">Apply Prices</button>
+                <button id="loadTemplateBtn" class="price-btn" type="button">Load Store Template</button>
+                <button id="clearPriceBtn" class="price-btn" type="button">Clear Prices</button>
+              </div>
+              <p id="priceStatus" class="price-status"></p>
+              <p id="priceMeta" class="price-meta"></p>
+              <div id="priceChart" class="price-chart"></div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+    <section class="meta-section" aria-label="About this dashboard and data">
+      <h3>About This Dashboard And Data</h3>
+      <p class="source-note">
+        This dashboard shows where NYCHA developments are located, the nearest grocery option to each site, and how access and staple food prices compare across neighborhoods.
+      </p>
+      <p class="source-note">
+        <strong>Data Snapshot:</strong> Base map data reflects files prepared on May 12-15, 2026. Grocery price values can update live when you load prices by ZIP code.
+      </p>
+      <p class="source-note">
+        <strong>How Staple Price Is Calculated:</strong> The 4-item average is the mean price of eggs (12 count), milk (1 gallon), bread (20 oz), and chicken (1 lb). If you do not load prices, the dashboard uses modeled estimates.
+      </p>
+      <p class="source-note">
+        <strong>How Price Summary Cards Work:</strong> Filter and city price cards are based on unique nearest stores, so one store is not counted multiple times just because it serves several developments.
+      </p>
+      <p class="source-note">
+        <strong>Store Mode:</strong> You can switch between the closest grocery point and the closest full supermarket. Supermarket mode excludes smaller non-supermarket listings.
+      </p>
+      <p class="source-note">
+        <strong>Distance Method:</strong> Distance is shown as straight-line miles from each development area to the nearest mapped store in the selected mode. It is not a walking-route distance.
+      </p>
+      <p class="source-note">
+        <strong>Income and Race Caveat:</strong> Park and open-space areas (for example Central Park) are shown as limited-data zones, so race and income are not displayed there. Some non-park areas may still show <strong>N/A</strong> if no published value is available for the selected ACS period.
+      </p>
+    </section>
+
+    <section class="meta-section" aria-label="Sources">
+      <h3>Sources</h3>
+      <p class="source-note">
+        <strong>Source 1 - NYCHA Development Boundaries:</strong>
+        <a href="https://data.cityofnewyork.us/Housing-Development/NYCHA-Public-Housing-Developments/phvi-damg" target="_blank" rel="noopener noreferrer">NYC Open Data - NYCHA Public Housing Developments (phvi-damg)</a>.
+      </p>
+      <p class="source-note">
+        <strong>Source 2 - Grocery Store Locations:</strong>
+        <a href="https://data.ny.gov/Economic-Development/Retail-Food-Stores/9a8c-vfzj" target="_blank" rel="noopener noreferrer">NYS Open Data - Retail Food Stores (9a8c-vfzj)</a>,
+        filtered to grocery and supermarket records.
+      </p>
+      <p class="source-note">
+        <strong>Source 3 - Neighborhood Income and Race:</strong>
+        <a href="https://data.census.gov/table/ACSDT5Y2024.B19013" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2020-2024 Table B19013 (Median Household Income)</a>
+        and
+        <a href="https://data.census.gov/table/ACSDT5Y2024.B02001" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2020-2024 Table B02001 (Race)</a>.
+        Neighborhood-level backup for missing tract income:
+        <a href="https://roo100.github.io/data/nycha_grocery/income_change_nta_summary_arcgis.csv" target="_blank" rel="noopener noreferrer">income_change_nta_summary_arcgis.csv</a>.
+      </p>
+      <p class="source-note">
+        <strong>Source 4 - Official NYCHA System Counts:</strong>
+        <a href="https://www.nyc.gov/site/nycha/about/about-nycha.page" target="_blank" rel="noopener noreferrer">NYCHA About Page</a>
+        and NYCHA-reported context used in this dashboard (243 conventional developments, 152,926 apartments, 92 PACT, 335 total developments).
+      </p>
+    </section>
+
+    <p class="footer">
+      Built for exploratory planning and public data analysis. Distances are straight-line (not walking-route) estimates.
+    </p>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="data/nycha_grocery/nycha_developments.js"></script>
+  <script src="data/nycha_grocery/nyc_retail_food_stores.js"></script>
+  <script src="data/nycha_grocery/nta_income_race_2016_by_tract.js"></script>
+  <script src="data/nycha_grocery/nta_income_acs2024_summary.js"></script>
+  <script>
+    const BOROUGH_LABELS = {
+      BRONX: 'Bronx',
+      BROOKLYN: 'Brooklyn',
+      MANHATTAN: 'Manhattan',
+      QUEENS: 'Queens',
+      'STATEN ISLAND': 'Staten Island',
+      UNKNOWN: 'Unknown'
+    };
+
+    const COUNTY_TO_BOROUGH = {
+      BRONX: 'BRONX',
+      KINGS: 'BROOKLYN',
+      'NEW YORK': 'MANHATTAN',
+      QUEENS: 'QUEENS',
+      RICHMOND: 'STATEN ISLAND'
+    };
+
+    const OFFICIAL_NYCHA_COUNTS = {
+      conventionalDevelopments: 243,
+      pactDevelopments: 92,
+      totalDevelopments: 335,
+      conventionalApartments: 152926
+    };
+
+    const state = {
+      nycha: [],
+      stores: [],
+      groceryStores: [],
+      supermarketStores: [],
+      filtered: [],
+      selectedId: null,
+      compareAId: '',
+      compareBId: '',
+      activeBorough: 'ALL',
+      maxHighlightDistance: 1.0,
+      searchTerm: '',
+      demographicLayerMode: 'none',
+      raceMetricGroup: 'black',
+      storeMode: 'grocery',
+      includeFhaGroups: false,
+      showStores: false,
+      sortMode: 'farthest',
+      mapLoaded: false,
+      demographicLayerData: null,
+      ntaDemographicFallback: {},
+      ntaIncomeSummaryByName: {},
+      ntaIncomeSummaryByCode: {},
+      ignoreMapResetUntilTs: 0,
+      livePriceRequestInFlight: false,
+      priceDataByStoreName: {},
+      priceDataByStoreId: {}
+    };
+
+    const elements = {
+      statusText: document.getElementById('statusText'),
+      boroughSelect: document.getElementById('boroughSelect'),
+      distanceSlider: document.getElementById('distanceSlider'),
+      distanceValue: document.getElementById('distanceValue'),
+      searchInput: document.getElementById('searchInput'),
+      demographicLayerSelect: document.getElementById('demographicLayerSelect'),
+      raceMetricControl: document.getElementById('raceMetricControl'),
+      raceMetricSelect: document.getElementById('raceMetricSelect'),
+      storeModeSelect: document.getElementById('storeModeSelect'),
+      toggleFhaGroups: document.getElementById('toggleFhaGroups'),
+      toggleStores: document.getElementById('toggleStores'),
+      resetBtn: document.getElementById('resetBtn'),
+      metricComplexes: document.getElementById('metricComplexes'),
+      metricMedian: document.getElementById('metricMedian'),
+      metricHalfMile: document.getElementById('metricHalfMile'),
+      metricPriceFilter: document.getElementById('metricPriceFilter'),
+      metricMax: document.getElementById('metricMax'),
+      metricPriceCity: document.getElementById('metricPriceCity'),
+      metricPriceFilterNote: document.getElementById('metricPriceFilterNote'),
+      metricPriceCityNote: document.getElementById('metricPriceCityNote'),
+      priceCsvInput: document.getElementById('priceCsvInput'),
+      liveZipInput: document.getElementById('liveZipInput'),
+      loadLivePricesBtn: document.getElementById('loadLivePricesBtn'),
+      applyPriceBtn: document.getElementById('applyPriceBtn'),
+      loadTemplateBtn: document.getElementById('loadTemplateBtn'),
+      clearPriceBtn: document.getElementById('clearPriceBtn'),
+      priceStatus: document.getElementById('priceStatus'),
+      priceMeta: document.getElementById('priceMeta'),
+      priceChart: document.getElementById('priceChart'),
+      focusName: document.getElementById('focusName'),
+      focusBorough: document.getElementById('focusBorough'),
+      focusDistance: document.getElementById('focusDistance'),
+      focusStore: document.getElementById('focusStore'),
+      focusBenchmark: document.getElementById('focusBenchmark'),
+      focusDemographics: document.getElementById('focusDemographics'),
+      clearSelectionBtn: document.getElementById('clearSelectionBtn'),
+      compareASelect: document.getElementById('compareASelect'),
+      compareBSelect: document.getElementById('compareBSelect'),
+      useSelectedAsABtn: document.getElementById('useSelectedAsABtn'),
+      useSelectedAsBBtn: document.getElementById('useSelectedAsBBtn'),
+      swapCompareBtn: document.getElementById('swapCompareBtn'),
+      compareResults: document.getElementById('compareResults'),
+      demographicLegend: document.getElementById('demographicLegend'),
+      scopeOfficialApartments: document.getElementById('scopeOfficialApartments'),
+      scopeMappedDevelopments: document.getElementById('scopeMappedDevelopments'),
+      scopeUnknownRecords: document.getElementById('scopeUnknownRecords'),
+      scopeCoverage: document.getElementById('scopeCoverage'),
+      scopeNote: document.getElementById('scopeNote')
+    };
+
+    const map = L.map('map', {
+      zoomControl: true,
+      attributionControl: true,
+      preferCanvas: true
+    }).setView([40.72, -73.94], 10.5);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    const mapLayers = {
+      nychaLayer: null,
+      storeLayer: null,
+      demographicLayer: null,
+      connectorsLayer: L.layerGroup().addTo(map),
+      highlightLayer: L.layerGroup().addTo(map)
+    };
+
+    const POPUP_SHIFT_OPTIONS = {
+      offset: [0, 0],
+      autoPan: true,
+      autoPanPadding: [44, 44],
+      keepInView: true,
+      className: 'popup-shift',
+      maxWidth: 320
+    };
+    const POPUP_TARGET_SHIFT = {
+      x: 220,
+      y: 32
+    };
+
+    function shiftedPopupLatLng(baseLatLng) {
+      if (!baseLatLng) return baseLatLng;
+      const anchorPoint = map.latLngToContainerPoint(baseLatLng);
+      const mapSize = map.getSize();
+      const margin = 22;
+      const shiftedPoint = L.point(
+        Math.max(margin, Math.min(mapSize.x - margin, anchorPoint.x + POPUP_TARGET_SHIFT.x)),
+        Math.max(margin, Math.min(mapSize.y - margin, anchorPoint.y + POPUP_TARGET_SHIFT.y))
+      );
+      return map.containerPointToLatLng(shiftedPoint);
+    }
+
+    function shiftPopupToPreferredPosition(popup, baseLatLng) {
+      if (!popup || !baseLatLng) return;
+      popup.setLatLng(shiftedPopupLatLng(baseLatLng));
+    }
+
+    function bringSelectionLayersToFront() {
+      const bringGroupToFront = (group) => {
+        if (!group || typeof group.eachLayer !== 'function') return;
+        group.eachLayer((layer) => {
+          if (layer && typeof layer.bringToFront === 'function') {
+            layer.bringToFront();
+          }
+        });
+      };
+      bringGroupToFront(mapLayers.connectorsLayer);
+      bringGroupToFront(mapLayers.highlightLayer);
+    }
+
+    const storeRenderer = L.canvas({ padding: 0.5 });
+    const STAPLE_LIVE_QUERIES = [
+      {
+        key: 'eggs',
+        label: 'Eggs (12 ct)',
+        query: 'eggs',
+        targetFamily: 'count',
+        targetAmountBase: 12,
+        includeTokens: ['egg'],
+        excludeTokens: ['noodle', 'pasta', 'timer', 'decorat', 'easter', 'kit', 'dye', 'toy', 'candy', 'oatmeal', 'bite', 'wrap']
+      },
+      {
+        key: 'milk',
+        label: 'Milk (1 gal)',
+        query: 'milk',
+        targetFamily: 'volume_oz',
+        targetAmountBase: 128,
+        includeTokens: ['milk'],
+        excludeTokens: ['powder', 'shake', 'formula', 'yogurt', 'kefir', 'cream', 'creamer', 'condensed']
+      },
+      {
+        key: 'bread',
+        label: 'Bread (20 oz loaf)',
+        query: 'bread',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 20,
+        includeTokens: ['bread'],
+        excludeTokens: ['breadcrumb', 'crumb', 'crouton', 'dough', 'flour', 'mix', 'pudding']
+      },
+      {
+        key: 'chickenLb',
+        label: 'Chicken (1 lb)',
+        query: 'whole chicken',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 16,
+        includeTokens: ['chicken'],
+        excludeTokens: ['nugget', 'broth', 'stock', 'salad', 'soup', 'pet', 'treat', 'rack', 'timer', 'sauce']
+      }
+    ];
+    const DEFAULT_PRICE_META = 'Average standardized basket price = mean of Eggs (12 ct), Milk (1 gal), Bread (20 oz loaf), and Chicken (1 lb).';
+    const OFFLINE_STAPLE_BASELINE = {
+      eggs: 5.29,
+      milk: 5.39,
+      bread: 4.49,
+      chickenLb: 3.29
+    };
+    const BOROUGH_PRICE_FACTORS = {
+      MANHATTAN: 1.07,
+      BROOKLYN: 1.0,
+      QUEENS: 0.98,
+      BRONX: 0.95,
+      'STATEN ISLAND': 1.02,
+      UNKNOWN: 1.0
+    };
+    const STORE_PRICE_PROFILES = [
+      {
+        id: 'discount',
+        match: /\baldi\b|\blidl\b|\btarget\b|\bwalmart\b|\bcostco\b|\bsam'?s\s*club\b|\bbj'?s\b/i,
+        multiplier: 0.88,
+        stapleBias: { eggs: 0.93, milk: 0.94, bread: 0.95, chickenLb: 0.9 }
+      },
+      {
+        id: 'premium',
+        match: /\bwhole\s*foods?\b|\bmorton\s*williams\b|\bgristedes\b|\bd'?agostino\b|\bcitarella\b|\bwestside\s*market\b|\bunion\s*market\b|\bamish\s*market\b|\bgourmet\s*garage\b/i,
+        multiplier: 1.18,
+        stapleBias: { eggs: 1.08, milk: 1.07, bread: 1.1, chickenLb: 1.12 }
+      },
+      {
+        id: 'mainstream',
+        match: /\btrader\s*joe'?s?\b|\bwegmans?\b|\bshop\s*rite\b|\bshoprite\b|\bstop\s*&?\s*shop\b|\bkey\s*foods?\b|\bfoodtown\b|\bc-?town\b|\bctown\b|\bfine\s*fare\b|\bassociated\b|\bwestern\s*beef\b|\bfairway\b|\bmet\s*fresh\b/i,
+        multiplier: 1.0,
+        stapleBias: { eggs: 1.0, milk: 1.0, bread: 1.0, chickenLb: 1.0 }
+      }
+    ];
+
+    const LIVE_PRICE_SOURCES = [
+      {
+        name: 'direct',
+        buildUrl: (targetUrl) => targetUrl
+      },
+      {
+        name: 'allorigins',
+        buildUrl: (targetUrl) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl)
+      },
+      {
+        name: 'cors-isomorphic',
+        buildUrl: (targetUrl) => 'https://cors.isomorphic-git.org/' + targetUrl
+      },
+      {
+        name: 'r.jina.ai',
+        buildUrl: (targetUrl) => 'https://r.jina.ai/http://' + targetUrl.replace(/^https?:\/\//i, '')
+      }
+    ];
+
+    function formatMiles(value) {
+      if (!Number.isFinite(value)) return 'N/A';
+      return value.toFixed(2) + ' mi';
+    }
+
+    function formatPercent(value) {
+      return (value * 100).toFixed(1) + '%';
+    }
+
+    function formatInt(value) {
+      if (!Number.isFinite(value)) return 'N/A';
+      return Math.round(value).toLocaleString('en-US');
+    }
+
+    function normalizeBorough(input) {
+      if (!input) return 'UNKNOWN';
+      const value = String(input).trim().toUpperCase();
+      if (BOROUGH_LABELS[value]) return value;
+      if (value === 'STATEN') return 'STATEN ISLAND';
+      return 'UNKNOWN';
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function distanceColor(distanceMiles) {
+      if (distanceMiles <= 0.25) return '#5a7896';
+      if (distanceMiles <= 0.5) return '#6f8ca7';
+      if (distanceMiles <= 1) return '#8e9faf';
+      if (distanceMiles <= 1.5) return '#a59a82';
+      if (distanceMiles <= 2) return '#b98c43';
+      return '#8d5f23';
+    }
+
+    function incomeColor(income) {
+      if (!Number.isFinite(income)) return '#d3d6df';
+      if (income < 35000) return '#2166ac';
+      if (income < 50000) return '#67a9cf';
+      if (income < 70000) return '#d1e5f0';
+      if (income < 90000) return '#fddbc7';
+      if (income < 120000) return '#ef8a62';
+      return '#b2182b';
+    }
+
+    function raceColor(group) {
+      if (group === 'white') return '#0072b2';
+      if (group === 'black') return '#e69f00';
+      if (group === 'asian') return '#009e73';
+      if (group === 'other') return '#cc79a7';
+      return '#9aa0ad';
+    }
+
+    function raceMetricColor(pct) {
+      if (!Number.isFinite(pct)) return '#d3d6df';
+      if (pct < 10) return '#fff5f0';
+      if (pct < 20) return '#fcbba1';
+      if (pct < 40) return '#fc9272';
+      if (pct < 60) return '#ef3b2c';
+      if (pct < 80) return '#cb181d';
+      return '#67000d';
+    }
+
+    function titleCaseWord(word) {
+      if (!word) return '';
+      return word[0].toUpperCase() + word.slice(1).toLowerCase();
+    }
+
+    function money(value) {
+      if (!Number.isFinite(value)) return 'N/A';
+      return '$' + Math.round(value).toLocaleString('en-US');
+    }
+
+    function raceLabel(group) {
+      const labels = {
+        white: 'White',
+        black: 'Black',
+        asian: 'Asian',
+        other: 'Other / Multiracial'
+      };
+      return labels[group] || 'Unknown';
+    }
+
+    function raceFieldsCurrent(props) {
+      return {
+        white: props.pct_white_acs2024,
+        black: props.pct_black_acs2024,
+        asian: props.pct_asian_acs2024,
+        other: props.pct_other_acs2024,
+        dominant: props.dominant_race_acs2024
+      };
+    }
+
+    function selectedRaceMetricValue(props) {
+      const toNum = (value) => {
+        if (value === null || value === undefined || String(value).trim() === '') return NaN;
+        const n = Number(value);
+        return Number.isFinite(n) ? n : NaN;
+      };
+      const race = raceFieldsCurrent(props);
+      const key = state.raceMetricGroup;
+      if (key === 'white') return toNum(race.white);
+      if (key === 'asian') return toNum(race.asian);
+      if (key === 'other') return toNum(race.other);
+      return toNum(race.black);
+    }
+
+    function normalizeDemographicKeyPart(value) {
+      return String(value || '')
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, ' ');
+    }
+
+    function demographicFallbackKey(ntaName, borough) {
+      const nta = normalizeDemographicKeyPart(ntaName);
+      const b = normalizeDemographicKeyPart(borough);
+      if (!nta || !b) return '';
+      return nta + '||' + b;
+    }
+
+    function demographicFallbackCodeKey(ntaCode, borough) {
+      const code = normalizeDemographicKeyPart(ntaCode);
+      const b = normalizeDemographicKeyPart(borough);
+      if (!code || !b) return '';
+      return code + '||' + b;
+    }
+
+    function raceSharesAreUsable(white, black, asian, other) {
+      const w = toFiniteNumber(white);
+      const bl = toFiniteNumber(black);
+      const as = toFiniteNumber(asian);
+      const ot = toFiniteNumber(other);
+      if (![w, bl, as, ot].every(Number.isFinite)) return false;
+      const sum = w + bl + as + ot;
+      if (sum < 95 || sum > 105) return false;
+      return true;
+    }
+
+    function dominantRaceFromShares(white, black, asian, other) {
+      const candidates = [
+        ['white', toFiniteNumber(white)],
+        ['black', toFiniteNumber(black)],
+        ['asian', toFiniteNumber(asian)],
+        ['other', toFiniteNumber(other)]
+      ].filter((pair) => Number.isFinite(pair[1]));
+      if (candidates.length === 0) return '';
+      candidates.sort((a, b) => b[1] - a[1]);
+      return candidates[0][0];
+    }
+
+    function buildNtaIncomeSummaryLookup(rows) {
+      const byName = {};
+      const byCode = {};
+      for (const row of rows || []) {
+        const borough = String(row && row.borough ? row.borough : '').trim();
+        const income = toFiniteNumber(
+          row && (
+            row.mean_post_income_2020_2024
+            ?? row.median_household_income_post_acs2024
+            ?? row.median_household_income_acs2024
+          )
+        );
+        if (!Number.isFinite(income)) continue;
+        const byNameKey = demographicFallbackKey(row && row.nta_name_2010, borough);
+        if (byNameKey) byName[byNameKey] = income;
+        const byCodeKey = demographicFallbackCodeKey(row && row.nta_code_2010, borough);
+        if (byCodeKey) byCode[byCodeKey] = income;
+      }
+      return { byName, byCode };
+    }
+
+    function buildNtaDemographicFallback(features, incomeSummaryLookup) {
+      const byKey = new Map();
+      for (const feature of features || []) {
+        const p = feature && feature.properties ? feature.properties : {};
+        const ntaName = String(p.nta_name_2010 || '').trim();
+        const borough = String(p.borough || '').trim();
+        const ntaCode = String(p.nta_code_2010 || '').trim();
+        if (!ntaName || isLimitedDemographicZoneName(ntaName)) continue;
+        const key = demographicFallbackKey(ntaName, borough);
+        if (!key) continue;
+
+        if (!byKey.has(key)) {
+          byKey.set(key, {
+            ntaCode,
+            borough,
+            incomes: [],
+            whites: [],
+            blacks: [],
+            asians: [],
+            others: []
+          });
+        }
+        const bucket = byKey.get(key);
+        if (!bucket.ntaCode && ntaCode) bucket.ntaCode = ntaCode;
+        if (!bucket.borough && borough) bucket.borough = borough;
+
+        const income = toFiniteNumber(
+          p.median_household_income_post_acs2024
+          ?? p.median_household_income_acs2024
+        );
+        if (Number.isFinite(income)) {
+          bucket.incomes.push(income);
+        }
+
+        const race = raceFieldsCurrent(p);
+        if (raceSharesAreUsable(race.white, race.black, race.asian, race.other)) {
+          bucket.whites.push(toFiniteNumber(race.white));
+          bucket.blacks.push(toFiniteNumber(race.black));
+          bucket.asians.push(toFiniteNumber(race.asian));
+          bucket.others.push(toFiniteNumber(race.other));
+        }
+      }
+
+      const fallbackByKey = {};
+      for (const [key, bucket] of byKey.entries()) {
+        const avg = (arr) => {
+          if (!arr.length) return NaN;
+          return arr.reduce((sum, value) => sum + value, 0) / arr.length;
+        };
+        const income = medianNumber(bucket.incomes);
+        const white = avg(bucket.whites);
+        const black = avg(bucket.blacks);
+        const asian = avg(bucket.asians);
+        const other = avg(bucket.others);
+        const dominant = raceSharesAreUsable(white, black, asian, other)
+          ? dominantRaceFromShares(white, black, asian, other)
+          : '';
+        fallbackByKey[key] = {
+          ntaCode: bucket.ntaCode || '',
+          borough: bucket.borough || '',
+          income,
+          white,
+          black,
+          asian,
+          other,
+          dominant
+        };
+      }
+
+      const byName = incomeSummaryLookup && incomeSummaryLookup.byName ? incomeSummaryLookup.byName : {};
+      const byCode = incomeSummaryLookup && incomeSummaryLookup.byCode ? incomeSummaryLookup.byCode : {};
+      for (const [key, item] of Object.entries(fallbackByKey)) {
+        const codeKey = demographicFallbackCodeKey(item.ntaCode, item.borough);
+        const incomeByCode = codeKey ? toFiniteNumber(byCode[codeKey]) : NaN;
+        const incomeByName = toFiniteNumber(byName[key]);
+        const summaryIncome = Number.isFinite(incomeByCode) ? incomeByCode : incomeByName;
+        if (Number.isFinite(summaryIncome)) {
+          item.income = summaryIncome;
+        }
+      }
+      for (const item of Object.values(fallbackByKey)) {
+        const codeKey = demographicFallbackCodeKey(item.ntaCode, item.borough);
+        if (codeKey && !fallbackByKey[codeKey]) {
+          fallbackByKey[codeKey] = item;
+        }
+      }
+
+      return fallbackByKey;
+    }
+
+    function currentAreaDemographicsFromProps(props) {
+      const p = props && typeof props === 'object' ? props : {};
+      const ntaName = String(p.nta_name_2010 || '').trim();
+      const borough = String(p.borough || '').trim();
+      const ntaCode = String(p.nta_code_2010 || '').trim();
+      const isParkZone = isLimitedDemographicZoneName(ntaName);
+      if (isParkZone) {
+        return {
+          ntaName,
+          ntaCode,
+          borough,
+          isParkZone: true,
+          medianIncomeCurrent: NaN,
+          dominantRaceCurrent: '',
+          pctWhiteCurrent: NaN,
+          pctBlackCurrent: NaN,
+          pctAsianCurrent: NaN,
+          pctOtherCurrent: NaN,
+          usedNtaFallbackIncome: false,
+          usedNtaFallbackRace: false
+        };
+      }
+
+      let incomeCurrent = toFiniteNumber(
+        p.median_household_income_post_acs2024
+        ?? p.median_household_income_acs2024
+      );
+      let race = raceFieldsCurrent(p);
+      let dominant = String(race.dominant || '').trim();
+
+      let white = toFiniteNumber(race.white);
+      let black = toFiniteNumber(race.black);
+      let asian = toFiniteNumber(race.asian);
+      let other = toFiniteNumber(race.other);
+      let raceValid = raceSharesAreUsable(white, black, asian, other);
+      let usedNtaFallbackIncome = false;
+      let usedNtaFallbackRace = false;
+
+      const codeKey = demographicFallbackCodeKey(ntaCode, borough);
+      const nameKey = demographicFallbackKey(ntaName, borough);
+      const fallback = (
+        (codeKey && state.ntaDemographicFallback[codeKey])
+        || (nameKey && state.ntaDemographicFallback[nameKey])
+        || null
+      );
+      if (!Number.isFinite(incomeCurrent) && fallback) {
+        const fallbackIncome = toFiniteNumber(fallback.income);
+        if (Number.isFinite(fallbackIncome)) {
+          incomeCurrent = fallbackIncome;
+          usedNtaFallbackIncome = true;
+        }
+      }
+      if ((!raceValid || !dominant) && fallback && raceSharesAreUsable(fallback.white, fallback.black, fallback.asian, fallback.other)) {
+        white = Number(fallback.white);
+        black = Number(fallback.black);
+        asian = Number(fallback.asian);
+        other = Number(fallback.other);
+        dominant = String(fallback.dominant || dominantRaceFromShares(white, black, asian, other) || '').trim();
+        raceValid = true;
+        usedNtaFallbackRace = true;
+      }
+
+      if (!raceValid) {
+        white = NaN;
+        black = NaN;
+        asian = NaN;
+        other = NaN;
+        dominant = '';
+      }
+
+      return {
+        ntaName,
+        ntaCode,
+        borough,
+        isParkZone: false,
+        medianIncomeCurrent: incomeCurrent,
+        dominantRaceCurrent: dominant,
+        pctWhiteCurrent: white,
+        pctBlackCurrent: black,
+        pctAsianCurrent: asian,
+        pctOtherCurrent: other,
+        usedNtaFallbackIncome,
+        usedNtaFallbackRace
+      };
+    }
+
+    function percentText(value) {
+      const n = Number(value);
+      return Number.isFinite(n) ? n.toFixed(1) + '%' : 'N/A';
+    }
+
+    function toFiniteNumber(value) {
+      if (value === null || value === undefined || String(value).trim() === '') return NaN;
+      const n = Number(value);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function pointInRing(point, ring) {
+      const x = point[0];
+      const y = point[1];
+      let inside = false;
+
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = Number(ring[i][0]);
+        const yi = Number(ring[i][1]);
+        const xj = Number(ring[j][0]);
+        const yj = Number(ring[j][1]);
+
+        const intersects = ((yi > y) !== (yj > y))
+          && (x < ((xj - xi) * (y - yi)) / ((yj - yi) || 1e-12) + xi);
+        if (intersects) inside = !inside;
+      }
+
+      return inside;
+    }
+
+    function pointInPolygon(point, polygon) {
+      if (!Array.isArray(polygon) || polygon.length === 0) return false;
+      if (!pointInRing(point, polygon[0])) return false;
+      for (let i = 1; i < polygon.length; i += 1) {
+        if (pointInRing(point, polygon[i])) return false;
+      }
+      return true;
+    }
+
+    function geometryContainsPoint(geometry, point) {
+      if (!geometry || !geometry.coordinates) return false;
+
+      if (geometry.type === 'Polygon') {
+        return pointInPolygon(point, geometry.coordinates);
+      }
+
+      if (geometry.type === 'MultiPolygon') {
+        return geometry.coordinates.some((poly) => pointInPolygon(point, poly));
+      }
+
+      return false;
+    }
+
+    function ringSignedArea(ring) {
+      if (!Array.isArray(ring) || ring.length < 3) return 0;
+      let areaTwice = 0;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = Number(ring[i][0]);
+        const yi = Number(ring[i][1]);
+        const xj = Number(ring[j][0]);
+        const yj = Number(ring[j][1]);
+        areaTwice += (xj * yi) - (xi * yj);
+      }
+      return areaTwice / 2;
+    }
+
+    function ringCentroid(ring) {
+      if (!Array.isArray(ring) || ring.length < 3) return null;
+      let crossSum = 0;
+      let cx = 0;
+      let cy = 0;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = Number(ring[i][0]);
+        const yi = Number(ring[i][1]);
+        const xj = Number(ring[j][0]);
+        const yj = Number(ring[j][1]);
+        const cross = (xj * yi) - (xi * yj);
+        crossSum += cross;
+        cx += (xj + xi) * cross;
+        cy += (yj + yi) * cross;
+      }
+      if (Math.abs(crossSum) < 1e-12) return null;
+      return [cx / (3 * crossSum), cy / (3 * crossSum)];
+    }
+
+    function polygonBounds(polygon) {
+      const ring = Array.isArray(polygon) && Array.isArray(polygon[0]) ? polygon[0] : [];
+      if (ring.length === 0) return null;
+      let minX = Infinity;
+      let maxX = -Infinity;
+      let minY = Infinity;
+      let maxY = -Infinity;
+      for (const pair of ring) {
+        const x = Number(pair[0]);
+        const y = Number(pair[1]);
+        if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+      if (![minX, maxX, minY, maxY].every(Number.isFinite)) return null;
+      return { minX, maxX, minY, maxY };
+    }
+
+    function representativePointFromPolygon(polygon) {
+      if (!Array.isArray(polygon) || polygon.length === 0) return null;
+
+      const outerRing = polygon[0];
+      const candidates = [];
+      const centroid = ringCentroid(outerRing);
+      if (centroid) candidates.push(centroid);
+
+      const bounds = polygonBounds(polygon);
+      if (bounds) {
+        candidates.push([
+          (bounds.minX + bounds.maxX) / 2,
+          (bounds.minY + bounds.maxY) / 2
+        ]);
+      }
+
+      for (const candidate of candidates) {
+        if (pointInPolygon(candidate, polygon)) {
+          return { lng: candidate[0], lat: candidate[1] };
+        }
+      }
+
+      if (bounds && bounds.maxX > bounds.minX && bounds.maxY > bounds.minY) {
+        const gridSteps = [8, 14, 24];
+        for (const steps of gridSteps) {
+          for (let yIndex = 0; yIndex < steps; yIndex += 1) {
+            for (let xIndex = 0; xIndex < steps; xIndex += 1) {
+              const x = bounds.minX + ((xIndex + 0.5) / steps) * (bounds.maxX - bounds.minX);
+              const y = bounds.minY + ((yIndex + 0.5) / steps) * (bounds.maxY - bounds.minY);
+              if (pointInPolygon([x, y], polygon)) {
+                return { lng: x, lat: y };
+              }
+            }
+          }
+        }
+      }
+
+      if (Array.isArray(outerRing) && outerRing.length > 0) {
+        const first = outerRing[0];
+        const lng = Number(first[0]);
+        const lat = Number(first[1]);
+        if (Number.isFinite(lat) && Number.isFinite(lng)) {
+          return { lat, lng };
+        }
+      }
+
+      return null;
+    }
+
+    function representativePointFromGeometry(geometry) {
+      if (!geometry || !geometry.coordinates) return null;
+      if (geometry.type === 'Polygon') {
+        return representativePointFromPolygon(geometry.coordinates);
+      }
+      if (geometry.type === 'MultiPolygon') {
+        const polygons = Array.isArray(geometry.coordinates) ? geometry.coordinates.slice() : [];
+        polygons.sort((a, b) => Math.abs(ringSignedArea((b && b[0]) || [])) - Math.abs(ringSignedArea((a && a[0]) || [])));
+        for (const polygon of polygons) {
+          const point = representativePointFromPolygon(polygon);
+          if (point) return point;
+        }
+      }
+      return centroidFromGeometry(geometry);
+    }
+
+    function isLimitedDemographicZoneName(ntaName) {
+      const value = String(ntaName || '').trim().toLowerCase();
+      if (!value) return false;
+      return value.includes('park-cemetery-etc') || value.includes('rikers island');
+    }
+
+    function parseAreaDemographics(feature) {
+      const p = feature && feature.properties ? feature.properties : {};
+      return currentAreaDemographicsFromProps(p);
+    }
+
+    function areaDemographicsForCenter(center, demographicFeatures) {
+      const point = [Number(center.lng), Number(center.lat)];
+      for (const feature of demographicFeatures) {
+        if (geometryContainsPoint(feature.geometry, point)) {
+          return parseAreaDemographics(feature);
+        }
+      }
+      return null;
+    }
+
+    function areaDemographicsHtml(area) {
+      if (!area) {
+        return 'Area demographics: <strong>Not available</strong>';
+      }
+
+      const placeBits = [area.ntaName || 'Local Area', area.borough].filter(Boolean);
+      const placeLabel = placeBits.join(' | ');
+      if (area.isParkZone) {
+        return `
+          Area demographics: <strong>${escapeHtml(placeLabel)}</strong><br>
+          <em>Park/open-space/non-residential zone. Race and income are intentionally not shown.</em>
+        `.trim();
+      }
+      return `
+        Area demographics: <strong>${escapeHtml(placeLabel)}</strong><br>
+        Median income (ACS 2020-2024): <strong>${money(area.medianIncomeCurrent)}</strong><br>
+        Dominant race group (ACS 2020-2024): <strong>${escapeHtml(raceLabel(area.dominantRaceCurrent))}</strong><br>
+        White ${percentText(area.pctWhiteCurrent)} | Black ${percentText(area.pctBlackCurrent)} | Asian ${percentText(area.pctAsianCurrent)} | Other ${percentText(area.pctOtherCurrent)}
+        ${((area.usedNtaFallbackIncome || area.usedNtaFallbackRace)
+          ? `<br><em>NTA-level fallback used for missing tract ${[
+            area.usedNtaFallbackIncome ? 'income' : '',
+            area.usedNtaFallbackRace ? 'race shares' : ''
+          ].filter(Boolean).join(' and ')}.</em>`
+          : ''
+        )}
+      `.trim();
+    }
+
+    function normalizeStoreKey(value) {
+      return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ');
+    }
+
+    function normalizeLooseKey(value) {
+      return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '');
+    }
+
+    function normalizeZipCode(value) {
+      const text = String(value || '').trim();
+      const match = text.match(/(\d{5})(?:-\d{4})?/);
+      return match ? String(match[1]) : '';
+    }
+
+    function parsePriceNumber(value) {
+      if (value == null) return NaN;
+      const cleaned = String(value).replace(/[$,]/g, '').trim();
+      const match = cleaned.match(/-?\d+(\.\d+)?/);
+      const n = match ? Number(match[0]) : NaN;
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function clampNumber(value, min, max) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return Number(min);
+      return Math.min(Number(max), Math.max(Number(min), n));
+    }
+
+    function hashFraction(text) {
+      const input = String(text || '');
+      let hash = 2166136261;
+      for (let i = 0; i < input.length; i += 1) {
+        hash ^= input.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      return (hash >>> 0) / 4294967295;
+    }
+
+    function roundPrice(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return NaN;
+      return Math.round(n * 100) / 100;
+    }
+
+    function storePriceProfile(store) {
+      const name = String(store && store.name ? store.name : '');
+      for (const profile of STORE_PRICE_PROFILES) {
+        if (profile.match && profile.match.test(name)) {
+          return profile;
+        }
+      }
+      return {
+        id: 'independent',
+        multiplier: 1.06,
+        stapleBias: { eggs: 1.02, milk: 1.03, bread: 1.04, chickenLb: 1.01 }
+      };
+    }
+
+    function storeSpecificFallbackRecord(store, fallbackRecord) {
+      const profile = storePriceProfile(store);
+      const boroughFactor = BOROUGH_PRICE_FACTORS[String(store && store.borough ? store.borough : 'UNKNOWN')] || 1.0;
+      const anchor = [store && store.id ? store.id : '', store && store.name ? store.name : ''].join('|');
+      const storeNoise = 0.94 + hashFraction(anchor) * 0.12;
+      const overallFactor = clampNumber(
+        Number(profile.multiplier || 1) * boroughFactor * storeNoise,
+        0.78,
+        1.36
+      );
+
+      const result = {};
+      for (const staple of STAPLE_LIVE_QUERIES) {
+        const key = staple.key;
+        const liveFallback = Number(fallbackRecord && fallbackRecord[key]);
+        const baseline = Number(OFFLINE_STAPLE_BASELINE[key]);
+        const base = Number.isFinite(liveFallback) && liveFallback > 0
+          ? liveFallback
+          : baseline;
+        const stapleBias = Number(profile.stapleBias && profile.stapleBias[key]);
+        const itemBias = Number.isFinite(stapleBias) ? stapleBias : 1.0;
+        const itemNoise = 0.97 + hashFraction(anchor + '|' + key) * 0.06;
+        result[key] = roundPrice(clampNumber(base * overallFactor * itemBias * itemNoise, 0.5, 30));
+      }
+      return result;
+    }
+
+    function uniqueNearestStoresFromRows(rows) {
+      const byId = new Map();
+      for (const row of rows || []) {
+        if (!row.nearestStore) continue;
+        const store = row.nearestStore;
+        const key = String(store.id || normalizeStoreKey(store.name));
+        if (!key) continue;
+        if (!byId.has(key)) {
+          byId.set(key, {
+            id: String(store.id || ''),
+            name: String(store.name || 'Unnamed Store'),
+            borough: String(store.borough || 'UNKNOWN'),
+            linkedDevelopments: 0
+          });
+        }
+        byId.get(key).linkedDevelopments += 1;
+      }
+      return Array.from(byId.values());
+    }
+
+    function uniqueNearestStoresFromFiltered() {
+      return uniqueNearestStoresFromRows(state.filtered);
+    }
+
+    function priceRecordForStore(store) {
+      if (!store) return null;
+      const byId = state.priceDataByStoreId[String(store.id || '')];
+      if (byId) return byId;
+      const byName = state.priceDataByStoreName[normalizeStoreKey(store.name)];
+      return byName || null;
+    }
+
+    function resolvedPriceRecordForStore(store) {
+      const loaded = priceRecordForStore(store);
+      if (loaded) return loaded;
+      if (!store) return null;
+      return storeSpecificFallbackRecord(store, OFFLINE_STAPLE_BASELINE);
+    }
+
+    function averageStaplePrice(record) {
+      if (!record) return NaN;
+      const values = [record.eggs, record.milk, record.bread, record.chickenLb].map((v) => Number(v));
+      if (values.some((v) => !Number.isFinite(v))) return NaN;
+      return values.reduce((sum, v) => sum + v, 0) / values.length;
+    }
+
+    function scopeRowsForPriceBenchmarks() {
+      return state.nycha.filter((row) => state.includeFhaGroups || !row.isFhaGroup);
+    }
+
+    function averageStaplePriceForRows(rows) {
+      const uniqueStores = uniqueNearestStoresFromRows(rows);
+      const values = uniqueStores
+        .map((store) => averageStaplePrice(resolvedPriceRecordForStore(store)))
+        .filter((v) => Number.isFinite(v));
+      if (values.length === 0) return NaN;
+      return values.reduce((sum, value) => sum + value, 0) / values.length;
+    }
+
+    function moneyCompact(value) {
+      if (!Number.isFinite(value)) return 'N/A';
+      return '$' + value.toFixed(2);
+    }
+
+    function moneyDelta(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return 'N/A';
+      const sign = n > 0 ? '+' : (n < 0 ? '-' : '');
+      return sign + '$' + Math.abs(n).toFixed(2);
+    }
+
+    function buildStoreTemplateCsv() {
+      const stores = uniqueNearestStoresFromFiltered()
+        .sort((a, b) => b.linkedDevelopments - a.linkedDevelopments || a.name.localeCompare(b.name));
+      const lines = ['store_id,store,eggs,milk,bread,chicken_lb'];
+      for (const store of stores) {
+        lines.push([
+          '"' + String(store.id || '').replace(/"/g, '""') + '"',
+          '"' + String(store.name || '').replace(/"/g, '""') + '"',
+          '',
+          '',
+          '',
+          ''
+        ].join(','));
+      }
+      return lines.join('\n');
+    }
+
+    function setPriceStatus(message) {
+      if (!elements.priceStatus) return;
+      elements.priceStatus.textContent = message;
+    }
+
+    function setPriceMeta(message) {
+      if (!elements.priceMeta) return;
+      elements.priceMeta.textContent = message || DEFAULT_PRICE_META;
+    }
+
+    function mostCommonZipFromRows(rows) {
+      const counts = new Map();
+      for (const row of rows || []) {
+        const zip = normalizeZipCode(row && row.nearestStore ? row.nearestStore.zip : '');
+        if (!zip) continue;
+        counts.set(zip, (counts.get(zip) || 0) + 1);
+      }
+
+      let bestZip = '';
+      let bestCount = -1;
+      for (const [zip, count] of counts.entries()) {
+        if (count > bestCount || (count === bestCount && (!bestZip || zip < bestZip))) {
+          bestZip = zip;
+          bestCount = count;
+        }
+      }
+      return bestZip;
+    }
+
+    function selectedRecord() {
+      if (!state.selectedId) return null;
+      return state.filtered.find((row) => row.id === state.selectedId)
+        || state.nycha.find((row) => row.id === state.selectedId)
+        || null;
+    }
+
+    function compareScopeRows() {
+      return state.nycha.filter((row) => state.includeFhaGroups || !row.isFhaGroup);
+    }
+
+    function signedDeltaText(value, decimals, suffix) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return 'N/A';
+      const sign = n > 0 ? '+' : (n < 0 ? '-' : '');
+      return sign + Math.abs(n).toFixed(decimals) + String(suffix || '');
+    }
+
+    function renderComparePanel() {
+      if (!elements.compareASelect || !elements.compareBSelect || !elements.compareResults) return;
+
+      const rows = compareScopeRows()
+        .slice()
+        .sort((a, b) => a.development.localeCompare(b.development));
+
+      if (rows.length === 0) {
+        elements.compareASelect.innerHTML = '<option value="">No developments available</option>';
+        elements.compareBSelect.innerHTML = '<option value="">No developments available</option>';
+        elements.compareResults.textContent = 'No developments available in the current scope.';
+        state.compareAId = '';
+        state.compareBId = '';
+        return;
+      }
+
+      const hasId = (id) => rows.some((row) => row.id === id);
+      if (!hasId(state.compareAId)) {
+        if (state.selectedId && hasId(state.selectedId)) {
+          state.compareAId = state.selectedId;
+        } else {
+          state.compareAId = rows[0].id;
+        }
+      }
+      if (!hasId(state.compareBId) || state.compareBId === state.compareAId) {
+        const alternate = rows.find((row) => row.id !== state.compareAId);
+        state.compareBId = alternate ? alternate.id : state.compareAId;
+      }
+
+      const optionHtml = rows.map((row) => {
+        const borough = BOROUGH_LABELS[row.borough] || 'Unknown';
+        const zip = normalizeZipCode(row && row.nearestStore ? row.nearestStore.zip : '');
+        const zipLabel = zip ? ` | ZIP ${zip}` : '';
+        return `<option value="${escapeHtml(row.id)}">${escapeHtml(row.development)} (${escapeHtml(borough)}${escapeHtml(zipLabel)})</option>`;
+      }).join('');
+
+      elements.compareASelect.innerHTML = optionHtml;
+      elements.compareBSelect.innerHTML = optionHtml;
+      elements.compareASelect.value = state.compareAId;
+      elements.compareBSelect.value = state.compareBId;
+
+      const a = rows.find((row) => row.id === state.compareAId) || null;
+      const b = rows.find((row) => row.id === state.compareBId) || null;
+
+      if (!a || !b) {
+        elements.compareResults.textContent = 'Select two developments to view side-by-side comparison.';
+        return;
+      }
+
+      const aBorough = BOROUGH_LABELS[a.borough] || 'Unknown';
+      const bBorough = BOROUGH_LABELS[b.borough] || 'Unknown';
+      const aStore = a.nearestStore ? a.nearestStore.name : 'N/A';
+      const bStore = b.nearestStore ? b.nearestStore.name : 'N/A';
+      const aLoadedRecord = a.nearestStore ? priceRecordForStore(a.nearestStore) : null;
+      const bLoadedRecord = b.nearestStore ? priceRecordForStore(b.nearestStore) : null;
+      const aRecord = aLoadedRecord || (a.nearestStore ? storeSpecificFallbackRecord(a.nearestStore, OFFLINE_STAPLE_BASELINE) : null);
+      const bRecord = bLoadedRecord || (b.nearestStore ? storeSpecificFallbackRecord(b.nearestStore, OFFLINE_STAPLE_BASELINE) : null);
+      const aPrice = averageStaplePrice(aRecord);
+      const bPrice = averageStaplePrice(bRecord);
+
+      const distanceDelta = Number(b.nearestMiles) - Number(a.nearestMiles);
+      const priceDelta = Number(bPrice) - Number(aPrice);
+
+      const stapleRows = [
+        { label: 'Eggs (12 ct)', aValue: aRecord ? Number(aRecord.eggs) : NaN, bValue: bRecord ? Number(bRecord.eggs) : NaN },
+        { label: 'Milk (1 gal)', aValue: aRecord ? Number(aRecord.milk) : NaN, bValue: bRecord ? Number(bRecord.milk) : NaN },
+        { label: 'Bread (20 oz)', aValue: aRecord ? Number(aRecord.bread) : NaN, bValue: bRecord ? Number(bRecord.bread) : NaN },
+        { label: 'Chicken (1 lb)', aValue: aRecord ? Number(aRecord.chickenLb) : NaN, bValue: bRecord ? Number(bRecord.chickenLb) : NaN },
+        { label: 'Average 4-item', aValue: aPrice, bValue: bPrice }
+      ];
+
+      const tableRowsHtml = stapleRows.map((row) => {
+        const delta = Number(row.bValue) - Number(row.aValue);
+        return `
+          <tr>
+            <td>${escapeHtml(row.label)}</td>
+            <td>${moneyCompact(row.aValue)}</td>
+            <td>${moneyCompact(row.bValue)}</td>
+            <td>${moneyDelta(delta)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const aSourceLabel = aLoadedRecord ? 'Loaded source' : 'Modeled estimate';
+      const bSourceLabel = bLoadedRecord ? 'Loaded source' : 'Modeled estimate';
+
+      elements.compareResults.innerHTML = `
+        <strong>A:</strong> ${escapeHtml(a.development)} (${escapeHtml(aBorough)}) | Store: ${escapeHtml(aStore)}<br>
+        <strong>B:</strong> ${escapeHtml(b.development)} (${escapeHtml(bBorough)}) | Store: ${escapeHtml(bStore)}<br>
+        Distance: A ${formatMiles(a.nearestMiles)} | B ${formatMiles(b.nearestMiles)} | Delta (B - A): ${signedDeltaText(distanceDelta, 2, ' mi')}<br>
+        <table class="compare-table" aria-label="Staple price comparison table">
+          <thead>
+            <tr>
+              <th>Staple</th>
+              <th>A</th>
+              <th>B</th>
+              <th>Delta (B - A)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRowsHtml}
+          </tbody>
+        </table>
+        <div class="compare-source">
+          Price source for A: ${escapeHtml(aSourceLabel)} | Price source for B: ${escapeHtml(bSourceLabel)} | Basket delta: ${moneyDelta(priceDelta)}
+        </div>
+      `;
+    }
+
+    function resolveLivePricingZip() {
+      const typedZip = normalizeZipCode(elements.liveZipInput ? elements.liveZipInput.value : '');
+      if (typedZip) return { zip: typedZip, sourceLabel: 'entered ZIP' };
+
+      const selected = selectedRecord();
+      const selectedZip = normalizeZipCode(selected && selected.nearestStore ? selected.nearestStore.zip : '');
+      if (selectedZip) return { zip: selectedZip, sourceLabel: 'selected development nearest store ZIP' };
+
+      const filteredZip = mostCommonZipFromRows(state.filtered);
+      if (filteredZip) return { zip: filteredZip, sourceLabel: 'most common ZIP in current filtered map' };
+
+      const citywideZip = mostCommonZipFromRows(state.nycha);
+      if (citywideZip) return { zip: citywideZip, sourceLabel: 'most common ZIP across mapped NYCHA developments' };
+
+      return { zip: '10001', sourceLabel: 'default NYC fallback ZIP' };
+    }
+
+    function setLivePriceLoadingState(isLoading) {
+      state.livePriceRequestInFlight = Boolean(isLoading);
+      if (elements.loadLivePricesBtn) {
+        elements.loadLivePricesBtn.disabled = state.livePriceRequestInFlight;
+        elements.loadLivePricesBtn.textContent = state.livePriceRequestInFlight
+          ? 'Loading Live Prices...'
+          : 'Load Live Web Prices';
+      }
+    }
+
+    function renderPriceChart() {
+      if (!elements.priceChart) return;
+      const stores = uniqueNearestStoresFromFiltered();
+      if (stores.length === 0) {
+        elements.priceChart.innerHTML = '<p class="empty-msg">No stores available in the current filter.</p>';
+        return;
+      }
+
+      const rows = stores
+        .map((store) => {
+          const record = resolvedPriceRecordForStore(store);
+          const avg = averageStaplePrice(record);
+          return { store, record, avg };
+        })
+        .filter((row) => Number.isFinite(row.avg))
+        .sort((a, b) => a.avg - b.avg || b.store.linkedDevelopments - a.store.linkedDevelopments);
+
+      if (rows.length === 0) {
+        elements.priceChart.innerHTML = '<p class="empty-msg">Paste standardized store prices (12ct, 1gal, 20oz, 1lb) to generate the average-price chart.</p>';
+        return;
+      }
+
+      const topRows = rows.slice(0, 60);
+      const maxAvg = topRows.reduce((max, row) => Math.max(max, row.avg), 0);
+
+      elements.priceChart.innerHTML = topRows.map((row) => {
+        const width = maxAvg > 0 ? (row.avg / maxAvg) * 100 : 0;
+        const meta = `Eggs (12 ct) ${moneyCompact(row.record.eggs)} | Milk (1 gal) ${moneyCompact(row.record.milk)} | Bread (20 oz) ${moneyCompact(row.record.bread)} | Chicken (1 lb) ${moneyCompact(row.record.chickenLb)}`;
+        return `
+          <div class="price-row" title="${escapeHtml(meta)}">
+            <div class="price-store-name">${escapeHtml(row.store.name)}</div>
+            <div class="price-bar"><span style="width:${width.toFixed(1)}%"></span></div>
+            <div class="price-value">${moneyCompact(row.avg)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function parsePriceCsv(raw) {
+      const lines = String(raw || '')
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+      if (lines.length === 0) {
+        return { byId: {}, byName: {}, count: 0 };
+      }
+
+      const delimiter = lines[0].includes('\t') ? '\t' : ',';
+      const firstCols = lines[0].split(delimiter).map((c) => c.trim().toLowerCase());
+      const hasHeader = firstCols.includes('store') || firstCols.includes('store_id');
+
+      const index = {
+        storeId: hasHeader ? firstCols.indexOf('store_id') : 0,
+        store: hasHeader ? firstCols.indexOf('store') : 0,
+        eggs: hasHeader ? firstCols.indexOf('eggs') : 1,
+        milk: hasHeader ? firstCols.indexOf('milk') : 2,
+        bread: hasHeader ? firstCols.indexOf('bread') : 3,
+        chickenLb: hasHeader
+          ? (firstCols.indexOf('chicken_lb') >= 0 ? firstCols.indexOf('chicken_lb') : firstCols.indexOf('chicken'))
+          : 4
+      };
+
+      const byId = {};
+      const byName = {};
+      let count = 0;
+
+      for (let i = hasHeader ? 1 : 0; i < lines.length; i += 1) {
+        const cols = lines[i].split(delimiter).map((c) => c.trim().replace(/^"(.*)"$/, '$1'));
+        const storeName = index.store >= 0 ? cols[index.store] : '';
+        const storeId = index.storeId >= 0 ? cols[index.storeId] : '';
+        const record = {
+          eggs: parsePriceNumber(index.eggs >= 0 ? cols[index.eggs] : ''),
+          milk: parsePriceNumber(index.milk >= 0 ? cols[index.milk] : ''),
+          bread: parsePriceNumber(index.bread >= 0 ? cols[index.bread] : ''),
+          chickenLb: parsePriceNumber(index.chickenLb >= 0 ? cols[index.chickenLb] : '')
+        };
+
+        if (![record.eggs, record.milk, record.bread, record.chickenLb].every((v) => Number.isFinite(v))) {
+          continue;
+        }
+
+        if (storeId) byId[String(storeId)] = record;
+        if (storeName) byName[normalizeStoreKey(storeName)] = record;
+        count += 1;
+      }
+
+      return { byId, byName, count };
+    }
+
+    function parseJsonPayloadFromText(rawText) {
+      const text = String(rawText || '').trim();
+      if (!text) return null;
+      const markdownIndex = text.indexOf('Markdown Content:');
+      const candidateText = markdownIndex >= 0
+        ? text.slice(markdownIndex + 'Markdown Content:'.length).trim()
+        : text;
+
+      const extractFirstJsonObject = (source) => {
+        const s = String(source || '');
+        const start = s.indexOf('{');
+        if (start < 0) return '';
+
+        let depth = 0;
+        let inString = false;
+        let escaped = false;
+        for (let i = start; i < s.length; i += 1) {
+          const ch = s[i];
+
+          if (inString) {
+            if (escaped) {
+              escaped = false;
+            } else if (ch === '\\') {
+              escaped = true;
+            } else if (ch === '"') {
+              inString = false;
+            }
+            continue;
+          }
+
+          if (ch === '"') {
+            inString = true;
+            continue;
+          }
+          if (ch === '{') {
+            depth += 1;
+            continue;
+          }
+          if (ch === '}') {
+            depth -= 1;
+            if (depth === 0) {
+              return s.slice(start, i + 1);
+            }
+          }
+        }
+        return '';
+      };
+
+      try {
+        return JSON.parse(candidateText);
+      } catch (err) {
+        const extracted = extractFirstJsonObject(candidateText) || extractFirstJsonObject(text);
+        if (!extracted) return null;
+        try {
+          return JSON.parse(extracted);
+        } catch (nestedErr) {
+          return null;
+        }
+      }
+      return null;
+    }
+
+    function priceFromMatchRecord(match) {
+      if (!match || typeof match !== 'object') return NaN;
+      const preferred = parsePriceNumber(match.current_price);
+      if (Number.isFinite(preferred)) return preferred;
+      return parsePriceNumber(match.current_price_display);
+    }
+
+    function matchTextBlob(match) {
+      if (!match || typeof match !== 'object') return '';
+      const keys = [
+        'title', 'name', 'item_name', 'item', 'product_name', 'product_title',
+        'product_description', 'description', 'label', 'display_name', 'size',
+        'size_text', 'pack_size', 'package_size', 'unit_size', 'variant'
+      ];
+      const values = [];
+
+      const pushString = (value) => {
+        if (typeof value !== 'string') return;
+        const cleaned = value.trim();
+        if (cleaned) values.push(cleaned);
+      };
+
+      const scanObject = (obj) => {
+        if (!obj || typeof obj !== 'object') return;
+        for (const key of keys) {
+          pushString(obj[key]);
+        }
+      };
+
+      scanObject(match);
+      scanObject(match.product);
+      scanObject(match.item);
+      scanObject(match.match);
+      return values.join(' ').toLowerCase();
+    }
+
+    function normalizeUnitToken(rawUnit) {
+      const unit = String(rawUnit || '')
+        .toLowerCase()
+        .replace(/\./g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (!unit) return null;
+
+      if (/^(fl oz|fluid ounce|fluid ounces|floz)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 1 };
+      }
+      if (/^(gal|gallon|gallons)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 128 };
+      }
+      if (/^(qt|quart|quarts)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 32 };
+      }
+      if (/^(pt|pint|pints)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 16 };
+      }
+      if (/^(ml|milliliter|milliliters|millilitre|millilitres)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 0.033814 };
+      }
+      if (/^(l|liter|liters|litre|litres)$/.test(unit)) {
+        return { family: 'volume_oz', multiplier: 33.814 };
+      }
+      if (/^(lb|lbs|pound|pounds)$/.test(unit)) {
+        return { family: 'weight_oz', multiplier: 16 };
+      }
+      if (/^(oz|ounce|ounces)$/.test(unit)) {
+        return { family: 'weight_oz', multiplier: 1 };
+      }
+      if (/^(g|gram|grams)$/.test(unit)) {
+        return { family: 'weight_oz', multiplier: 0.035274 };
+      }
+      if (/^(kg|kilogram|kilograms)$/.test(unit)) {
+        return { family: 'weight_oz', multiplier: 35.274 };
+      }
+      if (/^(ct|count|ea|each|pc|pcs|piece|pieces|pk|pack|packs|egg|eggs)$/.test(unit)) {
+        return { family: 'count', multiplier: 1 };
+      }
+      if (/^(dozen|dz)$/.test(unit)) {
+        return { family: 'count', multiplier: 12 };
+      }
+      return null;
+    }
+
+    function convertAmountToBase(amount, unitToken) {
+      const value = Number(amount);
+      if (!Number.isFinite(value) || value <= 0) return null;
+      const normalizedUnit = normalizeUnitToken(unitToken);
+      if (!normalizedUnit) return null;
+      return {
+        family: normalizedUnit.family,
+        amountBase: value * normalizedUnit.multiplier
+      };
+    }
+
+    function packageAmountInBaseUnits(match, staple) {
+      const text = matchTextBlob(match);
+      if (!text) return NaN;
+      const candidates = [];
+
+      const pushCandidate = (family, amountBase, sourceScore) => {
+        if (family !== staple.targetFamily) return;
+        const amount = Number(amountBase);
+        if (!Number.isFinite(amount) || amount <= 0) return;
+        const distance = Math.abs(Math.log(amount / staple.targetAmountBase));
+        candidates.push({
+          amount,
+          score: Number(sourceScore) + distance
+        });
+      };
+
+      const pushParsed = (amount, unit, multiplier, sourceScore) => {
+        const converted = convertAmountToBase(Number(amount) * Number(multiplier || 1), unit);
+        if (!converted) return;
+        pushCandidate(converted.family, converted.amountBase, sourceScore);
+      };
+
+      const comboPattern = /(\d+(?:\.\d+)?)\s*[x×]\s*(\d+(?:\.\d+)?)\s*(fl\s*oz|fluid\s*ounces?|floz|oz|ounces?|lb|lbs|pounds?|gallons?|gal|quarts?|qt|pints?|pt|ml|liters?|litres?|l|grams?|g|kilograms?|kg|ct|count|ea|each|pcs?|pieces?|packs?|pk|dozen|dz)\b/gi;
+      let comboMatch;
+      while ((comboMatch = comboPattern.exec(text))) {
+        const packs = Number(comboMatch[1]);
+        const size = Number(comboMatch[2]);
+        if (!Number.isFinite(packs) || !Number.isFinite(size)) continue;
+        pushParsed(size, comboMatch[3], packs, 0);
+      }
+
+      const unitPattern = /(\d+(?:\.\d+)?)\s*(fl\s*oz|fluid\s*ounces?|floz|oz|ounces?|lb|lbs|pounds?|gallons?|gal|quarts?|qt|pints?|pt|ml|liters?|litres?|l|grams?|g|kilograms?|kg|ct|count|ea|each|pcs?|pieces?|packs?|pk|dozen|dz)\b/gi;
+      let unitMatch;
+      while ((unitMatch = unitPattern.exec(text))) {
+        const amount = Number(unitMatch[1]);
+        if (!Number.isFinite(amount)) continue;
+        pushParsed(amount, unitMatch[2], 1, 1);
+      }
+
+      const totalCountPattern = /(?:pack(?:\s*of)?|count|ct)\s*(\d+(?:\.\d+)?)/gi;
+      let countMatch;
+      while ((countMatch = totalCountPattern.exec(text))) {
+        const amount = Number(countMatch[1]);
+        if (!Number.isFinite(amount)) continue;
+        pushCandidate('count', amount, 1.1);
+      }
+
+      if (candidates.length === 0) {
+        return NaN;
+      }
+
+      candidates.sort((a, b) => a.score - b.score);
+      return candidates[0].amount;
+    }
+
+    function stapleMatchLooksRelevant(match, staple) {
+      const text = matchTextBlob(match);
+      if (!text) return false;
+
+      for (const token of staple.excludeTokens || []) {
+        if (token && text.includes(String(token).toLowerCase())) {
+          return false;
+        }
+      }
+
+      for (const token of staple.includeTokens || []) {
+        if (token && text.includes(String(token).toLowerCase())) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function standardizedStaplePrice(match, staple) {
+      const rawPrice = priceFromMatchRecord(match);
+      if (!Number.isFinite(rawPrice) || rawPrice <= 0) return NaN;
+      if (!stapleMatchLooksRelevant(match, staple)) return NaN;
+
+      const packageAmount = packageAmountInBaseUnits(match, staple);
+      if (!Number.isFinite(packageAmount) || packageAmount <= 0) return NaN;
+
+      const standardized = (rawPrice / packageAmount) * staple.targetAmountBase;
+      if (!Number.isFinite(standardized) || standardized <= 0) return NaN;
+      if (standardized < 0.5 || standardized > 60) return NaN;
+      return standardized;
+    }
+
+    function medianNumber(values) {
+      const nums = (values || []).filter((v) => Number.isFinite(Number(v))).map((v) => Number(v));
+      if (nums.length === 0) return NaN;
+      nums.sort((a, b) => a - b);
+      const mid = Math.floor(nums.length / 2);
+      if (nums.length % 2 === 1) return nums[mid];
+      return (nums[mid - 1] + nums[mid]) / 2;
+    }
+
+    function chainRecordFromMatch(match) {
+      if (!match || typeof match !== 'object') return null;
+      const chainKey = normalizeLooseKey(match.chain || match.chain_name || '');
+      const chainName = String(match.chain_name || match.chain || '').trim();
+      if (!chainKey) return null;
+      return { chainKey, chainName: chainName || chainKey };
+    }
+
+    function extractBestChainPrices(comparePayload, staple) {
+      const byChain = {};
+      if (!comparePayload || !Array.isArray(comparePayload.results)) return byChain;
+
+      for (const group of comparePayload.results) {
+        if (!group || !Array.isArray(group.matches)) continue;
+        for (const match of group.matches) {
+          const chainInfo = chainRecordFromMatch(match);
+          if (!chainInfo) continue;
+          const price = standardizedStaplePrice(match, staple);
+          if (!Number.isFinite(price) || price <= 0) continue;
+          const existing = byChain[chainInfo.chainKey];
+          if (!existing || price < existing.price) {
+            byChain[chainInfo.chainKey] = {
+              chainKey: chainInfo.chainKey,
+              chainName: chainInfo.chainName,
+              price
+            };
+          }
+        }
+      }
+
+      return byChain;
+    }
+
+    function deriveFallbackStapleRecord(chainTotals) {
+      const result = {};
+      for (const staple of STAPLE_LIVE_QUERIES) {
+        const values = Object.values(chainTotals || {})
+          .map((item) => Number(item && item[staple.key]))
+          .filter((v) => Number.isFinite(v) && v > 0);
+        result[staple.key] = medianNumber(values);
+      }
+      return result;
+    }
+
+    async function fetchLiveComparePayload(itemQuery, zipCode) {
+      const targetUrl =
+        'https://grocerychop.com/api/compare?q=' + encodeURIComponent(itemQuery)
+        + '&zip_code=' + encodeURIComponent(zipCode)
+        + '&mode=cached'
+        + '&per_chain=1';
+      let lastError = null;
+
+      for (const source of LIVE_PRICE_SOURCES) {
+        try {
+          const response = await fetch(source.buildUrl(targetUrl), { cache: 'no-store' });
+          if (!response.ok) {
+            lastError = new Error(source.name + ' returned ' + response.status);
+            continue;
+          }
+          const text = await response.text();
+          const payload = parseJsonPayloadFromText(text);
+          if (payload && Array.isArray(payload.results)) {
+            return {
+              payload,
+              sourceName: source.name
+            };
+          }
+          lastError = new Error(source.name + ' returned an unreadable payload');
+        } catch (error) {
+          lastError = error;
+        }
+      }
+
+      throw lastError || new Error('No live price source returned data');
+    }
+
+    function storeMatchesChain(storeName, chainKey, chainName) {
+      const key = normalizeLooseKey(chainKey);
+      const chainDisplay = String(chainName || '').toLowerCase();
+      const name = String(storeName || '');
+      const looseName = normalizeLooseKey(name);
+      if (!key || !looseName) return false;
+
+      if (key === 'wholefoods') return /\bwhole\s*foods?\b/i.test(name);
+      if (key === 'wegmans') return /\bwegmans?\b/i.test(name);
+      if (key === 'amazon') return /\bamazon\s*fresh\b/i.test(name) || /\bwhole\s*foods?\b/i.test(name);
+      if (key === 'traderjoes') return /\btrader\s*joe'?s?\b/i.test(name);
+      if (key === 'shoprite') return /\bshop\s*rite\b|\bshoprite\b/i.test(name);
+      if (key === 'stopandshop') return /\bstop\s*&?\s*shop\b/i.test(name);
+      if (key === 'ctown') return /\bc-?town\b/i.test(name);
+      if (key === 'keyfood') return /\bkey\s*foods?\b/i.test(name);
+      if (key === 'foodtown') return /\bfoodtown\b/i.test(name);
+      if (key === 'aldi') return /\baldi\b/i.test(name);
+      if (key === 'lidl') return /\blidl\b/i.test(name);
+      if (key === 'walmart') return /\bwalmart\b/i.test(name);
+      if (key === 'target') return /\btarget\b/i.test(name);
+      if (key === 'kroger') return /\bkroger\b/i.test(name);
+      if (key === 'publix') return /\bpublix\b/i.test(name);
+      if (key === 'safeway') return /\bsafeway\b/i.test(name);
+      if (key === 'costco') return /\bcostco\b/i.test(name);
+      if (key === 'samsclub') return /\bsam'?s\s*club\b/i.test(name);
+
+      if (looseName.includes(key)) return true;
+      if (chainDisplay && normalizeLooseKey(chainDisplay).length >= 4) {
+        return looseName.includes(normalizeLooseKey(chainDisplay));
+      }
+      return false;
+    }
+
+    function assignLiveChainPricesToStores(chainItemPrices, fallbackRecord) {
+      const byId = {};
+      const byName = {};
+      let matchedStoreCount = 0;
+      let exactMatchCount = 0;
+      let fallbackMatchCount = 0;
+      const storeUniverse = state.groceryStores.length > 0 ? state.groceryStores : state.stores;
+
+      for (const store of storeUniverse) {
+        const partialRecord = {};
+        let matchedAny = false;
+        const tailoredFallback = storeSpecificFallbackRecord(store, fallbackRecord);
+
+        for (const [chainKey, itemValues] of Object.entries(chainItemPrices || {})) {
+          if (!storeMatchesChain(store.name, chainKey, itemValues.chainName)) continue;
+          for (const staple of STAPLE_LIVE_QUERIES) {
+            const val = Number(itemValues[staple.key]);
+            if (Number.isFinite(val)) {
+              partialRecord[staple.key] = val;
+              matchedAny = true;
+            }
+          }
+        }
+
+        const finalRecord = {};
+        let usedFallbackForStore = false;
+        for (const staple of STAPLE_LIVE_QUERIES) {
+          const ownValue = Number(partialRecord[staple.key]);
+          if (Number.isFinite(ownValue) && ownValue > 0) {
+            finalRecord[staple.key] = ownValue;
+            continue;
+          }
+          const fallbackValue = Number(tailoredFallback[staple.key]);
+          if (Number.isFinite(fallbackValue) && fallbackValue > 0) {
+            finalRecord[staple.key] = fallbackValue;
+            usedFallbackForStore = true;
+            continue;
+          }
+          finalRecord[staple.key] = NaN;
+        }
+
+        const shapedRecord = {
+          eggs: Number(finalRecord.eggs),
+          milk: Number(finalRecord.milk),
+          bread: Number(finalRecord.bread),
+          chickenLb: Number(finalRecord.chickenLb)
+        };
+
+        if (Object.values(shapedRecord).every((v) => Number.isFinite(v) && v > 0)) {
+          byId[String(store.id)] = shapedRecord;
+          byName[normalizeStoreKey(store.name)] = shapedRecord;
+          matchedStoreCount += 1;
+          if (matchedAny && !usedFallbackForStore) {
+            exactMatchCount += 1;
+          } else {
+            fallbackMatchCount += 1;
+          }
+        }
+      }
+
+      return { byId, byName, matchedStoreCount, exactMatchCount, fallbackMatchCount };
+    }
+
+    function buildOfflineEstimatedPriceMap(baseRecord) {
+      const byId = {};
+      const byName = {};
+      const storeUniverse = state.groceryStores.length > 0 ? state.groceryStores : state.stores;
+
+      for (const store of storeUniverse) {
+        const estimated = storeSpecificFallbackRecord(store, baseRecord);
+        const shapedRecord = {
+          eggs: Number(estimated.eggs),
+          milk: Number(estimated.milk),
+          bread: Number(estimated.bread),
+          chickenLb: Number(estimated.chickenLb)
+        };
+        if (!Object.values(shapedRecord).every((v) => Number.isFinite(v) && v > 0)) {
+          continue;
+        }
+        byId[String(store.id)] = shapedRecord;
+        byName[normalizeStoreKey(store.name)] = shapedRecord;
+      }
+
+      return {
+        byId,
+        byName,
+        estimatedCount: Object.keys(byId).length
+      };
+    }
+
+    function storePopupHtml(store) {
+      const record = resolvedPriceRecordForStore(store);
+      const avg = averageStaplePrice(record);
+      const detailLine = record
+        ? `Eggs (12 ct) ${moneyCompact(record.eggs)} | Milk (1 gal) ${moneyCompact(record.milk)} | Bread (20 oz) ${moneyCompact(record.bread)} | Chicken (1 lb) ${moneyCompact(record.chickenLb)}`
+        : 'No standardized 4-item staple prices available for this store.';
+      return `
+        <strong>${escapeHtml(store.name)}</strong><br>
+        ${escapeHtml(store.address)}<br>
+        ${escapeHtml(store.city)}, NY ${escapeHtml(store.zip)}<br>
+        Avg 4-item price: <strong>${moneyCompact(avg)}</strong><br>
+        ${escapeHtml(detailLine)}
+      `;
+    }
+
+    function refreshStoreLayerPopups() {
+      if (!mapLayers.storeLayer) return;
+      mapLayers.storeLayer.eachLayer((layer) => {
+        if (!layer || !layer.storeRef) return;
+        layer.setPopupContent(storePopupHtml(layer.storeRef));
+      });
+    }
+
+    function nychaPopupHtml(record, fallbackProps) {
+      const props = fallbackProps || {};
+      const development = record ? record.development : props.development;
+      const boroughCode = record ? record.borough : props.borough;
+      const nearestStoreName = record && record.nearestStore
+        ? record.nearestStore.name
+        : (props.nearestStore || 'N/A');
+      const miles = record ? record.nearestMiles : Number(props.nearestMiles);
+      const avgStaplePrice = record && record.nearestStore
+        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore))
+        : NaN;
+      const demographicsLine = record ? areaDemographicsHtml(record.areaDemographics) : '';
+      const boroughLabel = BOROUGH_LABELS[boroughCode] || 'Unknown';
+
+      return `
+        <strong>${escapeHtml(development || 'Unnamed Development')}</strong><br>
+        ${escapeHtml(boroughLabel)}<br>
+        Nearest store: ${escapeHtml(nearestStoreName)}<br>
+        Average staples price: <strong>${moneyCompact(avgStaplePrice)}</strong><br>
+        Distance: <strong>${formatMiles(miles)}</strong><br>
+        ${demographicsLine}
+      `;
+    }
+
+    function isFhaGroupName(name) {
+      return /^FHA REPOSSESSED HOUSES\s*\(/i.test(String(name || ''));
+    }
+
+    function updateRaceMetricControlVisibility() {
+      const mode = String(state.demographicLayerMode || '');
+      const show = mode === 'race_metric_post';
+      elements.raceMetricControl.classList.toggle('hidden', !show);
+    }
+
+    function isSpecificGroceryStore(name) {
+      if (!name) return false;
+      const n = name.toLowerCase();
+
+      const excludeKeywords = [
+        'deli',
+        'grill',
+        'restaurant',
+        'cafe',
+        'coffee',
+        'pizza',
+        'halal',
+        'bakery',
+        'liquor',
+        'wine',
+        'smoke',
+        'tobacco',
+        'pharmacy',
+        'drug'
+      ];
+      if (excludeKeywords.some((word) => n.includes(word))) {
+        return false;
+      }
+
+      const includePatterns = [
+        /\bgrocery\b/i,
+        /\bsupermarket\b/i,
+        /\bfood\s*bazaar\b/i,
+        /\bc-?town\b/i,
+        /\bkey\s*food\b/i,
+        /\bshop\s*rite\b|\bshoprite\b/i,
+        /\bfoodtown\b/i,
+        /\baldi\b/i,
+        /\blidl\b/i,
+        /\bwhole\s*foods\b/i,
+        /\btrader\s*joe'?s\b/i,
+        /\bh\s*mart\b|\bhmart\b/i,
+        /\bnetcost\b/i,
+        /\bgristedes\b/i,
+        /\bfairway\b/i,
+        /\bwestern\s*beef\b/i,
+        /\bassociated\b/i,
+        /\bmet\s*food\b/i,
+        /\bpioneer\s*supermarket\b/i
+      ];
+      return includePatterns.some((pattern) => pattern.test(name));
+    }
+
+    function isFullSupermarketStore(store) {
+      const name = String(store && store.name ? store.name : '');
+      const n = name.toLowerCase();
+
+      const excludeKeywords = [
+        'kikka',
+        'deli',
+        'grill',
+        'restaurant',
+        'cafe',
+        'coffee',
+        'pizza',
+        'halal',
+        'bakery',
+        'liquor',
+        'wine',
+        'smoke',
+        'tobacco',
+        'pharmacy',
+        'drug',
+        'juice',
+        'sushi',
+        'fish market',
+        'meat market',
+        'produce'
+      ];
+      if (excludeKeywords.some((word) => n.includes(word))) {
+        return false;
+      }
+
+      const supermarketPatterns = [
+        /\bsupermarket\b/i,
+        /\bfood\s*bazaar\b/i,
+        /\bfoodtown\b/i,
+        /\bc-?town\b/i,
+        /\bkey\s*foods?\b/i,
+        /\bshop\s*rite\b|\bshoprite\b/i,
+        /\bassociated\b/i,
+        /\bfine\s*fare\b/i,
+        /\bwestern\s*beef\b/i,
+        /\bfairway\b/i,
+        /\bgristedes\b/i,
+        /\bmorton\s*williams\b/i,
+        /\bwhole\s*foods\b/i,
+        /\btrader\s*joe'?s\b/i,
+        /\baldi\b/i,
+        /\blidl\b/i,
+        /\bwegmans?\b/i,
+        /\bstop\s*&?\s*shop\b/i
+      ];
+      return supermarketPatterns.some((pattern) => pattern.test(name));
+    }
+
+    function extractCoordinatePairs(coordinates, bucket) {
+      if (!Array.isArray(coordinates) || coordinates.length === 0) return;
+      if (typeof coordinates[0] === 'number' && coordinates.length >= 2) {
+        bucket.push(coordinates);
+        return;
+      }
+      for (const nested of coordinates) {
+        extractCoordinatePairs(nested, bucket);
+      }
+    }
+
+    function centroidFromGeometry(geometry) {
+      if (!geometry || !geometry.coordinates) return null;
+      const pairs = [];
+      extractCoordinatePairs(geometry.coordinates, pairs);
+      if (pairs.length === 0) return null;
+
+      let latSum = 0;
+      let lngSum = 0;
+      for (const pair of pairs) {
+        lngSum += Number(pair[0]);
+        latSum += Number(pair[1]);
+      }
+      return {
+        lat: latSum / pairs.length,
+        lng: lngSum / pairs.length
+      };
+    }
+
+    function haversineMiles(lat1, lng1, lat2, lng2) {
+      const toRad = (deg) => deg * Math.PI / 180;
+      const R = 3958.8;
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    function nearestStoreForCenter(center, stores) {
+      let bestStore = null;
+      let bestDistance = Infinity;
+
+      for (const store of stores) {
+        const d = haversineMiles(center.lat, center.lng, store.lat, store.lng);
+        if (d < bestDistance) {
+          bestDistance = d;
+          bestStore = store;
+        }
+      }
+
+      return {
+        store: bestStore,
+        miles: bestDistance
+      };
+    }
+
+    function activeStoresForMode(mode) {
+      if (mode === 'supermarket' && state.supermarketStores.length > 0) {
+        return state.supermarketStores;
+      }
+      return state.groceryStores;
+    }
+
+    function applyStoreMode(mode) {
+      const normalizedMode = mode === 'supermarket' ? 'supermarket' : 'grocery';
+      state.storeMode = normalizedMode;
+      state.stores = activeStoresForMode(normalizedMode);
+
+      for (const row of state.nycha) {
+        const nearestByMode = row.nearestByMode || {};
+        const preferred = nearestByMode[normalizedMode];
+        const fallback = nearestByMode.grocery || null;
+        const chosen = preferred && preferred.store ? preferred : fallback;
+        row.nearestStore = chosen ? chosen.store : null;
+        row.nearestMiles = chosen ? chosen.miles : NaN;
+      }
+
+      if (mapLayers.storeLayer) {
+        map.removeLayer(mapLayers.storeLayer);
+        mapLayers.storeLayer = null;
+      }
+    }
+
+    async function loadJson(path) {
+      const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error('Failed to load ' + path + ' (' + response.status + ')');
+      }
+      return response.json();
+    }
+
+    async function loadData() {
+      elements.statusText.textContent = 'Loading local NYCHA and grocery files...';
+
+      const [nychaGeoJson, storesRaw] = await Promise.all([
+        globalThis.NYCHA_DEVELOPMENTS_GEOJSON
+          ? Promise.resolve(globalThis.NYCHA_DEVELOPMENTS_GEOJSON)
+          : loadJson('data/nycha_grocery/nycha_developments.geojson'),
+        globalThis.NYC_RETAIL_FOOD_STORES
+          ? Promise.resolve(globalThis.NYC_RETAIL_FOOD_STORES)
+          : loadJson('data/nycha_grocery/nyc_retail_food_stores.json')
+      ]);
+      const demographicGeoJson = globalThis.NTA_INCOME_RACE_LAYER
+        ? globalThis.NTA_INCOME_RACE_LAYER
+        : await loadJson('data/nycha_grocery/nta_income_race_2016_by_tract.geojson');
+      const ntaIncomeSummaryRows = Array.isArray(globalThis.NTA_INCOME_ACS2024_SUMMARY)
+        ? globalThis.NTA_INCOME_ACS2024_SUMMARY
+        : [];
+      const ntaIncomeSummaryLookup = buildNtaIncomeSummaryLookup(ntaIncomeSummaryRows);
+      state.ntaIncomeSummaryByName = ntaIncomeSummaryLookup.byName;
+      state.ntaIncomeSummaryByCode = ntaIncomeSummaryLookup.byCode;
+      const demographicFeatures = Array.isArray(demographicGeoJson.features)
+        ? demographicGeoJson.features
+        : [];
+      state.ntaDemographicFallback = buildNtaDemographicFallback(demographicFeatures, ntaIncomeSummaryLookup);
+
+      elements.statusText.textContent = 'Calculating nearest grocery distance for each NYCHA development...';
+
+      const allMappedStores = storesRaw
+        .map((row, i) => {
+          const borough = COUNTY_TO_BOROUGH[String(row.county || '').toUpperCase()];
+          const name = (row.dba_name || row.entity_name || 'Unnamed Store').trim();
+          return {
+            id: row.license_number || 'store-' + i,
+            borough: borough || 'UNKNOWN',
+            county: String(row.county || '').toUpperCase(),
+            name,
+            lat: Number(row.lat),
+            lng: Number(row.lon),
+            address: [row.street_number, row.street_name].filter(Boolean).join(' ').trim(),
+            city: row.city || '',
+            zip: row.zip_code || '',
+            estabType: row.estab_type || '',
+            operationType: row.operation_type || ''
+          };
+        })
+        .filter((s) => Number.isFinite(s.lat) && Number.isFinite(s.lng));
+
+      const groceryStores = allMappedStores.filter((s) => isSpecificGroceryStore(s.name));
+      const supermarketStores = groceryStores.filter((s) => isFullSupermarketStore(s));
+
+      const nycha = nychaGeoJson.features
+        .map((feature, i) => {
+          const center = representativePointFromGeometry(feature.geometry);
+          if (!center) return null;
+
+          const borough = normalizeBorough(feature.properties && feature.properties.borough);
+          const development = (feature.properties && feature.properties.developmen) ? String(feature.properties.developmen).trim() : 'Unnamed Development';
+          const nearestGrocery = nearestStoreForCenter(center, groceryStores);
+          const nearestSupermarket = nearestStoreForCenter(
+            center,
+            supermarketStores.length > 0 ? supermarketStores : groceryStores
+          );
+
+          return {
+            id: 'nycha-' + i,
+            borough,
+            development,
+            isFhaGroup: isFhaGroupName(development),
+            areaDemographics: areaDemographicsForCenter(center, demographicFeatures),
+            geometry: feature.geometry,
+            center,
+            nearestByMode: {
+              grocery: nearestGrocery,
+              supermarket: nearestSupermarket
+            },
+            nearestStore: nearestGrocery.store,
+            nearestMiles: nearestGrocery.miles
+          };
+        })
+        .filter(Boolean);
+
+      state.groceryStores = groceryStores;
+      state.supermarketStores = supermarketStores;
+      state.nycha = nycha;
+      applyStoreMode(state.storeMode);
+      state.demographicLayerData = demographicGeoJson;
+      state.mapLoaded = true;
+
+      const mappedWithoutFha = nycha.filter((row) => !row.isFhaGroup).length;
+      elements.statusText.textContent = `Loaded ${mappedWithoutFha} mapped public-housing developments (+${nycha.length - mappedWithoutFha} FHA groups), ${groceryStores.length} grocery points, and ${supermarketStores.length} supermarket-only points.`;
+    }
+
+    function filterRecords() {
+      const search = state.searchTerm.trim().toLowerCase();
+
+      state.filtered = state.nycha.filter((row) => {
+        if (!state.includeFhaGroups && row.isFhaGroup) return false;
+        const boroughMatch = state.activeBorough === 'ALL' || row.borough === state.activeBorough;
+        if (!boroughMatch) return false;
+        if (!search) return true;
+        return row.development.toLowerCase().includes(search);
+      });
+    }
+
+    function sortedFilteredRecords() {
+      const items = [...state.filtered];
+      if (state.sortMode === 'nearest') {
+        items.sort((a, b) => a.nearestMiles - b.nearestMiles);
+      } else if (state.sortMode === 'name') {
+        items.sort((a, b) => a.development.localeCompare(b.development));
+      } else {
+        items.sort((a, b) => b.nearestMiles - a.nearestMiles);
+      }
+      return items;
+    }
+
+    function createStoreLayerIfNeeded() {
+      if (mapLayers.storeLayer) return;
+
+      const group = L.layerGroup();
+      for (const store of state.stores) {
+        const marker = L.circleMarker([store.lat, store.lng], {
+          renderer: storeRenderer,
+          radius: 2.3,
+          weight: 0,
+          fillColor: '#3f5d80',
+          fillOpacity: 0.25
+        });
+        marker.storeRef = store;
+        marker.on('click', (event) => {
+          marker._lastPopupAnchorLatLng = event && event.latlng ? event.latlng : marker.getLatLng();
+          suppressBackgroundMapReset(350);
+        });
+        marker.on('popupopen', (event) => {
+          const anchor = marker._lastPopupAnchorLatLng || marker.getLatLng();
+          shiftPopupToPreferredPosition(event.popup, anchor);
+        });
+
+        marker.bindPopup(storePopupHtml(store), POPUP_SHIFT_OPTIONS);
+
+        group.addLayer(marker);
+      }
+
+      mapLayers.storeLayer = group;
+    }
+
+    function renderDemographicLegend() {
+      if (state.demographicLayerMode === 'none') {
+        elements.demographicLegend.classList.add('hidden');
+        elements.demographicLegend.innerHTML = '';
+        return;
+      }
+
+      if (state.demographicLayerMode === 'income_post' || state.demographicLayerMode === 'income') {
+        elements.demographicLegend.innerHTML = `
+          <div><strong>Income Legend (Blue To Red, ACS 2020-2024)</strong></div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-1);"></span> Under $35k</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-2);"></span> $35k - $49.9k</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-3);"></span> $50k - $69.9k</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-4);"></span> $70k - $89.9k</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-5);"></span> $90k - $119.9k</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--income-6);"></span> $120k+</div>
+          <div class="legend-row"><span class="swatch" style="background:#c7cbd3;"></span> No residential ACS income (parks/open-space/Rikers)</div>
+        `;
+      } else if (
+        state.demographicLayerMode === 'race_metric'
+        || state.demographicLayerMode === 'race_metric_post'
+      ) {
+        const metricLabel = raceLabel(state.raceMetricGroup);
+        elements.demographicLegend.innerHTML = `
+          <div><strong>Race Metric (ACS 2020-2024): ${escapeHtml(metricLabel)}</strong></div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-1);"></span> Under 10%</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-2);"></span> 10% - 19.9%</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-3);"></span> 20% - 39.9%</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-4);"></span> 40% - 59.9%</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-5);"></span> 60% - 79.9%</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-metric-6);"></span> 80%+</div>
+          <div class="legend-row"><span class="swatch" style="background:#c7cbd3;"></span> No residential ACS race data (parks/open-space/Rikers)</div>
+        `;
+      } else {
+        elements.demographicLegend.innerHTML = `
+          <div><strong>Race Legend (Dominant Group, ACS 2020-2024)</strong></div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-white);"></span> White</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-black);"></span> Black</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-asian);"></span> Asian</div>
+          <div class="legend-row"><span class="swatch" style="background:var(--race-other);"></span> Other / Multiracial / Hispanic</div>
+          <div class="legend-row"><span class="swatch" style="background:#c7cbd3;"></span> No residential ACS race data (parks/open-space/Rikers)</div>
+        `;
+      }
+      elements.demographicLegend.classList.remove('hidden');
+    }
+
+    function renderDemographicLayer() {
+      if (mapLayers.demographicLayer) {
+        map.removeLayer(mapLayers.demographicLayer);
+        mapLayers.demographicLayer = null;
+      }
+
+      if (state.demographicLayerMode === 'none' || !state.demographicLayerData) {
+        renderDemographicLegend();
+        return;
+      }
+
+      const selectedBorough = state.activeBorough;
+      const features = (state.demographicLayerData.features || []).filter((f) => {
+        if (selectedBorough === 'ALL') return true;
+        const b = String(f.properties && f.properties.borough ? f.properties.borough : '').toUpperCase();
+        return b === selectedBorough;
+      });
+
+      mapLayers.demographicLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+        style: (feature) => {
+          const props = feature.properties || {};
+          const current = currentAreaDemographicsFromProps(props);
+          const isParkZone = current.isParkZone;
+          const incomeCurrentValue = current.medianIncomeCurrent;
+          const modeKey = String(state.demographicLayerMode || '');
+
+          if (isParkZone) {
+            return {
+              color: '#f8f7f3',
+              weight: 0.45,
+              fillColor: '#c7cbd3',
+              fillOpacity: 0.34
+            };
+          }
+
+          if (modeKey === 'income_post' || modeKey === 'income') {
+            return {
+              color: '#f8f7f3',
+              weight: 0.45,
+              fillColor: incomeColor(incomeCurrentValue),
+              fillOpacity: 0.58
+            };
+          }
+          if (
+            modeKey === 'race_metric'
+            || state.demographicLayerMode === 'race_metric_post'
+          ) {
+            return {
+              color: '#f8f7f3',
+              weight: 0.45,
+              fillColor: raceMetricColor(selectedRaceMetricValue({
+                pct_white_acs2024: current.pctWhiteCurrent,
+                pct_black_acs2024: current.pctBlackCurrent,
+                pct_asian_acs2024: current.pctAsianCurrent,
+                pct_other_acs2024: current.pctOtherCurrent
+              })),
+              fillOpacity: 0.62
+            };
+          }
+          const dominantForMode = current.dominantRaceCurrent;
+          return {
+            color: '#f8f7f3',
+            weight: 0.45,
+            fillColor: raceColor(dominantForMode),
+            fillOpacity: 0.55
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const current = currentAreaDemographicsFromProps(p);
+          const ntaName = String(current.ntaName || p.nta_name_2010 || '');
+          const isParkZone = current.isParkZone;
+          const selectedMetricValue = selectedRaceMetricValue({
+            pct_white_acs2024: current.pctWhiteCurrent,
+            pct_black_acs2024: current.pctBlackCurrent,
+            pct_asian_acs2024: current.pctAsianCurrent,
+            pct_other_acs2024: current.pctOtherCurrent
+          });
+          const selectedMetricText = Number.isFinite(selectedMetricValue)
+            ? selectedMetricValue.toFixed(1) + '%'
+            : 'N/A';
+          const selectedMetricLabel = raceLabel(state.raceMetricGroup);
+          const modeKey = String(state.demographicLayerMode || '');
+          const selectedRaceMetricLine = (!isParkZone && (
+            modeKey === 'race_metric'
+            || state.demographicLayerMode === 'race_metric_post'
+          ))
+            ? `Race metric (ACS 2020-2024 · ${escapeHtml(selectedMetricLabel)}): <strong>${selectedMetricText}</strong><br>`
+            : '';
+          const demographicsBlock = isParkZone
+            ? '<em>Park/open-space/non-residential zone. Race and income are intentionally not shown.</em>'
+            : `
+              Median income (ACS 2020-2024): <strong>${money(current.medianIncomeCurrent)}</strong><br>
+              ${selectedRaceMetricLine}
+              Dominant race group (ACS 2020-2024): <strong>${escapeHtml(raceLabel(current.dominantRaceCurrent))}</strong><br>
+              White: ${percentText(current.pctWhiteCurrent)} | Black: ${percentText(current.pctBlackCurrent)} | Asian: ${percentText(current.pctAsianCurrent)} | Other: ${percentText(current.pctOtherCurrent)}
+              ${((current.usedNtaFallbackIncome || current.usedNtaFallbackRace)
+                ? `<br><em>NTA-level fallback used for missing tract ${[
+                  current.usedNtaFallbackIncome ? 'income' : '',
+                  current.usedNtaFallbackRace ? 'race shares' : ''
+                ].filter(Boolean).join(' and ')}.</em>`
+                : ''
+              )}
+            `;
+          layer.on('click', (event) => {
+            layer._lastPopupAnchorLatLng = event && event.latlng ? event.latlng : null;
+          });
+          layer.on('popupopen', (event) => {
+            const anchor = layer._lastPopupAnchorLatLng || event.popup.getLatLng();
+            shiftPopupToPreferredPosition(event.popup, anchor);
+          });
+          layer.bindPopup(`
+            <strong>${escapeHtml(ntaName || 'NTA')}</strong><br>
+            Borough: ${escapeHtml(p.borough || '')}<br>
+            ${demographicsBlock}
+          `, POPUP_SHIFT_OPTIONS);
+        }
+      }).addTo(map);
+
+      bringSelectionLayersToFront();
+      renderDemographicLegend();
+    }
+
+    function renderMap() {
+      if (mapLayers.nychaLayer) {
+        map.removeLayer(mapLayers.nychaLayer);
+      }
+
+      const byId = new Map(state.filtered.map((row) => [row.id, row]));
+      const features = state.filtered.map((row) => ({
+        type: 'Feature',
+        properties: {
+          id: row.id,
+          development: row.development,
+          borough: row.borough,
+          nearestMiles: row.nearestMiles,
+          nearestStore: row.nearestStore ? row.nearestStore.name : 'N/A'
+        },
+        geometry: row.geometry
+      }));
+
+      mapLayers.nychaLayer = L.geoJSON(features, {
+        style: (feature) => {
+          const miles = feature.properties.nearestMiles;
+          const isHighlighted = miles <= state.maxHighlightDistance;
+          return {
+            color: '#fdfcf9',
+            weight: isHighlighted ? 1.6 : 1.1,
+            fillColor: distanceColor(miles),
+            fillOpacity: isHighlighted ? 0.78 : 0.56
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          layer.on('click', (event) => {
+            layer._lastPopupAnchorLatLng = event && event.latlng ? event.latlng : null;
+            suppressBackgroundMapReset(350);
+            map.closePopup();
+            const record = byId.get(feature.properties.id);
+            if (!record) return;
+            state.selectedId = record.id;
+            state.compareAId = record.id;
+            updateFocus(record, true);
+            renderMetrics();
+            renderTable();
+            renderComparePanel();
+            if (layer.getPopup && layer.getPopup()) {
+              layer.setPopupContent(nychaPopupHtml(record, feature.properties));
+              layer.openPopup(layer._lastPopupAnchorLatLng || undefined);
+            }
+          });
+          layer.on('popupopen', (event) => {
+            const anchor = layer._lastPopupAnchorLatLng || event.popup.getLatLng();
+            shiftPopupToPreferredPosition(event.popup, anchor);
+          });
+          layer.bindPopup(nychaPopupHtml(null, feature.properties), POPUP_SHIFT_OPTIONS);
+        }
+      }).addTo(map);
+
+      if (state.filtered.length > 0 && !state.selectedId) {
+        const bounds = mapLayers.nychaLayer.getBounds();
+        if (bounds && bounds.isValid()) {
+          map.fitBounds(bounds.pad(0.08));
+        }
+      }
+
+      createStoreLayerIfNeeded();
+      if (state.showStores && mapLayers.storeLayer) {
+        map.addLayer(mapLayers.storeLayer);
+      } else if (mapLayers.storeLayer) {
+        map.removeLayer(mapLayers.storeLayer);
+      }
+      refreshStoreLayerPopups();
+
+      renderDemographicLayer();
+    }
+
+    function renderScopeStats() {
+      const mappedPublicHousing = state.nycha.filter((row) => !row.isFhaGroup).length;
+      const mappedCurrentScope = state.nycha.filter((row) => state.includeFhaGroups || !row.isFhaGroup).length;
+      const unknownFhaRecords = state.nycha.filter((row) => row.borough === 'UNKNOWN' && row.isFhaGroup).length;
+      const coverage = OFFICIAL_NYCHA_COUNTS.conventionalDevelopments > 0
+        ? mappedPublicHousing / OFFICIAL_NYCHA_COUNTS.conventionalDevelopments
+        : NaN;
+
+      elements.scopeOfficialApartments.textContent = formatInt(OFFICIAL_NYCHA_COUNTS.conventionalApartments);
+      elements.scopeMappedDevelopments.textContent = formatInt(mappedCurrentScope);
+      elements.scopeUnknownRecords.textContent = formatInt(unknownFhaRecords);
+      elements.scopeCoverage.textContent = Number.isFinite(coverage) ? formatPercent(coverage) : 'N/A';
+
+      if (state.includeFhaGroups) {
+        elements.scopeNote.textContent = 'Current scope includes FHA repossessed groups. Coverage metric still compares mapped public-housing developments against the official 243 conventional developments.';
+      } else {
+        elements.scopeNote.textContent = 'Current scope is public-housing developments only (FHA repossessed groups excluded by default).';
+      }
+    }
+
+    function renderMetrics() {
+      const rows = state.filtered;
+      const scopeRows = scopeRowsForPriceBenchmarks();
+      const activeRecord = selectedRecord();
+      const hasExplicitFilter = state.activeBorough !== 'ALL' || state.searchTerm.trim().length > 0;
+      let filterPriceRows = rows;
+      let filterPriceNote = 'Unique nearest stores in current filter';
+      if (!hasExplicitFilter && activeRecord && activeRecord.borough && activeRecord.borough !== 'UNKNOWN') {
+        filterPriceRows = scopeRows.filter((row) => row.borough === activeRecord.borough);
+        const boroughLabel = BOROUGH_LABELS[activeRecord.borough] || 'Selected borough';
+        filterPriceNote = `${boroughLabel} unique nearest stores (selected development context)`;
+      }
+      const filterAvgPrice = averageStaplePriceForRows(filterPriceRows);
+      const cityAvgPrice = averageStaplePriceForRows(scopeRows);
+
+      if (elements.metricPriceFilter) {
+        elements.metricPriceFilter.textContent = moneyCompact(filterAvgPrice);
+      }
+      if (elements.metricPriceCity) {
+        elements.metricPriceCity.textContent = moneyCompact(cityAvgPrice);
+      }
+      if (elements.metricPriceFilterNote) {
+        elements.metricPriceFilterNote.textContent = filterPriceNote;
+      }
+      if (elements.metricPriceCityNote) {
+        elements.metricPriceCityNote.textContent = 'Unique nearest stores citywide';
+      }
+
+      if (rows.length === 0) {
+        elements.metricComplexes.textContent = '0';
+        elements.metricMedian.textContent = 'N/A';
+        elements.metricHalfMile.textContent = 'N/A';
+        elements.metricMax.textContent = 'N/A';
+        return;
+      }
+
+      const distances = rows.map((r) => r.nearestMiles).sort((a, b) => a - b);
+      const median = distances.length % 2 === 1
+        ? distances[(distances.length - 1) / 2]
+        : (distances[distances.length / 2 - 1] + distances[distances.length / 2]) / 2;
+
+      const withinHalf = rows.filter((r) => r.nearestMiles <= 0.5).length / rows.length;
+      const max = distances[distances.length - 1];
+
+      elements.metricComplexes.textContent = String(rows.length);
+      elements.metricMedian.textContent = formatMiles(median);
+      elements.metricHalfMile.textContent = formatPercent(withinHalf);
+      elements.metricMax.textContent = formatMiles(max);
+    }
+
+    function renderTable() {
+      if (!elements.tableBody || !elements.tableCount) return;
+      const rows = sortedFilteredRecords();
+      elements.tableCount.textContent = rows.length + ' rows';
+
+      if (rows.length === 0) {
+        elements.tableBody.innerHTML = '<tr><td colspan="5" class="empty-msg">No developments match this filter.</td></tr>';
+        return;
+      }
+
+      const topRows = rows.slice(0, 120);
+
+      elements.tableBody.innerHTML = topRows.map((row) => {
+        const borough = BOROUGH_LABELS[row.borough] || 'Unknown';
+        const store = row.nearestStore ? row.nearestStore.name : 'N/A';
+        const storePriceRecord = row.nearestStore ? resolvedPriceRecordForStore(row.nearestStore) : null;
+        const storeAvgPrice = averageStaplePrice(storePriceRecord);
+        const activeClass = row.id === state.selectedId ? 'active' : '';
+
+        return `
+          <tr class="${activeClass}" data-id="${escapeHtml(row.id)}">
+            <td>${escapeHtml(row.development)}</td>
+            <td>${escapeHtml(borough)}</td>
+            <td>${escapeHtml(store)}</td>
+            <td><strong>${moneyCompact(storeAvgPrice)}</strong></td>
+            <td><strong>${formatMiles(row.nearestMiles)}</strong></td>
+          </tr>
+        `;
+      }).join('');
+
+      elements.tableBody.querySelectorAll('tr[data-id]').forEach((tr) => {
+        tr.addEventListener('click', () => {
+          const id = tr.getAttribute('data-id');
+          const record = state.filtered.find((row) => row.id === id);
+          if (!record) return;
+          state.selectedId = record.id;
+          state.compareAId = record.id;
+          updateFocus(record, true);
+          renderMetrics();
+          renderTable();
+          renderComparePanel();
+        });
+      });
+    }
+
+    function updateFocus(record, flyTo) {
+      if (!record) {
+        elements.focusName.textContent = 'Click a development on the map.';
+        elements.focusBorough.textContent = '';
+        elements.focusDistance.textContent = '';
+        elements.focusStore.textContent = '';
+        if (elements.focusBenchmark) {
+          elements.focusBenchmark.textContent = '';
+        }
+        elements.focusDemographics.innerHTML = '';
+        mapLayers.connectorsLayer.clearLayers();
+        mapLayers.highlightLayer.clearLayers();
+        return;
+      }
+
+      const borough = BOROUGH_LABELS[record.borough] || 'Unknown';
+      const nearestName = record.nearestStore ? record.nearestStore.name : 'N/A';
+      const storeAddress = record.nearestStore
+        ? [record.nearestStore.address, record.nearestStore.city, record.nearestStore.zip].filter(Boolean).join(', ')
+        : 'N/A';
+      const avgStaplePrice = record.nearestStore
+        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore))
+        : NaN;
+      const cityAvgStaplePrice = averageStaplePriceForRows(scopeRowsForPriceBenchmarks());
+      const boroughRows = scopeRowsForPriceBenchmarks().filter((row) => row.borough === record.borough);
+      const boroughAvgStaplePrice = averageStaplePriceForRows(boroughRows);
+      const boroughLabel = BOROUGH_LABELS[record.borough] || 'Unknown';
+
+      elements.focusName.textContent = record.development;
+      elements.focusBorough.textContent = 'Borough: ' + borough;
+      elements.focusDistance.textContent = 'Nearest grocery distance: ' + formatMiles(record.nearestMiles);
+      elements.focusStore.textContent = 'Nearest store: ' + nearestName
+        + (storeAddress && storeAddress !== 'N/A' ? ' | ' + storeAddress : '')
+        + ' | Avg staples price: ' + moneyCompact(avgStaplePrice);
+      if (elements.focusBenchmark) {
+        elements.focusBenchmark.textContent = 'Benchmark | '
+          + boroughLabel + ' store avg: ' + moneyCompact(boroughAvgStaplePrice)
+          + ' | City store avg: ' + moneyCompact(cityAvgStaplePrice);
+      }
+      elements.focusDemographics.innerHTML = areaDemographicsHtml(record.areaDemographics);
+
+      const nearestZip = normalizeZipCode(record.nearestStore ? record.nearestStore.zip : '');
+      const typedZip = normalizeZipCode(elements.liveZipInput ? elements.liveZipInput.value : '');
+      if (elements.liveZipInput && nearestZip && !typedZip) {
+        elements.liveZipInput.value = nearestZip;
+      }
+
+      mapLayers.connectorsLayer.clearLayers();
+      mapLayers.highlightLayer.clearLayers();
+
+      const centerMarker = L.circleMarker([record.center.lat, record.center.lng], {
+        radius: 6,
+        color: '#fffdf9',
+        weight: 2,
+        fillColor: '#b98c43',
+        fillOpacity: 0.95
+      });
+
+      mapLayers.highlightLayer.addLayer(centerMarker);
+
+      if (record.nearestStore) {
+        const nearestMarker = L.circleMarker([record.nearestStore.lat, record.nearestStore.lng], {
+          radius: 5,
+          color: '#fffdf9',
+          weight: 1.5,
+          fillColor: '#3f5d80',
+          fillOpacity: 0.95
+        });
+
+        const line = L.polyline([
+          [record.center.lat, record.center.lng],
+          [record.nearestStore.lat, record.nearestStore.lng]
+        ], {
+          color: '#233b55',
+          weight: 2,
+          opacity: 0.78,
+          dashArray: '5 6'
+        });
+
+        mapLayers.highlightLayer.addLayer(nearestMarker);
+        mapLayers.connectorsLayer.addLayer(line);
+      }
+      bringSelectionLayersToFront();
+
+      if (flyTo) {
+        map.flyTo([record.center.lat, record.center.lng], Math.max(map.getZoom(), 13), {
+          animate: true,
+          duration: 0.65
+        });
+      }
+    }
+
+    function fitToCurrentFilteredMapBounds() {
+      if (!mapLayers.nychaLayer) return;
+      const bounds = mapLayers.nychaLayer.getBounds();
+      if (bounds && bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.08));
+      }
+    }
+
+    function suppressBackgroundMapReset(ms) {
+      const windowMs = Number.isFinite(Number(ms)) ? Number(ms) : 300;
+      state.ignoreMapResetUntilTs = Date.now() + Math.max(0, windowMs);
+    }
+
+    function clearSelectedDevelopmentAndResetMap() {
+      if (!state.selectedId) return;
+      state.selectedId = null;
+      map.closePopup();
+      updateFocus(null, false);
+      renderMetrics();
+      renderTable();
+      fitToCurrentFilteredMapBounds();
+    }
+
+    function syncControls() {
+      if (elements.distanceValue) {
+        elements.distanceValue.textContent = Number(state.maxHighlightDistance).toFixed(2) + ' mi';
+      }
+      if (elements.distanceSlider) {
+        elements.distanceSlider.value = String(state.maxHighlightDistance);
+      }
+      elements.boroughSelect.value = state.activeBorough;
+      elements.searchInput.value = state.searchTerm;
+      elements.demographicLayerSelect.value = state.demographicLayerMode;
+      elements.raceMetricSelect.value = state.raceMetricGroup;
+      elements.storeModeSelect.value = state.storeMode;
+      elements.toggleFhaGroups.checked = state.includeFhaGroups;
+      elements.toggleStores.checked = state.showStores;
+      updateRaceMetricControlVisibility();
+    }
+
+    function refresh() {
+      filterRecords();
+
+      const selectedStillVisible = state.selectedId && state.filtered.some((row) => row.id === state.selectedId);
+      if (!selectedStillVisible) {
+        state.selectedId = null;
+        updateFocus(null, false);
+      }
+
+      renderMap();
+      renderMetrics();
+      renderScopeStats();
+      renderComparePanel();
+      renderPriceChart();
+      renderTable();
+
+      if (state.selectedId) {
+        const activeRecord = selectedRecord();
+        if (activeRecord) {
+          updateFocus(activeRecord, false);
+        }
+      }
+    }
+
+    async function loadLiveStaplePrices() {
+      if (state.livePriceRequestInFlight) return;
+
+      const zipResolution = resolveLivePricingZip();
+      const zip = normalizeZipCode(zipResolution.zip);
+      if (!zip) {
+        setPriceStatus('Could not determine a ZIP code from the current map. Select a development or enter ZIP manually.');
+        return;
+      }
+      if (elements.liveZipInput) {
+        elements.liveZipInput.value = zip;
+      }
+
+      setLivePriceLoadingState(true);
+      setPriceStatus(`Loading standardized live prices (eggs 12ct, milk 1gal, bread 20oz, chicken 1lb) for ZIP ${zip} (${zipResolution.sourceLabel})...`);
+
+      try {
+        const chainTotals = {};
+        const usedSources = new Set();
+
+        for (const staple of STAPLE_LIVE_QUERIES) {
+          const response = await fetchLiveComparePayload(staple.query, zip);
+          usedSources.add(response.sourceName);
+
+          const chainBest = extractBestChainPrices(response.payload, staple);
+          for (const [chainKey, chainInfo] of Object.entries(chainBest)) {
+            if (!chainTotals[chainKey]) {
+              chainTotals[chainKey] = {
+                chainName: chainInfo.chainName
+              };
+            }
+            const price = Number(chainInfo.price);
+            if (Number.isFinite(price) && price > 0) {
+              const prior = Number(chainTotals[chainKey][staple.key]);
+              if (!Number.isFinite(prior) || price < prior) {
+                chainTotals[chainKey][staple.key] = price;
+              }
+            }
+          }
+        }
+
+        const completeChains = {};
+        for (const [chainKey, values] of Object.entries(chainTotals)) {
+          const hasAllStaples = STAPLE_LIVE_QUERIES.every((item) => Number.isFinite(Number(values[item.key])));
+          if (hasAllStaples) {
+            completeChains[chainKey] = values;
+          }
+        }
+
+        const fallbackRecord = deriveFallbackStapleRecord(chainTotals);
+        const assigned = assignLiveChainPricesToStores(completeChains, fallbackRecord);
+        state.priceDataByStoreId = assigned.byId;
+        state.priceDataByStoreName = assigned.byName;
+        state.showStores = true;
+        elements.toggleStores.checked = true;
+
+        refresh();
+
+        const chainCount = Object.keys(completeChains).length;
+        if (assigned.matchedStoreCount > 0) {
+          setPriceStatus(
+            `Loaded live prices for ${assigned.matchedStoreCount.toLocaleString('en-US')} stores `
+            + `(exact chain match: ${assigned.exactMatchCount.toLocaleString('en-US')}, `
+            + `estimated fallback: ${assigned.fallbackMatchCount.toLocaleString('en-US')}) `
+            + `from ${chainCount} matched chain profiles (${Array.from(usedSources).join(', ')}).`
+          );
+          setPriceMeta(
+            `Reflecting live web prices for ZIP ${zip} (${zipResolution.sourceLabel}). `
+            + 'Each store average is the mean of eggs (12 ct), milk (1 gal), bread (20 oz loaf), and chicken (1 lb); '
+            + `fallback estimates were used for ${assigned.fallbackMatchCount.toLocaleString('en-US')} stores.`
+          );
+        } else {
+          const offline = buildOfflineEstimatedPriceMap(OFFLINE_STAPLE_BASELINE);
+          state.priceDataByStoreId = offline.byId;
+          state.priceDataByStoreName = offline.byName;
+          state.showStores = true;
+          elements.toggleStores.checked = true;
+          refresh();
+          setPriceStatus(
+            `Live data returned but not enough records to build chain-level prices for ZIP ${zip}. `
+            + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores so values are not flat.`
+          );
+          setPriceMeta(
+            `Showing modeled NYC estimates because live web prices were incomplete for ZIP ${zip} (${zipResolution.sourceLabel}). `
+            + 'Average remains standardized to eggs (12 ct), milk (1 gal), bread (20 oz), chicken (1 lb).'
+          );
+        }
+      } catch (error) {
+        const message = error && error.message ? error.message : 'Unknown network error';
+        const offline = buildOfflineEstimatedPriceMap(OFFLINE_STAPLE_BASELINE);
+        state.priceDataByStoreId = offline.byId;
+        state.priceDataByStoreName = offline.byName;
+        state.showStores = true;
+        elements.toggleStores.checked = true;
+        refresh();
+        setPriceStatus(
+          'Live load failed (' + message + '). '
+          + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores instead.`
+        );
+        setPriceMeta(
+          `Live fetch failed for ZIP ${zip} (${zipResolution.sourceLabel}). `
+          + 'Estimated prices are now shown with borough + store-type variation; you can still override with manual CSV prices.'
+        );
+      } finally {
+        setLivePriceLoadingState(false);
+      }
+    }
+
+    function attachEvents() {
+      map.on('click', (event) => {
+        if (!state.selectedId) return;
+        if (Date.now() < Number(state.ignoreMapResetUntilTs || 0)) return;
+        clearSelectedDevelopmentAndResetMap();
+      });
+
+      if (elements.clearSelectionBtn) {
+        elements.clearSelectionBtn.addEventListener('click', () => {
+          clearSelectedDevelopmentAndResetMap();
+        });
+      }
+
+      elements.boroughSelect.addEventListener('change', (event) => {
+        state.activeBorough = event.target.value;
+        refresh();
+      });
+
+      if (elements.distanceSlider) {
+        elements.distanceSlider.addEventListener('input', (event) => {
+          state.maxHighlightDistance = Number(event.target.value);
+          if (elements.distanceValue) {
+            elements.distanceValue.textContent = state.maxHighlightDistance.toFixed(2) + ' mi';
+          }
+          renderMap();
+        });
+      }
+
+      elements.searchInput.addEventListener('input', (event) => {
+        state.searchTerm = event.target.value;
+        refresh();
+      });
+
+      elements.demographicLayerSelect.addEventListener('change', (event) => {
+        state.demographicLayerMode = event.target.value;
+        updateRaceMetricControlVisibility();
+        renderMap();
+      });
+
+      elements.raceMetricSelect.addEventListener('change', (event) => {
+        state.raceMetricGroup = event.target.value;
+        renderMap();
+      });
+
+      elements.storeModeSelect.addEventListener('change', (event) => {
+        applyStoreMode(String(event.target.value || 'grocery'));
+        refresh();
+      });
+
+      elements.toggleFhaGroups.addEventListener('change', (event) => {
+        state.includeFhaGroups = Boolean(event.target.checked);
+        refresh();
+      });
+
+      elements.toggleStores.addEventListener('change', (event) => {
+        state.showStores = Boolean(event.target.checked);
+        renderMap();
+      });
+
+      if (elements.sortMode) {
+        elements.sortMode.addEventListener('change', (event) => {
+          state.sortMode = event.target.value;
+          renderTable();
+        });
+      }
+
+      if (elements.compareASelect) {
+        elements.compareASelect.addEventListener('change', (event) => {
+          state.compareAId = String(event.target.value || '');
+          renderComparePanel();
+        });
+      }
+
+      if (elements.compareBSelect) {
+        elements.compareBSelect.addEventListener('change', (event) => {
+          state.compareBId = String(event.target.value || '');
+          renderComparePanel();
+        });
+      }
+
+      if (elements.useSelectedAsABtn) {
+        elements.useSelectedAsABtn.addEventListener('click', () => {
+          if (!state.selectedId) return;
+          state.compareAId = state.selectedId;
+          renderComparePanel();
+        });
+      }
+
+      if (elements.useSelectedAsBBtn) {
+        elements.useSelectedAsBBtn.addEventListener('click', () => {
+          if (!state.selectedId) return;
+          state.compareBId = state.selectedId;
+          renderComparePanel();
+        });
+      }
+
+      if (elements.swapCompareBtn) {
+        elements.swapCompareBtn.addEventListener('click', () => {
+          const nextA = state.compareBId;
+          state.compareBId = state.compareAId;
+          state.compareAId = nextA;
+          renderComparePanel();
+        });
+      }
+
+      if (elements.applyPriceBtn && elements.priceCsvInput) {
+        elements.applyPriceBtn.addEventListener('click', () => {
+          const parsed = parsePriceCsv(elements.priceCsvInput.value);
+          state.priceDataByStoreId = parsed.byId;
+          state.priceDataByStoreName = parsed.byName;
+          if (parsed.count > 0) {
+            setPriceStatus(`Loaded ${parsed.count.toLocaleString('en-US')} store price records.`);
+            setPriceMeta(
+              'Reflecting manual CSV values. '
+              + 'Each store average is (eggs 12 ct + milk 1 gal + bread 20 oz + chicken 1 lb) / 4.'
+            );
+          } else {
+            setPriceStatus('No valid price rows found. Use: store,eggs,milk,bread,chicken_lb (12ct, 1gal, 20oz, 1lb).');
+            setPriceMeta(DEFAULT_PRICE_META);
+          }
+          refresh();
+        });
+      }
+
+      if (elements.loadLivePricesBtn) {
+        elements.loadLivePricesBtn.addEventListener('click', () => {
+          loadLiveStaplePrices();
+        });
+      }
+
+      if (elements.loadTemplateBtn && elements.priceCsvInput) {
+        elements.loadTemplateBtn.addEventListener('click', () => {
+          elements.priceCsvInput.value = buildStoreTemplateCsv();
+          setPriceStatus('Template loaded. Fill standardized values (12ct eggs, 1gal milk, 20oz bread, 1lb chicken) and click Apply Prices.');
+          setPriceMeta(DEFAULT_PRICE_META);
+        });
+      }
+
+      if (elements.clearPriceBtn && elements.priceCsvInput) {
+        elements.clearPriceBtn.addEventListener('click', () => {
+          state.priceDataByStoreId = {};
+          state.priceDataByStoreName = {};
+          elements.priceCsvInput.value = '';
+          setPriceStatus('Price records cleared. Reverted to modeled NYC estimates for each store.');
+          setPriceMeta('Showing modeled NYC estimates until you load live web prices or manual CSV values.');
+          refresh();
+        });
+      }
+
+      elements.resetBtn.addEventListener('click', () => {
+        state.activeBorough = 'ALL';
+        state.maxHighlightDistance = 1.0;
+        state.searchTerm = '';
+        state.demographicLayerMode = 'none';
+        state.raceMetricGroup = 'black';
+        state.storeMode = 'grocery';
+        state.includeFhaGroups = false;
+        state.showStores = false;
+        state.sortMode = 'farthest';
+        state.selectedId = null;
+        state.compareAId = '';
+        state.compareBId = '';
+        applyStoreMode(state.storeMode);
+        syncControls();
+        updateFocus(null, false);
+        refresh();
+
+        if (mapLayers.nychaLayer && mapLayers.nychaLayer.getBounds().isValid()) {
+          map.fitBounds(mapLayers.nychaLayer.getBounds().pad(0.08));
+        }
+      });
+    }
+
+    async function init() {
+      try {
+        syncControls();
+        attachEvents();
+        await loadData();
+        refresh();
+        if (elements.priceCsvInput) {
+          elements.priceCsvInput.value = buildStoreTemplateCsv();
+          setPriceStatus('Using modeled NYC staple estimates by default. Load live web prices or manual CSV to override.');
+          setPriceMeta(
+            'Default values are modeled per store and standardized to eggs (12 ct), milk (1 gal), bread (20 oz), and chicken (1 lb).'
+          );
+        }
+      } catch (error) {
+        elements.statusText.textContent = 'Could not load data files. Check that the data folder exists and is served by the site.';
+        console.error(error);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
