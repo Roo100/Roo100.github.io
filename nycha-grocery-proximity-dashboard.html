@@ -104,6 +104,38 @@
       font-weight: 700;
     }
 
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .hero-top .eyebrow {
+      margin: 0;
+    }
+
+    .home-return-link {
+      display: inline-block;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid #d8d3ca;
+      background: #ffffff;
+      color: var(--accent-deep);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+    }
+
+    .home-return-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(20, 30, 48, 0.1);
+      background: var(--accent-deep);
+      color: #ffffff;
+    }
+
     h1 {
       margin: 0 0 10px;
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -1020,7 +1052,10 @@
 <body>
   <div class="page">
     <section class="hero">
-      <p class="eyebrow">NYC Housing + Food Access</p>
+      <div class="hero-top">
+        <p class="eyebrow">NYC Housing + Food Access</p>
+        <a class="home-return-link" href="https://roo100.github.io/">Return to Main Page</a>
+      </div>
       <h1>Public Housing and Grocery Access in New York City</h1>
       <div class="howto-card" aria-label="Dashboard instructions">
         <p class="howto-title">How To Use</p>
@@ -1028,7 +1063,7 @@
           <li>Start with Borough, Search Development, and Highlight Max Distance to focus the map.</li>
           <li>Choose Nearest Store Mode to compare access to the closest grocery point versus the closest full supermarket.</li>
           <li>Click any NYCHA development to update the Selected Development card and automatically set that site as Development A in the comparison panel.</li>
-          <li>Use Compare Two Developments to pick Development A and B and review side-by-side distance and 4-item staple basket differences.</li>
+          <li>Use Compare Two Developments to pick two sites and review side-by-side grocery distance and 4-item staple basket differences.</li>
           <li>Use the Staple Price Chart panel (right side, under Selected Development) to load live ZIP-based prices or apply manual CSV prices.</li>
           <li>Use Include FHA Repossessed Groups, Show Mapped Store Points, Clear Selected NYCHA, and Reset View as needed.</li>
         </ul>
@@ -1135,23 +1170,23 @@
         <div class="map-compare-wrap">
           <div class="compare-card">
             <h3>Compare Two Developments</h3>
-            <p class="compare-note">Choose two NYCHA developments and compare distance and average 4-item staple price.</p>
+            <p class="compare-note">Choose two NYCHA developments to compare nearest grocery distance and average staple basket cost.</p>
             <div class="compare-grid">
               <div class="control">
-                <label for="compareASelect">Development A</label>
+                <label for="compareASelect">First Development</label>
                 <select id="compareASelect"></select>
               </div>
               <div class="control">
-                <label for="compareBSelect">Development B</label>
+                <label for="compareBSelect">Second Development</label>
                 <select id="compareBSelect"></select>
               </div>
             </div>
             <div class="compare-actions">
-              <button id="useSelectedAsABtn" class="price-btn" type="button">Use Selected As A</button>
-              <button id="useSelectedAsBBtn" class="price-btn" type="button">Use Selected As B</button>
-              <button id="swapCompareBtn" class="price-btn" type="button">Swap A/B</button>
+              <button id="useSelectedAsABtn" class="price-btn" type="button">Set Selected As First</button>
+              <button id="useSelectedAsBBtn" class="price-btn" type="button">Set Selected As Second</button>
+              <button id="swapCompareBtn" class="price-btn" type="button">Swap Selections</button>
             </div>
-            <div class="compare-results" id="compareResults">Select two developments to view side-by-side comparison.</div>
+            <div class="compare-results" id="compareResults">Select two developments to view a side-by-side summary.</div>
           </div>
         </div>
       </article>
@@ -1293,6 +1328,9 @@
       <p class="source-note">
         <strong>Income and Race Caveat:</strong> Park and open-space areas (for example Central Park) are shown as limited-data zones, so race and income are not displayed there. Some non-park areas may still show <strong>N/A</strong> if no published value is available for the selected ACS period.
       </p>
+      <p class="source-note">
+        <strong>COVID Data Note:</strong> The current income and race layer uses ACS 2020-2024 estimates. That period includes COVID-era years, so some neighborhood values may reflect pandemic-related economic and demographic shifts.
+      </p>
     </section>
 
     <section class="meta-section" aria-label="Sources">
@@ -1318,6 +1356,16 @@
         <strong>Source 4 - Official NYCHA System Counts:</strong>
         <a href="https://www.nyc.gov/site/nycha/about/about-nycha.page" target="_blank" rel="noopener noreferrer">NYCHA About Page</a>
         and NYCHA-reported context used in this dashboard (243 conventional developments, 152,926 apartments, 92 PACT, 335 total developments).
+      </p>
+    </section>
+
+    <section class="meta-section" aria-label="Contact">
+      <h3>Contact</h3>
+      <p class="source-note">
+        Raven O'Joy Leigertwood | Portfolio:
+        <a href="https://roo100.github.io/" target="_blank" rel="noopener noreferrer">roo100.github.io</a>
+        | Contact:
+        <a href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a>
       </p>
     </section>
 
@@ -2434,7 +2482,7 @@
       const b = rows.find((row) => row.id === state.compareBId) || null;
 
       if (!a || !b) {
-        elements.compareResults.textContent = 'Select two developments to view side-by-side comparison.';
+        elements.compareResults.textContent = 'Select two developments to view a side-by-side summary.';
         return;
       }
 
@@ -2451,6 +2499,8 @@
 
       const distanceDelta = Number(b.nearestMiles) - Number(a.nearestMiles);
       const priceDelta = Number(bPrice) - Number(aPrice);
+      const absDistanceDifference = Math.abs(distanceDelta);
+      const absPriceDifference = Math.abs(priceDelta);
 
       const stapleRows = [
         { label: 'Eggs (12 ct)', aValue: aRecord ? Number(aRecord.eggs) : NaN, bValue: bRecord ? Number(bRecord.eggs) : NaN },
@@ -2474,18 +2524,39 @@
 
       const aSourceLabel = aLoadedRecord ? 'Loaded source' : 'Modeled estimate';
       const bSourceLabel = bLoadedRecord ? 'Loaded source' : 'Modeled estimate';
+      let distanceOutcome = 'Distance outcome: Not enough data to compare grocery distance.';
+      if (Number.isFinite(distanceDelta)) {
+        if (absDistanceDifference < 0.005) {
+          distanceOutcome = 'Distance outcome: Both developments are about the same distance from their nearest grocery store.';
+        } else if (distanceDelta < 0) {
+          distanceOutcome = `Distance outcome: The second development is closer by ${formatMiles(absDistanceDifference)}.`;
+        } else {
+          distanceOutcome = `Distance outcome: The second development is farther by ${formatMiles(absDistanceDifference)}.`;
+        }
+      }
+
+      let priceOutcome = 'Price outcome: Not enough data to compare the average 4-item basket price.';
+      if (Number.isFinite(priceDelta)) {
+        if (absPriceDifference < 0.005) {
+          priceOutcome = 'Price outcome: Both developments have about the same average 4-item basket price.';
+        } else if (priceDelta < 0) {
+          priceOutcome = `Price outcome: The second development has a lower average 4-item basket price by ${moneyCompact(absPriceDifference)}.`;
+        } else {
+          priceOutcome = `Price outcome: The second development has a higher average 4-item basket price by ${moneyCompact(absPriceDifference)}.`;
+        }
+      }
 
       elements.compareResults.innerHTML = `
-        <strong>A:</strong> ${escapeHtml(a.development)} (${escapeHtml(aBorough)}) | Store: ${escapeHtml(aStore)}<br>
-        <strong>B:</strong> ${escapeHtml(b.development)} (${escapeHtml(bBorough)}) | Store: ${escapeHtml(bStore)}<br>
-        Distance: A ${formatMiles(a.nearestMiles)} | B ${formatMiles(b.nearestMiles)} | Delta (B - A): ${signedDeltaText(distanceDelta, 2, ' mi')}<br>
+        <strong>First development:</strong> ${escapeHtml(a.development)} (${escapeHtml(aBorough)}) | Nearest store: ${escapeHtml(aStore)}<br>
+        <strong>Second development:</strong> ${escapeHtml(b.development)} (${escapeHtml(bBorough)}) | Nearest store: ${escapeHtml(bStore)}<br>
+        Nearest grocery distance: First ${formatMiles(a.nearestMiles)} | Second ${formatMiles(b.nearestMiles)} | Difference (Second - First): ${signedDeltaText(distanceDelta, 2, ' mi')}<br>
         <table class="compare-table" aria-label="Staple price comparison table">
           <thead>
             <tr>
               <th>Staple</th>
-              <th>A</th>
-              <th>B</th>
-              <th>Delta (B - A)</th>
+              <th>First</th>
+              <th>Second</th>
+              <th>Difference (Second - First)</th>
             </tr>
           </thead>
           <tbody>
@@ -2493,7 +2564,10 @@
           </tbody>
         </table>
         <div class="compare-source">
-          Price source for A: ${escapeHtml(aSourceLabel)} | Price source for B: ${escapeHtml(bSourceLabel)} | Basket delta: ${moneyDelta(priceDelta)}
+          Price source (First): ${escapeHtml(aSourceLabel)} | Price source (Second): ${escapeHtml(bSourceLabel)} | Average basket difference: ${moneyDelta(priceDelta)}<br>
+          ${escapeHtml(distanceOutcome)}<br>
+          ${escapeHtml(priceOutcome)}<br>
+          In the Difference column, positive values mean the second development is higher than the first; negative values mean it is lower.
         </div>
       `;
     }
@@ -3671,7 +3745,7 @@
             if (!record) return;
             state.selectedId = record.id;
             state.compareAId = record.id;
-            updateFocus(record, true);
+            updateFocus(record, false);
             renderMetrics();
             renderTable();
             renderComparePanel();
@@ -3813,7 +3887,7 @@
           if (!record) return;
           state.selectedId = record.id;
           state.compareAId = record.id;
-          updateFocus(record, true);
+          updateFocus(record, false);
           renderMetrics();
           renderTable();
           renderComparePanel();
