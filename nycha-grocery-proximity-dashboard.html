@@ -3726,6 +3726,7 @@
       }));
 
       mapLayers.nychaLayer = L.geoJSON(features, {
+        bubblingMouseEvents: false,
         style: (feature) => {
           const miles = feature.properties.nearestMiles;
           const isHighlighted = miles <= state.maxHighlightDistance;
@@ -4160,10 +4161,9 @@
     }
 
     function attachEvents() {
-      map.on('click', (event) => {
-        if (!state.selectedId) return;
-        if (Date.now() < Number(state.ignoreMapResetUntilTs || 0)) return;
-        clearSelectedDevelopmentAndResetMap();
+      map.on('click', () => {
+        // Keep selected development in focus unless user explicitly clears it.
+        // This prevents map snap-back while selecting multiple NYCHA sites.
       });
 
       if (elements.clearSelectionBtn) {
