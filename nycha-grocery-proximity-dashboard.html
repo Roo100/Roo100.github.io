@@ -117,7 +117,7 @@
       margin: 0;
     }
 
-    .home-return-link {
+    .top-link {
       display: inline-block;
       padding: 9px 14px;
       border-radius: 999px;
@@ -129,7 +129,8 @@
       transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
     }
 
-    .home-return-link:hover {
+    .top-link:hover,
+    .top-link:focus {
       transform: translateY(-1px);
       box-shadow: 0 6px 16px rgba(20, 30, 48, 0.1);
       background: var(--accent-deep);
@@ -245,7 +246,7 @@
 
     .controls {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto auto;
       gap: 10px;
       align-items: end;
       background: linear-gradient(180deg, #fcfbf8 0%, #f6f2ea 100%);
@@ -970,6 +971,19 @@
       color: #5c6877;
     }
 
+    .footer-email {
+      color: var(--accent-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(30, 58, 138, 0.35);
+      font-weight: 600;
+    }
+
+    .footer-email:hover,
+    .footer-email:focus {
+      color: #0f1b2d;
+      border-bottom-color: #0f1b2d;
+    }
+
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(63, 93, 128, 0.6); }
       70% { box-shadow: 0 0 0 8px rgba(63, 93, 128, 0); }
@@ -1054,7 +1068,7 @@
     <section class="hero">
       <div class="hero-top">
         <p class="eyebrow">NYC Housing + Food Access</p>
-        <a class="home-return-link" href="https://roo100.github.io/">Return to Main Page</a>
+        <a class="top-link" href="index.html">← Back to Portfolio</a>
       </div>
       <h1>Public Housing and Grocery Access in New York City</h1>
       <div class="howto-card" aria-label="Dashboard instructions">
@@ -1062,16 +1076,17 @@
         <ul class="howto-list">
           <li>Start with Borough, Search Development, and Highlight Max Distance to focus the map.</li>
           <li>Choose Nearest Store Mode to compare access to the closest grocery point versus the closest full supermarket.</li>
-          <li>Click any NYCHA development to update the Selected Development card and automatically set that site as Development A in the comparison panel.</li>
-          <li>Use Compare Two Developments to pick two sites and review side-by-side grocery distance and 4-item staple basket differences.</li>
-          <li>Use the Staple Price Chart panel (right side, under Selected Development) to load live ZIP-based prices or apply manual CSV prices.</li>
+          <li>Use Price Basket to switch between Staples, Produce, and Combined Healthy Basket views.</li>
+          <li>Click any NYCHA development to update the Selected Development card and automatically set that site as the First Development in the comparison panel.</li>
+          <li>Use Compare Two Developments to pick two sites and review side-by-side grocery distance and selected basket price differences.</li>
+          <li>Use the Basket Price Chart panel (right side, under Selected Development) to load live ZIP-based prices or apply manual CSV prices.</li>
           <li>Use Include FHA Repossessed Groups, Show Mapped Store Points, Clear Selected NYCHA, and Reset View as needed.</li>
         </ul>
         <p class="howto-title">How To Use The Data</p>
         <ul class="howto-list">
           <li>Use distance and neighborhood demographics together to identify developments with higher food-access pressure.</li>
-          <li>Average 4-item price values reflect standardized units: eggs (12 ct), milk (1 gal), bread (20 oz), and chicken (1 lb).</li>
-          <li>Price fields may use loaded live/manual values when available, otherwise modeled estimates are used and labeled in the dashboard.</li>
+          <li>Basket price values reflect standardized units for the selected basket mode (Staples, Produce, or Combined).</li>
+          <li>Price fields use a source priority: direct verified store listing/circular first, then full-supermarket chain benchmark, then nearest verified grocery-point model when no direct/chain source is available.</li>
           <li>Income and race are ACS neighborhood context values and should not be interpreted as direct NYCHA resident-level household data.</li>
           <li>Distance values are straight-line estimates from development footprints to mapped stores, not walking-route travel times.</li>
         </ul>
@@ -1135,6 +1150,15 @@
         </select>
       </div>
 
+      <div class="control">
+        <label for="basketModeSelect">Price Basket</label>
+        <select id="basketModeSelect">
+          <option value="staples">Staples basket</option>
+          <option value="produce">Produce basket</option>
+          <option value="combined">Combined healthy basket</option>
+        </select>
+      </div>
+
       <label class="toggle-wrap" for="toggleStores">
         <input id="toggleStores" type="checkbox">
         Show mapped store points
@@ -1170,7 +1194,7 @@
         <div class="map-compare-wrap">
           <div class="compare-card">
             <h3>Compare Two Developments</h3>
-            <p class="compare-note">Choose two NYCHA developments to compare nearest grocery distance and average staple basket cost.</p>
+            <p class="compare-note" id="compareNote">Choose two NYCHA developments to compare nearest grocery distance and selected basket cost.</p>
             <div class="compare-grid">
               <div class="control">
                 <label for="compareASelect">First Development</label>
@@ -1220,12 +1244,12 @@
               <p class="metric-note">Maximum distance</p>
             </div>
             <div class="metric">
-              <p class="metric-label">Avg 4-Item Price (Filter)</p>
+              <p class="metric-label" id="metricPriceFilterLabel">Avg 4-Item Price (Filter)</p>
               <p class="metric-value" id="metricPriceFilter">-</p>
               <p class="metric-note" id="metricPriceFilterNote">Unique nearest stores in current filter</p>
             </div>
             <div class="metric">
-              <p class="metric-label">Avg 4-Item Price (City)</p>
+              <p class="metric-label" id="metricPriceCityLabel">Avg 4-Item Price (City)</p>
               <p class="metric-value" id="metricPriceCity">-</p>
               <p class="metric-note" id="metricPriceCityNote">Unique nearest stores citywide</p>
             </div>
@@ -1269,14 +1293,14 @@
 
           <div class="map-price-wrap">
             <div class="price-card">
-              <h3>Staple Price Chart</h3>
-              <p class="price-note">Average standardized basket price for stores in the current NYCHA filter: eggs (12 ct), milk (1 gal), bread (20 oz loaf), and chicken (1 lb).</p>
+              <h3 id="priceCardTitle">Staple Price Chart</h3>
+              <p class="price-note" id="priceCardNote">Average standardized basket price for stores in the current NYCHA filter: eggs (12 ct), milk (1 gal), bread (20 oz loaf), and chicken (1 lb).</p>
               <textarea
                 id="priceCsvInput"
                 class="price-input"
                 rows="5"
                 placeholder="store_id,store,eggs,milk,bread,chicken_lb"
-                aria-label="Store staple price CSV input"
+                aria-label="Store basket price CSV input"
               ></textarea>
               <div class="price-live-row">
                 <input
@@ -1308,13 +1332,28 @@
     <section class="meta-section" aria-label="About this dashboard and data">
       <h3>About This Dashboard And Data</h3>
       <p class="source-note">
-        This dashboard shows where NYCHA developments are located, the nearest grocery option to each site, and how access and staple food prices compare across neighborhoods.
+        This dashboard shows where NYCHA developments are located, the nearest grocery option to each site, and how access and basket food prices compare across neighborhoods.
       </p>
       <p class="source-note">
-        <strong>Data Snapshot:</strong> Base map data reflects files prepared on May 12-15, 2026. Grocery price values can update live when you load prices by ZIP code.
+        <strong>Data Snapshot:</strong> Base map layers reflect files prepared on May 12-15, 2026. Grocery price records are loaded from the reviewed project CSV (with row-level price dates) and can be updated using ZIP-based web loading from the price panel.
       </p>
       <p class="source-note">
-        <strong>How Staple Price Is Calculated:</strong> The 4-item average is the mean price of eggs (12 count), milk (1 gallon), bread (20 oz), and chicken (1 lb). If you do not load prices, the dashboard uses modeled estimates.
+        <strong>How Basket Price Is Calculated:</strong> Use the Price Basket selector to switch between Staples (4 items), Produce (5 items), and Combined Healthy Basket (9 items). By default, the dashboard auto-loads and auto-applies the reviewed CSV.
+      </p>
+      <p class="source-note">
+        <strong>How Grocery Prices Are Obtained:</strong> The dashboard starts from a reviewed price CSV that is loaded automatically. Each store row includes a <strong>price date</strong> and <strong>source name</strong> so users can see when and where the value came from. You can also load ZIP-based web prices from the controls in the price panel.
+      </p>
+      <p class="source-note">
+        <strong>Price Source Priority:</strong> (1) verified public web listing/circular for that exact store, (2) full-supermarket chain ad benchmark when direct store-level listing is unavailable, then (3) adjacent verified model from the geographically nearest verified grocery point for remaining unmatched stores.
+      </p>
+      <p class="source-note">
+        <strong>How Price Values Are Standardized:</strong> Prices are converted to consistent units so stores can be compared fairly: eggs (12 ct), milk (1 gal), bread (20 oz loaf), chicken (1 lb), avocados (1 lb), bananas (1 lb), tomatoes (1 lb), strawberries (1 lb), and collard greens (1 bunch). For each development, the dashboard uses that development's nearest mapped store in the selected store mode.
+      </p>
+      <p class="source-note">
+        <strong>How Basket Totals Are Displayed:</strong> The store basket value is the simple average of the selected basket items (Staples, Produce, or Combined). Summary cards use unique nearest stores so one store is not over-counted when it serves multiple developments.
+      </p>
+      <p class="source-note">
+        This method is used to support consistent, side-by-side comparison across neighborhoods. It is a benchmarking tool, not a receipt-level checkout total.
       </p>
       <p class="source-note">
         <strong>How Price Summary Cards Work:</strong> Filter and city price cards are based on unique nearest stores, so one store is not counted multiple times just because it serves several developments.
@@ -1355,22 +1394,24 @@
       <p class="source-note">
         <strong>Source 4 - Official NYCHA System Counts:</strong>
         <a href="https://www.nyc.gov/site/nycha/about/about-nycha.page" target="_blank" rel="noopener noreferrer">NYCHA About Page</a>
-        and NYCHA-reported context used in this dashboard (243 conventional developments, 152,926 apartments, 92 PACT, 335 total developments).
+        for current system totals (including conventional + PACT context). This dashboard’s scope cards also display project reference values for conventional public housing only (243 developments, 152,926 apartments) plus 92 PACT and 335 total developments for context.
       </p>
-    </section>
-
-    <section class="meta-section" aria-label="Contact">
-      <h3>Contact</h3>
       <p class="source-note">
-        Raven O'Joy Leigertwood | Portfolio:
-        <a href="https://roo100.github.io/" target="_blank" rel="noopener noreferrer">roo100.github.io</a>
-        | Contact:
-        <a href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a>
+        <strong>Source 5 - Grocery Price Inputs:</strong>
+        Reviewed CSV loaded by default:
+        <a href="https://roo100.github.io/data/nycha_grocery/verified_grocery_price_template_filled_ads_second_pass_with_top100_review.csv" target="_blank" rel="noopener noreferrer">verified_grocery_price_template_filled_ads_second_pass_with_top100_review.csv</a>.
+        ZIP-based live loader references public web listing/search feeds through
+        <a href="https://www.grocerychop.com/stores" target="_blank" rel="noopener noreferrer">GroceryChop Stores</a>
+        and applies standardized basket units shown in this dashboard.
       </p>
     </section>
 
     <p class="footer">
       Built for exploratory planning and public data analysis. Distances are straight-line (not walking-route) estimates.
+    </p>
+    <p class="footer">
+      Raven O'Joy Leigertwood | Portfolio: roo100.github.io | Contact:
+      <a class="footer-email" href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a>
     </p>
   </div>
 
@@ -1419,8 +1460,10 @@
       demographicLayerMode: 'none',
       raceMetricGroup: 'black',
       storeMode: 'grocery',
+      priceBasketMode: 'staples',
       includeFhaGroups: false,
       showStores: false,
+      storeZipFilter: '',
       sortMode: 'farthest',
       mapLoaded: false,
       demographicLayerData: null,
@@ -1429,6 +1472,7 @@
       ntaIncomeSummaryByCode: {},
       ignoreMapResetUntilTs: 0,
       livePriceRequestInFlight: false,
+      priceSourceMode: 'modeled',
       priceDataByStoreName: {},
       priceDataByStoreId: {}
     };
@@ -1443,6 +1487,7 @@
       raceMetricControl: document.getElementById('raceMetricControl'),
       raceMetricSelect: document.getElementById('raceMetricSelect'),
       storeModeSelect: document.getElementById('storeModeSelect'),
+      basketModeSelect: document.getElementById('basketModeSelect'),
       toggleFhaGroups: document.getElementById('toggleFhaGroups'),
       toggleStores: document.getElementById('toggleStores'),
       resetBtn: document.getElementById('resetBtn'),
@@ -1452,8 +1497,12 @@
       metricPriceFilter: document.getElementById('metricPriceFilter'),
       metricMax: document.getElementById('metricMax'),
       metricPriceCity: document.getElementById('metricPriceCity'),
+      metricPriceFilterLabel: document.getElementById('metricPriceFilterLabel'),
+      metricPriceCityLabel: document.getElementById('metricPriceCityLabel'),
       metricPriceFilterNote: document.getElementById('metricPriceFilterNote'),
       metricPriceCityNote: document.getElementById('metricPriceCityNote'),
+      priceCardTitle: document.getElementById('priceCardTitle'),
+      priceCardNote: document.getElementById('priceCardNote'),
       priceCsvInput: document.getElementById('priceCsvInput'),
       liveZipInput: document.getElementById('liveZipInput'),
       loadLivePricesBtn: document.getElementById('loadLivePricesBtn'),
@@ -1475,6 +1524,7 @@
       useSelectedAsABtn: document.getElementById('useSelectedAsABtn'),
       useSelectedAsBBtn: document.getElementById('useSelectedAsBBtn'),
       swapCompareBtn: document.getElementById('swapCompareBtn'),
+      compareNote: document.getElementById('compareNote'),
       compareResults: document.getElementById('compareResults'),
       demographicLegend: document.getElementById('demographicLegend'),
       scopeOfficialApartments: document.getElementById('scopeOfficialApartments'),
@@ -1490,6 +1540,14 @@
       preferCanvas: true
     }).setView([40.72, -73.94], 10.5);
 
+    // Ensure NYCHA polygons remain the top interactive layer for reliable re-selection.
+    map.createPane('demographicPane');
+    map.getPane('demographicPane').style.zIndex = 390;
+    map.createPane('storePane');
+    map.getPane('storePane').style.zIndex = 400;
+    map.createPane('nychaPane');
+    map.getPane('nychaPane').style.zIndex = 430;
+
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       maxZoom: 19
@@ -1498,6 +1556,7 @@
     const mapLayers = {
       nychaLayer: null,
       storeLayer: null,
+      storeLayerSignature: '',
       demographicLayer: null,
       connectorsLayer: L.layerGroup().addTo(map),
       highlightLayer: L.layerGroup().addTo(map)
@@ -1583,14 +1642,94 @@
         targetAmountBase: 16,
         includeTokens: ['chicken'],
         excludeTokens: ['nugget', 'broth', 'stock', 'salad', 'soup', 'pet', 'treat', 'rack', 'timer', 'sauce']
+      },
+      {
+        key: 'applesLb',
+        label: 'Avocados (1 lb)',
+        query: 'avocados',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 16,
+        includeTokens: ['avocado'],
+        excludeTokens: ['oil', 'guacamole', 'dip', 'spread', 'chips']
+      },
+      {
+        key: 'bananasLb',
+        label: 'Bananas (1 lb)',
+        query: 'bananas',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 16,
+        includeTokens: ['banana'],
+        excludeTokens: ['chip', 'bread', 'pudding', 'powder', 'shake']
+      },
+      {
+        key: 'tomatoesLb',
+        label: 'Tomatoes (1 lb)',
+        query: 'tomatoes',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 16,
+        includeTokens: ['tomato'],
+        excludeTokens: ['sauce', 'paste', 'ketchup', 'soup', 'canned']
+      },
+      {
+        key: 'onionsLb',
+        label: 'Strawberries (1 lb)',
+        query: 'strawberries',
+        targetFamily: 'weight_oz',
+        targetAmountBase: 16,
+        includeTokens: ['strawberry'],
+        excludeTokens: ['jam', 'jelly', 'yogurt', 'syrup', 'frozen']
+      },
+      {
+        key: 'collardGreens',
+        label: 'Collard greens (1 bunch)',
+        query: 'collard greens',
+        targetFamily: 'count',
+        targetAmountBase: 1,
+        includeTokens: ['collard'],
+        excludeTokens: ['frozen', 'canned', 'seasoning', 'mix']
       }
     ];
-    const DEFAULT_PRICE_META = 'Average standardized basket price = mean of Eggs (12 ct), Milk (1 gal), Bread (20 oz loaf), and Chicken (1 lb).';
+    const BASKET_ITEMS = {
+      staples: ['eggs', 'milk', 'bread', 'chickenLb'],
+      produce: ['applesLb', 'bananasLb', 'tomatoesLb', 'onionsLb', 'collardGreens'],
+      combined: ['eggs', 'milk', 'bread', 'chickenLb', 'applesLb', 'bananasLb', 'tomatoesLb', 'onionsLb', 'collardGreens']
+    };
+    const BASKET_META = {
+      staples: {
+        title: 'Staples basket',
+        chartTitle: 'Staple Price Chart',
+        metricFilterLabel: 'Avg 4-Item Price (Filter)',
+        metricCityLabel: 'Avg 4-Item Price (City)',
+        avgLabel: 'average 4-item basket price'
+      },
+      produce: {
+        title: 'Produce basket',
+        chartTitle: 'Produce Price Chart',
+        metricFilterLabel: 'Avg Produce Basket (Filter)',
+        metricCityLabel: 'Avg Produce Basket (City)',
+        avgLabel: 'average produce basket price'
+      },
+      combined: {
+        title: 'Combined healthy basket',
+        chartTitle: 'Combined Basket Price Chart',
+        metricFilterLabel: 'Avg Healthy Basket (Filter)',
+        metricCityLabel: 'Avg Healthy Basket (City)',
+        avgLabel: 'average healthy basket price'
+      }
+    };
+    const BASKET_ITEMS_BY_KEY = Object.fromEntries(STAPLE_LIVE_QUERIES.map((item) => [item.key, item]));
+    const DEFAULT_PRICE_META = 'Standardized basket prices are calculated from the currently selected basket mode.';
+    const VERIFIED_PRICE_CSV_PATH = 'data/nycha_grocery/verified_grocery_price_template_filled_ads_second_pass_with_top100_review.csv';
     const OFFLINE_STAPLE_BASELINE = {
       eggs: 5.29,
       milk: 5.39,
       bread: 4.49,
-      chickenLb: 3.29
+      chickenLb: 3.29,
+      applesLb: 2.99,
+      bananasLb: 0.89,
+      tomatoesLb: 2.99,
+      onionsLb: 4.29,
+      collardGreens: 3.49
     };
     const BOROUGH_PRICE_FACTORS = {
       MANHATTAN: 1.07,
@@ -2314,6 +2453,7 @@
             id: String(store.id || ''),
             name: String(store.name || 'Unnamed Store'),
             borough: String(store.borough || 'UNKNOWN'),
+            zip: String(store.zip || ''),
             linkedDevelopments: 0
           });
         }
@@ -2326,6 +2466,12 @@
       return uniqueNearestStoresFromRows(state.filtered);
     }
 
+    function applyZipFilterToStores(stores) {
+      const zipFilter = normalizeZipCode(state.storeZipFilter);
+      if (!zipFilter) return stores || [];
+      return (stores || []).filter((store) => normalizeZipCode(store && store.zip) === zipFilter);
+    }
+
     function priceRecordForStore(store) {
       if (!store) return null;
       const byId = state.priceDataByStoreId[String(store.id || '')];
@@ -2334,16 +2480,95 @@
       return byName || null;
     }
 
-    function resolvedPriceRecordForStore(store) {
-      const loaded = priceRecordForStore(store);
-      if (loaded) return loaded;
-      if (!store) return null;
-      return storeSpecificFallbackRecord(store, OFFLINE_STAPLE_BASELINE);
+    function activeBasketMode(mode) {
+      const key = String(mode || state.priceBasketMode || 'staples').toLowerCase();
+      return Object.prototype.hasOwnProperty.call(BASKET_ITEMS, key) ? key : 'staples';
     }
 
-    function averageStaplePrice(record) {
+    function basketItems(mode) {
+      const key = activeBasketMode(mode);
+      return BASKET_ITEMS[key].map((itemKey) => BASKET_ITEMS_BY_KEY[itemKey]).filter(Boolean);
+    }
+
+    function basketLabel(mode) {
+      const key = activeBasketMode(mode);
+      return (BASKET_META[key] && BASKET_META[key].title) || 'basket';
+    }
+
+    function basketAverageLabel(mode) {
+      const key = activeBasketMode(mode);
+      return (BASKET_META[key] && BASKET_META[key].avgLabel) || 'average basket price';
+    }
+
+    function basketItemsSummary(mode) {
+      return basketItems(mode).map((item) => item.label).join(', ');
+    }
+
+    function defaultPriceMetaForMode(mode) {
+      const key = activeBasketMode(mode);
+      if (key === 'produce') {
+        return 'Average produce basket price = mean of Avocados (1 lb), Bananas (1 lb), Tomatoes (1 lb), Strawberries (1 lb), and Collard greens (1 bunch).';
+      }
+      if (key === 'combined') {
+        return 'Average healthy basket price = mean of Staples basket (4 items) and Produce basket (5 items), using standardized units.';
+      }
+      return 'Average 4-item staples price = mean of Eggs (12 ct), Milk (1 gal), Bread (20 oz loaf), and Chicken (1 lb).';
+    }
+
+    function priceCsvHeader() {
+      return 'store_id,store,eggs,milk,bread,chicken_lb,avocados_lb,bananas_lb,tomatoes_lb,strawberries_lb,collard_greens_bunch';
+    }
+
+    function basketChartDescription(mode) {
+      return `Average standardized ${basketLabel(mode).toLowerCase()} price for stores in the current NYCHA filter: ${basketItemsSummary(mode)}.`;
+    }
+
+    function comparePanelDescription(mode) {
+      return `Choose two NYCHA developments to compare nearest grocery distance and ${basketAverageLabel(mode)}.`;
+    }
+
+    function syncBasketText() {
+      const mode = activeBasketMode(state.priceBasketMode);
+      const meta = BASKET_META[mode] || BASKET_META.staples;
+
+      if (elements.metricPriceFilterLabel) {
+        elements.metricPriceFilterLabel.textContent = meta.metricFilterLabel;
+      }
+      if (elements.metricPriceCityLabel) {
+        elements.metricPriceCityLabel.textContent = meta.metricCityLabel;
+      }
+      if (elements.priceCardTitle) {
+        elements.priceCardTitle.textContent = meta.chartTitle;
+      }
+      if (elements.priceCardNote) {
+        elements.priceCardNote.textContent = basketChartDescription(mode);
+      }
+      if (elements.compareNote) {
+        elements.compareNote.textContent = comparePanelDescription(mode);
+      }
+      if (elements.priceCsvInput) {
+        elements.priceCsvInput.placeholder = priceCsvHeader();
+      }
+    }
+
+    function resolvedPriceRecordForStore(store) {
+      if (!store) return null;
+      const loaded = priceRecordForStore(store) || {};
+      const fallback = storeSpecificFallbackRecord(store, OFFLINE_STAPLE_BASELINE);
+      const merged = {};
+      for (const item of STAPLE_LIVE_QUERIES) {
+        const loadedValue = Number(loaded[item.key]);
+        const fallbackValue = Number(fallback[item.key]);
+        merged[item.key] = Number.isFinite(loadedValue) && loadedValue > 0
+          ? loadedValue
+          : fallbackValue;
+      }
+      return merged;
+    }
+
+    function averageStaplePrice(record, mode) {
       if (!record) return NaN;
-      const values = [record.eggs, record.milk, record.bread, record.chickenLb].map((v) => Number(v));
+      const values = basketItems(mode).map((item) => Number(record[item.key]));
       if (values.some((v) => !Number.isFinite(v))) return NaN;
       return values.reduce((sum, v) => sum + v, 0) / values.length;
     }
@@ -2352,10 +2577,10 @@
       return state.nycha.filter((row) => state.includeFhaGroups || !row.isFhaGroup);
     }
 
-    function averageStaplePriceForRows(rows) {
+    function averageStaplePriceForRows(rows, mode) {
       const uniqueStores = uniqueNearestStoresFromRows(rows);
       const values = uniqueStores
-        .map((store) => averageStaplePrice(resolvedPriceRecordForStore(store)))
+        .map((store) => averageStaplePrice(resolvedPriceRecordForStore(store), mode))
         .filter((v) => Number.isFinite(v));
       if (values.length === 0) return NaN;
       return values.reduce((sum, value) => sum + value, 0) / values.length;
@@ -2374,13 +2599,18 @@
     }
 
     function buildStoreTemplateCsv() {
-      const stores = uniqueNearestStoresFromFiltered()
+      const stores = applyZipFilterToStores(uniqueNearestStoresFromFiltered())
         .sort((a, b) => b.linkedDevelopments - a.linkedDevelopments || a.name.localeCompare(b.name));
-      const lines = ['store_id,store,eggs,milk,bread,chicken_lb'];
+      const lines = [priceCsvHeader()];
       for (const store of stores) {
         lines.push([
           '"' + String(store.id || '').replace(/"/g, '""') + '"',
           '"' + String(store.name || '').replace(/"/g, '""') + '"',
+          '',
+          '',
+          '',
+          '',
+          '',
           '',
           '',
           '',
@@ -2397,7 +2627,31 @@
 
     function setPriceMeta(message) {
       if (!elements.priceMeta) return;
-      elements.priceMeta.textContent = message || DEFAULT_PRICE_META;
+      elements.priceMeta.textContent = message || defaultPriceMetaForMode(state.priceBasketMode);
+    }
+
+    function csvDataRowCount(raw) {
+      return String(raw || '')
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .slice(1).length;
+    }
+
+    async function loadVerifiedPriceCsvIntoInput() {
+      if (!elements.priceCsvInput) return { loaded: false, rowCount: 0, parsedCount: 0 };
+      const response = await fetch(VERIFIED_PRICE_CSV_PATH, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('Could not load verified CSV (' + response.status + ')');
+      }
+      const csvText = await response.text();
+      elements.priceCsvInput.value = csvText;
+      const parsed = parsePriceCsv(csvText);
+      return {
+        loaded: true,
+        rowCount: csvDataRowCount(csvText),
+        parsedCount: parsed.count
+      };
     }
 
     function mostCommonZipFromRows(rows) {
@@ -2492,23 +2746,24 @@
       const bStore = b.nearestStore ? b.nearestStore.name : 'N/A';
       const aLoadedRecord = a.nearestStore ? priceRecordForStore(a.nearestStore) : null;
       const bLoadedRecord = b.nearestStore ? priceRecordForStore(b.nearestStore) : null;
-      const aRecord = aLoadedRecord || (a.nearestStore ? storeSpecificFallbackRecord(a.nearestStore, OFFLINE_STAPLE_BASELINE) : null);
-      const bRecord = bLoadedRecord || (b.nearestStore ? storeSpecificFallbackRecord(b.nearestStore, OFFLINE_STAPLE_BASELINE) : null);
-      const aPrice = averageStaplePrice(aRecord);
-      const bPrice = averageStaplePrice(bRecord);
+      const mode = activeBasketMode(state.priceBasketMode);
+      const aResolvedRecord = a.nearestStore ? resolvedPriceRecordForStore(a.nearestStore) : null;
+      const bResolvedRecord = b.nearestStore ? resolvedPriceRecordForStore(b.nearestStore) : null;
+      const aPrice = averageStaplePrice(aResolvedRecord, mode);
+      const bPrice = averageStaplePrice(bResolvedRecord, mode);
 
       const distanceDelta = Number(b.nearestMiles) - Number(a.nearestMiles);
       const priceDelta = Number(bPrice) - Number(aPrice);
       const absDistanceDifference = Math.abs(distanceDelta);
       const absPriceDifference = Math.abs(priceDelta);
 
-      const stapleRows = [
-        { label: 'Eggs (12 ct)', aValue: aRecord ? Number(aRecord.eggs) : NaN, bValue: bRecord ? Number(bRecord.eggs) : NaN },
-        { label: 'Milk (1 gal)', aValue: aRecord ? Number(aRecord.milk) : NaN, bValue: bRecord ? Number(bRecord.milk) : NaN },
-        { label: 'Bread (20 oz)', aValue: aRecord ? Number(aRecord.bread) : NaN, bValue: bRecord ? Number(bRecord.bread) : NaN },
-        { label: 'Chicken (1 lb)', aValue: aRecord ? Number(aRecord.chickenLb) : NaN, bValue: bRecord ? Number(bRecord.chickenLb) : NaN },
-        { label: 'Average 4-item', aValue: aPrice, bValue: bPrice }
-      ];
+      const stapleRows = basketItems(mode)
+        .map((item) => ({
+          label: item.label,
+          aValue: aResolvedRecord ? Number(aResolvedRecord[item.key]) : NaN,
+          bValue: bResolvedRecord ? Number(bResolvedRecord[item.key]) : NaN
+        }))
+        .concat([{ label: `Average (${basketLabel(mode)})`, aValue: aPrice, bValue: bPrice }]);
 
       const tableRowsHtml = stapleRows.map((row) => {
         const delta = Number(row.bValue) - Number(row.aValue);
@@ -2535,14 +2790,14 @@
         }
       }
 
-      let priceOutcome = 'Price outcome: Not enough data to compare the average 4-item basket price.';
+      let priceOutcome = `Price outcome: Not enough data to compare the ${basketAverageLabel(mode)}.`;
       if (Number.isFinite(priceDelta)) {
         if (absPriceDifference < 0.005) {
-          priceOutcome = 'Price outcome: Both developments have about the same average 4-item basket price.';
+          priceOutcome = `Price outcome: Both developments have about the same ${basketAverageLabel(mode)}.`;
         } else if (priceDelta < 0) {
-          priceOutcome = `Price outcome: The second development has a lower average 4-item basket price by ${moneyCompact(absPriceDifference)}.`;
+          priceOutcome = `Price outcome: The second development has a lower ${basketAverageLabel(mode)} by ${moneyCompact(absPriceDifference)}.`;
         } else {
-          priceOutcome = `Price outcome: The second development has a higher average 4-item basket price by ${moneyCompact(absPriceDifference)}.`;
+          priceOutcome = `Price outcome: The second development has a higher ${basketAverageLabel(mode)} by ${moneyCompact(absPriceDifference)}.`;
         }
       }
 
@@ -2550,10 +2805,10 @@
         <strong>First development:</strong> ${escapeHtml(a.development)} (${escapeHtml(aBorough)}) | Nearest store: ${escapeHtml(aStore)}<br>
         <strong>Second development:</strong> ${escapeHtml(b.development)} (${escapeHtml(bBorough)}) | Nearest store: ${escapeHtml(bStore)}<br>
         Nearest grocery distance: First ${formatMiles(a.nearestMiles)} | Second ${formatMiles(b.nearestMiles)} | Difference (Second - First): ${signedDeltaText(distanceDelta, 2, ' mi')}<br>
-        <table class="compare-table" aria-label="Staple price comparison table">
+        <table class="compare-table" aria-label="Basket price comparison table">
           <thead>
             <tr>
-              <th>Staple</th>
+              <th>${escapeHtml(basketLabel(mode))} item</th>
               <th>First</th>
               <th>Second</th>
               <th>Difference (Second - First)</th>
@@ -2564,7 +2819,7 @@
           </tbody>
         </table>
         <div class="compare-source">
-          Price source (First): ${escapeHtml(aSourceLabel)} | Price source (Second): ${escapeHtml(bSourceLabel)} | Average basket difference: ${moneyDelta(priceDelta)}<br>
+          Price source (First): ${escapeHtml(aSourceLabel)} | Price source (Second): ${escapeHtml(bSourceLabel)} | ${escapeHtml(basketLabel(mode))} average difference: ${moneyDelta(priceDelta)}<br>
           ${escapeHtml(distanceOutcome)}<br>
           ${escapeHtml(priceOutcome)}<br>
           In the Difference column, positive values mean the second development is higher than the first; negative values mean it is lower.
@@ -2594,30 +2849,35 @@
       if (elements.loadLivePricesBtn) {
         elements.loadLivePricesBtn.disabled = state.livePriceRequestInFlight;
         elements.loadLivePricesBtn.textContent = state.livePriceRequestInFlight
-          ? 'Loading Live Prices...'
+          ? 'Loading Live Basket Prices...'
           : 'Load Live Web Prices';
       }
     }
 
     function renderPriceChart() {
       if (!elements.priceChart) return;
-      const stores = uniqueNearestStoresFromFiltered();
+      const mode = activeBasketMode(state.priceBasketMode);
+      const modeItems = basketItems(mode);
+      const stores = applyZipFilterToStores(uniqueNearestStoresFromFiltered());
       if (stores.length === 0) {
-        elements.priceChart.innerHTML = '<p class="empty-msg">No stores available in the current filter.</p>';
+        const zipFilter = normalizeZipCode(state.storeZipFilter);
+        elements.priceChart.innerHTML = zipFilter
+          ? `<p class="empty-msg">No nearest stores are available in ZIP ${escapeHtml(zipFilter)} for the current NYCHA filter.</p>`
+          : '<p class="empty-msg">No stores available in the current filter.</p>';
         return;
       }
 
       const rows = stores
         .map((store) => {
           const record = resolvedPriceRecordForStore(store);
-          const avg = averageStaplePrice(record);
+          const avg = averageStaplePrice(record, mode);
           return { store, record, avg };
         })
         .filter((row) => Number.isFinite(row.avg))
         .sort((a, b) => a.avg - b.avg || b.store.linkedDevelopments - a.store.linkedDevelopments);
 
       if (rows.length === 0) {
-        elements.priceChart.innerHTML = '<p class="empty-msg">Paste standardized store prices (12ct, 1gal, 20oz, 1lb) to generate the average-price chart.</p>';
+        elements.priceChart.innerHTML = `<p class="empty-msg">Paste standardized ${escapeHtml(basketLabel(mode).toLowerCase())} prices to generate the average-price chart.</p>`;
         return;
       }
 
@@ -2626,7 +2886,9 @@
 
       elements.priceChart.innerHTML = topRows.map((row) => {
         const width = maxAvg > 0 ? (row.avg / maxAvg) * 100 : 0;
-        const meta = `Eggs (12 ct) ${moneyCompact(row.record.eggs)} | Milk (1 gal) ${moneyCompact(row.record.milk)} | Bread (20 oz) ${moneyCompact(row.record.bread)} | Chicken (1 lb) ${moneyCompact(row.record.chickenLb)}`;
+        const meta = modeItems
+          .map((item) => `${item.label} ${moneyCompact(row.record[item.key])}`)
+          .join(' | ');
         return `
           <div class="price-row" title="${escapeHtml(meta)}">
             <div class="price-store-name">${escapeHtml(row.store.name)}</div>
@@ -2658,7 +2920,38 @@
         bread: hasHeader ? firstCols.indexOf('bread') : 3,
         chickenLb: hasHeader
           ? (firstCols.indexOf('chicken_lb') >= 0 ? firstCols.indexOf('chicken_lb') : firstCols.indexOf('chicken'))
-          : 4
+          : 4,
+        applesLb: hasHeader
+          ? (
+            firstCols.indexOf('avocados_lb') >= 0 ? firstCols.indexOf('avocados_lb')
+              : firstCols.indexOf('avocados') >= 0 ? firstCols.indexOf('avocados')
+                : firstCols.indexOf('apples_lb') >= 0 ? firstCols.indexOf('apples_lb')
+                  : firstCols.indexOf('apples')
+          )
+          : 5,
+        bananasLb: hasHeader
+          ? (firstCols.indexOf('bananas_lb') >= 0 ? firstCols.indexOf('bananas_lb') : firstCols.indexOf('bananas'))
+          : 6,
+        tomatoesLb: hasHeader
+          ? (firstCols.indexOf('tomatoes_lb') >= 0 ? firstCols.indexOf('tomatoes_lb') : firstCols.indexOf('tomatoes'))
+          : 7,
+        onionsLb: hasHeader
+          ? (
+            firstCols.indexOf('strawberries_lb') >= 0 ? firstCols.indexOf('strawberries_lb')
+              : firstCols.indexOf('strawberries') >= 0 ? firstCols.indexOf('strawberries')
+                : firstCols.indexOf('onions_lb') >= 0 ? firstCols.indexOf('onions_lb')
+                  : firstCols.indexOf('onions')
+          )
+          : 8,
+        collardGreens: hasHeader
+          ? (
+            firstCols.indexOf('collard_greens_bunch') >= 0 ? firstCols.indexOf('collard_greens_bunch')
+              : firstCols.indexOf('collard_greens') >= 0 ? firstCols.indexOf('collard_greens')
+                : firstCols.indexOf('collards') >= 0 ? firstCols.indexOf('collards')
+                  : firstCols.indexOf('leafy_greens') >= 0 ? firstCols.indexOf('leafy_greens')
+                    : firstCols.indexOf('greens')
+          )
+          : 9
       };
 
       const byId = {};
@@ -2673,10 +2966,16 @@
           eggs: parsePriceNumber(index.eggs >= 0 ? cols[index.eggs] : ''),
           milk: parsePriceNumber(index.milk >= 0 ? cols[index.milk] : ''),
           bread: parsePriceNumber(index.bread >= 0 ? cols[index.bread] : ''),
-          chickenLb: parsePriceNumber(index.chickenLb >= 0 ? cols[index.chickenLb] : '')
+          chickenLb: parsePriceNumber(index.chickenLb >= 0 ? cols[index.chickenLb] : ''),
+          applesLb: parsePriceNumber(index.applesLb >= 0 ? cols[index.applesLb] : ''),
+          bananasLb: parsePriceNumber(index.bananasLb >= 0 ? cols[index.bananasLb] : ''),
+          tomatoesLb: parsePriceNumber(index.tomatoesLb >= 0 ? cols[index.tomatoesLb] : ''),
+          onionsLb: parsePriceNumber(index.onionsLb >= 0 ? cols[index.onionsLb] : ''),
+          collardGreens: parsePriceNumber(index.collardGreens >= 0 ? cols[index.collardGreens] : '')
         };
 
-        if (![record.eggs, record.milk, record.bread, record.chickenLb].every((v) => Number.isFinite(v))) {
+        const hasAnyPrice = STAPLE_LIVE_QUERIES.some((item) => Number.isFinite(record[item.key]));
+        if (!hasAnyPrice) {
           continue;
         }
 
@@ -2686,6 +2985,16 @@
       }
 
       return { byId, byName, count };
+    }
+
+    function applyParsedPriceData(parsed) {
+      const safeParsed = parsed || { byId: {}, byName: {}, count: 0 };
+      state.priceDataByStoreId = safeParsed.byId || {};
+      state.priceDataByStoreName = safeParsed.byName || {};
+      state.priceSourceMode = 'manual';
+      state.storeZipFilter = '';
+      refresh();
+      return safeParsed.count || 0;
     }
 
     function parseJsonPayloadFromText(rawText) {
@@ -2829,6 +3138,9 @@
       }
       if (/^(dozen|dz)$/.test(unit)) {
         return { family: 'count', multiplier: 12 };
+      }
+      if (/^(bunch|bunches)$/.test(unit)) {
+        return { family: 'count', multiplier: 1 };
       }
       return null;
     }
@@ -3049,7 +3361,10 @@
       return false;
     }
 
-    function assignLiveChainPricesToStores(chainItemPrices, fallbackRecord) {
+    function assignLiveChainPricesToStores(chainItemPrices, options) {
+      const cfg = options || {};
+      const useModeledFallback = Boolean(cfg.useModeledFallback);
+      const fallbackRecord = cfg.fallbackRecord || null;
       const byId = {};
       const byName = {};
       let matchedStoreCount = 0;
@@ -3060,7 +3375,9 @@
       for (const store of storeUniverse) {
         const partialRecord = {};
         let matchedAny = false;
-        const tailoredFallback = storeSpecificFallbackRecord(store, fallbackRecord);
+        const tailoredFallback = useModeledFallback
+          ? storeSpecificFallbackRecord(store, fallbackRecord)
+          : null;
 
         for (const [chainKey, itemValues] of Object.entries(chainItemPrices || {})) {
           if (!storeMatchesChain(store.name, chainKey, itemValues.chainName)) continue;
@@ -3081,6 +3398,10 @@
             finalRecord[staple.key] = ownValue;
             continue;
           }
+          if (!useModeledFallback) {
+            finalRecord[staple.key] = NaN;
+            continue;
+          }
           const fallbackValue = Number(tailoredFallback[staple.key]);
           if (Number.isFinite(fallbackValue) && fallbackValue > 0) {
             finalRecord[staple.key] = fallbackValue;
@@ -3090,12 +3411,10 @@
           finalRecord[staple.key] = NaN;
         }
 
-        const shapedRecord = {
-          eggs: Number(finalRecord.eggs),
-          milk: Number(finalRecord.milk),
-          bread: Number(finalRecord.bread),
-          chickenLb: Number(finalRecord.chickenLb)
-        };
+        const shapedRecord = {};
+        for (const item of STAPLE_LIVE_QUERIES) {
+          shapedRecord[item.key] = Number(finalRecord[item.key]);
+        }
 
         if (Object.values(shapedRecord).every((v) => Number.isFinite(v) && v > 0)) {
           byId[String(store.id)] = shapedRecord;
@@ -3119,12 +3438,10 @@
 
       for (const store of storeUniverse) {
         const estimated = storeSpecificFallbackRecord(store, baseRecord);
-        const shapedRecord = {
-          eggs: Number(estimated.eggs),
-          milk: Number(estimated.milk),
-          bread: Number(estimated.bread),
-          chickenLb: Number(estimated.chickenLb)
-        };
+        const shapedRecord = {};
+        for (const item of STAPLE_LIVE_QUERIES) {
+          shapedRecord[item.key] = Number(estimated[item.key]);
+        }
         if (!Object.values(shapedRecord).every((v) => Number.isFinite(v) && v > 0)) {
           continue;
         }
@@ -3141,15 +3458,18 @@
 
     function storePopupHtml(store) {
       const record = resolvedPriceRecordForStore(store);
-      const avg = averageStaplePrice(record);
+      const mode = activeBasketMode(state.priceBasketMode);
+      const avg = averageStaplePrice(record, mode);
       const detailLine = record
-        ? `Eggs (12 ct) ${moneyCompact(record.eggs)} | Milk (1 gal) ${moneyCompact(record.milk)} | Bread (20 oz) ${moneyCompact(record.bread)} | Chicken (1 lb) ${moneyCompact(record.chickenLb)}`
-        : 'No standardized 4-item staple prices available for this store.';
+        ? basketItems(mode)
+          .map((item) => `${item.label} ${moneyCompact(record[item.key])}`)
+          .join(' | ')
+        : 'No standardized basket prices available for this store.';
       return `
         <strong>${escapeHtml(store.name)}</strong><br>
         ${escapeHtml(store.address)}<br>
         ${escapeHtml(store.city)}, NY ${escapeHtml(store.zip)}<br>
-        Avg 4-item price: <strong>${moneyCompact(avg)}</strong><br>
+        ${escapeHtml(basketLabel(mode))} average: <strong>${moneyCompact(avg)}</strong><br>
         ${escapeHtml(detailLine)}
       `;
     }
@@ -3170,8 +3490,9 @@
         ? record.nearestStore.name
         : (props.nearestStore || 'N/A');
       const miles = record ? record.nearestMiles : Number(props.nearestMiles);
+      const mode = activeBasketMode(state.priceBasketMode);
       const avgStaplePrice = record && record.nearestStore
-        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore))
+        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore), mode)
         : NaN;
       const demographicsLine = record ? areaDemographicsHtml(record.areaDemographics) : '';
       const boroughLabel = BOROUGH_LABELS[boroughCode] || 'Unknown';
@@ -3180,7 +3501,7 @@
         <strong>${escapeHtml(development || 'Unnamed Development')}</strong><br>
         ${escapeHtml(boroughLabel)}<br>
         Nearest store: ${escapeHtml(nearestStoreName)}<br>
-        Average staples price: <strong>${moneyCompact(avgStaplePrice)}</strong><br>
+        ${escapeHtml(basketLabel(mode))} average: <strong>${moneyCompact(avgStaplePrice)}</strong><br>
         Distance: <strong>${formatMiles(miles)}</strong><br>
         ${demographicsLine}
       `;
@@ -3382,6 +3703,7 @@
         map.removeLayer(mapLayers.storeLayer);
         mapLayers.storeLayer = null;
       }
+      mapLayers.storeLayerSignature = '';
     }
 
     async function loadJson(path) {
@@ -3508,17 +3830,37 @@
       return items;
     }
 
+    function storesForMapLayer() {
+      const zipFilter = normalizeZipCode(state.storeZipFilter);
+      if (!zipFilter) return state.stores;
+      return state.stores.filter((store) => normalizeZipCode(store && store.zip) === zipFilter);
+    }
+
+    function storeMatchesZipFilter(store) {
+      const zipFilter = normalizeZipCode(state.storeZipFilter);
+      if (!zipFilter) return true;
+      return normalizeZipCode(store && store.zip) === zipFilter;
+    }
+
     function createStoreLayerIfNeeded() {
-      if (mapLayers.storeLayer) return;
+      const zipFilter = normalizeZipCode(state.storeZipFilter);
+      const signature = `${state.storeMode}|${zipFilter}|${state.stores.length}`;
+      if (mapLayers.storeLayer && mapLayers.storeLayerSignature === signature) return;
+
+      if (mapLayers.storeLayer) {
+        map.removeLayer(mapLayers.storeLayer);
+        mapLayers.storeLayer = null;
+      }
 
       const group = L.layerGroup();
-      for (const store of state.stores) {
+      for (const store of storesForMapLayer()) {
         const marker = L.circleMarker([store.lat, store.lng], {
+          pane: 'storePane',
           renderer: storeRenderer,
           radius: 2.3,
           weight: 0,
-          fillColor: '#3f5d80',
-          fillOpacity: 0.25
+          fillColor: '#f0c14b',
+          fillOpacity: 0.45
         });
         marker.storeRef = store;
         marker.on('click', (event) => {
@@ -3536,6 +3878,7 @@
       }
 
       mapLayers.storeLayer = group;
+      mapLayers.storeLayerSignature = signature;
     }
 
     function renderDemographicLegend() {
@@ -3603,6 +3946,7 @@
       });
 
       mapLayers.demographicLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+        pane: 'demographicPane',
         style: (feature) => {
           const props = feature.properties || {};
           const current = currentAreaDemographicsFromProps(props);
@@ -3726,6 +4070,7 @@
       }));
 
       mapLayers.nychaLayer = L.geoJSON(features, {
+        pane: 'nychaPane',
         bubblingMouseEvents: false,
         style: (feature) => {
           const miles = feature.properties.nearestMiles;
@@ -3779,6 +4124,10 @@
       refreshStoreLayerPopups();
 
       renderDemographicLayer();
+      if (mapLayers.nychaLayer && typeof mapLayers.nychaLayer.bringToFront === 'function') {
+        mapLayers.nychaLayer.bringToFront();
+      }
+      bringSelectionLayersToFront();
     }
 
     function renderScopeStats() {
@@ -3805,6 +4154,7 @@
       const rows = state.filtered;
       const scopeRows = scopeRowsForPriceBenchmarks();
       const activeRecord = selectedRecord();
+      const mode = activeBasketMode(state.priceBasketMode);
       const hasExplicitFilter = state.activeBorough !== 'ALL' || state.searchTerm.trim().length > 0;
       let filterPriceRows = rows;
       let filterPriceNote = 'Unique nearest stores in current filter';
@@ -3813,8 +4163,8 @@
         const boroughLabel = BOROUGH_LABELS[activeRecord.borough] || 'Selected borough';
         filterPriceNote = `${boroughLabel} unique nearest stores (selected development context)`;
       }
-      const filterAvgPrice = averageStaplePriceForRows(filterPriceRows);
-      const cityAvgPrice = averageStaplePriceForRows(scopeRows);
+      const filterAvgPrice = averageStaplePriceForRows(filterPriceRows, mode);
+      const cityAvgPrice = averageStaplePriceForRows(scopeRows, mode);
 
       if (elements.metricPriceFilter) {
         elements.metricPriceFilter.textContent = moneyCompact(filterAvgPrice);
@@ -3826,7 +4176,7 @@
         elements.metricPriceFilterNote.textContent = filterPriceNote;
       }
       if (elements.metricPriceCityNote) {
-        elements.metricPriceCityNote.textContent = 'Unique nearest stores citywide';
+        elements.metricPriceCityNote.textContent = `Unique nearest stores citywide (${basketLabel(mode).toLowerCase()})`;
       }
 
       if (rows.length === 0) {
@@ -3867,7 +4217,7 @@
         const borough = BOROUGH_LABELS[row.borough] || 'Unknown';
         const store = row.nearestStore ? row.nearestStore.name : 'N/A';
         const storePriceRecord = row.nearestStore ? resolvedPriceRecordForStore(row.nearestStore) : null;
-        const storeAvgPrice = averageStaplePrice(storePriceRecord);
+        const storeAvgPrice = averageStaplePrice(storePriceRecord, state.priceBasketMode);
         const activeClass = row.id === state.selectedId ? 'active' : '';
 
         return `
@@ -3912,16 +4262,17 @@
       }
 
       const borough = BOROUGH_LABELS[record.borough] || 'Unknown';
+      const mode = activeBasketMode(state.priceBasketMode);
       const nearestName = record.nearestStore ? record.nearestStore.name : 'N/A';
       const storeAddress = record.nearestStore
         ? [record.nearestStore.address, record.nearestStore.city, record.nearestStore.zip].filter(Boolean).join(', ')
         : 'N/A';
       const avgStaplePrice = record.nearestStore
-        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore))
+        ? averageStaplePrice(resolvedPriceRecordForStore(record.nearestStore), mode)
         : NaN;
-      const cityAvgStaplePrice = averageStaplePriceForRows(scopeRowsForPriceBenchmarks());
+      const cityAvgStaplePrice = averageStaplePriceForRows(scopeRowsForPriceBenchmarks(), mode);
       const boroughRows = scopeRowsForPriceBenchmarks().filter((row) => row.borough === record.borough);
-      const boroughAvgStaplePrice = averageStaplePriceForRows(boroughRows);
+      const boroughAvgStaplePrice = averageStaplePriceForRows(boroughRows, mode);
       const boroughLabel = BOROUGH_LABELS[record.borough] || 'Unknown';
 
       elements.focusName.textContent = record.development;
@@ -3929,10 +4280,10 @@
       elements.focusDistance.textContent = 'Nearest grocery distance: ' + formatMiles(record.nearestMiles);
       elements.focusStore.textContent = 'Nearest store: ' + nearestName
         + (storeAddress && storeAddress !== 'N/A' ? ' | ' + storeAddress : '')
-        + ' | Avg staples price: ' + moneyCompact(avgStaplePrice);
+        + ` | ${basketLabel(mode)} avg: ` + moneyCompact(avgStaplePrice);
       if (elements.focusBenchmark) {
         elements.focusBenchmark.textContent = 'Benchmark | '
-          + boroughLabel + ' store avg: ' + moneyCompact(boroughAvgStaplePrice)
+          + boroughLabel + ' store avg (' + basketLabel(mode).toLowerCase() + '): ' + moneyCompact(boroughAvgStaplePrice)
           + ' | City store avg: ' + moneyCompact(cityAvgStaplePrice);
       }
       elements.focusDemographics.innerHTML = areaDemographicsHtml(record.areaDemographics);
@@ -3951,18 +4302,20 @@
         color: '#fffdf9',
         weight: 2,
         fillColor: '#b98c43',
-        fillOpacity: 0.95
+        fillOpacity: 0.95,
+        interactive: false
       });
 
       mapLayers.highlightLayer.addLayer(centerMarker);
 
-      if (record.nearestStore) {
+      if (record.nearestStore && storeMatchesZipFilter(record.nearestStore)) {
         const nearestMarker = L.circleMarker([record.nearestStore.lat, record.nearestStore.lng], {
           radius: 5,
           color: '#fffdf9',
           weight: 1.5,
-          fillColor: '#3f5d80',
-          fillOpacity: 0.95
+          fillColor: '#f0c14b',
+          fillOpacity: 0.95,
+          interactive: false
         });
 
         const line = L.polyline([
@@ -3972,7 +4325,8 @@
           color: '#233b55',
           weight: 2,
           opacity: 0.78,
-          dashArray: '5 6'
+          dashArray: '5 6',
+          interactive: false
         });
 
         mapLayers.highlightLayer.addLayer(nearestMarker);
@@ -4023,12 +4377,17 @@
       elements.demographicLayerSelect.value = state.demographicLayerMode;
       elements.raceMetricSelect.value = state.raceMetricGroup;
       elements.storeModeSelect.value = state.storeMode;
+      if (elements.basketModeSelect) {
+        elements.basketModeSelect.value = activeBasketMode(state.priceBasketMode);
+      }
       elements.toggleFhaGroups.checked = state.includeFhaGroups;
       elements.toggleStores.checked = state.showStores;
       updateRaceMetricControlVisibility();
+      syncBasketText();
     }
 
     function refresh() {
+      syncBasketText();
       filterRecords();
 
       const selectedStillVisible = state.selectedId && state.filtered.some((row) => row.id === state.selectedId);
@@ -4057,16 +4416,18 @@
 
       const zipResolution = resolveLivePricingZip();
       const zip = normalizeZipCode(zipResolution.zip);
+      const mode = activeBasketMode(state.priceBasketMode);
       if (!zip) {
         setPriceStatus('Could not determine a ZIP code from the current map. Select a development or enter ZIP manually.');
         return;
       }
+      state.storeZipFilter = zip;
       if (elements.liveZipInput) {
         elements.liveZipInput.value = zip;
       }
 
       setLivePriceLoadingState(true);
-      setPriceStatus(`Loading standardized live prices (eggs 12ct, milk 1gal, bread 20oz, chicken 1lb) for ZIP ${zip} (${zipResolution.sourceLabel})...`);
+      setPriceStatus(`Loading standardized live ${basketLabel(mode).toLowerCase()} prices for ZIP ${zip} (${zipResolution.sourceLabel})...`);
 
       try {
         const chainTotals = {};
@@ -4094,34 +4455,42 @@
         }
 
         const completeChains = {};
+        const modeKeys = basketItems(mode).map((item) => item.key);
         for (const [chainKey, values] of Object.entries(chainTotals)) {
-          const hasAllStaples = STAPLE_LIVE_QUERIES.every((item) => Number.isFinite(Number(values[item.key])));
-          if (hasAllStaples) {
+          const hasAnyModeItem = modeKeys.some((key) => Number.isFinite(Number(values[key])));
+          if (hasAnyModeItem) {
             completeChains[chainKey] = values;
           }
         }
 
         const fallbackRecord = deriveFallbackStapleRecord(chainTotals);
-        const assigned = assignLiveChainPricesToStores(completeChains, fallbackRecord);
+        const assigned = assignLiveChainPricesToStores(completeChains, {
+          useModeledFallback: true,
+          fallbackRecord
+        });
         state.priceDataByStoreId = assigned.byId;
         state.priceDataByStoreName = assigned.byName;
+        state.priceSourceMode = 'live';
         state.showStores = true;
         elements.toggleStores.checked = true;
 
         refresh();
 
         const chainCount = Object.keys(completeChains).length;
+        const visibleZipStoreCount = storesForMapLayer().length;
         if (assigned.matchedStoreCount > 0) {
           setPriceStatus(
             `Loaded live prices for ${assigned.matchedStoreCount.toLocaleString('en-US')} stores `
             + `(exact chain match: ${assigned.exactMatchCount.toLocaleString('en-US')}, `
             + `estimated fallback: ${assigned.fallbackMatchCount.toLocaleString('en-US')}) `
-            + `from ${chainCount} matched chain profiles (${Array.from(usedSources).join(', ')}).`
+            + `from ${chainCount} matched chain profiles (${Array.from(usedSources).join(', ')}). `
+            + `Map points now show ZIP ${zip} only (${visibleZipStoreCount.toLocaleString('en-US')} points).`
           );
           setPriceMeta(
             `Reflecting live web prices for ZIP ${zip} (${zipResolution.sourceLabel}). `
-            + 'Each store average is the mean of eggs (12 ct), milk (1 gal), bread (20 oz loaf), and chicken (1 lb); '
-            + `fallback estimates were used for ${assigned.fallbackMatchCount.toLocaleString('en-US')} stores.`
+            + `Each store average follows ${basketLabel(mode).toLowerCase()} units; `
+            + `fallback estimates were used for ${assigned.fallbackMatchCount.toLocaleString('en-US')} stores. `
+            + `Mapped store points are filtered to ZIP ${zip}.`
           );
         } else {
           const offline = buildOfflineEstimatedPriceMap(OFFLINE_STAPLE_BASELINE);
@@ -4132,11 +4501,13 @@
           refresh();
           setPriceStatus(
             `Live data returned but not enough records to build chain-level prices for ZIP ${zip}. `
-            + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores so values are not flat.`
+            + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores so values are not flat. `
+            + `Map points now show ZIP ${zip} only (${visibleZipStoreCount.toLocaleString('en-US')} points).`
           );
           setPriceMeta(
             `Showing modeled NYC estimates because live web prices were incomplete for ZIP ${zip} (${zipResolution.sourceLabel}). `
-            + 'Average remains standardized to eggs (12 ct), milk (1 gal), bread (20 oz), chicken (1 lb).'
+            + `Average remains standardized to ${basketLabel(mode).toLowerCase()} units. `
+            + `Mapped store points are filtered to ZIP ${zip}.`
           );
         }
       } catch (error) {
@@ -4149,11 +4520,13 @@
         refresh();
         setPriceStatus(
           'Live load failed (' + message + '). '
-          + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores instead.`
+          + `Loaded modeled NYC estimates for ${offline.estimatedCount.toLocaleString('en-US')} stores instead. `
+          + `Map points now show ZIP ${zip} only (${storesForMapLayer().length.toLocaleString('en-US')} points).`
         );
         setPriceMeta(
           `Live fetch failed for ZIP ${zip} (${zipResolution.sourceLabel}). `
-          + 'Estimated prices are now shown with borough + store-type variation; you can still override with manual CSV prices.'
+          + 'Estimated prices are now shown with borough + store-type variation; you can still override with manual CSV prices. '
+          + `Mapped store points are filtered to ZIP ${zip}.`
         );
       } finally {
         setLivePriceLoadingState(false);
@@ -4207,6 +4580,14 @@
         applyStoreMode(String(event.target.value || 'grocery'));
         refresh();
       });
+
+      if (elements.basketModeSelect) {
+        elements.basketModeSelect.addEventListener('change', (event) => {
+          state.priceBasketMode = activeBasketMode(event.target.value);
+          refreshStoreLayerPopups();
+          refresh();
+        });
+      }
 
       elements.toggleFhaGroups.addEventListener('change', (event) => {
         state.includeFhaGroups = Boolean(event.target.checked);
@@ -4267,19 +4648,17 @@
       if (elements.applyPriceBtn && elements.priceCsvInput) {
         elements.applyPriceBtn.addEventListener('click', () => {
           const parsed = parsePriceCsv(elements.priceCsvInput.value);
-          state.priceDataByStoreId = parsed.byId;
-          state.priceDataByStoreName = parsed.byName;
+          const appliedCount = applyParsedPriceData(parsed);
           if (parsed.count > 0) {
-            setPriceStatus(`Loaded ${parsed.count.toLocaleString('en-US')} store price records.`);
+            setPriceStatus(`Loaded ${appliedCount.toLocaleString('en-US')} store price records.`);
             setPriceMeta(
               'Reflecting manual CSV values. '
-              + 'Each store average is (eggs 12 ct + milk 1 gal + bread 20 oz + chicken 1 lb) / 4.'
+              + `Each store average follows ${basketLabel(state.priceBasketMode).toLowerCase()} units.`
             );
           } else {
-            setPriceStatus('No valid price rows found. Use: store,eggs,milk,bread,chicken_lb (12ct, 1gal, 20oz, 1lb).');
+            setPriceStatus(`No valid price rows found. Use header: ${priceCsvHeader()}`);
             setPriceMeta(DEFAULT_PRICE_META);
           }
-          refresh();
         });
       }
 
@@ -4290,10 +4669,29 @@
       }
 
       if (elements.loadTemplateBtn && elements.priceCsvInput) {
-        elements.loadTemplateBtn.addEventListener('click', () => {
-          elements.priceCsvInput.value = buildStoreTemplateCsv();
-          setPriceStatus('Template loaded. Fill standardized values (12ct eggs, 1gal milk, 20oz bread, 1lb chicken) and click Apply Prices.');
-          setPriceMeta(DEFAULT_PRICE_META);
+        elements.loadTemplateBtn.addEventListener('click', async () => {
+          try {
+            const loaded = await loadVerifiedPriceCsvIntoInput();
+            const parsed = parsePriceCsv(elements.priceCsvInput.value);
+            const appliedCount = applyParsedPriceData(parsed);
+            state.storeZipFilter = '';
+            if (appliedCount > 0) {
+              setPriceStatus(
+                `Verified CSV loaded and applied (${loaded.rowCount.toLocaleString('en-US')} rows, ${appliedCount.toLocaleString('en-US')} rows with prices).`
+              );
+            } else {
+              setPriceStatus(
+                `Verified CSV loaded (${loaded.rowCount.toLocaleString('en-US')} rows), but no valid price rows were applied yet.`
+              );
+            }
+            setPriceMeta('Verified store-source CSV loaded and auto-applied where numeric prices are present.');
+          } catch (error) {
+            elements.priceCsvInput.value = buildStoreTemplateCsv();
+            state.storeZipFilter = '';
+            setPriceStatus('Verified CSV could not be loaded in this local view. Template loaded instead.');
+            setPriceMeta(DEFAULT_PRICE_META);
+            renderMap();
+          }
         });
       }
 
@@ -4301,6 +4699,8 @@
         elements.clearPriceBtn.addEventListener('click', () => {
           state.priceDataByStoreId = {};
           state.priceDataByStoreName = {};
+          state.priceSourceMode = 'modeled';
+          state.storeZipFilter = '';
           elements.priceCsvInput.value = '';
           setPriceStatus('Price records cleared. Reverted to modeled NYC estimates for each store.');
           setPriceMeta('Showing modeled NYC estimates until you load live web prices or manual CSV values.');
@@ -4315,8 +4715,11 @@
         state.demographicLayerMode = 'none';
         state.raceMetricGroup = 'black';
         state.storeMode = 'grocery';
+        state.priceBasketMode = 'staples';
         state.includeFhaGroups = false;
         state.showStores = false;
+        state.priceSourceMode = 'modeled';
+        state.storeZipFilter = '';
         state.sortMode = 'farthest';
         state.selectedId = null;
         state.compareAId = '';
@@ -4339,11 +4742,27 @@
         await loadData();
         refresh();
         if (elements.priceCsvInput) {
-          elements.priceCsvInput.value = buildStoreTemplateCsv();
-          setPriceStatus('Using modeled NYC staple estimates by default. Load live web prices or manual CSV to override.');
-          setPriceMeta(
-            'Default values are modeled per store and standardized to eggs (12 ct), milk (1 gal), bread (20 oz), and chicken (1 lb).'
-          );
+          try {
+            const loaded = await loadVerifiedPriceCsvIntoInput();
+            const parsed = parsePriceCsv(elements.priceCsvInput.value);
+            const appliedCount = applyParsedPriceData(parsed);
+            if (appliedCount > 0) {
+              setPriceStatus(
+                `Verified CSV loaded and auto-applied by default (${loaded.rowCount.toLocaleString('en-US')} rows, ${appliedCount.toLocaleString('en-US')} rows with prices).`
+              );
+            } else {
+              setPriceStatus(
+                `Verified CSV loaded by default (${loaded.rowCount.toLocaleString('en-US')} rows), but no valid price rows were auto-applied.`
+              );
+            }
+            setPriceMeta('Default input uses the verified store-source CSV and auto-applies numeric prices on page load.');
+          } catch (error) {
+            elements.priceCsvInput.value = buildStoreTemplateCsv();
+            setPriceStatus('Using modeled NYC basket estimates by default. Load verified CSV, live prices, or manual CSV to override.');
+            setPriceMeta(
+              'Default values are modeled per store and standardized to current basket units.'
+            );
+          }
         }
       } catch (error) {
         elements.statusText.textContent = 'Could not load data files. Check that the data folder exists and is served by the site.';
