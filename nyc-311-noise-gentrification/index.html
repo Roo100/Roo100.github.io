@@ -139,6 +139,36 @@
         </article>
       </section>
 
+      <section class="method-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Method note</p>
+            <h2>How the pressure score is calculated</h2>
+          </div>
+        </div>
+        <p>
+          The score is an exploratory index, not a causal model. It normalizes each borough
+          from 0 to 1, then combines three dimensions: selected noise complaints per 10,000
+          residents at 40%, displacement vulnerability at 40%, and current median gross rent
+          at 20%. Vulnerability is the average of poverty rate, renter share, and people-of-color
+          share.
+        </p>
+        <p>
+          The research base supports the variables, not a precise causal coefficient. Peer-reviewed
+          gentrification studies connect displacement risk to rent pressure, renter status, poverty,
+          and racial transition, while 311 research warns that complaint data reflects both conditions
+          and uneven willingness or capacity to report. Use this score to identify boroughs for deeper
+          neighborhood-level study, not to claim that 311 calls alone cause gentrification.
+        </p>
+        <ul class="citation-list">
+          <li><a href="https://doi.org/10.1080/01944360408976337" target="_blank" rel="noreferrer">Freeman &amp; Braconi, 2004</a>: NYC gentrification and displacement.</li>
+          <li><a href="https://doi.org/10.1080/00420980500388710" target="_blank" rel="noreferrer">Newman &amp; Wyly, 2006</a>: displacement pressure and the right to stay put in NYC.</li>
+          <li><a href="https://doi.org/10.1177/1078087418771224" target="_blank" rel="noreferrer">Sutton, 2020</a>: racial transition and gentrification in NYC.</li>
+          <li><a href="https://doi.org/10.1177/0003122414535774" target="_blank" rel="noreferrer">Hwang &amp; Sampson, 2014</a>: race and unequal pathways of neighborhood reinvestment.</li>
+          <li><a href="https://arxiv.org/abs/1710.02452" target="_blank" rel="noreferrer">Kontokosta, Hong &amp; Korsberg, 2017</a>: 311 reporting-bias caution; preprint, not peer reviewed.</li>
+        </ul>
+      </section>
+
       <section class="table-panel">
         <div class="panel-heading">
           <div>
@@ -172,7 +202,7 @@
           <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9" target="_blank" rel="noreferrer">NYC Open Data 311 Service Requests from 2020 to Present</a>.
           Demographic and housing indicators come from the
           <a href="https://api.censusreporter.org/1.0/data/show/latest?table_ids=B01003,B19013,B17001,B25064,B25003,B03002&amp;geo_ids=05000US36005,05000US36047,05000US36061,05000US36081,05000US36085" target="_blank" rel="noreferrer">Census Reporter ACS API</a>.
-          Borough-level patterns are broad;
+          The pressure-score formula is documented in the method note above. Borough-level patterns are broad;
           neighborhood, tract, or NTA analysis would be stronger for a formal paper.
         </p>
       </section>
