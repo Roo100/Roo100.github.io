@@ -213,13 +213,13 @@ function combineData(noiseRows, currentDemo) {
 
   return rows.map((row, index) => {
     const vulnerability =
-      normalized.povertyRate[index] * 0.42 +
-      normalized.renterRate[index] * 0.32 +
-      normalized.pocRate[index] * 0.26;
+      (normalized.povertyRate[index] +
+        normalized.renterRate[index] +
+        normalized.pocRate[index]) / 3;
     const pressure =
-      normalized.callsPer10k[index] * 0.42 +
-      vulnerability * 0.36 +
-      normalized.rent[index] * 0.22;
+      normalized.callsPer10k[index] * 0.4 +
+      vulnerability * 0.4 +
+      normalized.rent[index] * 0.2;
     return {
       ...row,
       vulnerability,
