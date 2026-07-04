@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NYC 311 Noise, Marginalization, and Gentrification Pressure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Project">
+        <span class="mark">311</span>
+        <span>Raven O'Joy Leigertwood | Public Data Portfolio</span>
+      </nav>
+      <div class="hero-grid">
+        <section class="hero-copy" aria-labelledby="page-title">
+          <p class="eyebrow">NYC Open Data + Census ACS</p>
+          <h1 id="page-title">How noise complaints become neighborhood pressure</h1>
+          <p class="hero-sub">Noise complaints across NYC boroughs</p>
+          <p>
+            Explore where 311 noise complaints cluster across the Bronx, Brooklyn,
+            Manhattan, Queens, and Staten Island, then compare them with poverty,
+            renter, race, income, and rent-pressure indicators.
+          </p>
+        </section>
+
+        <section class="control-panel" aria-label="Data filters">
+          <div class="control-row">
+            <label for="startYear">Start</label>
+            <select id="startYear"></select>
+          </div>
+          <div class="control-row">
+            <label for="endYear">End</label>
+            <select id="endYear"></select>
+          </div>
+          <fieldset class="noise-types">
+            <legend>Noise complaint types</legend>
+            <label><input type="checkbox" value="Noise - Residential" checked /> Residential</label>
+            <label><input type="checkbox" value="Noise - Street/Sidewalk" checked /> Street/sidewalk</label>
+            <label><input type="checkbox" value="Noise - Commercial" checked /> Commercial</label>
+            <label><input type="checkbox" value="Noise - Vehicle" checked /> Vehicle</label>
+            <label><input type="checkbox" value="Noise - Park" /> Park</label>
+            <label><input type="checkbox" value="Noise - House of Worship" /> House of worship</label>
+          </fieldset>
+          <button id="refreshButton" type="button">Refresh data</button>
+          <p id="status" class="status" role="status">Preparing live data connection.</p>
+        </section>
+      </div>
+    </header>
+
+    <main>
+      <section class="metrics" aria-label="Key metrics">
+        <article>
+          <span>Total noise complaints</span>
+          <strong id="totalCalls">--</strong>
+        </article>
+        <article>
+          <span>Highest complaint rate</span>
+          <strong id="highestRate">--</strong>
+        </article>
+        <article>
+          <span>Highest vulnerability</span>
+          <strong id="highestVulnerability">--</strong>
+        </article>
+        <article>
+          <span>Highest median rent</span>
+          <strong id="highestRentChange">--</strong>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="viz-panel map-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Borough pressure index</p>
+              <h2>Noise + vulnerability + rent pressure</h2>
+            </div>
+            <span class="legend-chip">Darker = higher pressure</span>
+          </div>
+          <div id="boroughMap" class="borough-map" aria-label="Schematic borough pressure map"></div>
+          <p class="note">
+            The map is schematic. The index combines complaint rate, poverty, renter share,
+            people-of-color share, and median rent to identify pressure points for deeper neighborhood study.
+          </p>
+        </article>
+
+        <article class="viz-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Rate comparison</p>
+              <h2>Noise complaints per 10,000 residents</h2>
+            </div>
+          </div>
+          <div id="rateChart" class="chart" aria-label="Noise complaint rate by borough"></div>
+        </article>
+
+        <article class="viz-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Gentrification signal</p>
+              <h2>Median rent compared with complaint rate</h2>
+            </div>
+          </div>
+          <div id="scatterChart" class="chart" aria-label="Scatter plot of median rent and complaint rate"></div>
+        </article>
+
+        <article class="viz-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Yearly trend</p>
+              <h2>Noise complaints over time</h2>
+            </div>
+            <select id="trendBorough" aria-label="Select borough for trend chart"></select>
+          </div>
+          <div id="trendChart" class="chart" aria-label="Yearly trend chart"></div>
+        </article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="analysis-panel">
+          <h2>How this connects to marginalized communities</h2>
+          <p id="communityReadout">
+            Load the data to compare complaint concentration with borough-level social vulnerability.
+          </p>
+        </article>
+        <article class="analysis-panel">
+          <h2>How it can encourage gentrification</h2>
+          <p>
+            Noise complaints can route state attention toward nightlife, street activity,
+            neighbors, and businesses. In areas already facing rising rents, that attention
+            can support enforcement patterns, nuisance narratives, landlord pressure, and
+            policing strategies that make long-term residents and local cultural life easier
+            to displace. This visualizer treats 311 calls as one signal in a wider housing
+            and governance process, not as proof of individual intent.
+          </p>
+        </article>
+      </section>
+
+      <section class="table-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Borough table</p>
+            <h2>Compare complaints, demographics, and housing pressure</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Borough</th>
+                <th>Calls</th>
+                <th>Calls / 10k</th>
+                <th>Poverty</th>
+                <th>Renters</th>
+                <th>People of color</th>
+                <th>Median rent</th>
+                <th>Pressure score</th>
+              </tr>
+            </thead>
+            <tbody id="boroughTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sources">
+        <h2>Sources and limits</h2>
+        <p>
+          311 complaint counts come from
+          <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9" target="_blank" rel="noreferrer">NYC Open Data 311 Service Requests from 2020 to Present</a>.
+          Demographic and housing indicators come from the
+          <a href="https://api.censusreporter.org/1.0/data/show/latest?table_ids=B01003,B19013,B17001,B25064,B25003,B03002&amp;geo_ids=05000US36005,05000US36047,05000US36061,05000US36081,05000US36085" target="_blank" rel="noreferrer">Census Reporter ACS API</a>.
+          Borough-level patterns are broad;
+          neighborhood, tract, or NTA analysis would be stronger for a formal paper.
+        </p>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
