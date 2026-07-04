@@ -146,6 +146,7 @@ h2 {
 .control-panel,
 .viz-panel,
 .analysis-panel,
+.method-panel,
 .table-panel,
 .sources {
   background: var(--paper);
@@ -290,6 +291,7 @@ main {
 
 .viz-panel,
 .analysis-panel,
+.method-panel,
 .table-panel,
 .sources {
   padding: 26px;
@@ -431,6 +433,26 @@ main {
   margin-bottom: 12px;
 }
 
+.method-panel {
+  margin-top: 22px;
+  box-shadow: none;
+}
+
+.method-panel p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.citation-list {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: #3f4756;
+}
+
+.citation-list li + li {
+  margin-top: 8px;
+}
+
 .table-panel,
 .sources {
   margin-top: 22px;
@@ -527,6 +549,7 @@ td:first-child {
 
   .viz-panel,
   .analysis-panel,
+  .method-panel,
   .table-panel,
   .sources,
   .control-panel {
