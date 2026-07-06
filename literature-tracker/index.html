@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>From Plantation to Prison | Literature Tracker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="From Plantation to Prison home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Literature Tracker</span>
+        </a>
+        <div class="nav-links">
+          <a href="#framework">Framework</a>
+          <a href="#tracker">Sources</a>
+          <a href="#template">Template</a>
+          <a href="#dashboard">Dashboard</a>
+        </div>
+      </nav>
+
+      <section id="top" class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Graduate Research Literature Tracker</p>
+          <h1>From Plantation to Prison</h1>
+          <p class="subtitle">A Black Feminist Phenomenological Study of Black Women, Criminalization, and Reproductive Control</p>
+          <p class="lede">
+            This literature tracker organizes peer-reviewed journal articles for a Black feminist phenomenological study on formerly incarcerated Black women, pregnancy, criminalization, and reproductive control. The tracker follows a formal article-review structure: problem, purpose, sample, method, findings, limitations, and relevance to the study.
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-labelledby="status-heading">
+          <p class="panel-kicker">Current Review Status</p>
+          <h2 id="status-heading">Source Summary</h2>
+          <div class="stat-grid compact" id="heroStats" aria-live="polite"></div>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="section framework-section" id="framework" aria-labelledby="framework-title">
+        <div class="section-heading">
+          <p class="eyebrow">Research Architecture</p>
+          <h2 id="framework-title">Research Framework</h2>
+        </div>
+        <div class="framework-grid">
+          <article class="framework-card">
+            <span class="framework-number">01</span>
+            <h3>Black Feminist Theory</h3>
+            <p>Centers Black women’s lived experiences, knowledge, motherhood, survival, and resistance.</p>
+          </article>
+          <article class="framework-card">
+            <span class="framework-number">02</span>
+            <h3>Reproductive Justice</h3>
+            <p>Examines bodily autonomy, pregnancy, parenting, family integrity, and reproductive control.</p>
+          </article>
+          <article class="framework-card">
+            <span class="framework-number">03</span>
+            <h3>Criminalization</h3>
+            <p>Tracks how Black women are brought under policing, courts, incarceration, probation, and surveillance.</p>
+          </article>
+          <article class="framework-card">
+            <span class="framework-number">04</span>
+            <h3>Phenomenology</h3>
+            <p>Centers lived experience and meaning-making among formerly incarcerated Black women.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section tracker-section" id="tracker" aria-labelledby="tracker-title">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Scholarly Source Review</p>
+            <h2 id="tracker-title">Source Tracker</h2>
+          </div>
+          <button class="primary-button" type="button" id="openSourceForm">Add New Source</button>
+        </div>
+
+        <form class="filters" id="filters" aria-label="Filter source records">
+          <label>
+            <span>Search by keyword</span>
+            <input id="searchInput" type="search" placeholder="Search citation, tags, notes, findings...">
+          </label>
+          <label>
+            <span>Literature review category</span>
+            <select id="categoryFilter"></select>
+          </label>
+          <label>
+            <span>Study type</span>
+            <select id="studyTypeFilter"></select>
+          </label>
+          <label>
+            <span>Theoretical lens</span>
+            <select id="lensFilter"></select>
+          </label>
+          <label>
+            <span>Review status</span>
+            <select id="statusFilter"></select>
+          </label>
+          <label>
+            <span>Priority level</span>
+            <select id="priorityFilter"></select>
+          </label>
+          <label>
+            <span>Article file status</span>
+            <select id="articleStatusFilter"></select>
+          </label>
+          <button class="ghost-button" type="reset">Reset Filters</button>
+        </form>
+
+        <div class="tracker-toolbar" aria-label="Export tools">
+          <button type="button" class="secondary-button" id="exportJson">Export Sources as JSON</button>
+          <button type="button" class="secondary-button" id="exportMarkdown">Export Literature Review Notes as Markdown</button>
+          <button type="button" class="secondary-button" id="copyApa">Copy APA Citations</button>
+          <button type="button" class="secondary-button" id="copyReviewed">Copy Reviewed Sources Only</button>
+        </div>
+
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <div class="source-list" id="sourceList"></div>
+      </section>
+
+      <section class="section template-section" id="template" aria-labelledby="template-title">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Reusable Review Structure</p>
+            <h2 id="template-title">Article Review Template</h2>
+          </div>
+          <button class="primary-button" type="button" id="copyTemplate">Copy Template</button>
+        </div>
+        <div class="template-grid">
+          <article class="template-card">
+            <h3>Condensed Template</h3>
+            <pre id="condensedTemplate">Citation:
+Problem:
+Purpose:
+Sample/Data:
+Method:
+Key Results:
+Limitations:
+Use for My Study:</pre>
+          </article>
+          <article class="template-card">
+            <h3>Expanded Template</h3>
+            <pre id="expandedTemplate">APA Citation:
+Research Problem:
+Purpose of the Study:
+Theoretical Framework / Lens:
+Methodology / Study Type:
+Sample / Population / Data Source:
+Key Results / Main Findings:
+Methodological Flaws / Limitations:
+Relevance to My Study:
+Literature Review Placement:</pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section dashboard-section" id="dashboard" aria-labelledby="dashboard-title">
+        <div class="section-heading">
+          <p class="eyebrow">Review Progress</p>
+          <h2 id="dashboard-title">Dashboard Summary</h2>
+        </div>
+        <div class="dashboard-layout">
+          <div class="stat-grid" id="dashboardStats"></div>
+          <div class="chart-panel">
+            <h3>Sources by Category</h3>
+            <div class="bar-list" id="categoryBars"></div>
+          </div>
+          <div class="chart-panel">
+            <h3>Sources by Study Type</h3>
+            <div class="bar-list" id="studyTypeBars"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="source-dialog" id="sourceDialog" aria-labelledby="sourceDialogTitle">
+      <form method="dialog" class="dialog-shell">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">Add Source</p>
+            <h2 id="sourceDialogTitle">New Article Review Record</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeSourceForm" aria-label="Close source form">×</button>
+        </div>
+      </form>
+
+      <form class="source-form" id="sourceForm">
+        <label>
+          <span>Article Title</span>
+          <input name="title" required>
+        </label>
+        <label>
+          <span>Authors</span>
+          <input name="authors" required>
+        </label>
+        <label>
+          <span>Year</span>
+          <input name="year" inputmode="numeric" required>
+        </label>
+        <label>
+          <span>Journal</span>
+          <input name="journal" required>
+        </label>
+        <label class="full">
+          <span>APA Citation</span>
+          <textarea name="apa" rows="3" required></textarea>
+        </label>
+        <label>
+          <span>DOI or Link</span>
+          <input name="link" type="url" placeholder="https://doi.org/...">
+        </label>
+        <label>
+          <span>Project Article File</span>
+          <input name="articleFile" placeholder="articles/example-source.pdf">
+        </label>
+        <label>
+          <span>Article File Status</span>
+          <select name="articleStatus" required></select>
+        </label>
+        <label>
+          <span>Literature Review Category</span>
+          <select name="category" required></select>
+        </label>
+        <label>
+          <span>Study Type</span>
+          <select name="studyType" required></select>
+        </label>
+        <label>
+          <span>Theoretical Lens</span>
+          <select name="lens" required></select>
+        </label>
+        <label>
+          <span>Review Status</span>
+          <select name="status" required></select>
+        </label>
+        <label>
+          <span>Priority Level</span>
+          <select name="priority" required></select>
+        </label>
+        <label>
+          <span>Tags</span>
+          <input name="tags" placeholder="Black women, reproductive justice, lived experience">
+        </label>
+        <label class="full">
+          <span>Research Problem</span>
+          <textarea name="problem" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Purpose of the Study</span>
+          <textarea name="purpose" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Sample / Population / Data Source</span>
+          <textarea name="sample" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Methodology</span>
+          <textarea name="methodology" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Key Results / Main Findings</span>
+          <textarea name="findings" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Methodological Flaws / Limitations</span>
+          <textarea name="limitations" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Relevance to My Study</span>
+          <textarea name="relevance" rows="3"></textarea>
+        </label>
+        <label class="full">
+          <span>Notes</span>
+          <textarea name="notes" rows="3"></textarea>
+        </label>
+        <div class="form-actions full">
+          <button class="ghost-button" type="button" id="cancelSourceForm">Cancel</button>
+          <button class="primary-button" type="submit">Save Source</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

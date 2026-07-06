@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 514" role="img" aria-labelledby="title desc">
+  <title id="title">Mega tvx Learning Lab preview</title>
+  <desc id="desc">A colorful preview of a fourth grade interactive learning lab with blocks, maps, coding, and art.</desc>
+  <rect width="1200" height="514" fill="#e7f5ff"/>
+  <rect x="66" y="56" width="1068" height="402" rx="28" fill="#ffffff" stroke="#bdd6e8" stroke-width="4"/>
+  <text x="105" y="142" fill="#163244" font-family="Arial, sans-serif" font-size="64" font-weight="800">Mega tvx Learning Lab</text>
+  <text x="108" y="194" fill="#607386" font-family="Arial, sans-serif" font-size="28">Reading, math, science, maps, coding, art, and block-world building</text>
+  <g transform="translate(110 250)">
+    <rect width="124" height="124" rx="14" fill="#2674c9"/>
+    <text x="62" y="78" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="800">R</text>
+  </g>
+  <g transform="translate(260 250)">
+    <rect width="124" height="124" rx="14" fill="#ef7f3b"/>
+    <text x="62" y="78" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="800">M</text>
+  </g>
+  <g transform="translate(410 250)">
+    <rect width="124" height="124" rx="14" fill="#128a8a"/>
+    <text x="62" y="78" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="800">S</text>
+  </g>
+  <g transform="translate(560 250)">
+    <rect width="124" height="124" rx="14" fill="#2f8f4f"/>
+    <text x="62" y="78" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="800">G</text>
+  </g>
+  <g transform="translate(710 250)">
+    <rect width="124" height="124" rx="14" fill="#7858c8"/>
+    <text x="62" y="76" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="800">&lt;/&gt;</text>
+  </g>
+  <g transform="translate(884 220)">
+    <rect x="0" y="0" width="214" height="176" rx="14" fill="#cfeefe" stroke="#bdd6e8" stroke-width="3"/>
+    <g transform="translate(28 40)">
+      <rect width="38" height="38" rx="5" fill="#78bd5a"/>
+      <rect x="44" width="38" height="38" rx="5" fill="#b98555"/>
+      <rect x="88" width="38" height="38" rx="5" fill="#55acee"/>
+      <rect x="132" width="38" height="38" rx="5" fill="#f1b83b"/>
+      <rect y="44" width="38" height="38" rx="5" fill="#78bd5a"/>
+      <rect x="44" y="44" width="38" height="38" rx="5" fill="#7858c8"/>
+      <rect x="88" y="44" width="38" height="38" rx="5" fill="#78bd5a"/>
+      <rect x="132" y="44" width="38" height="38" rx="5" fill="#2f8f4f"/>
+      <rect y="88" width="38" height="38" rx="5" fill="#78bd5a"/>
+      <rect x="44" y="88" width="38" height="38" rx="5" fill="#a4adb4"/>
+      <rect x="88" y="88" width="38" height="38" rx="5" fill="#78bd5a"/>
+      <rect x="132" y="88" width="38" height="38" rx="5" fill="#78bd5a"/>
+    </g>
+  </g>
+</svg>
