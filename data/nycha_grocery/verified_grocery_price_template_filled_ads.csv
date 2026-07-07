@@ -1,0 +1,1369 @@
+store_id,store,zip,price_date,source_name,source_url,price_type,eggs,milk,bread,chicken_lb,avocados_lb,bananas_lb,tomatoes_lb,strawberries_lb,collard_greens_bunch,notes
+717948,H MART,10001,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+744918,KIKKA @WHOLE FOODS MANHATTAN WEST,10001,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+715877,KIKKA AT WHOLE FOODS CHELSEA,10001,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+629357,LONDON GROCERY,10001,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743302,SUSHILUX@FAIRWAY MKT,10001,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+623606,WHOLE FOODS MARKET,10001,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+627543,47 PITT GROCERY,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706102,CHINATOWN SUPERMARKET OF MANHATTAN,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620134,FINE FARE SUPERMARKET,10002,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+765187,FU YUN GROCERY,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736151,HENG YUN GROCERY,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+626727,KEY FOOD SUPERMARKET 1436,10002,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+767435,LIDL #1590,10002,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+730092,MAYIMBE GROCERY,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735524,TRADER JOES #538,10002,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+752403,WJL GROCERY,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738005,ZHENGS GROCERY STORE,10002,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627244,EAST WAY GROCERY,10003,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738741,H MART,10003,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+626894,TRADER JOES #540,10003,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+625080,VILLAGE FARM&GROCERY,10003,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755429,KIKKA@WHOLE FOODS ONE WALL ST,10005,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754244,WHOLE FOODS MARKET,10005,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+627845,WHOLE FOODS MKT 10245,10007,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+724287,77 AVE D GROCERY STORE,10009,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+624469,ASSOCIATED SUPERMARKET,10009,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+624017,BROTHERS CANDY&GROCERY,10009,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+756859,C-TOWN SUPERMARKET,10009,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+626480,KEY FOOD 566,10009,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+727475,NUR GROCERY,10009,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736327,SHOP FAIR SUPERMARKET,10009,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+739972,TRADER JOES #546,10009,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+766270,WHOLE FOODS MARKET DAILY SHOP,10009,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742909,FAIRWAY MARKET OF CHELSEA,10010,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628738,TRADER JOES #543,10010,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+767911,USA GOURMET GROCERY,10010,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625236,WESTSIDE SUPERMARKET,10011,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620941,BANGKOK CENTER GROCERY,10013,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757811,HAPPIER GROCERY,10013,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739956,HENG XING GROCERY STORE,10013,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627954,HONG KONG SUPERMARKET,10013,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627947,SUN VIN GROCERY,10013,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728784,TRADER JOES #539,10013,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+727280,D'AGOSTINO SUPERMARKET #550,10016,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742908,FAIRWAY MARKET OF KIPS BAY,10016,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743305,SUSHILUX@FAIRWAY MKT,10016,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+725759,TRADER JOES #544,10016,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751686,WHOLE FOODS MARKET,10016,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758876,SOLIMAN'S GROCERY,10017,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625078,WHOLE FOODS MARKET,10019,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+624379,YEM SANALI GROCERY,10019,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728357,EAST SIDE GROCERY,10021,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753205,SUSHI MARU (@GRISTEDES),10021,2026-05-23,Gristedes Weekly Specials,https://gristedes.com/weekly-specials/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737257,KIKKA@WHOLE FOODS MIDTOWN EAST,10022,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751936,TRADER JOES #571,10022,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+702868,WHOLE FOODS MARKET,10022,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742906,FAIRWAY MARKET OF 74TH ST,10023,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+762704,H MART,10023,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742688,MORTON WILLIAMS SUPERMARKET,10023,2026-05-23,Morton Williams Store Site,https://www.mortonwilliams.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743304,SUSHILUX@FAIRWAY MKT,10023,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628784,TRADER JOES #542,10023,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+629208,82ND STREET GROCERY,10024,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758663,KEY FOOD UWS,10024,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751170,UPTOWN WHOLE FOODS,10024,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+623254,ASSOCIATED SUPERMARKET,10025,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+732757,H MART,10025,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628211,JUANA GROCERY,10025,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750760,KEYFOOD FRESH,10025,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737259,KIKKA@WHOLE FOODS UPPER WEST SIDE,10025,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628232,WHOLE FOODS MARKET,10025,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+624937,C TOWN SUPERMARKET,10026,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+734050,JOES GROCERY,10026,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751589,LIDL#8011,10026,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+711538,WEST HARLEM GROCERY,10026,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750457,ASSOCIATED,10027,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+745486,C-TOWN SUPERMARKET,10027,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+625487,CROWN GROCERY,10027,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741134,FOODTOWN,10027,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628946,PIONEER SUPERMARKET,10027,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737606,SHOP FAIR SUPERMARKET,10027,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757736,TRADER JOES 576,10027,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742907,FAIRWAY MARKET OF 86TH ST,10028,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743306,SUSHILUX@FAIRWAY MKT,10028,2026-05-23,Fairway Weekly Circular,https://www.fairwaymarket.com/circulars,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628712,1517 NEW BANI GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744456,1781 LEX GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627820,2037 MEAT&GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744808,ASSOCIATED FRESH MARKET,10029,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+757705,C-TOWN FRESH MARKET,10029,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+710702,EAST 110 CANDY GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711951,EAST HARLEM GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+622421,EL PUEBLO MEXICANO GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+626050,FINE FARE SUPERMARKET,10029,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757970,GROCERY GUATEMAYA,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746541,ISABELLAS GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+623301,L&O GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628087,LA COSTENITA GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+726762,LA PALOMA CANDY & GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759836,LAITH GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625508,NYC GREEN VALLEY GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759169,PAMELA GROCERY STORE,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730414,SHOP FAIR SUPERMARKET,10029,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+629102,SHOP FAIR SUPERMARKET,10029,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+623839,URBANO SPANISH AMERICAN GROCERY,10029,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628166,C-TOWN FRESH MARKET,10030,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+625775,DOMINGO'S GROCERY,10030,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628661,FINE FARE SUPERMARKET,10030,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+728890,KEY FOOD FRESH MARKET,10030,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+624042,LM GROCERY,10030,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763220,3478 GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764072,600 BROADWAY GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627088,91 CATHERINE GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+626825,ANT SOLUTIONS GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625284,FOODTOWN,10031,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756527,K.M. 144 GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+622503,KEY FOOD SUPERMARKET,10031,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+621480,MANUELS GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749835,PUEBLO MAGICO GROCERY 2,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757798,SABA GROCERY,10031,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752031,1 IN THE MIDDLE GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759146,160 GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731838,5 STAR CANDY & GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728569,A.L. BROADWAY GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628832,ARCHIE GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+622566,C TOWN SUPERMARKET,10032,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757948,EXTRA JUMBO BY ASSOCIATED,10032,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+721344,FENIX GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739781,FOODTOWN SEAFOOD,10032,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743240,HUDSON CANDY AND GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625639,KEY FOOD,10032,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+717468,LINDO AMANECER GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707071,MDK GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+721378,MERCADITO GROCERY,10032,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702696,186 GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760110,CALL SANTO DOMINGO GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730309,CHANNEL GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732091,DANS SUPERMARKET,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627178,ELIZABETHS GROCERY STORE,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+726050,EMILY GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760400,GREEN LAND GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744776,GUZMAN GROCERY STORE,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+621969,JH GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+621143,KEY FOOD 790,10033,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+728949,LINDO DESPERTAR GROCERY 06/01/17,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737593,QMART GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738740,SANTO DOMINGO GROCERY,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736721,SUPERDURO SUPERMARKET,10033,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620147,129 POST GROCERY STORE,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759798,224 NAGLE GROCERY,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734403,CJP SUPERMARKET,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628153,DAN SUPERMARKET 2,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752971,EL MARLENE GROCERY,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+624461,FINE FARE SUPERMARKET,10034,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+735093,INWOOD PARK GROCERY,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+710567,LA FAMILIA MINI GROCERY,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728748,LUNA GROCERY,10034,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+721748,251 LA BODEGUITA GROCERY,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758968,AB TWINS GROCERY,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+703891,ALDI #2,10035,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+626890,AXEL GROCERY,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620450,FINE FARE SUPERMARKET,10035,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+735762,FOODTOWN,10035,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+726296,LA FORTA LEZA CANDY & GROCERY,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730427,OUR COMMUNITY GROCERY,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750956,THIRD AVE GROCERY STORE,10035,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+726198,GENJI #10069 (INSIDE WHOLE FOODS MARKET),10036,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+628033,KEY FOOD SUPERMARKET,10037,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+728172,NASSAU GROCERY,10038,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749049,POLO GROUND FOOD GROCERY,10039,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761061,SAHARA GROCERY AND CONVENIENCE,10039,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+628630,1630A NEW YORK GROCERY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763973,DYCKMAN GROCERY & CANDY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723399,E AND G GROCERY CORP,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747720,EL TESORO GROCERY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+622533,FINE FARE SUPERMARKET,10040,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+627547,LATINO GROCERY & CANDY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620571,MI ESFUERZO GROCERY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760613,MI LUPITA GROCERY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+627792,ST NICK CANDY GROCERY,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+622188,XCELLENTE SUPERMARKET,10040,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+620172,809 LEX GROCERY,10065,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+625766,GRISTEDES 413,10075,2026-05-23,Gristedes Weekly Specials,https://gristedes.com/weekly-specials/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+709413,KEY FOOD,10128,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737258,KIKKA@WHOLE FOODS UPPER EAST SIDE,10128,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+730820,ALPER GROCERY,10301,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+641126,ANUJEE GROCERY,10301,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707763,KEY FOOD 1734,10301,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+640923,LA QUEBRADITA GROCERY,10301,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+641615,NEW LANKA GROCERY,10301,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717198,TEJADA GROCERY STORE,10301,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729604,D&A GROCERY,10302,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+704147,EZ GROCERY STORE,10302,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+714299,KEY FOOD FRESH,10302,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+640615,MEXICO SUPERMARKET,10302,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730485,POST CANDY & GROCERY,10302,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+641270,H&H FOOD&GROCERY,10303,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718797,SUNNY MORNING STAR GROCERY,10303,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+641157,WESTERN BEEF,10303,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743985,ASSOCIATED MARKETPLACE,10304,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+710460,C TOWN SUPERMARKET,10304,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+711817,OSGOOD GROCERY,10304,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719079,STOP 1 & TARGEE SUPERMARKET,10304,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+640154,WESTERN BEEF 68,10304,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+761509,ASIAN YANG SUPERMARKET,10305,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707484,KEY FOOD,10305,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+733497,MARKET FRESH SUPERMARKET,10305,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766201,ADAM GROCERY & SNACKS,10306,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763863,ALDI #174,10306,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+641234,JAYRIP GROCERY,10306,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755285,NEW HL SUPERMARKET,10306,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744399,SHOPRITE OF HYLAN BLVD,10306,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+767345,SHOPRITE OF AMBOY ROAD,10308,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+738002,SEGUINE BEVERAGE & GROCERY 1,10309,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719723,SHOPRITE OF VETERANS RD,10309,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+768136,TRADER JOES #580,10309,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764545,C-TOWN,10310,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760121,LOS SISO GROCERY,10310,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762604,ALDI #147,10312,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721324,KEY FOOD,10312,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+708609,J&J ISLAND GROCERY,10314,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735744,LIDL #1372,10314,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+641321,MET FOOD,10314,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+641163,SHOPRITE OF FOREST&RICH,10314,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+641558,TRADER JOES #559,10314,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+719857,BRAVO SUPERMARKET,10451,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760464,BROTHERS GROCERY & CONVENIENCE,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759068,CAZARES GROCERY,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702401,FANE GROCERY,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741657,FOOD BAZAAR,10451,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721856,FOOD BAZAAR,10451,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+763926,LIDL #1574,10451,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+750779,MAXX GROCERY MARKET,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758170,NEW STOP GROCERY,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603826,NOBOA GROCERY,10451,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605696,WESTERN BEEF 10,10451,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+604821,1296 RIVERA GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604311,1359 OGDEN GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741991,170TH STREET GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+608702,180 PENA GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+765782,82 GROCERY CANDY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708895,ANTILLANA & METRO SUPERMARKET,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606071,BRAVO SUPERMARKET,10452,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+759461,BUCKMART GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759439,CRUNCH & MUNCH GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+710759,ESPERANZA GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708020,FEATHERBED LANE GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603933,FINE FARE SUPERMARKET,10452,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+753841,HIGHBRIDGE GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601241,J&A FRUIT&GROCERY CNTR,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746838,JOBU GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734461,KEY FOOD,10452,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+708115,LA MEXICANA FRUIT AND GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744973,LA MILAGROSA GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732003,LA PRESUMIDA GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607815,MARINS GROCERY & CANDY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604848,NAGUABO GROCERY,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705781,ROYAL ONE STOP SUPERMARKET,10452,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748678,SUPERFRESH KEY FOOD,10452,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+732717,ADRIAN GROCERY STORE,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725378,AMOR SUPERMARKET,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607764,ASSOCIATED,10453,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+609226,BONOFUL GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607919,BRAVO SUPERMARKET,10453,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+735651,DONA JUANA GROCERY STORE,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752967,ELA POSTRES GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757964,JEROME AVE DOLLAR DISCOUNT & GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603138,JOSELYN GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719769,JULIAN GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606778,KEY FOOD,10453,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+763102,LA GRAND GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724012,LC GROCERY STORE,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606220,PIONEER SUPERMARKET,10453,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+600774,SANTIAGO GROCERY,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757825,TU PODEROSA GROCERY STORE,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748857,VIDANIA GROCERY STORE,10453,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752066,362 GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605801,383 CAPELLAN GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+608493,548 CANDY GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718305,DON JOSE MEXICANS GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746806,EL PUEBLO MEXICANO FRUIT & GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+608247,MEXICANS GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760453,MOODY GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749523,MOTT HAVEN GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738421,PIONEER SUPERMARKET,10454,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+603800,PIONEER SUPERMARKET,10454,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+759721,RAMIREZ GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757686,SHOP FAIR SUPERMARKET,10454,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+747695,TELLO GROCERY,10454,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761416,10 DAYS GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603058,520 EAST GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733306,549 GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744441,ADEN GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709501,ALDI 8,10455,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+738539,BRAVO SUPERMARKET,10455,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+600246,C-TOWN SUPERMARKET,10455,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+740227,D MI MUNECA GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751608,EL CATRIN MEXICAN GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742486,MET FOOD MARKET,10455,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+608983,REAL SUPERMARKET,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+600350,RODRIGUEZ GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758115,SUPER ASSOCIATED FRESH,10455,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+760386,WALES AVE GROCERY,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+740372,WILLYS GROCERY STORE,10455,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753685,166 GOURMET GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715201,735 SUPERMARKET,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606275,ABREUS GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752103,ALI-AMIN SUPERMARKET,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606703,ASSOCIATED SUPERMARKET,10456,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+603025,ASSOCIATED SUPERMARKET,10456,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+728448,AYLIN GROCERY STORE,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+712289,BRAVO SUPERMARKET,10456,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+714185,C TOWN SUPERMARKET,10456,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721868,C-TOWN,10456,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+607508,COMPARE SUPERMARKET,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607045,DORKA GROCERY STORE,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754277,FAMILY 2 CANDY AND GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+600314,FRANCIS GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746463,FULTON AVE GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731782,KADIJA SUPERMARKET,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+602545,KEY FOOD,10456,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+725372,LOS MELLIZOS GROCERY STORE,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753149,NERYS GROCERY STORE,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601292,SUPER FRESH SUPERMARKET,10456,2026-05-23,SuperFresh Weekly Sale,https://www.superfreshsupermarket.com/weekly-sale,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+749869,SWEET CANDY GROCERY,10456,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725506,1798 LOS PRIMOS GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724792,180 CANDY GROCERY TOBAC,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728438,ALI & SON CANDY & GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746009,BRAVO SUPERMARKET,10457,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742478,C TOWN SUPERMARKET,10457,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+600205,CARINO GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738086,CTOWN FRESH MARKET,10457,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+741496,DARIEL GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604323,EL KIOSCO GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606619,FELINO GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605119,FELOMAR GROCERY STORE,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+602229,FINE FARE SUPERMARKET,10457,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751648,FOOD MARKET GROCERY STORE,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732046,LO TIGER GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755907,N&L GROCERY STORE,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609245,OMALE NEW YORK GROCERY,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723673,VEGANO SUPERMARKET,10457,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609181,WESTERN BEEF 29,10457,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+609135,3052 VALENTINE GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763865,ALDI #153,10458,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+733987,APPLE VALLEY SUPERMARKET,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609843,BRISKA GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607910,C TOWN SUPERMARKET,10458,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721919,C-TOWN SUPERMARKET,10458,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760341,DELY GROCERY METRO LOS REYES,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739679,ESTRELLA MEATS FRUITS & GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763097,FINE FARE SUPERMARKET,10458,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+601566,GONZALEZ GROCERY STORE,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601273,J&C GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604052,LA BONITA GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723207,LA ESTRELLITA MEXICAN GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718851,LA TINFORA GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604055,MERGIMTARI MEAT&GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606911,MET FOOD,10458,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+609373,MTR GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764136,PRINCE GROCERY STORE,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719865,SAMMY 194 GROCERY CANDY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+602272,SAMMY GROCERY,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+727626,TU CASA SUPERMARKET,10458,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764879,1 NEYMAR CANDY GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+600187,ALMANZAR GROCERY&FOOD,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609927,C TOWN SUPERMARKET,10459,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+606738,CASTILLO FAMILY GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+722504,CRYSTAL JAIDA GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+704892,FINE FARE SUPERMARKET,10459,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+761699,FREEMAN DEL GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601435,KEY FOOD,10459,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737188,LUCKY CANDY & GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764322,MARGARITAS GROCERY STORE,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760077,NEW HOPE GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754673,PERLA GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749781,WESTCHESTER GROCERY,10459,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729276,BEST BEACH GROCERY,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+740178,CACHEO GROCERY STORE,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717253,CAMILLA GROCERY STORE,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757250,EL CAMPITO GROCERY STORE,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+712626,EL FLACO GROCERY STORE,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752769,EMELI GROCERY,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761637,HOE CANDY GROCERY,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749891,JORDAN SUPERMARKET,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+602258,KEY FOOD,10460,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+607283,TONY FRUITS & GROCERY,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601293,VAN VAN GROCERY,10460,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605648,WESTERN BEEF 36,10460,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+731870,AGUILARS MEXICAN GROCERY,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761914,AM FAMILY SUPERMARKET,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742713,BESA MEAT AND GROCERY,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609383,BUHRE GROCERY,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729761,HICIANO BROTHERS GROCERY,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605256,KEY FOOD 1323,10461,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+739500,LOE APPLE GROCERY & PRODUCE,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+721469,PRUZZOS SUPERMARKET,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607007,ROSA FRASCA GROCERY,10461,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750536,5 CORNERS GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607822,775 MENA GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759404,ADI'S SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708686,AL-AQSA SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764933,BANGLA BAZAR SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742727,BARRY GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+604942,BIG DEAL SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754323,CASTLE HILL FRUITS & GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605286,CHANG LI SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603070,FINE FARE SUPERMARKET,10462,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+600951,FOODTOWN,10462,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+747609,FRUITS VEGETABLES & GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751631,HASAN SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605074,KEY FOOD SUPERMARKET,10462,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+710953,LUCKY CORNER GROCERY,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751242,PELHAM SUPERMARKET,10462,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745532,SUPERFRESH SUPERMARKET,10462,2026-05-23,SuperFresh Weekly Sale,https://www.superfreshsupermarket.com/weekly-sale,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+713695,ALDI 5,10463,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+605866,FOODTOWN,10463,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+604888,VARGAS GROCERY,10463,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737929,DOMINICKS MARKET/C-TOWN,10464,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+605377,FINE FARE SUPERMARKET,10465,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+749610,GREEN APPLE GOURMET & GROCERY,10465,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748313,LIZZIE'S SUPERMARKET,10465,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605747,S&W SUPERMARKET,10465,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746008,1681 GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748499,ABLAN GROCERY STORE,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+765762,CELINE T GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+601536,FINE FARE SUPERMARKET,10466,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+753697,IMPERIO GROCERY STORE,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728645,LUPITAS MEXICAN GROCERY II,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747907,MARLEY 2 GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753606,SHOP FAIR SUPERMARKET,10466,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+746105,SUNSHINE SUPERMARKET,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758711,TIM LOTTERY AND GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750154,Y&K LARA GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736355,YAFAI GROCERY,10466,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+703060,10 NEIGHBORHOOD CANDY GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706321,2363 ROSEWOOD GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729082,A & Y GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743363,AFAA AFRICAN SUPERMARKET,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751372,ALLERTON GROCERY & CONVENIENCE,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760050,C&S AFRICAN-CARIBBEAN SUPERMARKET,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606115,DHAKA DISCOUNT&GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763011,ESTRELLA MEATS FRUITS & GROCERY 2,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+608992,FINE FARE SUPERMARKET,10467,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+605622,FINE FARE SUPERMARKET,10467,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+600998,FINE FARE SUPERMARKET,10467,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+604092,FOODTOWN #647,10467,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+717610,IZZY GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753938,JAHANGIR GENERAL GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753651,KEY FOOD,10467,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+609116,LUPITAS MEXICAN GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+704515,MERCEDES GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719777,MORONTAS SUPERMARKET,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607475,MOSES CANDY & GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757821,PEACEFUL GROCERY MARKET,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763585,PRIME GROCERY AND VEGETABLE,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758171,TIMS CANDY & GROCERY,10467,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745003,WESTERN BEEF,10467,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+727658,2408 M & E GROCERY,10468,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605014,C-TOWN SUPERMARKET,10468,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+603400,FINE FARE SUPERMARKET,10468,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758879,FM GROCERY & CANDY,10468,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+607095,MANGO GROCERY&MEAT,10468,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754856,WEST FORDHAM GROCERY,10468,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748442,YANKEE SUPERMARKET,10468,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+768373,2490 GROCERY HOUSEWARE,10469,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609420,ALDI #19,10469,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+603275,FELU GROCERY,10469,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763136,FINE FARE SUPERMARKET,10469,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+608943,FOODTOWN SUPERMARKET,10469,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754240,GNG EUROPEAN GROCERY,10469,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+609488,ROMANA GROCERY,10469,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742074,B & R CANDY GROCERY,10470,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+710422,C-TOWN SUPERMARKET,10470,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743955,MET FOOD,10470,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751495,SMA GROCERY,10470,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739700,C TOWN SUPERMARKET,10471,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743704,KEY FOOD SUPERMARKET,10471,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+766017,1203 WEST INDIAN GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736203,1537 GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748105,1781 WESTCHESTER GROCERY & CANDY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750478,1791 SAN ANTONIO GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743950,3 HERMANOS GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741856,AGRAMONTE GROCERY STORE,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+602513,ASSOCIATED 867,10472,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+609486,BANGLATOWN SUPERMARKET,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+608127,ELDER AVE #2 GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+605815,FINE FARE SUPERMARKET,10472,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+606112,JAS GROCERY STORE,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755175,LALA'S GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724428,NEW MEXICAN FRUITS & GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+713298,UNIVERSAL CANDY & GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754647,W & M GROCERY,10472,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717586,WESTERN BEEF STORE #062,10472,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758855,ALDI #149 (10/18/23),10473,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758103,BRUCKNER JUICE BAR & GROCERY,10473,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+603841,KEY FOOD SUPERMARKET,10473,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+739150,LOS MORONTAS SUPERMARKET,10473,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+606667,MAMA FIFI GROCERY,10473,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758118,MY WAY SUPERMARKET,10473,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759294,NATALIA GROCERY,10473,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734129,SHOPRITE OF BRUCKNER BLVD,10473,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+605580,WESTERN BEEF 35,10473,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+718789,CT GROCERY NY,10474,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735130,SALCEDO SUPERMARKET,10474,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766161,YADIEL GROCERY STORE,10474,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764345,S&Y FISH & MEAT CARIBBEAN SUPERMARKET,10475,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+765723,LIDL #1576,11004,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+741113,PREMIUM SUPERMARKET,11004,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754922,H MART,11101,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+636891,KEY FOOD,11101,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+763947,MY NEIGHBORS GROCERY,11101,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758666,TRADER JOES #565,11101,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+631521,KEY FOOD 564,11102,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+728723,MARY'S GROCERY AND TAQUERIA,11102,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702487,NEW MARGARITA GROCERY,11102,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759066,PLATA GROCERY,11102,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764985,A&C WENDY GROCERY,11103,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632836,C TOWN SUPERMARKET,11103,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+636738,KEY FOOD SUPERMARKET,11103,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+633607,LA GROCERY,11103,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+726195,ALWAYS SUNNY GROCERY,11104,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755517,BUDDHA GROCERY,11104,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634108,NUBE DE JESUS GROCERY 2,11104,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+630808,TAJ MAHAL GROCERY,11104,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754538,DITMARS BLVD SUPERMARKET,11105,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+635671,DITMARS CANDY & GROCERY,11105,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633079,KYRIAKOS GROCERY,11105,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751145,LIDL #8015,11105,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+753144,LUPITA GROCERY,11105,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637807,2502 BROADWAY GROCERY,11106,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725855,BRAVO SUPERMARKET,11106,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+670795,KEY FOOD,11106,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+767050,ALDI #212,11201,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+617589,GRISTEDES 544,11201,2026-05-23,Gristedes Weekly Specials,https://gristedes.com/weekly-specials/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+617700,KEY FOOD,11201,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+617124,KEY FOOD 1072,11201,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+766191,LIDL #1579,11201,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+672068,M&E CANDY&GROCERY STORE,11201,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728061,TRADER JOE'S #547,11201,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+611105,TRADER JOES 558,11201,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610327,A&M GROCERY STORE,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610912,ASSOCIATED,11203,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+751624,BFK GROCERY,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671642,CARIBBEAN SUPERMARKET,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619171,FATIMA GROCERY,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615957,LOS BROTHER GROCERY,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610550,PEREZ GROCERY,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752501,STOP ONE SUPERMARKET 4023,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755535,YEMEN AL KHAIR GROCERY,11203,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748337,AK GROCERY 59,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614177,AVENUE O GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615808,B0ROUGH PK SUPERMARKET,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764722,BEILE GROCERY INC,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610292,BOCHNERS GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619224,CARLOS GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617679,GOLDBERGS GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611691,GREAT GREEN SUPERMARKET,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+721803,JUDITH GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671908,KANG SHENG GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610696,LANDAUS SUPERMARKET,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610260,MOISHES FRUIT&GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610641,QUEEN AA GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707478,ROSNERS GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619765,WIESNERS SUPERMARKET,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+740032,XIN RONG GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715069,YOU JIA GROCERY,11204,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+722575,147 FRIENDS GROCERY,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755060,322 MUBAREZ GROCERY,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749497,A-ROD GROCERY,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761308,ACAI BAR AT HATZLACHA SUPERMARKET,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616785,BRAVO SUPERMARKET,11205,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613257,BRAVO SUPERMARKET,11205,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+703469,GREENFRESH SUPERMARKET,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+672051,JASMIN GROCERY STORE,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719203,KEY FOOD,11205,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+615917,KOSHER SUPERMARKET,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618851,LEE GARDENS SUPERMARKET,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723617,VILLA TAPIA CITI FRESH SUPERMARKET,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613343,VILLA TAPIA GROCERY NY,11205,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+727741,7 SEAS GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708484,BRAVO SUPERMARKET,11206,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+702575,COCONUT KOSHER SUPERMARKET,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762832,ETHANS GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759096,FOOD BAZAAR,11206,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+611095,FOOD BAZAAR,11206,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+759924,FOODTOWN OF NOLL STREET,11206,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+703442,GROCERY & MEAT MARKET,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613883,HERMANOS ACOSTA GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708221,LA UNION FRUIT AND GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711423,LICEY GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762583,LOS 7 VALENCIAS GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615495,LOS PRIMOS GROCERY,11206,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750340,SHOP FAIR SUPERMARKET,11206,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+616570,WESTERN BEEF,11206,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758660,146 COOPER GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738297,ASSOCIATED FRESH,11207,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+616640,BRAVO SUPERMARKET,11207,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+759042,BUY & GO GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741811,C-TOWN SUPERMARKET,11207,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+718428,DOM GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752772,DON ELIGO GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616599,G&R GROCERY STORE,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753674,HAMZAH GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755179,HIGHLAND PARK GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734355,LA CUESTA GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752582,LA TOMA GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612080,LEANDRO GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743277,LIVONIA DISCOUNT&GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730898,LIVONIA EXPRESS GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610796,LIVONIA GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619352,MARIEN GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718675,MI PUEBLO GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739455,NEW JERSEY GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+710809,PIONER FRESH SUPERMARKET,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763984,ROSE & NAOMI PRODUCE GROCERY MEAT MARKET,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755935,SHOP FAIR SUPERMARKET,11207,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+728706,SHOP FAIR SUPERMARKET,11207,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764674,SHOP HERE GROCERY,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751849,STOP ONE SUPERMARKET,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718035,STOP ONE SUPERMARKET,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+727324,UNITED GROCERY FRESH FOOD,11207,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735679,1149 YAMASA GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748488,534 GRANT GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747601,A&F GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711247,ASIAN SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618272,ASSOCIATED,11208,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+744634,BANANA SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732265,BANGAL GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758875,BANGLA SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615168,CHARO WEST INDIAN AND AMERICAN GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707594,CHIQUITA GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617916,DARIS GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735969,EL MERCADITO GROCERY 2,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764476,EMDAD SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616766,FIRST STOP GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766870,FOOD BAZAAR,11208,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764290,FORBELL GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763960,FULTON 3158 GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748196,FULTON BEBE GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614625,KEY FOOD,11208,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613005,KEY FOOD,11208,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+737930,KIWI GROCERY 2,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611496,LA FAMILIA GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671524,LA PAZ GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752394,LA SIRENA SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619832,LUNA GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718145,MOCA GROCERY NY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764239,MOYNAMATI SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616765,MY NEIGHBORHOOD GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709418,NATALIES GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616268,NOLBERTO GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743386,PREMIUM SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611576,RANDY SUPERMARKET,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748249,SABOR LATINO GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614936,SM 534 GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615652,SUSY GROCERY,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613416,SUTTER GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612583,WESTERN BEEF,11208,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+762545,YOLANDA GROCERY STORE,11208,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+703224,A L COLUCCIO ITALIAN FAMILY GROCERY AND,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719266,BAY RIDGE 99 STORE & GROCERY,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617425,GOURMET GROCERY,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708239,JIMY CANDY GROCERY,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+714914,KEY FOOD,11209,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+612650,MANDATO FRUITS&GROCERY,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705994,MET FOOD,11209,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+706966,MET FRESH SUPERMARKET,11209,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+670498,POLBRIDGE GROCERY STORE,11209,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752677,ALDI #114,11210,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613607,DORA GROCERY,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749756,FINE FARE SUPERMARKET,11210,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+705146,FLOR DE ATLIXCO GROCERY STORE,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+703320,GOLDEN VEGE & GROCERY AT FLATBUSH,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619438,KEY FOOD SUPERMARKET 1290,11210,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+725445,MSR DISCOUNT AND GROCERY,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702118,NEW STANLEY'S GROCERY INC,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615064,SHOP SMART SUPERMARKET,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613878,WOLFS GROCERY,11210,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748194,ALEX GROCERY & NEWS,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617044,ALL FRESH SUPERMARKET,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743845,BONDOS GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738311,BRAVO SUPERMARKET,11211,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610300,C TOWN SUPERMARKET,11211,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+614216,C-TOWN,11211,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751172,D&J GROCERY SPANISH FOOD INC,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758854,FOODTOWN,11211,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+744361,FOODTOWN,11211,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+619451,FOODTOWN,11211,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+731493,GOLDBERGERS GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614616,LA CENISA CRUZ GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613473,LANDAU SUPERMARKET,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612323,LEE AVE SUPERMARKET,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619208,MARCY GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762042,MEXICO 2000 GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764186,ROSENFELDS GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610595,SCHWARTZ GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+716969,SOUTHSIDE GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761722,TORIBIO GROCERY STORE,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612137,TORIBIOS GROCERY,11211,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757614,1078 D'EMPANADA GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708818,ASSOCIATED,11212,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+618981,BRAVO SUPERMARKET,11212,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+765512,DACS GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610100,EL VACILON GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670108,FINE FARE SUPERMARKET,11212,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+616150,FINEFARE SUPERMARKET,11212,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756444,GOLDEN FOOD AND GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758621,GRAB & GO GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732643,GREEN VILLAGE SUPERMARKET,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616589,KEY FOOD,11212,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+732142,LA VAKANA GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614945,LOS PRIMOS GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735616,MATTHEW GROCERY STORE,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+714101,NICOLASA GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731662,NOVA GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758652,RODRIGUEZ FAMILY GROCERY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738200,S&D GROCERY STORE,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749937,VICTORIA GROCERY NY,11212,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615258,CLARI GROCERY,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748136,GREENLAND AND SUPERMARKET,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751581,JAIDEN GROCERY,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742509,L & E GROCERY,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743382,MUNECO GROCERY,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616147,WEST INDIAN GROCERY,11213,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748286,18 AVE SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747272,20TH AVE SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617468,86 B'KLYN GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613597,86TH ST GROCERY&SNACKS,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737952,88 LUCKY GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738362,A&J GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+722043,ABASSI MIDDLE EASTERN GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619747,BARRON GROCERY STORE,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736665,BAY 31 SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760450,BAY 35 ST GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+720883,BAY PKWY GROCERY CANDY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+765354,BISMILLAH SUPERMARKET 1,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728402,CANDY GROCERY LOTTO,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751492,FRAGRANCE GROCERY & 99C PLUS,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723852,GOLDEN CITY SUPERMARKET 1,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724152,HONG DA SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754490,K&K GROCERY NY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619479,KEY FOOD 1160,11214,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+753795,KEY FOOD FRESH SUPERMARKET,11214,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+767262,KL GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724412,LAI FU 88 GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+727789,MONG KOK SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759106,NEW JOJO GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751491,PARADISE 786 GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741764,SKYWAY SUPERMARKET,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+765361,SUSHI MARU (INSIDE KEY FOOD),11214,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+713134,UNITED GROCERY FOOD STORE,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754155,V&W SUPERMARKET NY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618437,WHITE MOUNTAIN GROCERY,11214,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611943,ASSOCIATED,11215,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+610107,BD FOOD SUPERMARKET,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614950,DOLEHS SUPERMARKET,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614044,KEY FOOD 890,11215,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+618648,KH GROCERY,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737251,KIKKA@WHOLE FOODS BROOKLYN,11215,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+715720,MARKETPLACE BY KEYFOOD,11215,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756486,MEXSALVADOR FOOD & GROCERY,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745761,OMAR GROCERY,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615681,ROYAL SUPERMARKET,11215,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751031,612 SUPERMARKET,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671680,A&Z GROCERY,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747441,AL BARAKA SUPERMARKET NY,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618360,BRAVO SUPERMARKET,11216,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613209,FRESH HEALTH FOOD EMPORIUM SUPERMARKET,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619599,KEY FOOD,11216,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+616466,KEY FOOD 1370,11216,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754751,KEY FOOD FRESH SUPERMARKET,11216,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+749380,MAXWELL GIFT AND GROCERY,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762198,MET FRESH SUPERMARKET,11216,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721939,NOURI MEAT MARKET & GROCERY,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742119,RONG QIN GROCERY,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759154,TAQWA GROCERY AND MEAT MARKET,11216,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758759,FOODTOWN,11217,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+729959,G 200 GROCERY,11217,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709282,PAPA FIRO GROCERY,11217,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731961,WHOLE FOODS MARKET 365,11217,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610286,18TH AVE SUPERMARKET,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760422,B-TOWN SUPERMARKET,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711711,BANGLA NAGAR SUPERMARKET,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+703243,BORO PARK GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729801,DWIP BANGLA GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615589,FOODTOWN #589,11218,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610625,FRUIT & VEGETABLE SINAI GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730458,HASAN GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613323,IDEAL FOOD BASKET SUPERMARKET,11218,2026-05-23,Ideal Food Basket Store Site,https://www.idealfoodbaskets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610289,KRM SUPERMARKET,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742505,MAA SUPERMARKET NYC,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706858,MAGIC GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611545,MAJ GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762939,MET FRESH SUPERMARKET,11218,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+739775,NEW APON GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753624,NEW BORO PARK GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749443,NG SUPERMARKET,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619330,PROGOTI GROCERY STORE,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617985,ROSNER 2 GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619947,SHABUJ GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742770,SHADIN BANGLA GROCERY,11218,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739204,5313 GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614397,AM & PM GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766378,ARTESANIAS IZTACCIHUATL& GROCERY LLC,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671118,C&W GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739385,EN SHAN GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750117,H & D GROCERY STORE,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763300,HLBK SUPERMARKET,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719289,HUA XING GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750083,KUNPENG GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613499,LATTANZIO GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715547,LUCKY SUNSHINE GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736700,MARY GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615770,MEHADRIN SUPERMARKET,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746110,OK SUPERMARKET,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619963,PROGRESO LATINO GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617920,ROSNER GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619953,RUBINS GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616805,SCATURRO SUPERMARKET,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614560,TOP NEWS & GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750708,X&Y GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735314,XINGLONG GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760075,YOUJIAXING GROCERY,11219,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761753,4317 GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753614,5001 XIN XIN GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+714433,5TH AVENUE GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732721,AAA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747602,AMIGA DE CHINA SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733823,AMY GROCERY MINI MARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745879,ANN 8TH AVE GROCERY STORE,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670577,BRAVO SUPERMARKET,11220,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+611176,BUY BEST GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717816,C & Y GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746402,CAZARES M GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761921,DAFU GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744721,DASANYUAN GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766737,EL BUEN HOMBRE GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753130,EZ FRESH SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737045,FIRST STOP GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739205,FIVE FRIENDS UNITED SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618729,FORTUNE PRIZE GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717299,FORUM SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618194,FU CHUN SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733327,GRACE JY GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670025,GREEN VILLAGE SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748881,GUANG MING GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734898,HAPPY FAMILY GROCERY STORE,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763235,HENGYI GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766219,JIA HE XING GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737063,JIAHE GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764339,JIAJIA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709818,KANG MEI QIN GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+712620,KC GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739197,LA TIENDITA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748297,LANG QI FOODS SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742109,LIAN JIANG GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766545,LIN LUCKY FAMILY GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748542,LUCKY 4502 GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749340,MIN RONG SUPERMARKET,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758023,MING XING GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734502,NEW HONG YUN GROCERY STORE,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749604,O&J GROCERY & DISCOUNT,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619519,PATEL GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614219,PEREZ GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708316,PIONEER SUPERMARKET,11220,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+766100,QING XIN GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+710063,SHAN SHAN GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733118,SUNNY STAR GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724631,SUNRISE GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614234,SUPER FRESH SUPERMARKET,11220,2026-05-23,SuperFresh Weekly Sale,https://www.superfreshsupermarket.com/weekly-sale,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+752914,SUPERMARKET LAS GARDENIAS,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736587,SWEET CHELSEA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763983,VERAS GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741283,VICKIES GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610773,VINCENT LOS GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741685,W&Q GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744181,WAN JIA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764575,WANG JIA FU GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762660,WONDER 7TH GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723391,XIANGFU GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737674,YI JIE SHA GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746359,ZHANG GROCERY,11220,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751856,ASSOCIATED MARKET PLACE,11221,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+710932,E. L. PUTNAM GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731242,FIRST STOP GROCERY #3,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763754,GUTIERREZ GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614067,HAUTER GROCERY STORE,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618201,JM GROCERY STORE,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610113,KEY FOOD,11221,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+614387,KEY FOOD 1206,11221,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+715255,MILAGRO GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610835,NOVATOS GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758222,SCARLETT GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617007,VARIETY CENTER&GROCERY,11221,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613450,ASSOCIATED 831,11222,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+616705,C TOWN SUPERMARKET,11222,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610640,KEY FOOD 17,11222,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613094,AKIVA GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616685,ASSOCIATED,11223,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+708936,D&Y GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733791,FOODTOWN SUPERMARKET,11223,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+748191,GOOD LUCK GROCERY STORE,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670753,H&I GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+611124,KEY FOOD,11223,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+619500,KEY FOOD 1588,11223,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+738006,KINGS EXPRESS GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670689,SHALOM GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730734,SHENGTAI JIAYUAN GROCERY STORE,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610605,U FINE GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725941,WEST 10 GROCERY,11223,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619799,A AND T GROCERY,11224,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709123,KEY FOOD,11224,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+614312,KEY FOOD 1280,11224,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+752689,LQA GROCERY,11224,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745133,NETCOST MARKET,11224,2026-05-23,NetCost Store Site,https://www.netcostmarket.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+721891,AFFIA MEAT & GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742465,ASSOCIATED SUPERMARKET,11225,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+615851,FOODTOWN OF CROWN HEIGHTS,11225,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+614242,KEY FOOD,11225,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+613583,KLEINS GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612104,KOL TUV GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746185,MB BROOKLYN GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761100,MIDWOOD GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752001,SABANETA 046 GROCERY,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751386,SAM DO SUPERMARKET,11225,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763223,A TOWN SUPERMARKET,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619696,ASSOCIATED,11226,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+752281,CAROLIN GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612297,ESTEFANY GROCERY STORE,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763752,F&S GROCERY DISCOUNT,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618740,FLATBUSH GROCERY STORE,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755995,FOOD BAZAAR SUPERMARKET,11226,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610820,GRUPO MEX GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766965,KEY FOOD,11226,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+611526,KEY FOOD 1260,11226,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+702252,LAM WEST INDIAN GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702013,LOS JASMINES GROCERY STORE,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744756,M & M GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755475,NEW EVELINA GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617473,NEW MILLENNIUM GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+672078,PLAZA FRUIT & GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741092,US BANGLA GROCERY,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614096,WINDSORS GROCERY STORE,11226,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719034,72 ST GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671667,FAVORITE CHOICE GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617270,GROCERY GUATEMALA,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725701,JOHN BATH AVE GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750785,KEY FOOD,11228,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+615873,KEY FOOD 15,11228,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+717419,MATAMOROS GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724417,W AND Y GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755662,XIN & XUAN GROCERY,11228,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702644,DISCOUNT DAIRY FARM GROCERY,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734225,HARVEST GROCERY,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715741,L & J SUPERMARKET II,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612898,LA VILLITA GROCERY,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+720404,NEW EASYSHOP SUPERMARKET,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732586,QUENTIN GROCERY,11229,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747960,ASIAN SUPERMARKET NYC,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735127,BERRY GOODS SUPERMARKET,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755483,EVERYDAY GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614187,FLATBUSH SUPERMARKET,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762273,GARCIAS GROCERY NY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610350,J&J GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705924,NEW TAYEEBAS GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615032,PUNJAB GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764947,RUGBY GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613302,SHOPRITE OF AVENUE I,11230,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+616678,W&S DAIRY GROCERY,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759032,ZAMZAM GROCERY & MEATS,11230,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728599,ACE SUSHI@FOOD BAZAAR 75,11231,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+735101,ASSOCIATED SUPERMARKET,11231,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+705109,C TOWN SUPERMARKET,11231,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+614057,EXPRESS GROCERY,11231,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743866,FOOD BAZAAR,11231,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+616458,KEY FOOD 180,11231,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+619054,KEY FRUIT & VEGETABLE AND GROCERY,11231,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610268,MARTINEZ GROCERY,11231,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708430,SMITH STREET GROCERY & CONVENIENCE,11231,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749409,ENJOY MY BAGELS STORE & GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705956,EZ GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670171,KANG YI GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619689,KEY FOOD 16,11232,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+735463,LA PLACITA SUPERMARKET,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+761602,LUCKY 4216 GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728681,LUCKY GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729366,R & I GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+728870,UMK BROOKLYN GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725151,VALENTINA GROCERY,11232,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+614437,ABREUS GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618231,ASSOCIATED SUPERMARKET,11233,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+616244,FOOD BAZAAR,11233,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+762917,JERIC DNJ GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746466,JJ GOURMET GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748593,LOLO GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760129,MAYELIN GROCERY STORE,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616221,STOP&BUY GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613422,TIO GROCERY,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616553,TWO WAY SUPERMARKET,11233,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+740134,FOODTOWN SEAFOOD,11234,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+618268,KEY FOOD,11234,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+610382,KEY FOOD SUPERMARKET,11234,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+710606,RED APPLE GROCERY,11234,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612131,TU BOHIO GROCERY,11234,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717793,5 STAR GROCERY,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708167,ALDI 9,11235,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742105,BROOKLYN CANDY GROCERY,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+712682,NETCOST MARKET,11235,2026-05-23,NetCost Store Site,https://www.netcostmarket.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+709196,PERALTAS GROCERY,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610288,R&M GROCERY,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+727732,TASHKENT SUPERMARKET,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702325,TASHKENT SUPERMARKET,11235,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715561,560 GROCERY & FOOD,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+740916,AVENUE B GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615555,BRAVO SUPERMARKET,11236,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764653,C-TOWN,11236,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+729052,CANARSIE GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613234,EVELYN GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744650,FOOD WORLD SUPERMARKET,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725027,J & W SUPERMARKET,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619455,KEY FOOD 1368,11236,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756291,KEY FOOD 2641,11236,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754674,LA ESQUINA MELO GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616056,LUNA SOPHIE GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718748,ROCKAWAY GOURMET & GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746659,SIX BRO GROCERY,11236,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753468,A&O GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715203,ACOSTA GROCERY STORE,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763551,HAPPY FACE BABY SHOP & GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618945,INFANTE GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619274,KEYFOOD,11237,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+712406,LA SAN MARQUENITA GROCERY AND VARIEDADES,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766112,LAS MESETAS GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741485,MAX GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736127,MET FRESH SUPERMARKET,11237,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+706520,MORELOS GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763615,MR GROCERY & BEER,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+619604,QUISQUEYA GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+616422,STEVE MEXICAN GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+615880,VALERIE GROCERY,11237,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758682,BEST FAMILY GROCERY,11238,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+617342,BOB&BETTYS SUPERMARKET,11238,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+613430,BURGOS GROCERY,11238,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+610056,CEPEDA GROCERY,11238,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+618294,DANNY GROCERY,11238,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+612219,FOODTOWN,11238,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+611801,KEY FOOD,11238,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756582,KEY FOOD FRESH #2645,11238,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764896,LIDL #1580,11239,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+612209,BED-ROSS GROCERY,11249,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723676,KIKKA @ WHOLE FOODS WILLIAMSBURG,11249,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+751378,TRADER JOE'S,11249,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+724038,WHOLE FOODS MARKET,11249,2026-05-23,Whole Foods Weekly Sales,https://www.wholefoodsmarket.com/sales-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+671167,BAYLOR GROCERY,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762422,CLOUD GROCERY,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752460,GW SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752430,H MART,11354,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+744266,H MART,11354,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+633730,HANYANG SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734102,HENGTONG GROCERY,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739415,HUA LIAN SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735994,KW SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746845,US 1 SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758133,WHITESTONE SUPERMARKET,11354,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760619,41 AVE ASIAN GROCERY STORE,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734907,BOWNE GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634735,C&A SUPERMARKET,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633958,CHUNG FAT SUPERMARKET,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750752,CP LEGEND GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723534,DHYIA GROCERY AND CONVENIENCE STORE,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760407,DOUBLE HAPPINESS GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753395,GAO VILLAGE SUPERMARKET,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+635922,GOLD CITY SUPERMARKET,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758418,GOOD FORTUNE SUPERMARKET OF NY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757839,HAPPY CORNER GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745884,HENG GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759605,JY&Y GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+737472,RI SHENG GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671015,SHREE SIDDHIVINAYAKA GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730452,SOPHIA GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764305,XINXIN GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706228,YONG FA SUPERMARKET,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759575,ZHEN ZHEN GROCERY,11355,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632195,DHARA NEWS & GROCERY,11356,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753774,EAT FAIR GROCERY,11356,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711090,KEY FOOD 1776,11356,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+719888,SHOPRITE OF 20TH AVENUE,11356,2026-05-23,ShopRite Weekly Circular,https://www.shoprite.com/sm/planning/rsid/473/circulars/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+734477,VDK GROCERY,11356,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633133,A TO Z GROCERY,11357,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738508,MET FRESH SUPERMARKET,11357,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+729848,CHOI VEGETABLE & GROCERY,11358,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707748,H MART,11358,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757946,LUCEROS GROCERY STORE,11358,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742756,MARINO'S SUPERMARKET,11358,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706367,T & C GROCERY,11358,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+768372,AJ&E 99UP SUPERMARKET,11361,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755549,WALFOOD SUPERMARKET,11361,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755766,ACE SUSHI@FOOD BAZAAR,11362,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+743868,FOOD BAZAAR,11362,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+745120,LITTLE NECK SUPERMARKET,11362,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766771,68 AVE BABY GROCERY,11365,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749093,ASSOCIATED FRESH MARKETPLACE,11365,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+636862,KEY FOOD 1044,11365,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+765721,LIDL #1572,11365,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+709769,KOUCHI SUPERMARKET,11366,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732977,KEY FOOD,11367,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+733517,KEY FOOD MARKET PLACE,11367,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+731654,MAZAL GLATT SUPERMARKET,11367,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634979,PAULS GROCERY,11367,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725505,R & M MAIN SUPERMARKET,11367,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+716264,WASSERMAN SUPERMARKET,11367,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+707882,108TH STREET GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631889,3 STAR GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750682,4306 HAPPY GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766508,ALKARE GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633770,BAEZ GROCERY STORE,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637197,C TOWN SUPERMARKET,11368,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+730717,CANDY & GROCERY FOOD,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632722,CIBAO GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+756643,DELY GROCERY ECUATORIAN,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639078,ELIS GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+635744,ESQUINA 100&34 GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632118,FOOD BAZAAR SUPERMARKET,11368,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760961,FRESH FARM SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715666,GRANDE MUNDO SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766839,GROCERY VIRGEN DEL CISNE,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638818,HERNANDEZ SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749507,J & M GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753703,JONY GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754041,JUSBELINDA GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633759,KEY FOOD,11368,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+637529,KEY FOOD 1454,11368,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+753763,LA SIMPATIA GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+755731,LOS VECINOS GROCERY STORE,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631266,LUCIANO GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639806,MARIANITAS GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734346,MELYS GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634580,MERCEDITAS GROCERY STR,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+716970,MI TIERRA SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+702001,MI TIERRA SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748327,MINI GROCERY NATIONAL CARNICERIA,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639593,MONTEROS GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+714887,PIONEER SUPERMARKET,11368,2026-05-23,Pioneer Supermarkets Store Site,https://www.pioneersupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+738941,R STOP 1 SUPERMARKET,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+630113,RAMIREZ GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734178,RODRIGUEZ GROCERY STORE #2,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717456,SOLIS GROCERY STORE,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754870,TEJADA FAMILY GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760319,TEXIS GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639110,TU ESQUINA GROCERY,11368,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637074,DANI GROCERY,11369,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718602,EAST ELMHURST GROCERY,11369,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760314,31ST AVE GROCERY & 99 CENT STORE,11370,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754544,FARM COUNTRY SUPERMARKET,11370,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739054,MI PUEBLITO GROCERY,11370,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723958,37-63 GROCERY FOOD,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706824,37TH AVE GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670294,94 STREET GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758597,APEX NEWS & GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+635549,BRAVO SUPERMARKET 043,11372,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+730660,CANDY GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746324,COATZINGO GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708509,EL MOLINO SUPERMARKET,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632081,FOODTOWN,11372,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+746136,FRIENDLY 88 GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747420,GROCERY EL ROCIO,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638748,KEY FOOD,11372,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+637089,KEY FOOD MARKETPLACE,11372,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+637512,LA OTRA GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+724215,LOS POBLANOS GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709479,MEHBOOB GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639534,MI TIERRA SUPERMARKET,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745172,PREMIUM SUPERMARKET,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739070,QUISQUEYA GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+706132,ROOSEVELT CANDY GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731780,S & M GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725975,W & K GROCERY,11372,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754273,78 ST MOM GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+756220,AADHYA FRUIT & GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741212,BROADWAY GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638278,CASA RIVERA GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738927,D&Z SUPERMARKET,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751848,ENTRE AMIGOS GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638675,FOOD BAZAAR,11373,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+709895,G&G GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639145,GOOD SUPERMARKET,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705498,GREEN GROCERY & CONVENIENCE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729968,HAPPY 88 GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+722758,HING HING GROCERY SHOP,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708470,HUA CHU GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758785,IVILUX GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758890,JAPANESE GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+743191,JUNCTION GROCERY & DISCOUNT STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+739987,LI LI GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+760059,LIDL-1559,11373,2026-05-23,Lidl Weekly Ad,https://www.lidl.com/flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+715328,LOLAS GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725389,M&B CANDY GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744658,M&T GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733950,RACHEL GROCERY STORE,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742342,SF SUPERMARKET,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+705737,US SUPERMARKET,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708467,WOODSIDE GROCERY & DISCOUNT,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634316,Y J ELMHURST GROCERY,11373,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639969,ALDI 1,11374,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+632649,FOODTOWN,11374,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+729499,KEY FOOD FRESH,11374,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757691,METRO 8955 GROCERY,11374,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632152,R&M SUPERMARKET,11374,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734045,REGO MARKETPLACE BY C-TOWN,11374,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+638867,CARMEL GROCERY,11375,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637050,KEY FOOD #1428,11375,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+638014,KEY FOOD #1462,11375,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+634606,KEYFOOD,11375,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+639542,OPTIMO GROCERY,11375,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709508,ORCHARD SUPERMARKET,11375,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632223,R&M GLATT SUPERMARKET,11375,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757737,TRADER JOES 578,11375,2026-05-23,Trader Joe's Fearless Flyer,https://www.traderjoes.com/home/fearless-flyer,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754961,67 ST GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745022,AMAZING GRACE GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717277,FOOD EXPRESS SUPERMARKET,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730097,GOOD NEIGHBOR SUNNYSIDE SUPERMARKET,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757408,H MART,11377,2026-05-23,H Mart Weekly Sales,https://www.hmart.com/weekly-sales-and-events,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+746762,JANEY GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758169,JOY BABY & GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719548,KEY FOOD,11377,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+634101,KEY FOOD,11377,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+703896,NEW WOODSIDE GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639401,NIDHI GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752917,O&A GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+671306,ROBIN GROCERY & NEWS,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+731465,SJ GROCERY CONVENIENCE STORE,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+722316,SUNNY BABY GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+636907,WOODSIDE GROCERY,11377,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+732856,KEY FOOD,11378,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+742643,MARKET FRESH SUPERMARKET,11378,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637900,MASPETH MARKETPLACE BY KEY FOOD,11378,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+631853,SYRENA GROCERY,11378,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+767104,CTOWN SUPERMARKET,11379,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+727187,ELIOT CONVENIENT & GROCERY,11379,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632187,FISH CORNER MET FOOD,11379,2026-05-23,Met Foods Weekly Ad,https://www.metfoods.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+637433,ASSOCIATED,11385,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+631467,BENNYS GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+672254,BHAKTI SAGAR GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746484,C TOWN SUPERMARKET,11385,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760262,C-TOWN FRESH,11385,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+724382,DIOMAR GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638668,FOREST GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764785,GOOD NEIGHBORS 1 SUPERMARKET,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736614,GOOD NEIGHBORS SUPERMARKET,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+746791,KINGSTAR GOURMET GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757506,L&C GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+759654,LP BABY & GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634510,LRM ESPINAL GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715822,LUNA FRUIT & GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762820,SUPERFRESH SUPERMARKET,11385,2026-05-23,SuperFresh Weekly Sale,https://www.superfreshsupermarket.com/weekly-sale,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+636825,WESTERN BEEF 1,11385,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+761490,WOODBINE GROCERY,11385,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634144,BATISTA MINI GROCERY,11411,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634947,CHEZ MIREILLE GROCERY,11411,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754584,FARMBRIA BY FOOD BAZAAR,11411,2026-05-23,Food Bazaar Weekly Ad,https://www.foodbazaar.com/weekly-ad/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+764285,LINDEN CANDY & GROCERY,11411,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+749972,A&E SUPERMARKET,11412,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764757,136 GROCERY,11413,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723528,EXPRESS GROCERY,11413,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631433,GREAT SUPERMARKET,11413,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633006,KEY FOOD 778,11413,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+714056,KEY FOOD,11414,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+634663,VITELIO'S MARKETPLACE/KEY FOOD,11415,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+741344,ABDULLAH SUPERMARKET,11416,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633982,KEYFOOD 1732,11416,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+734181,MALA & SONS GROCERY,11416,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+723710,MANNAN SUPERMARKET,11416,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+766881,MENA GROCERY,11416,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745667,MARKET PLACE SUPERMARKET,11417,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+711471,MILK FARM SUPERMARKET,11417,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633862,BABA SUPERMARKET,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+630835,BRAVO SUPERMARKET,11418,2026-05-23,Bravo Supermarkets Weekly Circular,https://www.bravosupermarkets.com/weekly-circular,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+739703,DIAZ GROCERY OF NY,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634641,GOOD START GROCERY,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+718868,KEY FOOD SUPERMARKET,11418,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+705700,MANANA GROCERY,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742743,MERCADO GROCERY 1,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748873,STABROEK MARKET WEST INDIAN GROCERY,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632060,SUNNY GROCERY & DISCOUNT,11418,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638703,AZ GROCERY AND MEAT,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+670216,J&B WEST INDIAN AMERICAN GROCERY,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+634177,J&P W INDIAN GROCERY,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+747761,K TOWN SUPERMARKET,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+758856,KEY FOOD,11419,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+723529,KEY FOOD SUPERMARKET,11419,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+754269,LIBERTY BISMILLAH SUPERMARKET,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631608,MALIKI GROCERY,11419,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+757597,BUENO 111 GROCERY,11420,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633572,KEY FOOD 1360,11420,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+670773,KEYFOOD 1598,11420,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+671456,T&T FISH AND GROCERY,11420,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+630709,C TOWN SUPERMARKET,11421,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+638042,CIBAO GROCERY,11421,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741442,FINE FARE SUPERMARKET,11421,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+745248,FRUTERIA & GROCERY,11421,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748307,GREEN VALLEY SUPERMARKET,11421,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+738893,KEY FOOD # 2468,11421,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+757480,ASSOCIATED,11422,2026-05-23,Associated Supermarkets Weekly Ad,https://www.yapik.com/us/associated-supermarkets/weekly-ad,advertised,,,,,,,,,,Matched to third-party weekly-ad index for this chain; verify store-specific ad before final use.
+737866,A-C MARKET GROCERY,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+735128,C TOWN SUPERMARKET,11423,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+760818,GRAM BANGLA SUPERMARKET,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631834,KARINA GROCERY,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+733561,SB FRUIT VEGETABLE & GROCERY,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+719179,SKELDON MARKET PLACE GROCERY,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+701965,VALERY GROCERY,11423,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753957,NEW AL-HABIB MEAT AND GROCERY,11426,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730006,KEY FOOD,11427,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+632930,MJ GROCERY STORE,11427,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632762,KEY FOOD 1300,11428,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+716144,SUPER SPRING GROCERY,11428,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+764287,ALRAYAN SUPERMARKET,11429,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+744447,C-TOWN,11429,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+639605,EL MENEO GROCERY,11429,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+734742,SUPREME GOURMET GROCERY,11429,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717815,A Y FAMILY GROCERY,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+741311,BISMILLAH SUPERMARKET,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+754177,FATIMA GROCERY,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+709656,FINE FARE SUPERMARKET,11432,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+635910,FOODTOWN,11432,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+631774,FOODTOWN,11432,2026-05-23,Foodtown Weekly Circular,https://www.foodtown.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+722124,GRAY GROCERY,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638599,KEY FOOD 1046,11432,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+756083,LABBAIK SUPERMARKET,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+729811,MAA SUPERMARKET,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638752,MANNAN SUPERMARKET,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+715855,PREMIUM SUPERMARKET,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+638901,SUNSHINE GROCERY,11432,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+752762,ALDI #119,11433,2026-05-23,ALDI Weekly Ad,https://www.aldi.us/weekly-specials/our-weekly-ads/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+722166,FAMOSA GROCERY,11433,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+762663,LA FAMILIA II GROCERY,11433,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+708861,BATISTA GROCERY,11434,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+745494,C TOWN SUPERMARKET,11434,2026-05-23,CTown Weekly Ad,https://www.ctownsupermarkets.com/Weekly-Ad,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+670664,CARIBBEAN GROCERY & FISH M,11434,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+736077,FINE FARE SUPERMARKET,11434,2026-05-23,Fine Fare Store Site,https://www.finefaresupermarkets.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+724654,KEY FOOD,11434,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+734717,KEY FOOD FRESH,11434,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758658,LA FAMILIA GROCERY,11434,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+763938,SUTPHIN 119 GROCERY,11434,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+635693,WESTERN BEEF 20,11434,2026-05-23,Western Beef Weekly Sales,https://www.westernbeef.com/sales,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+758069,AMH SUPERMARKET,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+725317,DOUBLE J GROCERY,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637623,FAMILIA GROCERY STORE,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+639416,JAMAICA GREEN GROCERY,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742630,KEY FOOD,11435,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+733800,KEY FOOD SUPERMARKET,11435,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+726483,MARKET FRESH SUPERMARKET,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+730240,MIMI ECOWAS GROCERY STORE,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+748506,SHOP FAIR SUPERMARKET,11435,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+631136,SORIBEL FRUIT&GROCERY,11435,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+751835,538 JJ SUPERMARKET,11691,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+753625,ACY GROCERY,11691,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+717973,DENNISEIS GROCERY,11691,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+756492,J&P GROCERY FOOD CENTER,11691,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+631295,KELVIN GROCERY,11691,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+632624,KEY FOOD 1288,11691,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+634906,POLO SUPERMARKET/COMPARE FOODS,11691,2026-05-23,Compare Foods Store Site,https://www.shopcomparefoods.com/,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+736416,SHOP FAIR SUPERMARKET,11691,2026-05-23,Shop Fair Weekly Circular,https://www.shopfairsupermarkets.com/Circular4Page.aspx,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+719135,20/20 SUPERMARKET,11692,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+756469,66 GOURMET GROCERY,11692,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+637770,AAA GROCERY,11692,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+750157,SUPER FRESH SUPERMARKET,11692,2026-05-23,SuperFresh Weekly Sale,https://www.superfreshsupermarket.com/weekly-sale,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.
+632396,CROSS BAY GROCERY,11693,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+742027,FAST N FRESH SUPERMARKET,11693,,,,,,,,,,,,,,No chain circular match found. Add a manual source URL from this store's own ad/flyer.
+633813,KEY FOOD,11693,2026-05-23,Key Food / Food Universe Flyers,https://www.keyfood.com/flyers,advertised,,,,,,,,,,Matched to chain circular/weekly-ad source.

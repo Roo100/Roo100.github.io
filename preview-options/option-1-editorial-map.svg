@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="720" viewBox="0 0 1680 720">
+  <defs>
+    <linearGradient id="leftFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f7f5f0" stop-opacity="0.96"/>
+      <stop offset="45%" stop-color="#f7f5f0" stop-opacity="0.90"/>
+      <stop offset="100%" stop-color="#f7f5f0" stop-opacity="0.10"/>
+    </linearGradient>
+    <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d7edf0" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+
+  <image href="base-map.png" x="0" y="0" width="1680" height="720" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="0" y="0" width="1680" height="720" fill="url(#wash)"/>
+  <rect x="0" y="0" width="1080" height="720" fill="url(#leftFade)"/>
+
+  <rect x="82" y="84" width="232" height="34" rx="17" fill="#ffffff" opacity="0.92"/>
+  <text x="198" y="107" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#0f7f7a" letter-spacing="1.2">JUSTICE POLICY DASHBOARD</text>
+
+  <text x="86" y="214" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" fill="#172f4a">NYS DOCCS</text>
+  <text x="86" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" fill="#172f4a">Recidivism Dashboard</text>
+
+  <text x="90" y="352" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500" fill="#4f6478">County rates, cohort trends, and facility context</text>
+
+  <line x1="90" y1="392" x2="724" y2="392" stroke="#5fb7ad" stroke-width="3" opacity="0.8"/>
+
+  <rect x="86" y="432" width="468" height="146" rx="16" fill="#ffffff" opacity="0.88" stroke="#d9e6ec"/>
+  <text x="114" y="476" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#172f4a">Interactive findings by release cohort</text>
+  <text x="114" y="516" font-family="Inter, Arial, sans-serif" font-size="24" fill="#667789">Public NYS DOCCS data visualization</text>
+  <text x="114" y="552" font-family="Inter, Arial, sans-serif" font-size="24" fill="#667789">2008–2021 follow-up period</text>
+</svg>

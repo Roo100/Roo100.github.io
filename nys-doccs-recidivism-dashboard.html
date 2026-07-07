@@ -38,6 +38,27 @@
     border-bottom:1px solid var(--rule);
     padding:34px 28px 26px;
   }
+  .top-link{
+    display:inline-block;
+    margin-bottom:14px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+    border:1px solid #c9dce6;
+    background:#f7fbfd;
+    border-radius:999px;
+    padding:7px 12px;
+    font-weight:700;
+    text-decoration:none;
+    transition:all .18s ease;
+  }
+  .top-link:hover,
+  .top-link:focus{
+    color:#fff;
+    background:var(--teal);
+    border-color:var(--teal);
+  }
   .hero-inner{
     max-width:1180px;
     margin:0 auto;
@@ -459,6 +480,16 @@
   }
   .interactive-dot{cursor:pointer}
   .dot.interactive-dot:hover{stroke:#234a6b;stroke-width:2.8}
+  .footer-email{
+    color:#0a6f6a;
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px solid #9fcfc9;
+  }
+  .footer-email:hover,
+  .footer-email:focus{
+    color:#085650;
+  }
 
 </style>
 
@@ -466,6 +497,7 @@
 <body>
 <header>
   <div class="hero-inner">
+    <a class="top-link" href="index.html">← Back to Portfolio</a>
     <div class="portfolio-label">Interactive research sample</div>
     <h1>NYS DOCCS Recidivism Interactive Dashboard</h1>
     <p class="project-subtitle">Return-to-custody outcomes, county variation, and prison facility context</p>
@@ -524,7 +556,7 @@
       </div>
     </aside>
   </div>
-  <div class="footer"><strong>Sources:</strong> NYS DOCCS Recidivism: Beginning 2008; NYS prison facility point layer prepared from public facility information; county boundaries from ArcGIS Living Atlas/Esri. <strong>Method note:</strong> Public DOCCS recidivism data are reported by county of indictment and do not identify the correctional facility from which a person was released. <strong>Contact:</strong> <a href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a></div>
+  <div class="footer"><strong>Sources:</strong> NYS DOCCS Recidivism: Beginning 2008; NYS prison facility point layer prepared from public facility information; county boundaries from ArcGIS Living Atlas/Esri. <strong>Method note:</strong> Public DOCCS recidivism data are reported by county of indictment and do not identify the correctional facility from which a person was released. <strong>Contact:</strong> <a class="footer-email" href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a></div>
   <div id="mapModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="mapModalTitle">
     <div class="map-modal-dialog">
       <div class="map-modal-header">

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="720" viewBox="0 0 1680 720">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2f8fa"/>
+      <stop offset="55%" stop-color="#e9f3f6"/>
+      <stop offset="100%" stop-color="#f9fcfd"/>
+    </linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#cfe2e9" stroke-width="1" opacity="0.45"/>
+    </pattern>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.72"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1680" height="720" fill="url(#bg3)"/>
+  <rect x="0" y="0" width="1680" height="720" fill="url(#grid)"/>
+
+  <g opacity="0.16">
+    <circle cx="1360" cy="220" r="260" fill="#8fd2cc"/>
+    <circle cx="1480" cy="470" r="190" fill="#5fb7ad"/>
+  </g>
+
+  <image href="base-map.png" x="980" y="150" width="620" height="430" opacity="0.30" preserveAspectRatio="xMidYMid slice"/>
+
+  <rect x="98" y="86" width="960" height="548" rx="28" fill="url(#panel)" stroke="#d9e6ec"/>
+
+  <text x="152" y="154" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f7f7a" letter-spacing="1.5">PUBLIC RESEARCH DASHBOARD</text>
+
+  <text x="152" y="258" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#172f4a">NYS DOCCS</text>
+  <text x="152" y="344" font-family="Georgia, 'Times New Roman', serif" font-size="84" font-weight="700" fill="#172f4a">Recidivism</text>
+
+  <line x1="154" y1="378" x2="784" y2="378" stroke="#5fb7ad" stroke-width="4"/>
+
+  <text x="156" y="434" font-family="Inter, Arial, sans-serif" font-size="32" fill="#4f6478">Return-to-custody outcomes, county variation,</text>
+  <text x="156" y="478" font-family="Inter, Arial, sans-serif" font-size="32" fill="#4f6478">and prison facility context</text>
+
+  <rect x="154" y="520" width="392" height="66" rx="12" fill="#ffffff" stroke="#d9e6ec"/>
+  <text x="182" y="562" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#0f7f7a">Interactive Portfolio Feature</text>
+</svg>

@@ -1,14 +1,14 @@
 const STORAGE_KEY = "plantationToPrisonSources";
 
 const categories = [
-  "Black Feminist Theory and Reproductive Justice",
-  "Historical Reproductive Control: Plantation to Prison",
-  "Criminalization of Black Women",
-  "Pregnancy and Incarceration",
-  "Medical Neglect, Shackling, and Bodily Control",
-  "Motherhood, Family Separation, and Surveillance",
-  "Abolitionist Consciousness and System Rejection",
-  "Research Gap / Need for Phenomenological Study"
+  "Black Feminist Theory and Black Motherhood",
+  "Post-Incarceration Motherhood and Reentry",
+  "Family Rebuilding, Separation, and Reunification",
+  "Stigma, Housing, Employment, and Collateral Consequences",
+  "System Contact, Surveillance, and Criminalization After Release",
+  "Abolitionist Care, Practice, and Community Support",
+  "Pregnancy and Reproductive Justice Background",
+  "Research Gap / Autoethnographic Case Study"
 ];
 
 const studyTypes = [
@@ -18,6 +18,10 @@ const studyTypes = [
   "Scoping Review",
   "Systematic Review",
   "Qualitative Meta-Synthesis",
+  "Autoethnographic Case Study",
+  "Methodological Review",
+  "Descriptive Study",
+  "Editorial / Commentary",
   "Policy Analysis",
   "Legal Analysis",
   "Theoretical Article"
@@ -30,8 +34,13 @@ const lenses = [
   "Structural Racism",
   "Abolitionist Theory",
   "Carceral State",
-  "Reproductive Control",
-  "Public Health"
+  "Motherhood Studies",
+  "Reentry",
+  "Collateral Consequences",
+  "Research Methods",
+  "System Contact",
+  "Public Health",
+  "Reproductive Control"
 ];
 
 const statuses = [
@@ -381,6 +390,308 @@ const uploadedSourceRecords = [
     peer_reviewed: "Likely yes; verify",
     category: "Anti-Black gendered racism / reproductive coercion / pregnancy",
     use: "Potential Black feminist/intersectional source for anti-Black gendered racism, substance-use stigma, reproductive coercion, and family policing. Full citation needs verification."
+  },
+  {
+    id: 31,
+    citation: "Freudenberg, N., Daniels, J., Crum, M., Perkins, T., & Richie, B. E. (2005). Coming home from jail: The social and health consequences of community reentry for women, male adolescents, and their families and communities. American Journal of Public Health, 95(10), 1725–1736.",
+    title: "Coming Home From Jail: The Social and Health Consequences of Community Reentry for Women, Male Adolescents, and Their Families and Communities",
+    authors_year: "Freudenberg, Daniels, Crum, Perkins, & Richie (2005)",
+    type: "Public health / reentry analysis",
+    peer_reviewed: "Yes",
+    category: "Reentry / community return",
+    supportClaim: "Strong source for what happens after release: health, family, community, and social instability. It helps frame incarceration as something that continues beyond the jail/prison wall.",
+    use: "Strong source for what happens after release: health, family, community, and social instability. It helps frame incarceration as something that continues beyond the jail/prison wall."
+  },
+  {
+    id: 32,
+    citation: "Richie, B. E., Freudenberg, N., & Page, J. (2001). Reintegrating women leaving jail into urban communities: A description of a model program. Journal of Urban Health, 78(2), 290–303.",
+    title: "Reintegrating Women Leaving Jail Into Urban Communities: A Description of a Model Program",
+    authors_year: "Richie, Freudenberg, & Page (2001)",
+    type: "Program model / women’s reentry article",
+    peer_reviewed: "Yes",
+    category: "Women’s reentry / community support",
+    supportClaim: "Useful for showing that women leaving jail need community-based support, not just correctional supervision. This supports the abolitionist practice part of the project.",
+    use: "Useful for showing that women leaving jail need community-based support, not just correctional supervision. This supports the abolitionist practice part of the project."
+  },
+  {
+    id: 33,
+    citation: "Greene, S. (2004). Mothering and making it, in and out of prison. Punishment & Society, 6(1), 33–54.",
+    title: "Mothering and Making It, In and Out of Prison",
+    authors_year: "Greene (2004)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Motherhood after incarceration",
+    supportClaim: "Directly relevant to mothering across incarceration and release. Use this to discuss how mothers reconstruct identity, responsibility, and family relationships after punishment.",
+    use: "Directly relevant to mothering across incarceration and release. Use this to discuss how mothers reconstruct identity, responsibility, and family relationships after punishment."
+  },
+  {
+    id: 34,
+    citation: "Ferraro, K. J., & Moe, A. M. (2003). Mothering, crime, and incarceration. Journal of Contemporary Ethnography, 32(1), 9–40.",
+    title: "Mothering, Crime, and Incarceration",
+    authors_year: "Ferraro & Moe (2003)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Criminalized motherhood",
+    supportClaim: "Useful because it links motherhood, criminalization, and incarceration through qualitative analysis. It can support the argument that criminalized mothers are often judged through moralized ideas of good and bad motherhood.",
+    use: "Useful because it links motherhood, criminalization, and incarceration through qualitative analysis. It can support the argument that criminalized mothers are often judged through moralized ideas of good and bad motherhood."
+  },
+  {
+    id: 35,
+    citation: "Barnes, S. L., & Stringer, E. C. (2014). Is motherhood important? Imprisoned women’s maternal experiences before and during confinement and their postrelease expectations. Feminist Criminology, 9(1), 3–23.",
+    title: "Is Motherhood Important? Imprisoned Women’s Maternal Experiences Before and During Confinement and Their Postrelease Expectations",
+    authors_year: "Barnes & Stringer (2014)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Maternal identity / postrelease expectations",
+    supportClaim: "Important for the reentry focus because it addresses women’s expectations of motherhood after release, not only their experiences during incarceration.",
+    use: "Important for the reentry focus because it addresses women’s expectations of motherhood after release, not only their experiences during incarceration."
+  },
+  {
+    id: 36,
+    citation: "Henriques, Z. W., & Manatu-Rupert, N. (2001). Living on the outside: African American women before, during, and after imprisonment. The Prison Journal, 81(1), 6–19.",
+    title: "Living on the Outside: African American Women Before, During, and After Imprisonment",
+    authors_year: "Henriques & Manatu-Rupert (2001)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Black women after imprisonment",
+    supportClaim: "This is one of the strongest fits because it specifically focuses on African American women before, during, and after imprisonment. Use it for the Black motherhood/post-incarceration section.",
+    use: "This is one of the strongest fits because it specifically focuses on African American women before, during, and after imprisonment. Use it for the Black motherhood/post-incarceration section."
+  },
+  {
+    id: 37,
+    citation: "Walker, E. K. (2011). Risk and protective factors in mothers with a history of incarceration: Do relationships buffer the effects of trauma symptoms and substance abuse history? Women & Therapy, 34(3), 271–288.",
+    title: "Risk and Protective Factors in Mothers With a History of Incarceration: Do Relationships Buffer the Effects of Trauma Symptoms and Substance Abuse History?",
+    authors_year: "Walker (2011)",
+    type: "Quantitative Study",
+    peer_reviewed: "Yes",
+    category: "Trauma / relationships / reentry",
+    supportClaim: "Helpful for discussing how relationships, support, trauma, and substance-use history shape post-incarceration motherhood.",
+    use: "Helpful for discussing how relationships, support, trauma, and substance-use history shape post-incarceration motherhood."
+  },
+  {
+    id: 38,
+    citation: "Luther, K., & Gregson, J. (2011). Restricted motherhood: Parenting in a prison nursery. International Journal of Sociology of the Family, 37(1), 85–104.",
+    title: "Restricted Motherhood: Parenting in a Prison Nursery",
+    authors_year: "Luther & Gregson (2011)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Restricted motherhood / carceral parenting",
+    supportClaim: "Although this focuses on prison nurseries, it is useful for explaining how even motherhood-supportive prison programs can still operate within carceral control.",
+    use: "Although this focuses on prison nurseries, it is useful for explaining how even motherhood-supportive prison programs can still operate within carceral control."
+  },
+  {
+    id: 39,
+    citation: "Roberts, D. E. (2004). The social and moral cost of mass incarceration in African American communities. Stanford Law Review, 56(5), 1271–1305.",
+    title: "The Social and Moral Cost of Mass Incarceration in African American Communities",
+    authors_year: "Roberts (2004)",
+    type: "Legal Analysis",
+    peer_reviewed: "No / law review",
+    category: "Black communities / carceral harm",
+    supportClaim: "Use this for the broader structural argument: incarceration damages Black families, communities, and collective social life. It supports the beyond-the-carceral-state framing.",
+    use: "Use this for the broader structural argument: incarceration damages Black families, communities, and collective social life. It supports the beyond-the-carceral-state framing."
+  },
+  {
+    id: 40,
+    citation: "Richie, B. E. (2000). A Black feminist reflection on the antiviolence movement. Signs: Journal of Women in Culture and Society, 25(4), 1133–1137.",
+    title: "A Black Feminist Reflection on the Antiviolence Movement",
+    authors_year: "Richie (2000)",
+    type: "Theoretical Article",
+    peer_reviewed: "Yes",
+    category: "Black feminist lens / abolitionist critique",
+    supportClaim: "Use this for the critical lens. Richie helps explain why Black women’s experiences with violence, criminalization, and state systems require a Black feminist analysis rather than a gender-neutral or race-neutral framework.",
+    use: "Use this for the critical lens. Richie helps explain why Black women’s experiences with violence, criminalization, and state systems require a Black feminist analysis rather than a gender-neutral or race-neutral framework."
+  },
+  {
+    id: 41,
+    citation: "Testa, A., Jackson, D. B., Vaughn, M. G., & Bello, J. K. (2020). Incarceration as a unique social stressor during pregnancy: Implications for maternal and newborn health. Social Science & Medicine, 246, 112777. https://doi.org/10.1016/j.socscimed.2019.112777",
+    title: "Incarceration as a Unique Social Stressor During Pregnancy: Implications for Maternal and Newborn Health",
+    authors_year: "Testa, Jackson, Vaughn, & Bello (2020)",
+    type: "Quantitative / public health study",
+    peer_reviewed: "Yes",
+    category: "Pregnancy / incarceration / maternal and newborn health",
+    articleFile: "articles/incarceration-as-a-unique-social-stressor-during-pregnancy.pdf",
+    supportClaim: "Background source showing incarceration as a social stressor with consequences for maternal and newborn health. Useful for pregnancy context while the main thesis remains focused on motherhood after release.",
+    use: "Background source showing incarceration as a social stressor with consequences for maternal and newborn health. Useful for pregnancy context while the main thesis remains focused on motherhood after release."
+  },
+  {
+    id: 42,
+    citation: "Barnett-Page, E., & Thomas, J. (2009). Methods for the synthesis of qualitative research: A critical review. BMC Medical Research Methodology, 9, 59. https://doi.org/10.1186/1471-2288-9-59",
+    title: "Methods for the Synthesis of Qualitative Research: A Critical Review",
+    authors_year: "Barnett-Page & Thomas (2009)",
+    type: "Methodological review",
+    peer_reviewed: "Yes",
+    category: "Qualitative methods / synthesis / research design",
+    articleFile: "articles/methods-for-the-synthesis-of-qualitative-research-a-critical-review.pdf",
+    supportClaim: "Useful as a methods background source for understanding qualitative synthesis and how qualitative evidence can be organized in a literature review.",
+    use: "Useful as a methods background source for understanding qualitative synthesis and how qualitative evidence can be organized in a literature review."
+  },
+  {
+    id: 43,
+    citation: "Brinkley-Rubinstein, L. (2020). Mass incarceration as a social-structural driver of health inequities: A supplement to AJPH. American Journal of Public Health, 110(S1), S14–S15. https://doi.org/10.2105/AJPH.2019.305486",
+    title: "Mass Incarceration as a Social-Structural Driver of Health Inequities",
+    authors_year: "Brinkley-Rubinstein (2020)",
+    type: "Public health editorial",
+    peer_reviewed: "Yes",
+    category: "Mass incarceration / health inequities / structural racism",
+    articleFile: "articles/mass-incarceration-as-a-social-structural-driver-of-health-inequities.pdf",
+    supportClaim: "Supports the broader claim that incarceration is a structural driver of health inequity and continues to shape life chances after release.",
+    use: "Supports the broader claim that incarceration is a structural driver of health inequity and continues to shape life chances after release."
+  },
+  {
+    id: 44,
+    citation: "Davis, A. Y. (n.d.). The challenge of abolition. True Leap Press.",
+    title: "The Challenge of Abolition",
+    authors_year: "Davis (n.d.)",
+    type: "Abolitionist essay",
+    peer_reviewed: "No",
+    category: "Abolitionist practice / carceral state critique",
+    articleFile: "articles/the-challenge-of-abolition.pdf",
+    supportClaim: "Background source for abolitionist framing and alternatives to carceral solutions. Use as theory/background rather than a peer-reviewed article review.",
+    use: "Background source for abolitionist framing and alternatives to carceral solutions. Use as theory/background rather than a peer-reviewed article review."
+  },
+  {
+    id: 45,
+    citation: "Carlson, J. R. (2018). Prison nurseries: A way to reduce recidivism. The Prison Journal, 98(6), 760–775. https://doi.org/10.1177/0032885518812694",
+    title: "Prison Nurseries: A Way to Reduce Recidivism",
+    authors_year: "Carlson (2018)",
+    type: "Policy / correctional program article",
+    peer_reviewed: "Yes",
+    category: "Prison nurseries / motherhood / family connection",
+    articleFile: "articles/prison-nurseries-a-way-to-reduce-recidivism.pdf",
+    supportClaim: "Useful for discussing prison nursery programs, maternal bonding, and how institutional support for motherhood can still remain tied to carceral control.",
+    use: "Useful for discussing prison nursery programs, maternal bonding, and how institutional support for motherhood can still remain tied to carceral control."
+  },
+  {
+    id: 46,
+    citation: "Arshad, F., Haith-Cooper, M., & Palloti, P. (2018). The experiences of pregnant migrant women in detention: A qualitative study. British Journal of Midwifery, 26(9), 591–598.",
+    title: "The Experiences of Pregnant Migrant Women in Detention: A Qualitative Study",
+    authors_year: "Arshad, Haith-Cooper, & Palloti (2018)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Pregnancy / detention / qualitative experience",
+    articleFile: "articles/experiences-of-pregnant-migrant-women-in-detention.pdf",
+    supportClaim: "Background source for pregnancy in detention and the lived experience of confinement during pregnancy. Use as context rather than a central Black motherhood source.",
+    use: "Background source for pregnancy in detention and the lived experience of confinement during pregnancy. Use as context rather than a central Black motherhood source."
+  },
+  {
+    id: 47,
+    citation: "Awenat, Y. F., Moore, C., Gooding, P. A., Ulph, F., Mirza, A., & Pratt, D. (2018). Improving the quality of prison research: A qualitative study of ex-offender service user involvement in prison suicide prevention research. Health Expectations, 21(1), 100–109. https://doi.org/10.1111/hex.12590",
+    title: "Improving the Quality of Prison Research: A Qualitative Study of Ex-Offender Service User Involvement in Prison Suicide Prevention Research",
+    authors_year: "Awenat et al. (2018)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Prison research / lived experience / service user involvement",
+    articleFile: "articles/improving-the-quality-of-prison-research-ex-offender-service-user-involvement.pdf",
+    supportClaim: "Useful methodology source because it supports involving people with lived experience in prison research and strengthens the rationale for autoethnographic knowledge.",
+    use: "Useful methodology source because it supports involving people with lived experience in prison research and strengthens the rationale for autoethnographic knowledge."
+  },
+  {
+    id: 48,
+    citation: "Ahrens, D. (2015). Incarcerated childbirth and broader birth control: Autonomy, regulation, and the state. Missouri Law Review, 80(1), 1–52.",
+    title: "Incarcerated Childbirth and Broader Birth Control: Autonomy, Regulation, and the State",
+    authors_year: "Ahrens (2015)",
+    type: "Legal Analysis",
+    peer_reviewed: "No / law review",
+    category: "Incarcerated childbirth / state regulation / autonomy",
+    articleFile: "articles/incarcerated-childbirth-and-broader-birth-control.pdf",
+    supportClaim: "Background legal source on state regulation of childbirth and autonomy in carceral settings. Useful for pregnancy context and the history of institutional control.",
+    use: "Background legal source on state regulation of childbirth and autonomy in carceral settings. Useful for pregnancy context and the history of institutional control."
+  },
+  {
+    id: 49,
+    citation: "Wismont, J. M. (2000). The lived pregnancy experience of women in prison. Journal of Midwifery & Women’s Health, 45(4), 292–300. https://doi.org/10.1016/S1526-9523(00)00034-9",
+    title: "The Lived Pregnancy Experience of Women in Prison",
+    authors_year: "Wismont (2000)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Pregnancy in prison / lived experience",
+    articleFile: "articles/the-lived-pregnancy-experience-of-women-in-prison.pdf",
+    supportClaim: "Background lived-experience source for pregnancy in prison. Useful for showing how incarceration shapes embodiment, vulnerability, and motherhood before release.",
+    use: "Background lived-experience source for pregnancy in prison. Useful for showing how incarceration shapes embodiment, vulnerability, and motherhood before release."
+  },
+  {
+    id: 50,
+    citation: "Abbott, L., Scott, T., Thomas, H., & Weston, K. (2020). Pregnancy and childbirth in English prisons: Institutional ignominy and the pains of imprisonment. Sociology of Health & Illness, 42(3), 660–675. https://doi.org/10.1111/1467-9566.13052",
+    title: "Pregnancy and Childbirth in English Prisons: Institutional Ignominy and the Pains of Imprisonment",
+    authors_year: "Abbott, Scott, Thomas, & Weston (2020)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Pregnancy / childbirth / prison pains",
+    articleFile: "articles/pregnancy-and-childbirth-in-english-prisons.pdf",
+    supportClaim: "Background source for prison pregnancy and childbirth experiences, including how institutional confinement intensifies the pains of imprisonment.",
+    use: "Background source for prison pregnancy and childbirth experiences, including how institutional confinement intensifies the pains of imprisonment."
+  },
+  {
+    id: 51,
+    citation: "Abbott, L. (2023). Compulsory separation of women prisoners from their babies following childbirth: Uncertainty, loss and disenfranchised grief. Sociology of Health & Illness, 45(5), 971–988. https://doi.org/10.1111/1467-9566.13423",
+    title: "Compulsory Separation of Women Prisoners From Their Babies Following Childbirth: Uncertainty, Loss and Disenfranchised Grief",
+    authors_year: "Abbott (2023)",
+    type: "Qualitative Study",
+    peer_reviewed: "Yes",
+    category: "Family separation / childbirth / prison motherhood",
+    articleFile: "articles/compulsory-separation-of-women-prisoners-from-their-babies-following-childbirth.pdf",
+    supportClaim: "Highly relevant for family separation and the emotional afterlife of incarceration. It supports the thesis focus on motherhood, grief, and family rebuilding.",
+    use: "Highly relevant for family separation and the emotional afterlife of incarceration. It supports the thesis focus on motherhood, grief, and family rebuilding."
+  },
+  {
+    id: 52,
+    citation: "Turney, K. (2014). Stress proliferation across generations? Examining the relationship between parental incarceration and childhood health. Journal of Health and Social Behavior, 55(3), 302–319. https://doi.org/10.1177/0022146514544173",
+    title: "Stress Proliferation Across Generations? Examining the Relationship Between Parental Incarceration and Childhood Health",
+    authors_year: "Turney (2014)",
+    type: "Quantitative Study",
+    peer_reviewed: "Yes",
+    category: "Parental incarceration / child health / intergenerational stress",
+    articleFile: "articles/stress-proliferation-across-generations-parental-incarceration-childhood-health.pdf",
+    supportClaim: "Important for showing how incarceration affects children and families across generations, supporting the family stability and system afterlife portions of the thesis.",
+    use: "Important for showing how incarceration affects children and families across generations, supporting the family stability and system afterlife portions of the thesis."
+  },
+  {
+    id: 53,
+    citation: "Williams, L. E., Schulte-Day, S., & Day, S. (2006). Pregnant in prison: The incarcerated woman’s experience: A preliminary descriptive study. Journal of Correctional Health Care, 12(2), 78–88.",
+    title: "Pregnant in Prison: The Incarcerated Woman’s Experience: A Preliminary Descriptive Study",
+    authors_year: "Williams, Schulte-Day, & Day (2006)",
+    type: "Descriptive Study",
+    peer_reviewed: "Yes",
+    category: "Pregnancy in prison / incarcerated women’s experience",
+    articleFile: "articles/pregnant-in-prison-the-incarcerated-womans-experience.pdf",
+    supportClaim: "Background source on incarcerated pregnancy experiences. Useful for personal narrative context, but not central to the revised post-release motherhood focus.",
+    use: "Background source on incarcerated pregnancy experiences. Useful for personal narrative context, but not central to the revised post-release motherhood focus."
+  },
+  {
+    id: 54,
+    citation: "Gelman, A., Fagan, J., & Kiss, A. (2007). An analysis of the New York City Police Department’s stop-and-frisk policy in the context of claims of racial bias. Journal of the American Statistical Association, 102(479), 813–823. https://doi.org/10.1198/016214506000001040",
+    title: "An Analysis of the New York City Police Department’s Stop-and-Frisk Policy in the Context of Claims of Racial Bias",
+    authors_year: "Gelman, Fagan, & Kiss (2007)",
+    type: "Quantitative Study",
+    peer_reviewed: "Yes",
+    category: "Policing / racial bias / system contact",
+    articleFile: "articles/analysis-of-nypd-stop-and-frisk-policy-racial-bias.pdf",
+    supportClaim: "Background source for racialized system contact and policing. Useful for explaining how criminalization begins before incarceration and continues through surveillance.",
+    use: "Background source for racialized system contact and policing. Useful for explaining how criminalization begins before incarceration and continues through surveillance."
+  },
+  {
+    id: 55,
+    citation: "Mitchell, O., & Caudy, M. S. (2015). Examining racial disparities in drug arrests. Justice Quarterly, 32(2), 288–313. https://doi.org/10.1080/07418825.2012.761721",
+    title: "Examining Racial Disparities in Drug Arrests",
+    authors_year: "Mitchell & Caudy (2015)",
+    type: "Quantitative Study",
+    peer_reviewed: "Yes",
+    category: "Drug arrests / racial disparities / system contact",
+    articleFile: "articles/examining-racial-disparities-in-drug-arrests.pdf",
+    supportClaim: "Background source for racialized drug enforcement and system contact. Useful for the criminalization backdrop of Black motherhood after incarceration.",
+    use: "Background source for racialized drug enforcement and system contact. Useful for the criminalization backdrop of Black motherhood after incarceration."
+  },
+  {
+    id: 56,
+    citation: "Milner, A. N., George, B. J., & Allison, D. B. (2016). Black and Hispanic men perceived to be large are at increased risk for police frisk, search, and force. PLOS ONE, 11(1), e0147158. https://doi.org/10.1371/journal.pone.0147158",
+    title: "Black and Hispanic Men Perceived to Be Large Are at Increased Risk for Police Frisk, Search, and Force",
+    authors_year: "Milner, George, & Allison (2016)",
+    type: "Quantitative Study",
+    peer_reviewed: "Yes",
+    category: "Policing / racialized perception / system contact",
+    articleFile: "articles/black-and-hispanic-men-perceived-to-be-large-police-frisk-search-force.pdf",
+    supportClaim: "Background source for racialized policing and embodied suspicion. Less central to Black motherhood, but useful for broader system-contact context.",
+    use: "Background source for racialized policing and embodied suspicion. Less central to Black motherhood, but useful for broader system-contact context."
   }
 ];
 
@@ -466,7 +777,7 @@ function normalizeUploadedSource(record) {
     status: "Need Review",
     priority: mapPriority(record),
     tags: buildTags(record),
-    supportClaim: supportClaims[sourceKey] || "",
+    supportClaim: record.supportClaim || supportClaims[sourceKey] || "",
     abstract: assignmentReview.abstract || "",
     problem: assignmentReview.problem || "",
     researchQuestion: assignmentReview.researchQuestion || "",
@@ -484,6 +795,8 @@ function normalizeUploadedSource(record) {
 }
 
 function mapArticleFile(record) {
+  if (record.articleFile) return record.articleFile;
+
   const title = normalizeTitle(record.title);
   const fileMap = new Map([
     [
@@ -588,22 +901,34 @@ function extractLink(citation) {
 
 function mapLiteratureCategory(record) {
   const text = `${record.title} ${record.category} ${record.use}`.toLowerCase();
-  if (text.includes("research gap")) return "Research Gap / Need for Phenomenological Study";
-  if (text.includes("mother")) return "Motherhood, Family Separation, and Surveillance";
-  if (text.includes("shackling") || text.includes("medical") || text.includes("health care")) {
-    return "Medical Neglect, Shackling, and Bodily Control";
+  if (text.includes("research gap") || text.includes("autoethnographic") || text.includes("qualitative methods") || text.includes("methodological") || text.includes("research design") || text.includes("service user involvement")) {
+    return "Research Gap / Autoethnographic Case Study";
   }
-  if (text.includes("pregnancy") || text.includes("pregnant") || text.includes("maternal")) {
-    return "Pregnancy and Incarceration";
+  if (text.includes("abolition") || text.includes("community support") || text.includes("community-based")) {
+    return "Abolitionist Care, Practice, and Community Support";
+  }
+  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact") || text.includes("surveillance")) {
+    return "System Contact, Surveillance, and Criminalization After Release";
+  }
+  if (text.includes("separation") || text.includes("babies") || text.includes("childhood health") || text.includes("parental incarceration") || text.includes("family rebuilding")) {
+    return "Family Rebuilding, Separation, and Reunification";
+  }
+  if (text.includes("pregnancy") || text.includes("pregnant") || text.includes("childbirth") || text.includes("reproductive control") || text.includes("reproductive coercion") || text.includes("shackling") || text.includes("health care")) {
+    return "Pregnancy and Reproductive Justice Background";
+  }
+  if (text.includes("reentry") || text.includes("release") || text.includes("postrelease") || text.includes("coming home") || text.includes("living on the outside")) {
+    return "Post-Incarceration Motherhood and Reentry";
+  }
+  if (text.includes("housing") || text.includes("employment") || text.includes("stigma") || text.includes("collateral") || text.includes("trauma") || text.includes("substance")) {
+    return "Stigma, Housing, Employment, and Collateral Consequences";
+  }
+  if (text.includes("family") || text.includes("mother") || text.includes("maternal") || text.includes("parenting")) {
+    return "Family Rebuilding, Separation, and Reunification";
   }
   if (text.includes("black feminist") || text.includes("reproductive justice") || text.includes("reproductive autonomy")) {
-    return "Black Feminist Theory and Reproductive Justice";
+    return "Black Feminist Theory and Black Motherhood";
   }
-  if (text.includes("plantation") || text.includes("reproductive control") || text.includes("white supremacy")) {
-    return "Historical Reproductive Control: Plantation to Prison";
-  }
-  if (text.includes("abolition")) return "Abolitionist Consciousness and System Rejection";
-  return "Criminalization of Black Women";
+  return "System Contact, Surveillance, and Criminalization After Release";
 }
 
 function mapStudyType(type) {
@@ -611,6 +936,9 @@ function mapStudyType(type) {
   if (text.includes("scoping")) return "Scoping Review";
   if (text.includes("systematic")) return "Systematic Review";
   if (text.includes("meta-synthesis")) return "Qualitative Meta-Synthesis";
+  if (text.includes("methodological")) return "Methodological Review";
+  if (text.includes("descriptive")) return "Descriptive Study";
+  if (text.includes("editorial") || text.includes("commentary") || text.includes("essay")) return "Editorial / Commentary";
   if (text.includes("mixed")) return "Mixed-Methods Study";
   if (text.includes("qualitative")) return "Qualitative Study";
   if (text.includes("quantitative") || text.includes("quasi") || text.includes("prospective")) return "Quantitative Study";
@@ -622,6 +950,11 @@ function mapStudyType(type) {
 function mapLens(record) {
   const text = `${record.title} ${record.category} ${record.use}`.toLowerCase();
   if (text.includes("black feminist")) return "Black Feminist Theory";
+  if (text.includes("method") || text.includes("research design") || text.includes("service user involvement")) return "Research Methods";
+  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact")) return "System Contact";
+  if (text.includes("mother") || text.includes("maternal") || text.includes("parenting")) return "Motherhood Studies";
+  if (text.includes("reentry") || text.includes("release") || text.includes("postrelease") || text.includes("coming home")) return "Reentry";
+  if (text.includes("housing") || text.includes("employment") || text.includes("stigma") || text.includes("collateral")) return "Collateral Consequences";
   if (text.includes("reproductive justice") || text.includes("pregnancy justice")) return "Reproductive Justice";
   if (text.includes("intersectional") || text.includes("gendered racism")) return "Intersectionality";
   if (text.includes("structural") || text.includes("white supremacy") || text.includes("racial")) return "Structural Racism";
@@ -633,8 +966,8 @@ function mapLens(record) {
 
 function mapPriority(record) {
   const text = `${record.use} ${record.category}`.toLowerCase();
-  if (text.includes("core source") || text.includes("major anchor")) return "High";
-  if (text.includes("potential") || text.includes("supports") || text.includes("useful updated")) return "Medium";
+  if (text.includes("core source") || text.includes("major anchor") || text.includes("strong source") || text.includes("strongest") || text.includes("directly relevant") || text.includes("important for") || text.includes("critical lens")) return "High";
+  if (text.includes("potential") || text.includes("supports") || text.includes("useful") || text.includes("helpful")) return "Medium";
   return "Low";
 }
 

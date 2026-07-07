@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7 in 10: NYS Incarcerated Mothers Dashboard (Confirmed Counts)</title>
+  <style>
+    :root{
+      --ink:#10293f;
+      --teal:#0b8f88;
+      --teal-deep:#0a6f6a;
+      --teal-soft:#47b8af;
+      --aqua:#8fd8cf;
+      --bg:#edf6f9;
+      --panel:#ffffff;
+      --rule:#cfe0e8;
+      --slate:#375670;
+      --muted:#5f768a;
+      --pill:#e7f3f5;
+      --warn:#dfe9ee;
+      --shadow:0 10px 24px rgba(16,41,63,.11);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 420px at 50% -220px, rgba(71,184,175,.2), transparent 72%),
+        var(--bg);
+      color:var(--ink);
+      font-family:Arial,Helvetica,sans-serif;
+      line-height:1.45;
+    }
+    header{
+      background:linear-gradient(120deg,#fbfeff 0%,#e5f6f4 52%,#e6eff6 100%);
+      border-bottom:1px solid var(--rule);
+      padding:34px 22px 30px;
+    }
+    .top-link{
+      display:inline-block;
+      margin-bottom:14px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--teal-deep);
+      border:1px solid #c9dce6;
+      background:#f7fbfd;
+      border-radius:999px;
+      padding:7px 12px;
+      font-weight:700;
+      text-decoration:none;
+      transition:all .18s ease;
+    }
+    .top-link:hover,
+    .top-link:focus{
+      color:#fff;
+      background:var(--teal-deep);
+      border-color:var(--teal-deep);
+    }
+    header h1{
+      margin:0 0 10px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:38px;
+      line-height:1.05;
+      color:var(--ink);
+      letter-spacing:.01em;
+    }
+    header p{
+      margin:0;
+      color:var(--slate);
+      max-width:1080px;
+      font-size:15px;
+    }
+    .series-stop-note{
+      margin:12px 0 0;
+      max-width:1080px;
+      font-size:13px;
+      color:#34526a;
+      background:#f3fafc;
+      border:1px solid #d3e6ee;
+      border-left:4px solid var(--teal);
+      border-radius:8px;
+      padding:9px 11px;
+    }
+    main{
+      max-width:1220px;
+      margin:0 auto;
+      padding:18px;
+    }
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--rule);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:16px;
+    }
+    h2{
+      margin:0 0 7px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:26px;
+      line-height:1.1;
+      color:var(--ink);
+    }
+    h3{
+      margin:0 0 8px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:20px;
+      line-height:1.15;
+      color:var(--ink);
+    }
+    .note{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:14px;
+      align-items:center;
+    }
+    .hero-copy h2{
+      font-size:38px;
+      line-height:1.05;
+      margin-bottom:10px;
+    }
+    .hero-copy .kicker{
+      display:inline-block;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--teal-deep);
+      background:#e5f7f5;
+      border:1px solid #bde4df;
+      border-radius:999px;
+      padding:5px 10px;
+      margin-bottom:10px;
+    }
+    .hero-copy p{
+      margin:0;
+      color:var(--slate);
+      font-size:15px;
+      max-width:700px;
+    }
+    .hero-dots-wrap{
+      border:1px solid var(--rule);
+      border-radius:10px;
+      background:linear-gradient(160deg,#fcfeff 0%,#f1f8fb 100%);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-dots-wrap:before{
+      content:'';
+      position:absolute;
+      right:-30px;
+      top:-36px;
+      width:165px;
+      height:165px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(71,184,175,.28) 0%, rgba(71,184,175,0) 72%);
+      pointer-events:none;
+    }
+    .hero-dots-title{
+      margin:0 0 8px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .hero-graphic-img{
+      display:block;
+      width:100%;
+      border:1px solid #d7e5ec;
+      border-radius:9px;
+      box-shadow:0 7px 16px rgba(16,41,63,.1);
+      margin-bottom:10px;
+    }
+    .hero-graphic-note{
+      margin:0 0 10px;
+      color:var(--slate);
+      font-size:12px;
+      font-weight:700;
+    }
+    .hero-dots{
+      display:grid;
+      grid-template-columns:repeat(10,minmax(24px,1fr));
+      gap:8px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:100%;
+      aspect-ratio:1 / 1;
+      border-radius:50%;
+      background:#d5e2ea;
+      border:1px solid #c7d8e2;
+    }
+    .dot.active{
+      background:var(--teal);
+      border-color:var(--teal-deep);
+    }
+    .hero-dots-caption{
+      margin:0;
+      color:var(--slate);
+      font-size:13px;
+      font-weight:700;
+    }
+    .controls{
+      display:grid;
+      grid-template-columns:1fr 1fr auto;
+      gap:12px;
+      align-items:end;
+    }
+    .controls label{
+      display:block;
+      margin:0 0 6px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .controls select,
+    .controls button{
+      width:100%;
+      padding:9px;
+      border:1px solid var(--rule);
+      border-radius:7px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:700;
+    }
+    .controls button{
+      background:linear-gradient(180deg,#0d8f88 0%,#0a7f79 100%);
+      border-color:#0a7570;
+      color:#f4fbfc;
+      cursor:pointer;
+      min-width:176px;
+    }
+    .controls button:hover{filter:brightness(1.06)}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--rule);
+      border-radius:9px;
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:'';
+      position:absolute;
+      left:0;right:0;top:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--teal-soft),var(--aqua));
+    }
+    .card .label{
+      font-size:10px;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .card .num{
+      margin-top:6px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:31px;
+      color:var(--ink);
+      line-height:1;
+    }
+    .card .sub{
+      margin-top:6px;
+      font-size:11px;
+      color:var(--slate);
+    }
+    .grid-two{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .chart{
+      width:100%;
+      height:360px;
+      display:block;
+      overflow:visible;
+      background:linear-gradient(180deg,#ffffff 0%,#f6fbfd 100%);
+      border:1px solid #ddeaf1;
+      border-radius:8px;
+    }
+    .chart.tall{height:420px}
+    .profile-list{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+    .profile-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      border:1px solid #dfeaf0;
+      border-radius:8px;
+      padding:9px 10px;
+      background:#fff;
+    }
+    .profile-k{
+      color:var(--muted);
+      font-size:11px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .profile-v{
+      color:var(--ink);
+      font-size:14px;
+      font-weight:700;
+      text-align:right;
+      white-space:nowrap;
+    }
+    .svg-text{fill:#42576a;font-size:12px;font-family:Arial,Helvetica,sans-serif}
+    .axis{stroke:#9eb0bd;stroke-width:1}
+    .gridline{stroke:#e8f0f3;stroke-width:1}
+    .trend-line{fill:none;stroke:var(--teal);stroke-width:3}
+    .trend-dot{fill:var(--teal);stroke:#fff;stroke-width:1.6}
+    .trend-dot.selected{r:6}
+    .legend-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:middle;margin-right:6px}
+    .tooltip{
+      position:absolute;
+      pointer-events:none;
+      z-index:10;
+      min-width:230px;
+      max-width:300px;
+      background:#fff;
+      border:1px solid var(--rule);
+      border-left:4px solid var(--teal);
+      border-radius:8px;
+      box-shadow:0 10px 22px rgba(22,47,74,.15);
+      padding:10px 11px;
+      display:none;
+    }
+    .tooltip .t-title{
+      margin:0 0 6px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:20px;
+      line-height:1;
+      color:var(--ink);
+    }
+    .tooltip-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:4px 10px;
+      align-items:baseline;
+    }
+    .tooltip-grid .k{
+      font-size:10px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .tooltip-grid .v{
+      font-size:13px;
+      color:var(--slate);
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .table-scroll{
+      border:1px solid #e8f0f3;
+      border-radius:8px;
+      overflow:auto;
+      max-height:430px;
+    }
+    table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
+    th,td{padding:8px;border-bottom:1px solid #edf3f7;text-align:right;white-space:nowrap}
+    th:first-child,td:first-child{text-align:left}
+    th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+    .footer{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.6;
+      background:#fff;
+      border:1px solid var(--rule);
+      border-left:4px solid var(--teal);
+      border-radius:10px;
+      padding:13px 14px;
+    }
+    .footer-email{
+      color:#0a6f6a;
+      font-weight:700;
+      text-decoration:none;
+      border-bottom:1px solid #9fcfc9;
+    }
+    .footer-email:hover,
+    .footer-email:focus{
+      color:#085650;
+    }
+    .source-list a{color:var(--teal-deep);text-decoration:none;border-bottom:1px solid #9fcfc9}
+    .source-list a:hover{color:#0a6f6a}
+    .source-list div{margin:0 0 6px}
+    @media (max-width:1080px){
+      .hero{grid-template-columns:1fr}
+      .grid-two{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .controls{grid-template-columns:1fr 1fr}
+      .controls button{grid-column:1 / -1}
+    }
+    @media (max-width:640px){
+      header h1{font-size:31px}
+      .cards{grid-template-columns:1fr}
+      .controls{grid-template-columns:1fr}
+      .hero-dots{grid-template-columns:repeat(5,minmax(24px,1fr));}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="top-link" href="index.html">← Back to Portfolio</a>
+    <h1>7 in 10: NYS Incarcerated Mothers Dashboard</h1>
+    <p>Confirmed NYS DOCCS counts only (2014-2021). This dashboard centers one core pattern: about 7 in 10 women in custody are mothers, with year-to-year variation and changing overall custody totals.</p>
+    <p class="series-stop-note"><strong>Why this series stops in 2021:</strong> DOCCS has not produced the post-2021 published Table 7 series used for this dashboard’s mothers-count measure. The project therefore ends at the last produced/confirmed year in that sequence (2021) and does not estimate later values.</p>
+  </header>
+
+  <main>
+    <section class="panel hero">
+      <div class="hero-copy">
+        <span class="kicker">Core Finding</span>
+        <h2 id="heroHeadline">About 7 in 10 women in NY custody are mothers</h2>
+        <p id="heroSummary"></p>
+      </div>
+      <div class="hero-dots-wrap" aria-label="7 in 10 visual">
+        <p class="hero-dots-title">Graphic Snapshot</p>
+        <img class="hero-graphic-img" src="fig0_7in10_hero.png" alt="Graphic showing approximately 7 out of 10 women in NY custody are mothers" />
+        <p class="hero-graphic-note">Use this as the headline visual when sharing or embedding the dashboard.</p>
+        <div class="hero-dots" id="heroDots"></div>
+        <p class="hero-dots-caption" id="heroDotsCaption"></p>
+      </div>
+    </section>
+
+    <section class="panel controls" aria-label="Dashboard controls">
+      <div>
+        <label for="yearSelect">Selected year</label>
+        <select id="yearSelect"></select>
+      </div>
+      <div>
+        <label for="seriesSelect">Trend series</label>
+        <select id="seriesSelect">
+          <option value="total" selected>Mothers share of all women</option>
+          <option value="known">Mothers share of known-status records</option>
+        </select>
+      </div>
+      <div>
+        <label>Data export</label>
+        <button id="downloadBtn" type="button">Download Confirmed Data (CSV)</button>
+      </div>
+    </section>
+
+    <section class="cards" id="kpiCards"></section>
+
+    <section class="panel" id="trendPanel" style="position:relative;">
+      <h2>Mothers Share Trend vs 70% Benchmark</h2>
+      <p class="note">Hover points for details. Click a point to update the selected-year profile and KPI cards.</p>
+      <svg id="trendChart" class="chart tall" role="img" aria-label="Mothers share benchmark trend"></svg>
+      <div id="trendTooltip" class="tooltip" aria-live="polite"></div>
+    </section>
+
+    <section class="grid-two">
+      <div class="panel">
+        <h3>Selected-Year Custody Composition</h3>
+        <p class="note">Pie chart updates with the selected year and shows mothers (1+ children), no-children records, and unknown child-status records from DOCCS Table 7.</p>
+        <svg id="sentenceChart" class="chart" role="img" aria-label="Pie chart of selected year custody composition"></svg>
+      </div>
+      <div class="panel">
+        <h3 id="profileYearHeading">Selected Year Profile</h3>
+        <p class="note">Confirmed counts and context for the selected year.</p>
+        <div class="profile-list" id="yearProfile"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Where Women Are Held in NYS</h3>
+      <p class="note">Facility context map for women’s facilities in this series period: Albion (Orleans County), Bedford Hills (Westchester County), and Taconic (Westchester County). Location markers are map-context points, not admissions shares.</p>
+      <svg id="facilityMap" class="chart tall" role="img" aria-label="Map showing NYS women correctional facility locations"></svg>
+    </section>
+
+    <section class="panel">
+      <h3>Confirmed Table Values</h3>
+      <p class="note">Directly transcribed from NYS DOCCS under custody report tables.</p>
+      <div class="table-scroll">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Women total</th>
+              <th>Mothers (1+ children)</th>
+              <th>No children</th>
+              <th>Unknown</th>
+              <th>Mothers share (total)</th>
+              <th>Mothers share (known)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Source Documents</h3>
+      <div class="source-list" id="sourceList"></div>
+    </section>
+
+    <div class="footer">
+      <strong>Method note:</strong> Mothers counts come from NYS DOCCS Under Custody Report Table 7 (number of living children by sex). Age and sentence context fields are from the same report year tables for women. The displayed series ends at 2021 because DOCCS has not produced the subsequent published Table 7 series used by this dashboard. No modeled estimates are used.<br/>
+      <strong>Contact:</strong> <a class="footer-email" href="mailto:raven.leigertwood@jjay.cuny.edu">raven.leigertwood@jjay.cuny.edu</a>
+    </div>
+  </main>
+
+<script>
+const DATA = {"rows":[{"year":2014,"no_children":710,"child_1":518,"child_2":447,"child_3":319,"child_4_or_more":399,"unknown_children_status":20,"female_total":2413,"female_avg_age":37.7,"female_avg_min_sentence_months":74.7,"female_avg_max_sentence_months":99.1,"source_url":"https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2014.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2014 (Table 7)","mothers_one_or_more_children":1683,"known_children_status_total":2393,"mothers_share_of_female_total_pct":69.74720265230005,"mothers_share_of_known_status_pct":70.3301295445048},{"year":2015,"no_children":662,"child_1":535,"child_2":464,"child_3":309,"child_4_or_more":403,"unknown_children_status":16,"female_total":2389,"female_avg_age":37.6,"female_avg_min_sentence_months":73.2,"female_avg_max_sentence_months":97.4,"source_url":"https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2015.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2015 (Table 7)","mothers_one_or_more_children":1711,"known_children_status_total":2373,"mothers_share_of_female_total_pct":71.61992465466722,"mothers_share_of_known_status_pct":72.10282343025706},{"year":2016,"no_children":700,"child_1":532,"child_2":473,"child_3":313,"child_4_or_more":419,"unknown_children_status":6,"female_total":2443,"female_avg_age":37.3,"female_avg_min_sentence_months":70.8,"female_avg_max_sentence_months":94.5,"source_url":"https://doccs.ny.gov/system/files/documents/2019/09/UnderCustody_Report_2016.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2016 (Table 7)","mothers_one_or_more_children":1737,"known_children_status_total":2437,"mothers_share_of_female_total_pct":71.1011051985264,"mothers_share_of_known_status_pct":71.27615921214608},{"year":2017,"no_children":643,"child_1":518,"child_2":478,"child_3":319,"child_4_or_more":384,"unknown_children_status":12,"female_total":2354,"female_avg_age":37.7,"female_avg_min_sentence_months":73.4,"female_avg_max_sentence_months":97.2,"source_url":"https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202017.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2017 (Table 7)","mothers_one_or_more_children":1699,"known_children_status_total":2342,"mothers_share_of_female_total_pct":72.17502124044181,"mothers_share_of_known_status_pct":72.54483347566183},{"year":2018,"no_children":635,"child_1":510,"child_2":471,"child_3":345,"child_4_or_more":384,"unknown_children_status":9,"female_total":2354,"female_avg_age":37.9,"female_avg_min_sentence_months":74.5,"female_avg_max_sentence_months":97.4,"source_url":"https://doccs.ny.gov/system/files/documents/2019/09/Under%20Custody%20Report%202018.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2018 (Table 7)","mothers_one_or_more_children":1710,"known_children_status_total":2345,"mothers_share_of_female_total_pct":72.64231096006797,"mothers_share_of_known_status_pct":72.92110874200426},{"year":2019,"no_children":607,"child_1":460,"child_2":422,"child_3":324,"child_4_or_more":342,"unknown_children_status":34,"female_total":2189,"female_avg_age":38.0,"female_avg_min_sentence_months":77.6,"female_avg_max_sentence_months":99.4,"source_url":"https://doccs.ny.gov/system/files/documents/2021/05/under-custody-report-2019.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2019 (Table 7)","mothers_one_or_more_children":1548,"known_children_status_total":2155,"mothers_share_of_female_total_pct":70.71722247601645,"mothers_share_of_known_status_pct":71.83294663573085},{"year":2020,"no_children":575,"child_1":412,"child_2":378,"child_3":297,"child_4_or_more":307,"unknown_children_status":20,"female_total":1989,"female_avg_age":38.0,"female_avg_min_sentence_months":81.1,"female_avg_max_sentence_months":102.6,"source_url":"https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2020.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2020 (Table 7)","mothers_one_or_more_children":1394,"known_children_status_total":1969,"mothers_share_of_female_total_pct":70.08547008547008,"mothers_share_of_known_status_pct":70.79735906551548},{"year":2021,"no_children":392,"child_1":249,"child_2":262,"child_3":206,"child_4_or_more":203,"unknown_children_status":3,"female_total":1315,"female_avg_age":38.9,"female_avg_min_sentence_months":102.9,"female_avg_max_sentence_months":125.0,"source_url":"https://doccs.ny.gov/system/files/documents/2022/04/under-custody-report-for-2021.pdf","source_label":"DOCCS Under Custody Report: As of January 1, 2021 (Table 7)","mothers_one_or_more_children":920,"known_children_status_total":1312,"mothers_share_of_female_total_pct":69.96197718631178,"mothers_share_of_known_status_pct":70.1219512195122}]};
+
+const fmtInt = new Intl.NumberFormat("en-US", {maximumFractionDigits:0});
+const fmtPct = new Intl.NumberFormat("en-US", {minimumFractionDigits:1, maximumFractionDigits:1});
+const fmtPct2 = new Intl.NumberFormat("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+const num = (v) => fmtInt.format(Math.round(v || 0));
+const pct = (v) => fmtPct.format(v || 0) + "%";
+const pct2 = (v) => fmtPct2.format(v || 0) + "%";
+
+function clear(el){ while (el.firstChild) el.removeChild(el.firstChild); }
+function svgEl(tag, attrs = {}) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
+  return el;
+}
+function text(svg,x,y,val,cls="svg-text",anchor="middle") {
+  const t = svgEl("text", {x,y,class:cls,"text-anchor":anchor});
+  t.textContent = val;
+  svg.appendChild(t);
+  return t;
+}
+function dims(svg){
+  const r = svg.getBoundingClientRect();
+  return {w: Math.max(340, r.width), h: Math.max(220, r.height)};
+}
+
+const rows = DATA.rows.map(r => ({
+  year: +r.year,
+  women_total: +r.female_total,
+  mothers: +r.mothers_one_or_more_children,
+  no_children: +r.no_children,
+  unknown: +r.unknown_children_status,
+  known_total: +r.known_children_status_total,
+  mothers_share_total: +r.mothers_share_of_female_total_pct,
+  mothers_share_known: +r.mothers_share_of_known_status_pct,
+  avg_age: +r.female_avg_age,
+  avg_min_sentence_months: +r.female_avg_min_sentence_months,
+  avg_max_sentence_months: +r.female_avg_max_sentence_months,
+  source_url: r.source_url,
+  source_label: r.source_label
+})).sort((a,b) => a.year - b.year);
+
+const avgShare = rows.reduce((s,r) => s + r.mothers_share_total, 0) / rows.length;
+const avgShareRounded = Math.round(avgShare);
+const COLORS = {
+  ink: "#10293f",
+  teal: "#0b8f88",
+  tealSoft: "#47b8af",
+  tealHalo: "#8fd8cf",
+  noChildren: "#97b7cb",
+  unknown: "#dfe9ef",
+  sentenceMin: "#53789a",
+  sentenceMax: "#0a6f6a",
+  mapOutline: "#90a8b9",
+  legendStroke: "#cfdde6"
+};
+
+const FACILITIES = [
+  {
+    name: "Albion Correctional Facility",
+    county: "Orleans",
+    lat: 43.246,
+    lon: -78.194,
+    type: "Medium security (female)",
+    source_url: "https://doccs.ny.gov/location/albion-correctional-facility"
+  },
+  {
+    name: "Bedford Hills Correctional Facility",
+    county: "Westchester",
+    lat: 41.241,
+    lon: -73.696,
+    type: "Maximum security (female)",
+    source_url: "https://doccs.ny.gov/location/bedford-hills-correctional-facility"
+  },
+  {
+    name: "Taconic Correctional Facility",
+    county: "Westchester",
+    lat: 41.236,
+    lon: -73.688,
+    type: "Medium security (female)",
+    source_url: "https://doccs.ny.gov/location/taconic-correctional-facility"
+  }
+];
+
+const yearSelect = document.getElementById("yearSelect");
+const seriesSelect = document.getElementById("seriesSelect");
+const trendTooltip = document.getElementById("trendTooltip");
+const trendPanel = document.getElementById("trendPanel");
+
+yearSelect.innerHTML = rows.map((r,i) => `<option value="${r.year}" ${i===rows.length-1?"selected":""}>${r.year}</option>`).join("");
+
+function initHero(){
+  document.getElementById("heroSummary").textContent = `Period average is ${pct(avgShare)} across confirmed 2014-2021 NYS counts. Range: ${pct(Math.min(...rows.map(r=>r.mothers_share_total)))} to ${pct(Math.max(...rows.map(r=>r.mothers_share_total)))}.`;
+  const dotsWrap = document.getElementById("heroDots");
+  dotsWrap.innerHTML = "";
+  for (let i = 1; i <= 10; i++) {
+    const d = document.createElement("span");
+    d.className = `dot ${i <= 7 ? "active" : ""}`;
+    dotsWrap.appendChild(d);
+  }
+  document.getElementById("heroDotsCaption").textContent = `${avgShareRounded}% average mothers share (≈ 7 of 10 women).`;
+}
+
+function renderCards(selected){
+  const first = rows[0];
+  const last = rows[rows.length-1];
+  const cards = [
+    {label:"Period Average Mothers Share", num:pct(avgShare), sub:"Confirmed 2014-2021"},
+    {label:`Selected Year Mothers Count (${selected.year})`, num:num(selected.mothers), sub:`of ${num(selected.women_total)} women total`},
+    {label:"Change in Women Total (2014 to 2021)", num:num(last.women_total - first.women_total), sub:`${num(first.women_total)} to ${num(last.women_total)}`},
+    {label:"Selected Year Mothers Share", num:pct(selected.mothers_share_total), sub:"Share of all women in custody"}
+  ];
+  const wrap = document.getElementById("kpiCards");
+  wrap.innerHTML = cards.map(c => `
+    <div class="card">
+      <div class="label">${c.label}</div>
+      <div class="num">${c.num}</div>
+      <div class="sub">${c.sub}</div>
+    </div>
+  `).join("");
+}
+
+function showTooltip(row, evt){
+  trendTooltip.innerHTML = `
+    <div class="t-title">${row.year}</div>
+    <div class="tooltip-grid">
+      <div class="k">Mothers share (total)</div><div class="v">${pct2(row.mothers_share_total)}</div>
+      <div class="k">Mothers share (known)</div><div class="v">${pct2(row.mothers_share_known)}</div>
+      <div class="k">Mothers count</div><div class="v">${num(row.mothers)}</div>
+      <div class="k">Women total</div><div class="v">${num(row.women_total)}</div>
+      <div class="k">Avg age (women)</div><div class="v">${row.avg_age.toFixed(1)} years</div>
+      <div class="k">Avg max sentence</div><div class="v">${row.avg_max_sentence_months.toFixed(1)} months</div>
+    </div>
+  `;
+  trendTooltip.style.display = "block";
+  const pRect = trendPanel.getBoundingClientRect();
+  const tRect = trendTooltip.getBoundingClientRect();
+  let left = evt.clientX - pRect.left + 12;
+  let top = evt.clientY - pRect.top - tRect.height - 14;
+  if (left + tRect.width > pRect.width - 10) left = pRect.width - tRect.width - 10;
+  if (left < 10) left = 10;
+  if (top < 50) top = evt.clientY - pRect.top + 12;
+  trendTooltip.style.left = `${left}px`;
+  trendTooltip.style.top = `${top}px`;
+}
+function hideTooltip(){ trendTooltip.style.display = "none"; }
+
+function drawTrend(svg, selectedYear){
+  clear(svg);
+  hideTooltip();
+  const {w,h} = dims(svg);
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  const m = {l:66, r:24, t:20, b:46};
+
+  const mode = seriesSelect.value;
+  const valKey = mode === "known" ? "mothers_share_known" : "mothers_share_total";
+  const values = rows.map(r => r[valKey]);
+  const yMin = Math.floor((Math.min(...values, 69.6) - 0.8) * 10) / 10;
+  const yMax = Math.ceil((Math.max(...values, 72.8) + 0.8) * 10) / 10;
+
+  const x = (i) => m.l + (rows.length === 1 ? 0 : (i / (rows.length - 1)) * (w - m.l - m.r));
+  const y = (v) => h - m.b - ((v - yMin) / (yMax - yMin || 1)) * (h - m.t - m.b);
+
+  for (let i = 0; i <= 5; i++) {
+    const val = yMin + ((yMax - yMin) * i / 5);
+    const yy = y(val);
+    svg.appendChild(svgEl("line", {x1:m.l, y1:yy, x2:w-m.r, y2:yy, class:"gridline"}));
+    text(svg, m.l-9, yy+4, pct(val), "svg-text", "end");
+  }
+  svg.appendChild(svgEl("line", {x1:m.l, y1:h-m.b, x2:w-m.r, y2:h-m.b, class:"axis"}));
+  svg.appendChild(svgEl("line", {x1:m.l, y1:m.t, x2:m.l, y2:h-m.b, class:"axis"}));
+
+  const y70 = y(70);
+  const yAvg = y(avgShare);
+  svg.appendChild(svgEl("line", {x1:m.l, y1:y70, x2:w-m.r, y2:y70, stroke:COLORS.ink, "stroke-width":"2", "stroke-dasharray":"9 7"}));
+  svg.appendChild(svgEl("line", {x1:m.l, y1:yAvg, x2:w-m.r, y2:yAvg, stroke:COLORS.tealSoft, "stroke-width":"1.7", "stroke-dasharray":"3 8"}));
+
+  text(svg, w - m.r - 2, y70 - 7, "70% benchmark", "svg-text", "end");
+  text(svg, w - m.r - 2, yAvg - 7, `Period average: ${pct(avgShare)}`, "svg-text", "end");
+
+  const pathD = rows.map((r,i) => `${i?"L":"M"}${x(i)},${y(r[valKey])}`).join(" ");
+  svg.appendChild(svgEl("path", {d:pathD, class:"trend-line"}));
+
+  rows.forEach((r,i) => {
+    const cx = x(i);
+    const cy = y(r[valKey]);
+    const selected = r.year === selectedYear;
+
+    if (selected) {
+      svg.appendChild(svgEl("circle", {cx, cy, r:9, fill:"none", stroke:COLORS.tealHalo, "stroke-width":"2"}));
+    }
+    svg.appendChild(svgEl("circle", {cx, cy, r:selected?5.6:4.5, class:`trend-dot ${selected?"selected":""}`}));
+
+    const pointLabel = `${fmtPct.format(r[valKey])}%`;
+    text(svg, cx, cy-13, pointLabel, "svg-text", "middle");
+
+    const hit = svgEl("circle", {cx, cy, r:14, fill:"transparent", style:"cursor:pointer"});
+    hit.addEventListener("mouseenter", (evt) => showTooltip(r, evt));
+    hit.addEventListener("mousemove", (evt) => showTooltip(r, evt));
+    hit.addEventListener("mouseleave", hideTooltip);
+    hit.addEventListener("click", () => {
+      yearSelect.value = String(r.year);
+      render();
+    });
+    svg.appendChild(hit);
+
+    text(svg, cx, h - 18, String(r.year), "svg-text", "middle");
+  });
+
+  text(svg, m.l + 8, m.t + 15, mode === "known" ? "Series: known-status mothers share" : "Series: all women mothers share", "svg-text", "start");
+}
+
+function drawSentenceChart(svg, selectedYear){
+  clear(svg);
+  const {w,h} = dims(svg);
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  const m = {l:26, r:26, t:22, b:30};
+
+  const row = rows.find(r => r.year === selectedYear) || rows[rows.length - 1];
+  const total = row.women_total;
+
+  const slices = [
+    {label:"Mothers (1+ children)", value:row.mothers, color:"#0b8f88"},
+    {label:"No children", value:row.no_children, color:"#4f748f"},
+    {label:"Unknown child status", value:row.unknown, color:"#a7bccb"}
+  ];
+
+  const pieCx = m.l + (w - m.l - m.r) * 0.29;
+  const pieCy = m.t + (h - m.t - m.b) * 0.52;
+  const radius = Math.min((w - m.l - m.r) * 0.2, (h - m.t - m.b) * 0.35);
+
+  let angle = -Math.PI / 2;
+  slices.forEach(s => {
+    if (s.value <= 0) return;
+    const delta = (s.value / total) * Math.PI * 2;
+    const x1 = pieCx + radius * Math.cos(angle);
+    const y1 = pieCy + radius * Math.sin(angle);
+    const x2 = pieCx + radius * Math.cos(angle + delta);
+    const y2 = pieCy + radius * Math.sin(angle + delta);
+    const largeArc = delta > Math.PI ? 1 : 0;
+    const d = [
+      `M ${pieCx} ${pieCy}`,
+      `L ${x1} ${y1}`,
+      `A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}`,
+      "Z"
+    ].join(" ");
+    svg.appendChild(svgEl("path", {d, fill:s.color, stroke:"#ffffff", "stroke-width":"2"}));
+    angle += delta;
+  });
+
+  svg.appendChild(svgEl("circle", {
+    cx:pieCx, cy:pieCy, r:radius * 0.44,
+    fill:"#ffffff", stroke:"#d5e4ec", "stroke-width":"1.2"
+  }));
+  text(svg, pieCx, pieCy - 6, String(row.year), "svg-text", "middle");
+  text(svg, pieCx, pieCy + 12, `N = ${num(total)}`, "svg-text", "middle");
+
+  const lx = m.l + (w - m.l - m.r) * 0.56;
+  const ly = m.t + 28;
+  slices.forEach((s, i) => {
+    const y0 = ly + i * 56;
+    const share = (s.value / total) * 100;
+    svg.appendChild(svgEl("rect", {
+      x:lx, y:y0 - 11, width:16, height:16, rx:3, fill:s.color, stroke:COLORS.legendStroke
+    }));
+    text(svg, lx + 23, y0, s.label, "svg-text", "start");
+    text(svg, lx + 23, y0 + 18, `${num(s.value)} women (${pct2(share)})`, "svg-text", "start");
+  });
+
+  text(svg, m.l + 6, h - 10, `Sentence context (${row.year}): average minimum ${row.avg_min_sentence_months.toFixed(1)} months; average maximum ${row.avg_max_sentence_months.toFixed(1)} months.`, "svg-text", "start");
+}
+
+function drawFacilityMap(svg){
+  clear(svg);
+  const {w,h} = dims(svg);
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  const m = {l:58, r:26, t:24, b:48};
+  const lonMin = -79.95;
+  const lonMax = -71.75;
+  const latMin = 40.35;
+  const latMax = 45.10;
+  const x = (lon) => m.l + ((lon - lonMin) / (lonMax - lonMin)) * (w - m.l - m.r);
+  const y = (lat) => h - m.b - ((lat - latMin) / (latMax - latMin)) * (h - m.t - m.b);
+
+  svg.appendChild(svgEl("rect", {
+    x:m.l, y:m.t, width:w-m.l-m.r, height:h-m.t-m.b,
+    fill:"#f7fbfd", stroke:"#d7e5ed", rx:6
+  }));
+
+  for (let lat = 41; lat <= 45; lat++) {
+    const yy = y(lat);
+    svg.appendChild(svgEl("line", {x1:m.l, y1:yy, x2:w-m.r, y2:yy, stroke:"#e9f1f5", "stroke-width":"1"}));
+    text(svg, m.l - 8, yy + 4, `${lat}°N`, "svg-text", "end");
+  }
+  for (let lon = -79; lon <= -72; lon++) {
+    const xx = x(lon);
+    svg.appendChild(svgEl("line", {x1:xx, y1:m.t, x2:xx, y2:h-m.b, stroke:"#edf3f7", "stroke-width":"1"}));
+    text(svg, xx, h - 24, `${Math.abs(lon)}°W`, "svg-text", "middle");
+  }
+
+  const nyOutline = [
+    [-79.76,42.27],[-79.53,42.06],[-79.05,42.01],[-78.52,42.03],[-78.06,42.24],[-77.52,42.27],
+    [-77.00,42.35],[-76.42,42.46],[-75.94,42.78],[-75.63,43.13],[-75.33,43.45],[-74.96,44.05],
+    [-74.62,44.64],[-73.95,45.02],[-73.35,44.98],[-73.27,44.44],[-73.31,43.93],[-73.40,43.24],
+    [-73.55,42.83],[-73.67,42.53],[-73.90,42.28],[-74.32,41.95],[-74.74,41.35],[-73.96,40.98],
+    [-73.35,40.64],[-72.62,40.72],[-73.18,40.95],[-74.08,41.00],[-74.78,41.29],[-75.35,41.83],
+    [-76.08,42.00],[-77.12,41.99],[-78.23,42.00],[-79.02,42.00],[-79.53,42.06],[-79.76,42.27]
+  ];
+  const d = nyOutline.map((pt, i) => `${i ? "L" : "M"}${x(pt[0])},${y(pt[1])}`).join(" ") + " Z";
+  svg.appendChild(svgEl("path", {d, fill:"#e8f2f7", stroke:COLORS.mapOutline, "stroke-width":"1.5"}));
+
+  FACILITIES.forEach((f, i) => {
+    const px = x(f.lon);
+    const py = y(f.lat);
+    const markerColor = f.name.includes("Bedford") ? COLORS.sentenceMax : COLORS.teal;
+    svg.appendChild(svgEl("circle", {cx:px, cy:py, r:6.2, fill:markerColor, stroke:"#fff", "stroke-width":"1.6"}));
+    svg.appendChild(svgEl("circle", {cx:px, cy:py, r:10, fill:"none", stroke:markerColor, "stroke-width":"1.2", opacity:"0.35"}));
+    const labelX = i === 0 ? px + 10 : px + 10;
+    const labelY = i === 2 ? py + 16 : py - 10;
+    text(svg, labelX, labelY, `${f.name} (${f.county})`, "svg-text", "start");
+  });
+
+  const lx = m.l + 8;
+  const ly = m.t + 14;
+  text(svg, lx, ly, "Facility Markers", "svg-text", "start");
+  svg.appendChild(svgEl("circle", {cx:lx + 84, cy:ly - 4, r:4.4, fill:COLORS.sentenceMax, stroke:"#fff", "stroke-width":"1"}));
+  text(svg, lx + 93, ly, "Maximum", "svg-text", "start");
+  svg.appendChild(svgEl("circle", {cx:lx + 167, cy:ly - 4, r:4.4, fill:COLORS.teal, stroke:"#fff", "stroke-width":"1"}));
+  text(svg, lx + 176, ly, "Medium", "svg-text", "start");
+}
+
+function renderProfile(row){
+  document.getElementById("profileYearHeading").textContent = `Selected Year Profile: ${row.year}`;
+  const entries = [
+    ["Women total", num(row.women_total)],
+    ["Mothers (1+ children)", `${num(row.mothers)} (${pct(row.mothers_share_total)})`],
+    ["No children", `${num(row.no_children)} (${pct((row.no_children/row.women_total)*100)})`],
+    ["Unknown child status", `${num(row.unknown)} (${pct((row.unknown/row.women_total)*100)})`],
+    ["Avg age (women)", `${row.avg_age.toFixed(1)} years`],
+    ["Avg min sentence", `${row.avg_min_sentence_months.toFixed(1)} months`],
+    ["Avg max sentence", `${row.avg_max_sentence_months.toFixed(1)} months`]
+  ];
+  const wrap = document.getElementById("yearProfile");
+  wrap.innerHTML = entries.map(([k,v]) => `
+    <div class="profile-row">
+      <div class="profile-k">${k}</div>
+      <div class="profile-v">${v}</div>
+    </div>
+  `).join("");
+}
+
+function renderTable(){
+  const tbody = document.querySelector("#dataTable tbody");
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.year}</td>
+      <td>${num(r.women_total)}</td>
+      <td>${num(r.mothers)}</td>
+      <td>${num(r.no_children)}</td>
+      <td>${num(r.unknown)}</td>
+      <td>${pct2(r.mothers_share_total)}</td>
+      <td>${pct2(r.mothers_share_known)}</td>
+    </tr>
+  `).join("");
+}
+
+function renderSources(){
+  const wrap = document.getElementById("sourceList");
+  const yearly = rows.map(r =>
+    `<div><strong>${r.year}:</strong> <a href="${r.source_url}" target="_blank" rel="noopener noreferrer">${r.source_label}</a></div>`
+  ).join("");
+  const facilities = FACILITIES.map(f =>
+    `<div><strong>Facility context:</strong> <a href="${f.source_url}" target="_blank" rel="noopener noreferrer">${f.name}</a></div>`
+  ).join("");
+  wrap.innerHTML = `${yearly}<div style="margin-top:8px;font-weight:700;color:#4f6478;">Women facility location references</div>${facilities}`;
+}
+
+function setupDownload(){
+  document.getElementById("downloadBtn").addEventListener("click", () => {
+    const headers = [
+      "year",
+      "women_total",
+      "mothers_one_or_more_children",
+      "no_children",
+      "unknown_children_status",
+      "mothers_share_of_female_total_pct",
+      "mothers_share_of_known_status_pct",
+      "female_avg_age",
+      "female_avg_min_sentence_months",
+      "female_avg_max_sentence_months",
+      "source_url"
+    ];
+    const lines = [headers.join(",")];
+    rows.forEach(r => {
+      lines.push([
+        r.year,
+        r.women_total,
+        r.mothers,
+        r.no_children,
+        r.unknown,
+        r.mothers_share_total.toFixed(6),
+        r.mothers_share_known.toFixed(6),
+        r.avg_age.toFixed(1),
+        r.avg_min_sentence_months.toFixed(1),
+        r.avg_max_sentence_months.toFixed(1),
+        `"${r.source_url}"`
+      ].join(","));
+    });
+    const csv = lines.join("\n");
+    const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ny_mothers_confirmed_2014_2021_dashboard_export.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+}
+
+function render(){
+  const year = Number(yearSelect.value);
+  const selected = rows.find(r => r.year === year) || rows[rows.length - 1];
+  renderCards(selected);
+  drawTrend(document.getElementById("trendChart"), selected.year);
+  drawSentenceChart(document.getElementById("sentenceChart"), selected.year);
+  drawFacilityMap(document.getElementById("facilityMap"));
+  renderProfile(selected);
+}
+
+yearSelect.addEventListener("change", render);
+seriesSelect.addEventListener("change", render);
+window.addEventListener("resize", render);
+
+initHero();
+renderTable();
+renderSources();
+setupDownload();
+render();
+</script>
+</body>
+</html>
