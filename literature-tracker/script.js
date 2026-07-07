@@ -53,6 +53,34 @@ const articleStatuses = [
   "Verify File"
 ];
 
+const assignmentReviews = {
+  "cannabis decriminalization and racial disparity in arrests for cannabis possession": {
+    abstract: "This article examines whether cannabis decriminalization reduced racial disparities in cannabis possession arrests between Black and White people in the United States. Using FBI Uniform Crime Report data from 37 states between 2000 and 2019, the authors calculated cannabis possession arrest rates separately for Black and White adults and youths. They used a difference-in-differences design to compare states that decriminalized cannabis with states that did not. The study found that cannabis decriminalization was associated with substantial reductions in arrest rates for both Black and White adults and youths. Among adults, decriminalization was associated with an approximately 17% reduction in the Black-White arrest disparity, but no similar reduction was found among youths. The authors conclude that cannabis decriminalization may reduce overall arrests and may reduce racial disparity among adults, though racialized enforcement remains an important concern.",
+    problem: "The research problem is that Black people in the United States have been disproportionately arrested for cannabis possession despite similar rates of cannabis use compared with White people. Cannabis decriminalization has been promoted as a way to reduce racial disparities in drug enforcement, but the authors state that there has been very little empirical evidence showing whether decriminalization actually reduces Black-White arrest disparities.",
+    researchQuestion: "The main research question is whether cannabis decriminalization is associated with reduced racial disparity in cannabis possession arrests between Black and White people in the United States. The implied hypothesis is that decriminalization would reduce cannabis possession arrests overall and may reduce the Black-White arrest-rate ratio, especially if Black people were disproportionately targeted before decriminalization.",
+    studyMethod: "This is a quantitative study. The authors used numerical arrest data and statistical analysis to examine changes in cannabis possession arrest rates before and after decriminalization.",
+    dataType: "The study uses secondary data. The authors relied on existing arrest data from the FBI Uniform Crime Reporting Program rather than collecting original data from participants.",
+    sample: "The study used state-level arrest data from 37 U.S. states between 2000 and 2019. Eleven states implemented cannabis decriminalization during the study period, while 26 states did not. The authors analyzed arrest rates separately for Black adults, White adults, Black youths, and White youths. Some states were excluded because of incomplete reporting, reporting errors, or cannabis penalty changes that did not fit the study design.",
+    methodsInstruments: "The authors used FBI Uniform Crime Report arrest data and a difference-in-differences statistical method. They calculated cannabis possession arrest rates per 1,000 people and measured racial disparity using the Black-to-White arrest-rate ratio. They also used event-study analysis, Goodman-Bacon decomposition, and leave-one-out analysis to test the strength of their findings.",
+    relevance: "This article supports my research because it shows that cannabis criminalization has been racially unequal and that policy reforms do not fully eliminate racialized punishment. Although my study focuses on Black women, criminalization, reproductive control, and a Black feminist phenomenological lens, this article provides background evidence that Black people have been disproportionately exposed to criminal legal system contact through cannabis enforcement. It helps establish the broader problem of racialized criminalization before narrowing my study to Black women’s lived experiences."
+  }
+};
+
+const supportClaims = {
+  "what is known about reproductive autonomy among justice involved black women a scoping review": "This is one of the most important sources for your gap. The authors reviewed literature on reproductive autonomy among justice-involved Black women and found that recognition of incarceration’s influence on Black women’s reproductive autonomy remains limited.",
+  "formerly incarcerated black mothers matter too resisting social constructions of motherhood": "This directly supports centering formerly incarcerated Black women’s voices. The article uses interviews with formerly incarcerated Black mothers and argues for more critical qualitative research grounded in Black feminist theory.",
+  "reproductive justice disrupted mass incarceration as a driver of reproductive oppression": "This gives you the core reproductive justice argument. The authors frame mass incarceration as reproductive oppression and connect reproductive justice to Black feminist thought.",
+  "lived experiences of pregnancy and prison through a reproductive justice lens": "This supports the phenomenological/lived-experience direction. It synthesizes 31 qualitative studies on pregnancy, labor, childbirth, and postpartum experiences in prisons and jails.",
+  "shackling and pregnancy care policies in us prisons and jails": "This supports the pregnancy-in-custody portion of the claim. It examines prison and jail pregnancy policies, including restraint use and anti-shackling compliance.",
+  "pregnancy outcomes in us prisons 2016 2017": "This gives empirical grounding for pregnancy in prison. Use it to establish that pregnancy in custody is measurable, documented, and institutionally significant, even though lived-experience work remains limited.",
+  "how the criminalization of pregnancy robs women of reproductive autonomy": "This supports the criminalization and reproductive control argument. Goodwin helps frame pregnancy criminalization as an attack on reproductive autonomy rather than a neutral legal process.",
+  "experiences of anti black gendered racism and reproductive coercion among black pregnant and postpartum women with substance use disorder": "This supports the Black feminist intersectional lens because it examines how anti-Black gendered racism, substance-use criminalization, and family policing shape Black pregnant women’s reproductive experiences.",
+  "reproductive health care for incarcerated people advancing health equity in unequitable settings": "This supports the healthcare-access and autonomy side of your claim. It states that structural inequities, including racism, shape reproductive health outcomes, autonomy, and access to care for people in custody.",
+  "maternal health and incarceration advancing pregnancy justice for incarcerated pregnant people": "This is useful for updated pregnancy justice framing. It reviews maternal health and incarceration through structural racism and reproductive justice, which supports the need for a Black feminist analysis of pregnancy under carceral control."
+};
+
+const canonicalAssignmentSourceKeys = new Set(Object.keys(assignmentReviews));
+
 const uploadedSourceRecords = [
   {
     id: 1,
@@ -418,6 +446,8 @@ function normalizeUploadedSource(record) {
     : record.peer_reviewed === "No" || record.peer_reviewed === "No / law review"
       ? "Citation Only"
       : "Not Downloaded";
+  const sourceKey = normalizeTitle(record.title);
+  const assignmentReview = assignmentReviews[sourceKey] || {};
 
   return {
     id: 100 + record.id,
@@ -436,13 +466,19 @@ function normalizeUploadedSource(record) {
     status: "Need Review",
     priority: mapPriority(record),
     tags: buildTags(record),
-    problem: "",
-    purpose: "",
-    methodology: record.type,
-    sample: "",
+    supportClaim: supportClaims[sourceKey] || "",
+    abstract: assignmentReview.abstract || "",
+    problem: assignmentReview.problem || "",
+    researchQuestion: assignmentReview.researchQuestion || "",
+    studyMethod: assignmentReview.studyMethod || "",
+    dataType: assignmentReview.dataType || "",
+    purpose: assignmentReview.researchQuestion || "",
+    methodology: assignmentReview.methodsInstruments || record.type,
+    sample: assignmentReview.sample || "",
+    methodsInstruments: assignmentReview.methodsInstruments || "",
     findings: "",
     limitations: "",
-    relevance: record.use,
+    relevance: assignmentReview.relevance || record.use,
     notes: `Uploaded source category: ${record.category}\nPeer-reviewed status: ${record.peer_reviewed}`
   };
 }
@@ -640,6 +676,8 @@ function mergeSavedWithStarterSources(savedSources) {
 }
 
 function mergeSourceMetadata(starter, saved) {
+  const sourceKey = normalizeTitle(starter.title);
+  const usesCanonicalAssignment = canonicalAssignmentSourceKeys.has(sourceKey);
   const merged = {
     ...starter,
     id: saved.id || starter.id,
@@ -647,9 +685,17 @@ function mergeSourceMetadata(starter, saved) {
     priority: saved.priority || starter.priority
   };
 
-  ["problem", "purpose", "sample", "findings", "limitations"].forEach((field) => {
-    if (saved[field]) merged[field] = saved[field];
-  });
+  if (!usesCanonicalAssignment) {
+    ["abstract", "problem", "researchQuestion", "studyMethod", "dataType", "sample", "methodsInstruments", "findings", "limitations"].forEach((field) => {
+      if (saved[field]) merged[field] = saved[field];
+    });
+  }
+
+  if (saved.supportClaim && saved.supportClaim !== starter.supportClaim) {
+    merged.supportClaim = saved.supportClaim;
+  } else {
+    merged.supportClaim = starter.supportClaim || saved.supportClaim || "";
+  }
 
   if (saved.articleFile && saved.articleFile !== starter.articleFile) {
     merged.articleFile = saved.articleFile;
@@ -665,8 +711,11 @@ function mergeSourceMetadata(starter, saved) {
     merged.articleStatus = saved.articleStatus || starter.articleStatus;
   }
 
-  merged.methodology = saved.methodology && saved.methodology !== saved.studyType ? saved.methodology : starter.methodology;
-  merged.relevance = saved.relevance || starter.relevance;
+  merged.methodology = usesCanonicalAssignment
+    ? starter.methodology
+    : saved.methodology && saved.methodology !== saved.studyType ? saved.methodology : starter.methodology;
+  merged.purpose = usesCanonicalAssignment ? starter.purpose : saved.purpose || starter.purpose;
+  merged.relevance = usesCanonicalAssignment ? starter.relevance : saved.relevance || starter.relevance;
   merged.notes = saved.notes && !saved.notes.includes("Uploaded source category")
     ? `${starter.notes}\n\nPrevious notes: ${saved.notes}`
     : starter.notes;
@@ -726,7 +775,6 @@ function attachEvents() {
 
   els.sourceList.addEventListener("click", handleSourceClick);
   els.sourceList.addEventListener("change", handleSourceChange);
-  els.sourceList.addEventListener("submit", handleInlineEdit);
 
   els.openSourceForm.addEventListener("click", openDialog);
   els.closeSourceForm.addEventListener("click", closeDialog);
@@ -862,74 +910,14 @@ function renderSourceCard(source) {
             </select>
           </label>
           <button class="secondary-button toggle-details" type="button" data-action="toggle">Expand Review</button>
+          <button class="primary-button copy-review" type="button" data-action="copy-review">Copy Review</button>
         </div>
       </div>
 
       <div class="source-details">
         <div class="detail-grid">
-          ${detailField("APA Citation", source.apa, true)}
-          ${detailField("Research Problem", source.problem)}
-          ${detailField("Purpose of the Study", source.purpose)}
-          ${detailField("Theoretical Framework / Lens", source.lens)}
-          ${detailField("Methodology / Study Type", source.methodology || source.studyType)}
-          ${detailField("Sample / Population / Data Source", source.sample)}
-          ${detailField("Key Results / Main Findings", source.findings, true)}
-          ${detailField("Methodological Flaws / Limitations", source.limitations)}
-          ${detailField("Relevance to My Study", source.relevance)}
-          ${detailField("Literature Review Placement", source.category)}
-          ${detailField("Review Status", source.status)}
-          ${detailField("Priority Level", source.priority)}
-          ${detailField("Article File Status", source.articleStatus || "Not Downloaded")}
-          ${articleFileDetail(source)}
-          ${detailField("Tags", tags.join(", "), true)}
-          ${detailField("Notes", source.notes, true)}
+          ${renderDetailFields(source, tags)}
         </div>
-
-        <form class="inline-edit" data-action="edit">
-          <label class="full">
-            <span>Research Problem</span>
-            <textarea name="problem" rows="3">${escapeHtml(source.problem)}</textarea>
-          </label>
-          <label class="full">
-            <span>Purpose of the Study</span>
-            <textarea name="purpose" rows="3">${escapeHtml(source.purpose)}</textarea>
-          </label>
-          <label>
-            <span>Methodology</span>
-            <textarea name="methodology" rows="3">${escapeHtml(source.methodology)}</textarea>
-          </label>
-          <label>
-            <span>Sample / Population / Data Source</span>
-            <textarea name="sample" rows="3">${escapeHtml(source.sample)}</textarea>
-          </label>
-          <label class="full">
-            <span>Key Results / Main Findings</span>
-            <textarea name="findings" rows="3">${escapeHtml(source.findings)}</textarea>
-          </label>
-          <label>
-            <span>Methodological Flaws / Limitations</span>
-            <textarea name="limitations" rows="3">${escapeHtml(source.limitations)}</textarea>
-          </label>
-          <label>
-            <span>Relevance to My Study</span>
-            <textarea name="relevance" rows="3">${escapeHtml(source.relevance)}</textarea>
-          </label>
-          <label>
-            <span>Project Article File</span>
-            <input name="articleFile" value="${escapeAttr(source.articleFile || "")}" placeholder="articles/example-source.pdf">
-          </label>
-          <label>
-            <span>Article Folder</span>
-            <input name="articleFolder" value="${escapeAttr(source.articleFolder || "")}" placeholder="literature-tracker/articles">
-          </label>
-          <label class="full">
-            <span>Notes</span>
-            <textarea name="notes" rows="3">${escapeHtml(source.notes)}</textarea>
-          </label>
-          <div class="form-actions full">
-            <button class="primary-button" type="submit">Save Review Details</button>
-          </div>
-        </form>
       </div>
     </article>
   `;
@@ -943,6 +931,53 @@ function detailField(label, value, full = false) {
       <p>${escapeHtml(text)}</p>
     </section>
   `;
+}
+
+function renderDetailFields(source, tags) {
+  const fields = [
+    ["APA Citation", source.apa, true],
+    ["Abstract", source.abstract, true],
+    ["What is the research problem?", source.problem, true],
+    ["What is the research question and/or hypothesis?", source.researchQuestion || source.purpose, true],
+    ["Is the study qualitative, quantitative, or mixed methods?", source.studyMethod || source.studyType, false],
+    ["What type of data is used: primary or secondary?", source.dataType, false],
+    ["What is the sample size and its characteristics?", source.sample, true],
+    ["What research methods or instruments were used?", source.methodsInstruments || source.methodology, true],
+    ["How it supports your claim", source.supportClaim, true],
+    ["Brief relevance to my research topic", source.relevance, true],
+    ["Review Status", source.status, false],
+    ["Priority Level", source.priority, false],
+    ["Article File Status", source.articleStatus || "Not Downloaded", false],
+    ["Literature Review Placement", source.category, false],
+    ["Theoretical Framework / Lens", source.lens, false],
+    ["Tags", tags.join(", "), true],
+    ["Notes", source.notes, true]
+  ];
+
+  const seen = new Set();
+  const rendered = fields
+    .filter(([, value]) => hasDetailValue(value))
+    .filter(([, value]) => {
+      const normalized = normalizeDetailText(value);
+      if (seen.has(normalized)) return false;
+      seen.add(normalized);
+      return true;
+    })
+    .map(([label, value, full]) => detailField(label, value, full));
+
+  rendered.splice(13, 0, articleFileDetail(source));
+  return rendered.join("");
+}
+
+function hasDetailValue(value) {
+  return String(value || "").trim().length > 0;
+}
+
+function normalizeDetailText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
 function articleFileDetail(source) {
@@ -979,8 +1014,13 @@ function getFilteredSources() {
       source.articleFile,
       source.articleFolder,
       normalizeTags(source.tags).join(" "),
+      source.abstract,
       source.problem,
-      source.purpose,
+      source.researchQuestion,
+      source.studyMethod,
+      source.dataType,
+      source.methodsInstruments,
+      source.supportClaim,
       source.methodology,
       source.sample,
       source.findings,
@@ -1008,6 +1048,14 @@ function matchesFilter(value, filter) {
 }
 
 function handleSourceClick(event) {
+  const copyButton = event.target.closest("button[data-action='copy-review']");
+  if (copyButton) {
+    const card = copyButton.closest(".source-card");
+    const source = findSource(Number(card.dataset.id));
+    if (source) copyText(sourceToMarkdown(source), "Article review copied.");
+    return;
+  }
+
   const button = event.target.closest("button[data-action='toggle']");
   if (!button) return;
 
@@ -1028,27 +1076,6 @@ function handleSourceChange(event) {
   saveSources();
   render();
   showToast("Source updated.");
-}
-
-function handleInlineEdit(event) {
-  const form = event.target.closest("form[data-action='edit']");
-  if (!form) return;
-
-  event.preventDefault();
-  const card = form.closest(".source-card");
-  const source = findSource(Number(card.dataset.id));
-  if (!source) return;
-
-  const data = new FormData(form);
-  ["problem", "purpose", "methodology", "sample", "findings", "limitations", "relevance", "articleFile", "articleFolder", "notes"].forEach((field) => {
-    source[field] = data.get(field).trim();
-  });
-  saveSources();
-  render();
-  const updatedCard = document.querySelector(`.source-card[data-id="${source.id}"]`);
-  updatedCard?.classList.add("is-open");
-  updatedCard?.querySelector(".toggle-details").replaceChildren("Collapse Review");
-  showToast("Review details saved.");
 }
 
 function openDialog() {
@@ -1088,12 +1115,18 @@ function addSource(event) {
     status: data.get("status"),
     priority: data.get("priority"),
     tags: splitTags(data.get("tags")),
+    supportClaim: data.get("supportClaim")?.trim() || "",
+    abstract: data.get("abstract").trim(),
     problem: data.get("problem").trim(),
+    researchQuestion: data.get("purpose").trim(),
+    studyMethod: data.get("studyMethod").trim() || data.get("methodology").trim(),
+    dataType: data.get("dataType").trim(),
     purpose: data.get("purpose").trim(),
     sample: data.get("sample").trim(),
     methodology: data.get("methodology").trim(),
-    findings: data.get("findings").trim(),
-    limitations: data.get("limitations").trim(),
+    methodsInstruments: data.get("methodology").trim(),
+    findings: "",
+    limitations: "",
     relevance: data.get("relevance").trim(),
     notes: data.get("notes").trim()
   };
@@ -1133,29 +1166,37 @@ function copyReviewed() {
 }
 
 function sourceToMarkdown(source) {
-  return `## APA Citation
+  return `## Scholarly Article Review
+
+### APA Citation
 
 ${source.apa || ""}
 
-### Research Problem
+### Abstract
+${source.abstract || ""}
+
+### What is the research problem?
 ${source.problem || ""}
 
-### Purpose of the Study
-${source.purpose || ""}
+### What is the research question and/or hypothesis?
+${source.researchQuestion || source.purpose || ""}
 
-### Methodology / Study Type
-${source.methodology || source.studyType || ""}
+### Is the study qualitative, quantitative, or mixed methods?
+${source.studyMethod || source.studyType || ""}
 
-### Sample / Data Source
+### What type of data is used: primary or secondary?
+${source.dataType || ""}
+
+### What is the sample size and its characteristics?
 ${source.sample || ""}
 
-### Key Results
-${source.findings || ""}
+### What research methods or instruments were used?
+${source.methodsInstruments || source.methodology || ""}
 
-### Methodological Flaws / Limitations
-${source.limitations || ""}
+### How it supports your claim
+${source.supportClaim || ""}
 
-### Relevance to My Study
+### Brief relevance to my research topic
 ${source.relevance || ""}
 
 ### Literature Review Placement

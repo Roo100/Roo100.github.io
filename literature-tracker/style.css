@@ -470,7 +470,7 @@ button:focus-visible {
 
 .source-actions {
   display: grid;
-  grid-template-columns: 150px 120px 180px auto;
+  grid-template-columns: 150px 120px 180px auto auto;
   gap: 10px;
   align-items: end;
 }
@@ -519,21 +519,6 @@ button:focus-visible {
   margin: 0;
   color: var(--ink);
   white-space: pre-wrap;
-}
-
-.inline-edit {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.inline-edit .full {
-  grid-column: 1 / -1;
-}
-
-.inline-edit .form-actions {
-  justify-content: end;
 }
 
 .empty-state {
@@ -733,7 +718,8 @@ pre {
     grid-template-columns: 1fr 1fr;
   }
 
-  .source-actions .toggle-details {
+  .source-actions .toggle-details,
+  .source-actions .copy-review {
     grid-column: 1 / -1;
   }
 }
@@ -749,7 +735,6 @@ pre {
   .dashboard-layout,
   .template-grid,
   .detail-grid,
-  .inline-edit,
   .source-form,
   .framework-grid,
   .filters {
@@ -784,7 +769,6 @@ pre {
     grid-template-columns: 1fr;
   }
 
-  .inline-edit .full,
   .source-form .full,
   .source-form .form-actions {
     grid-column: auto;
