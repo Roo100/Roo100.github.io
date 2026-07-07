@@ -72,6 +72,17 @@ const assignmentReviews = {
     sample: "The study used state-level arrest data from 37 U.S. states between 2000 and 2019. Eleven states implemented cannabis decriminalization during the study period, while 26 states did not. The authors analyzed arrest rates separately for Black adults, White adults, Black youths, and White youths. Some states were excluded because of incomplete reporting, reporting errors, or cannabis penalty changes that did not fit the study design.",
     methodsInstruments: "The authors used FBI Uniform Crime Report arrest data and a difference-in-differences statistical method. They calculated cannabis possession arrest rates per 1,000 people and measured racial disparity using the Black-to-White arrest-rate ratio. They also used event-study analysis, Goodman-Bacon decomposition, and leave-one-out analysis to test the strength of their findings.",
     relevance: "This article supports my research because it shows that cannabis criminalization has been racially unequal and that policy reforms do not fully eliminate racialized punishment. Although my study focuses on Black women, criminalization, reproductive control, and a Black feminist phenomenological lens, this article provides background evidence that Black people have been disproportionately exposed to criminal legal system contact through cannabis enforcement. It helps establish the broader problem of racialized criminalization before narrowing my study to Black women’s lived experiences."
+  },
+  "association of racial disparity of cannabis possession arrests among adults and youths with statewide cannabis decriminalization and legalization": {
+    abstract: "This article examines how statewide cannabis legalization, decriminalization, and no policy change are associated with cannabis possession arrest rates and racial disparities among Black and White adults and youths. The authors used Uniform Crime Reporting Program arrest data and SEER population estimates from 2000 to 2019. The study included 43 U.S. states: 9 legalization states, 8 decriminalization states, and 26 states with no cannabis policy change. The findings show that legalization and decriminalization were associated with large reductions in cannabis possession arrests among adults. Among youths, decriminalization was associated with reductions in arrests and some reduction in disparities, while legalization did not produce the same clear youth arrest reduction. The authors conclude that states without cannabis policy reform experienced increasing racial arrest disparities, showing the need for targeted interventions to address racial injustice.",
+    problem: "The research problem is that Black people are disproportionately arrested for cannabis possession despite similar cannabis use rates compared with White people. The authors examine whether statewide legalization, decriminalization, or no policy change is associated with cannabis possession arrest rates and racial disparities among adults and youths.",
+    researchQuestion: "How are statewide cannabis policies--legalization, decriminalization, and no policy change--associated with cannabis possession arrest rates and racial disparities among Black and White adults and youths?",
+    studyMethod: "This is a quantitative case-control / event-study analysis.",
+    dataType: "This study uses secondary administrative data.",
+    sample: "The study included 43 U.S. states from 2000 to 2019. Of those states, 9 implemented legalization, 8 implemented decriminalization, and 26 had no cannabis policy change. The study examined arrest rates separately for Black adults, White adults, Black youths, and White youths.",
+    methodsInstruments: "The authors used Uniform Crime Reporting Program arrest data and SEER population estimates. They calculated cannabis possession arrest rates per 100,000 people and used event-study analyses to compare arrest trends before and after cannabis policy implementation.",
+    findings: "Legalization and decriminalization were associated with large reductions in cannabis possession arrests among adults. Among youths, decriminalization was associated with reductions in arrests and some reduction in disparities, while legalization did not show the same clear youth arrest reduction. Racial disparities remained over time, and states without cannabis policy reform experienced increasing arrest disparities.",
+    relevance: "This article supports the background section on racialized criminalization and cannabis enforcement. It shows that policy reform can reduce arrests but does not fully eliminate racial disparity. My project builds on this limitation by using an autoethnographic case study design and Black feminist theory as a critical lens to examine Black motherhood after incarceration, system contact, reentry, and abolitionist practice beyond arrest statistics."
   }
 };
 
@@ -85,7 +96,8 @@ const supportClaims = {
   "how the criminalization of pregnancy robs women of reproductive autonomy": "This supports the criminalization and reproductive control argument. Goodwin helps frame pregnancy criminalization as an attack on reproductive autonomy rather than a neutral legal process.",
   "experiences of anti black gendered racism and reproductive coercion among black pregnant and postpartum women with substance use disorder": "This supports the Black feminist intersectional lens because it examines how anti-Black gendered racism, substance-use criminalization, and family policing shape Black pregnant women’s reproductive experiences.",
   "reproductive health care for incarcerated people advancing health equity in unequitable settings": "This supports the healthcare-access and autonomy side of your claim. It states that structural inequities, including racism, shape reproductive health outcomes, autonomy, and access to care for people in custody.",
-  "maternal health and incarceration advancing pregnancy justice for incarcerated pregnant people": "This is useful for updated pregnancy justice framing. It reviews maternal health and incarceration through structural racism and reproductive justice, which supports the need for a Black feminist analysis of pregnancy under carceral control."
+  "maternal health and incarceration advancing pregnancy justice for incarcerated pregnant people": "This is useful for updated pregnancy justice framing. It reviews maternal health and incarceration through structural racism and reproductive justice, which supports the need for a Black feminist analysis of pregnancy under carceral control.",
+  "association of racial disparity of cannabis possession arrests among adults and youths with statewide cannabis decriminalization and legalization": "Use this source to show that cannabis policy reform can reduce overall criminal legal exposure while leaving racial disparities intact. It helps establish the broader problem of racialized system contact before narrowing the thesis to Black motherhood after incarceration and the continuing effects of punishment after release."
 };
 
 const canonicalAssignmentSourceKeys = new Set(Object.keys(assignmentReviews));
@@ -116,10 +128,10 @@ const uploadedSourceRecords = [
     citation: "Sheehan, B. E., Grucza, R. A., & Plunk, A. D. (2021). Association of racial disparity of cannabis possession arrests among adults and youths with statewide cannabis decriminalization and legalization. JAMA Health Forum, 2(10), e213435. https://doi.org/10.1001/jamahealthforum.2021.3435",
     title: "Association of racial disparity of cannabis possession arrests among adults and youths with statewide cannabis decriminalization and legalization",
     authors_year: "Sheehan, Grucza, & Plunk (2021)",
-    type: "Case-control / policy study",
+    type: "Quantitative case-control / event-study analysis",
     peer_reviewed: "Yes",
-    category: "Cannabis criminalization / racial disparities",
-    use: "Useful for the earlier cannabis criminalization version of the project; shows how reform relates to adult and youth arrest disparities."
+    category: "Racialized criminalization / cannabis policy reform / arrest disparities",
+    use: "This article supports the background section on racialized criminalization and cannabis enforcement. It shows that policy reform can reduce arrests but does not fully eliminate racial disparity. My project builds on this limitation by using an autoethnographic case study design and Black feminist theory as a critical lens to examine Black motherhood after incarceration, system contact, reentry, and abolitionist practice beyond arrest statistics."
   },
   {
     id: 4,
@@ -787,7 +799,7 @@ function normalizeUploadedSource(record) {
     methodology: assignmentReview.methodsInstruments || record.type,
     sample: assignmentReview.sample || "",
     methodsInstruments: assignmentReview.methodsInstruments || "",
-    findings: "",
+    findings: assignmentReview.findings || "",
     limitations: "",
     relevance: assignmentReview.relevance || record.use,
     notes: `Uploaded source category: ${record.category}\nPeer-reviewed status: ${record.peer_reviewed}`
@@ -901,14 +913,14 @@ function extractLink(citation) {
 
 function mapLiteratureCategory(record) {
   const text = `${record.title} ${record.category} ${record.use}`.toLowerCase();
-  if (text.includes("research gap") || text.includes("autoethnographic") || text.includes("qualitative methods") || text.includes("methodological") || text.includes("research design") || text.includes("service user involvement")) {
+  if (text.includes("research gap") || text.includes("qualitative methods") || text.includes("methodological") || text.includes("research design") || text.includes("service user involvement")) {
     return "Research Gap / Autoethnographic Case Study";
+  }
+  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("arrest disparities") || text.includes("cannabis possession arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact") || text.includes("surveillance")) {
+    return "System Contact, Surveillance, and Criminalization After Release";
   }
   if (text.includes("abolition") || text.includes("community support") || text.includes("community-based")) {
     return "Abolitionist Care, Practice, and Community Support";
-  }
-  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact") || text.includes("surveillance")) {
-    return "System Contact, Surveillance, and Criminalization After Release";
   }
   if (text.includes("separation") || text.includes("babies") || text.includes("childhood health") || text.includes("parental incarceration") || text.includes("family rebuilding")) {
     return "Family Rebuilding, Separation, and Reunification";
@@ -949,9 +961,9 @@ function mapStudyType(type) {
 
 function mapLens(record) {
   const text = `${record.title} ${record.category} ${record.use}`.toLowerCase();
-  if (text.includes("black feminist")) return "Black Feminist Theory";
   if (text.includes("method") || text.includes("research design") || text.includes("service user involvement")) return "Research Methods";
-  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact")) return "System Contact";
+  if (text.includes("policing") || text.includes("police") || text.includes("drug arrest") || text.includes("arrest disparities") || text.includes("cannabis possession arrest") || text.includes("stop-and-frisk") || text.includes("frisk") || text.includes("search and force") || text.includes("system contact")) return "System Contact";
+  if (text.includes("black feminist")) return "Black Feminist Theory";
   if (text.includes("mother") || text.includes("maternal") || text.includes("parenting")) return "Motherhood Studies";
   if (text.includes("reentry") || text.includes("release") || text.includes("postrelease") || text.includes("coming home")) return "Reentry";
   if (text.includes("housing") || text.includes("employment") || text.includes("stigma") || text.includes("collateral")) return "Collateral Consequences";
@@ -1024,7 +1036,9 @@ function mergeSourceMetadata(starter, saved) {
     });
   }
 
-  if (saved.supportClaim && saved.supportClaim !== starter.supportClaim) {
+  if (usesCanonicalAssignment) {
+    merged.supportClaim = starter.supportClaim || saved.supportClaim || "";
+  } else if (saved.supportClaim && saved.supportClaim !== starter.supportClaim) {
     merged.supportClaim = saved.supportClaim;
   } else {
     merged.supportClaim = starter.supportClaim || saved.supportClaim || "";
@@ -1276,6 +1290,7 @@ function renderDetailFields(source, tags) {
     ["What type of data is used: primary or secondary?", source.dataType, false],
     ["What is the sample size and its characteristics?", source.sample, true],
     ["What research methods or instruments were used?", source.methodsInstruments || source.methodology, true],
+    ["Key Findings", source.findings, true],
     ["How it supports your claim", source.supportClaim, true],
     ["Brief relevance to my research topic", source.relevance, true],
     ["Review Status", source.status, false],
@@ -1525,6 +1540,9 @@ ${source.sample || ""}
 
 ### What research methods or instruments were used?
 ${source.methodsInstruments || source.methodology || ""}
+
+### Key Findings
+${source.findings || ""}
 
 ### How it supports your claim
 ${source.supportClaim || ""}
