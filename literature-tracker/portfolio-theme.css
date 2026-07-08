@@ -1,0 +1,182 @@
+:root {
+  --ink: #1e2430;
+  --brown: #263243;
+  --brown-soft: #5f6775;
+  --burgundy: #0f1b2d;
+  --gold: #d6a315;
+  --cream: #f7f5f0;
+  --paper: #fcfbf8;
+  --line: #d8d3ca;
+  --muted: #5f6775;
+  --charcoal: #0f1b2d;
+  --success: #2f6f57;
+  --warning: #9a6a21;
+  --danger: #8b3030;
+  --shadow: 0 10px 28px rgba(20, 26, 40, 0.08);
+  --radius: 18px;
+  --body: Inter, "Segoe UI", Arial, sans-serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.hero {
+  min-height: 560px;
+  color: var(--navy, #0f1b2d);
+  background:
+    linear-gradient(135deg, rgba(252, 251, 248, 0.98), rgba(241, 238, 231, 0.92)),
+    radial-gradient(circle at 88% 18%, rgba(214, 163, 21, 0.16), transparent 22%),
+    radial-gradient(circle at 76% 72%, rgba(15, 27, 45, 0.08), transparent 28%),
+    var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand,
+.nav-links a,
+.subtitle,
+.lede {
+  color: var(--ink);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--burgundy);
+}
+
+.brand-mark {
+  border-color: rgba(15, 27, 45, 0.28);
+}
+
+.brand-mark::before {
+  border-color: var(--gold);
+}
+
+.eyebrow,
+.panel-kicker,
+.framework-number {
+  color: var(--gold);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--burgundy);
+}
+
+.hero-panel,
+.template-card,
+.chart-panel,
+.source-card,
+.framework-card,
+.filters,
+.empty-state,
+.source-dialog,
+.detail-field,
+.stat-card {
+  border-color: #e1e5eb;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.framework-card,
+.source-card,
+.template-card,
+.chart-panel {
+  border-radius: 22px;
+}
+
+.filters,
+.source-details,
+.detail-field,
+.stat-card,
+.icon-button,
+input,
+select,
+textarea {
+  background: #ffffff;
+  border-color: #dfe5ee;
+}
+
+label span,
+.detail-field h4,
+.bar-label,
+pre,
+.badge,
+.tag,
+.file-missing {
+  color: var(--brown);
+}
+
+.primary-button,
+.secondary-button {
+  border-radius: 999px;
+  background: var(--burgundy);
+  color: #ffffff;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  background: #1d3550;
+}
+
+.ghost-button {
+  border-radius: 999px;
+  color: var(--burgundy);
+  border-color: var(--line);
+}
+
+.ghost-button:hover {
+  background: #f0f3f8;
+}
+
+.badge {
+  border-color: rgba(214, 163, 21, 0.32);
+  background: rgba(214, 163, 21, 0.14);
+  color: #6f5200;
+}
+
+.badge.status,
+.file-link {
+  border-color: rgba(47, 111, 87, 0.26);
+  background: rgba(47, 111, 87, 0.10);
+  color: var(--success);
+}
+
+.badge.priority-high {
+  border-color: rgba(15, 27, 45, 0.22);
+  background: rgba(15, 27, 45, 0.08);
+  color: var(--burgundy);
+}
+
+.badge.priority-medium {
+  border-color: rgba(214, 163, 21, 0.32);
+  background: rgba(214, 163, 21, 0.13);
+  color: #8a6500;
+}
+
+.badge.priority-low {
+  border-color: rgba(95, 103, 117, 0.22);
+  background: rgba(95, 103, 117, 0.08);
+  color: var(--muted);
+}
+
+.tag {
+  background: #f0f3f8;
+  color: #3d4c67;
+}
+
+.bar-track {
+  background: #e6ebf1;
+}
+
+.bar-fill {
+  background: linear-gradient(90deg, var(--burgundy), var(--gold));
+}
+
+.toast {
+  background: var(--burgundy);
+  color: #ffffff;
+}
