@@ -37,7 +37,7 @@
     methodology: "The authors calculated cannabis possession arrest rates per 100,000 people and used event-study analyses to compare arrest trends before and after cannabis policy implementation. The study compared legalization states, decriminalization states, and states with no policy change.",
     supportClaim: "Use this source to show that cannabis policy reform can reduce overall criminal legal exposure while leaving racial disparities intact. It helps establish the broader problem of racialized system contact before narrowing the thesis to Black motherhood after incarceration and the continuing effects of punishment after release.",
     relevance: "This article supports the background section on racialized criminalization and cannabis enforcement. It shows that policy reform can reduce arrests but does not fully eliminate racial disparity. The thesis builds on this limitation by using an autoethnographic case study design and Black feminist theory as a critical lens to examine Black motherhood after incarceration, system contact, reentry, and abolitionist practice beyond arrest statistics.",
-    notes: "Full article review added from ChatGPT on July 7, 2026. This source is background for racialized criminalization and system contact; it is not the central motherhood/reentry source."
+    notes: "This source is background for racialized criminalization and system contact; it is not the central motherhood/reentry source."
   };
 
   try {
