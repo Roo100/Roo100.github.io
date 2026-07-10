@@ -1,5 +1,17 @@
 (function () {
+  function ensureHiddenRelevanceInput() {
+    const form = document.querySelector("#sourceForm");
+    if (!form || form.querySelector("input[name='relevance']")) return;
+    const hidden = document.createElement("input");
+    hidden.type = "hidden";
+    hidden.name = "relevance";
+    hidden.value = "";
+    form.append(hidden);
+  }
+
   function removeRelevanceFields() {
+    ensureHiddenRelevanceInput();
+
     document.querySelectorAll("label").forEach((label) => {
       const text = (label.textContent || "").toLowerCase();
       if (text.includes("brief relevance to my research topic")) {
