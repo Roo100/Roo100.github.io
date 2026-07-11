@@ -35,27 +35,46 @@ jobs:
         run: python -m pip install --upgrade pip pandas pdfplumber requests
 
       - name: Build official source-confirmed dataset
+        id: official_build
+        continue-on-error: true
         env:
           OUTPUT_DIR: official-data
           SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
-        run: python housing-official-build/build_nyc_housing_official.py
+          PYTHONUNBUFFERED: '1'
+        shell: bash
+        run: |
+          set -o pipefail
+          python housing-official-build/build_nyc_housing_official.py 2>&1 | tee official-build.log
+          status=${PIPESTATUS[0]}
+          echo "$status" > build-exit-code.txt
+          exit "$status"
 
-      - name: Create downloadable package
-        if: success()
+      - name: Create diagnostic or completed package
+        if: always()
+        shell: bash
         run: |
           mkdir -p artifact
-          cp -R official-data/processed artifact/processed
-          cp -R official-data/map artifact/map
-          cp -R official-data/qa artifact/qa
+          cp official-build.log artifact/official-build.log 2>/dev/null || true
+          cp build-exit-code.txt artifact/build-exit-code.txt 2>/dev/null || true
           cp housing-official-build/build_nyc_housing_official.py artifact/
+          if [ -d official-data ]; then
+            cp -R official-data artifact/official-data
+          fi
           cd artifact
           zip -r ../nyc-housing-official-data.zip .
 
       - name: Upload official data artifact
-        if: success()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: nyc-housing-official-data
           path: nyc-housing-official-data.zip
           retention-days: 7
           compression-level: 0
+
+      - name: Enforce build result
+        if: always()
+        shell: bash
+        run: |
+          status=$(cat build-exit-code.txt 2>/dev/null || echo 1)
+          exit "$status"
