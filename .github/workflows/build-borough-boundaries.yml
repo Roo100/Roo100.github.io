@@ -7,6 +7,12 @@ on:
     paths:
       - housing-official-build/build_borough_boundaries.py
       - .github/workflows/build-borough-boundaries.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - housing-official-build/build_borough_boundaries.py
+      - .github/workflows/build-borough-boundaries.yml
   workflow_dispatch:
 
 permissions:
