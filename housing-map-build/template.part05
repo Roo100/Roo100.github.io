@@ -1,0 +1,323 @@
+e;
+    const lat=180/Math.PI*Math.atan(Math.sinh(n));
+    return [lon,lat];
+  }
+
+  function worldToScreen(lon,lat) {
+    const [wx,wy]=lonLatToWorld(lon,lat);
+    const [cx,cy]=lonLatToWorld(view.centerLon,view.centerLat);
+    return [view.width/2+(wx-cx),view.height/2+(wy-cy)];
+  }
+
+  function screenToWorld(x,y) {
+    const [cx,cy]=lonLatToWorld(view.centerLon,view.centerLat);
+    return worldToLonLat(cx+x-view.width/2,cy+y-view.height/2);
+  }
+
+  function scheduleDraw() {
+    if (view.redrawQueued) return;
+    view.redrawQueued=true;
+    requestAnimationFrame(()=>{
+      view.redrawQueued=false;
+      draw();
+    });
+  }
+
+  function tileUrl(z,x,y) {
+    const subdomain="abcd"[Math.abs(x+y)%4];
+    return `https://${subdomain}.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png`;
+  }
+
+  function getTile(z,x,y) {
+    const count=Math.pow(2,z);
+    const wrappedX=((x%count)+count)%count;
+    if (y<0 || y>=count) return null;
+    const key=`${z}/${wrappedX}/${y}`;
+    if (view.tileCache.has(key)) return view.tileCache.get(key);
+    const entry={state:"loading",img:new Image()};
+    entry.img.crossOrigin="anonymous";
+    entry.img.decoding="async";
+    entry.img.onload=()=>{entry.state="loaded";scheduleDraw();};
+    entry.img.onerror=()=>{entry.state="error";scheduleDraw();};
+    entry.img.src=tileUrl(z,wrappedX,y);
+    view.tileCache.set(key,entry);
+    if (view.tileCache.size>450) {
+      const first=view.tileCache.keys().next().value;
+      view.tileCache.delete(first);
+    }
+    return entry;
+  }
+
+  function drawFallbackLand(ctx) {
+    ctx.fillStyle="#dfe8ec";
+    ctx.fillRect(0,0,view.width,view.height);
+    if (!boundaries?.features) return;
+    for (const feature of boundaries.features) {
+      const geometry=feature.geometry;
+      const polys=geometry.type==="MultiPolygon"?geometry.coordinates:[geometry.coordinates];
+      for (const poly of polys) {
+        const ring=poly[0];
+        if (!ring?.length) continue;
+        ctx.beginPath();
+        ring.forEach(([lon,lat],i)=>{
+          const [x,y]=worldToScreen(lon,lat);
+          if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        });
+        ctx.closePath();
+        ctx.fillStyle="#f6f3ed";
+        ctx.fill();
+      }
+    }
+  }
+
+  function drawTiles(ctx) {
+    const z=Math.round(view.zoom);
+    const [centerX,centerY]=lonLatToWorld(view.centerLon,view.centerLat,z);
+    const left=centerX-view.width/2;
+    const top=centerY-view.height/2;
+    const firstX=Math.floor(left/view.tileSize);
+    const firstY=Math.floor(top/view.tileSize);
+    const lastX=Math.floor((left+view.width)/view.tileSize);
+    const lastY=Math.floor((top+view.height)/view.tileSize);
+    let loaded=0;
+    let total=0;
+
+    for (let tx=firstX;tx<=lastX;tx++) {
+      for (let ty=firstY;ty<=lastY;ty++) {
+        total++;
+        const entry=getTile(z,tx,ty);
+        const dx=Math.round(tx*view.tileSize-left);
+        const dy=Math.round(ty*view.tileSize-top);
+        if (entry?.state==="loaded") {
+          ctx.globalAlpha=1;
+          ctx.drawImage(entry.img,dx,dy,view.tileSize,view.tileSize);
+          loaded++;
+        }
+      }
+    }
+    return {loaded,total};
+  }
+
+  function drawBoundaryGeometry(ctx,geometry) {
+    const polys=geometry.type==="MultiPolygon"?geometry.coordinates:[geometry.coordinates];
+    for (const poly of polys) {
+      const ring=poly[0];
+      if (!ring?.length) continue;
+      ctx.beginPath();
+      ring.forEach(([lon,lat],i)=>{
+        const [x,y]=worldToScreen(lon,lat);
+        if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.closePath();
+      ctx.fillStyle="rgba(252,251,248,.055)";
+      ctx.fill();
+      ctx.strokeStyle="rgba(15,27,45,.68)";
+      ctx.lineWidth=view.zoom>=14?1.8:1.35;
+      ctx.stroke();
+    }
+  }
+
+  function indexPoint(index,x,y,r) {
+    const key = `${Math.floor(x/view.cell)}:${Math.floor(y/view.cell)}`;
+    if (!view.grid.has(key)) view.grid.set(key,[]);
+    view.grid.get(key).push({index,x,y,r});
+  }
+
+
+  function draw() {
+    if (!rows.length || !view.width || !view.height) return;
+    const ctx=els.canvas.getContext("2d");
+    ctx.setTransform(view.dpr,0,0,view.dpr,0,0);
+    ctx.clearRect(0,0,view.width,view.height);
+
+    drawFallbackLand(ctx);
+    const tileState=drawTiles(ctx);
+
+    if (boundaries?.features) {
+      for (const feature of boundaries.features) {
+        drawBoundaryGeometry(ctx,feature.geometry);
+      }
+    }
+
+    view.grid.clear();
+    const radius=view.zoom<=10?1.35:view.zoom<=12?1.7:view.zoom<=14?2.25:view.zoom<=16?3.0:3.8;
+    const alpha=view.zoom<=10?.43:view.zoom<=12?.58:view.zoom<=14?.70:.82;
+    let selected=null;
+
+    for (const index of filtered) {
+      const row=rows[index];
+      const [x,y]=worldToScreen(row[ROW.LON],row[ROW.LAT]);
+      if (x<-10 || y<-10 || x>view.width+10 || y>view.height+10) continue;
+      if (index===selectedIndex) {
+        selected={index,x,y};
+      } else {
+        ctx.beginPath();
+        ctx.arc(x,y,radius,0,Math.PI*2);
+        ctx.globalAlpha=alpha;
+        ctx.fillStyle=pointColor(row);
+        ctx.fill();
+        if (view.zoom>=15) {
+          ctx.globalAlpha=.85;
+          ctx.lineWidth=.7;
+          ctx.strokeStyle="rgba(15,27,45,.55)";
+          ctx.stroke();
+        }
+      }
+      indexPoint(index,x,y,Math.max(7,radius+5));
+    }
+
+    ctx.globalAlpha=1;
+    if (selected) {
+      ctx.beginPath();
+      ctx.arc(selected.x,selected.y,radius+6,0,Math.PI*2);
+      ctx.fillStyle="#fff";
+      ctx.fill();
+      ctx.lineWidth=2.5;
+      ctx.strokeStyle=COLOR.navy;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(selected.x,selected.y,radius+2,0,Math.PI*2);
+      ctx.fillStyle=COLOR.gold;
+      ctx.fill();
+    }
+
+    const badge=document.getElementById("basemapStatus");
+    if (badge) {
+      badge.textContent=tileState.loaded>0?"Light street basemap":"Embedded map fallback";
+      badge.classList.toggle("offline",tileState.loaded===0);
+    }
+    positionMiniViolationPopup();
+  }
+
+  function hitTest(x,y) {
+    const cx=Math.floor(x/view.cell), cy=Math.floor(y/view.cell);
+    let best=-1, distance=Infinity;
+    for (let dx=-1;dx<=1;dx++) for (let dy=-1;dy<=1;dy++) {
+      for (const p of view.grid.get(`${cx+dx}:${cy+dy}`) || []) {
+        const d=Math.hypot(p.x-x,p.y-y);
+        if (d<=p.r && d<distance) {best=p.index;distance=d;}
+      }
+    }
+    return best;
+  }
+
+
+  function fitIndices(indices) {
+    if (!indices.length || !view.width || !view.height) return;
+    let minLon=Infinity,maxLon=-Infinity,minLat=Infinity,maxLat=-Infinity;
+    for (const index of indices) {
+      const r=rows[index];
+      minLon=Math.min(minLon,r[ROW.LON]);
+      maxLon=Math.max(maxLon,r[ROW.LON]);
+      minLat=Math.min(minLat,r[ROW.LAT]);
+      maxLat=Math.max(maxLat,r[ROW.LAT]);
+    }
+
+    for (let z=view.maxZoom;z>=view.minZoom;z--) {
+      const [x1,y1]=lonLatToWorld(minLon,maxLat,z);
+      const [x2,y2]=lonLatToWorld(maxLon,minLat,z);
+      if (Math.abs(x2-x1)<=view.width*.84 && Math.abs(y2-y1)<=view.height*.82) {
+        view.zoom=z;
+        view.centerLon=(minLon+maxLon)/2;
+        const [,topY]=lonLatToWorld(0,maxLat,z);
+        const [,bottomY]=lonLatToWorld(0,minLat,z);
+        [,view.centerLat]=worldToLonLat(0,(topY+bottomY)/2,z);
+        draw();
+        return;
+      }
+    }
+    view.zoom=view.minZoom;
+    view.centerLon=(minLon+maxLon)/2;
+    view.centerLat=(minLat+maxLat)/2;
+    draw();
+  }
+
+  function updateMetrics() {
+    els.visible.textContent=fmt(filtered.length);
+    els.mapVisible.textContent=fmt(filtered.length);
+    els.visibleStat.textContent=fmt(filtered.length);
+    els.boroughStat.textContent=new Set(filtered.map(i=>rows[i][ROW.BORO_CODE])).size;
+    els.currentStat.textContent=fmt(filtered.filter(i=>rows[i][ROW.REG]===2).length);
+    els.contactStat.textContent=fmt(filtered.filter(i=>rows[i][ROW.CORP_OWNER]||rows[i][ROW.AGENT]||rows[i][ROW.PLUTO_OWNER]).length);
+  }
+
+  function sortedIndices() {
+    const items=filtered.slice();
+    const mode=els.sort.value;
+    items.sort((a,b)=>{
+      const ra=rows[a], rb=rows[b];
+      if (mode==="borough") return (BORO[ra[ROW.BORO_CODE]]||"").localeCompare(BORO[rb[ROW.BORO_CODE]]||"") || ra[ROW.ADDRESS].localeCompare(rb[ROW.ADDRESS]);
+      if (mode==="year-oldest") return (ra[ROW.YEAR]||9999)-(rb[ROW.YEAR]||9999);
+      if (mode==="units-largest") return rb[ROW.UNITS]-ra[ROW.UNITS];
+      return ra[ROW.ADDRESS].localeCompare(rb[ROW.ADDRESS]);
+    });
+    return items;
+  }
+
+  function renderResults() {
+    const sorted=sortedIndices();
+    const shown=sorted.slice(0,100);
+    els.resultNote.textContent=`Showing the first ${fmt(shown.length)} rows. All ${fmt(filtered.length)} matching properties remain visible on the map.`;
+    els.results.innerHTML=shown.map(i=>{
+      const r=rows[i];
+      return `<tr data-index="${i}" class="${i===selectedIndex?"selected":""}">
+        <td class="address-cell">${esc(r[ROW.ADDRESS]||"Address unavailable")}</td>
+        <td>${esc(BORO[r[ROW.BORO_CODE]]||"")}</td>
+        <td>${esc(r[ROW.BBL])}</td>
+        <td>${r[ROW.YEAR]||"—"}</td>
+        <td>${r[ROW.UNITS]||"—"}</td>
+        <td>${registrationPill(r)}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  function applyFilters({fit=false}={}) {
+    filtered=[];
+    for (let i=0;i<rows.length;i++) if (rowMatches(rows[i])) filtered.push(i);
+    if (selectedIndex>=0 && !filtered.includes(selectedIndex)) clearSelection();
+    updateMetrics();
+    renderResults();
+    renderLegend();
+    if (fit) fitIndices(filtered);
+    else draw();
+  }
+
+  function officialLinks(row) {
+    const bbl=String(row[ROW.BBL]).padStart(10,"0");
+    const boro=bbl.slice(0,1), block=String(Number(bbl.slice(1,6))), lot=String(Number(bbl.slice(6,10)));
+    const hpd=row[ROW.HPD_BUILDING]
+      ? `https://hpdonline.nyc.gov/hpdonline/building/${encodeURIComponent(row[ROW.HPD_BUILDING])}/overview`
+      : `https://hpdonline.nyc.gov/hpdonline/building/search-results?boroId=${boro}&block=${block}&lot=${lot}`;
+    return {
+      hpd,
+      source:row[ROW.SOURCE_URL] || "https://rentguidelinesboard.cityofnewyork.us/resources/rent-stabilized-building-lists/",
+      dob:`https://a810-bisweb.nyc.gov/bisweb/PropertyProfileOverviewServlet?boro=${boro}&block=${block}&lot=${lot}`
+    };
+  }
+
+  function roleHtml(label,value) {
+    if (!value) return "";
+    return `<div class="role"><span>${esc(label)}</span><strong>${esc(value)}</strong></div>`;
+  }
+
+  function renderDetail(index) {
+    if (index<0) {
+      els.detailTitle.textContent="Property profile";
+      els.detail.innerHTML=`<div class="empty-detail"><div><strong>Select a building</strong><span>Click a gold point or a table row to review its HPD registration, administrative contacts, and current open violations.</span></div></div>`;
+      return;
+    }
+    const r=rows[index], links=officialLinks(r);
+    els.detailTitle.textContent=r[ROW.ADDRESS]||"Property profile";
+    els.detail.innerHTML=`
+      <h3 class="property-title">${esc(r[ROW.ADDRESS]||"Address unavailable")}</h3>
+      <p class="property-subline">${esc(BORO[r[ROW.BORO_CODE]]||"")} · BBL ${esc(r[ROW.BBL])}</p>
+      <div class="source-banner"><strong>Source-confirmed list match.</strong> At least one apartment appeared in the named RGB/HCR rent-stabilized building list. This does not identify a specific apartment.</div>
+      <div class="fact-grid">
+        <div class="fact"><span>Year built</span><strong>${r[ROW.YEAR]||"Not available"}</strong></div>
+        <div class="fact"><span>Residential units</span><strong>${r[ROW.UNITS]||"Not available"}</strong></div>
+        <div class="fact"><span>HPD registration</span><strong>${esc(registrationLabel(r))}</strong></div>
+        <div class="fact"><span>Registration end</span><strong>${esc(dateFmt(r[ROW.REG_END]))}</strong></div>
+        <div class="fact"><span>Building class</span><strong>${esc(r[ROW.BUILDING_CLASS]||"Not available")}</strong></div>
+        <div class="fact"><span>BIN</span><strong>${esc(r[ROW.BIN]||"Not available")}</strong></div>
+      </

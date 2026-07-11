@@ -1,0 +1,329 @@
+anvas:$("mapCanvas"), loading:$("loading"), loadingText:$("loadingText"),
+    tooltip:$("tooltip"), violationPopup:$("violationPopup"), violationPopupContent:$("violationPopupContent"), violationPopupClose:$("violationPopupClose"), legend:$("legend"), visible:$("visibleCount"),
+    mapVisible:$("mapVisibleCount"), visibleStat:$("visibleStat"),
+    boroughStat:$("boroughStat"), currentStat:$("currentStat"),
+    contactStat:$("contactStat"), results:$("resultsList"),
+    resultNote:$("resultNote"), detailTitle:$("detailTitle"),
+    detail:$("detailContent"), detailClose:$("detailClose"),
+    sort:$("sortSelect"), aboutButton:$("aboutButton"), dialog:$("aboutDialog"),
+    sourceCount:$("aboutSourceCount"), mappedCount:$("aboutMappedCount"),
+    sourceYear:$("aboutSourceYear"), plutoVersion:$("aboutPlutoVersion")
+  };
+
+  let rows = [];
+  let boundaries = null;
+  let manifest = {};
+  let filtered = [];
+  let selectedIndex = -1;
+  let hoverIndex = -1;
+  let violationRequestId = 0;
+  let covariateRequestId = 0;
+  let miniPopupIndex = -1;
+  const violationCache = new Map();
+  const complaintCache = new Map();
+  const evictionCache = new Map();
+  const neighborhoodCache = new Map();
+  const portfolioIndex = {
+    corporate:new Map(),
+    agent:new Map()
+  };
+
+  const view = {
+    centerLon:-73.98, centerLat:40.71, zoom:10,
+    minZoom:9, maxZoom:19,
+    dragging:false, startX:0, startY:0, startLon:0, startLat:0, startZoom:10,
+    grid:new Map(), cell:24, dpr:1, width:0, height:0,
+    tileSize:256, tileCache:new Map(), redrawQueued:false
+  };
+
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+  const fmt = (n) => Number(n || 0).toLocaleString();
+  const dateFmt = (v) => {
+    if (!v) return "Not available";
+    const d = new Date(String(v).slice(0,10) + "T00:00:00");
+    return Number.isNaN(d.getTime()) ? String(v) :
+      d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
+  };
+  const normalize = (v) => String(v || "").toUpperCase().replace(/[^A-Z0-9]/g,"");
+
+  async function unpackPayload(base64) {
+    if (!("DecompressionStream" in window)) {
+      throw new Error("This browser does not support the built-in compressed-data loader. Use a current Chrome, Edge, Safari, or Firefox browser.");
+    }
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i=0;i<binary.length;i++) bytes[i] = binary.charCodeAt(i);
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+    const text = await new Response(stream).text();
+    return JSON.parse(text);
+  }
+
+  function registrationLabel(row) {
+    return row[ROW.REG] === 2 ? "Current" : row[ROW.REG] === 1 ? "Not current" : "No HPD match";
+  }
+  function registrationPill(row) {
+    const cls = row[ROW.REG] === 2 ? "" : row[ROW.REG] === 1 ? "warn" : "missing";
+    return `<span class="status-pill ${cls}">${esc(registrationLabel(row))}</span>`;
+  }
+  function preferredOwner(row) {
+    return row[ROW.CORP_OWNER] || row[ROW.AGENT] || row[ROW.PLUTO_OWNER] || "Not available";
+  }
+  function searchable(row) {
+    return normalize([
+      row[ROW.BBL], BORO[row[ROW.BORO_CODE]], row[ROW.ADDRESS], row[ROW.SOURCE_ADDRESS],
+      ...(row[ROW.ALIASES] || []), row[ROW.PLUTO_OWNER], row[ROW.CORP_OWNER],
+      row[ROW.AGENT], row[ROW.SITE_MANAGER], row[ROW.IND_OWNER], row[ROW.JOINT_OWNER],
+      row[ROW.BIN]
+    ].join(" "));
+  }
+
+
+  const currencyFmt=new Intl.NumberFormat(undefined,{style:"currency",currency:"USD",maximumFractionDigits:0});
+  const percentFmt=new Intl.NumberFormat(undefined,{maximumFractionDigits:1});
+
+  function splitRoleNames(value) {
+    return String(value || "")
+      .split(";")
+      .map(v=>v.trim())
+      .filter(Boolean);
+  }
+
+  function addPortfolioRecord(map,name,rowIndex) {
+    if (!name) return;
+    const key=normalize(name);
+    if (!key) return;
+    if (!map.has(key)) {
+      map.set(key,{name,buildings:new Set(),units:0,boroughs:new Set()});
+    }
+    const rec=map.get(key);
+    const row=rows[rowIndex];
+    if (!rec.buildings.has(row[ROW.BBL])) {
+      rec.buildings.add(row[ROW.BBL]);
+      rec.units+=Number(row[ROW.UNITS] || 0);
+      rec.boroughs.add(BORO[row[ROW.BORO_CODE]] || "");
+    }
+  }
+
+  function buildPortfolioIndex() {
+    portfolioIndex.corporate.clear();
+    portfolioIndex.agent.clear();
+    rows.forEach((row,index)=>{
+      splitRoleNames(row[ROW.CORP_OWNER]).forEach(name=>addPortfolioRecord(portfolioIndex.corporate,name,index));
+      splitRoleNames(row[ROW.AGENT]).forEach(name=>addPortfolioRecord(portfolioIndex.agent,name,index));
+    });
+  }
+
+  function portfolioRecords(row,type) {
+    const field=type==="corporate"?ROW.CORP_OWNER:ROW.AGENT;
+    const map=type==="corporate"?portfolioIndex.corporate:portfolioIndex.agent;
+    return splitRoleNames(row[field])
+      .map(name=>map.get(normalize(name)))
+      .filter(Boolean)
+      .sort((a,b)=>b.buildings.size-a.buildings.size);
+  }
+
+  function primaryPortfolioSize(row,type) {
+    return portfolioRecords(row,type)[0]?.buildings.size || 0;
+  }
+
+  function portfolioColor(count) {
+    if (!count) return "#d6d2d9";
+    if (count===1) return "#d6e1ea";
+    if (count<=4) return "#a9bfd0";
+    if (count<=9) return "#7192aa";
+    if (count<=24) return "#3f5d80";
+    return "#173a5e";
+  }
+
+  function ratePer100(count,units) {
+    const denominator=Number(units || 0);
+    return denominator>0 ? count/denominator*100 : null;
+  }
+
+  function isoDateMonthsAgo(months) {
+    const d=new Date();
+    d.setUTCMonth(d.getUTCMonth()-months);
+    return d.toISOString().slice(0,10)+"T00:00:00.000";
+  }
+
+  function isoDateYearsAgo(years) {
+    const d=new Date();
+    d.setUTCFullYear(d.getUTCFullYear()-years);
+    return d.toISOString().slice(0,10)+"T00:00:00.000";
+  }
+
+  function validHistoricalDate(value) {
+    if (!value) return null;
+    const date=new Date(value);
+    const time=date.getTime();
+    if (!Number.isFinite(time)) return null;
+
+    const earliest=Date.UTC(1900,0,1);
+    const latest=Date.now()+86400000;
+    if (time<earliest || time>latest) return null;
+    return date;
+  }
+
+  function recordAgeLabel(value) {
+    const date=validHistoricalDate(value);
+    if (!date) return "Age unavailable";
+
+    const totalMonths=Math.max(
+      0,
+      (new Date().getUTCFullYear()-date.getUTCFullYear())*12
+      +(new Date().getUTCMonth()-date.getUTCMonth())
+    );
+
+    if (totalMonths<12) {
+      return `${totalMonths} month${totalMonths===1?"":"s"} old`;
+    }
+
+    const years=Math.floor(totalMonths/12);
+    const months=totalMonths%12;
+    return months
+      ? `${years} yr ${months} mo old`
+      : `${years} yr old`;
+  }
+
+  function openRecordStartDate(record) {
+    return validHistoricalDate(record?.novissueddate)
+      || validHistoricalDate(record?.inspectiondate)
+      || null;
+  }
+
+  async function fetchJson(url,timeout=25000) {
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),timeout);
+    try {
+      const response=await fetch(url,{
+        headers:{Accept:"application/json"},
+        signal:controller.signal,
+        mode:"cors"
+      });
+      if (!response.ok) {
+        let detail="";
+        try {
+          const body=await response.text();
+          const parsed=JSON.parse(body);
+          detail=parsed?.message || parsed?.errorCode || body.slice(0,180);
+        } catch (_) {
+          detail="";
+        }
+        throw new Error(`HTTP ${response.status}${detail?`: ${detail}`:""}`);
+      }
+      return await response.json();
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function soqlQuote(value) {
+    return `'${String(value || "").replaceAll("'","''")}'`;
+  }
+
+  function pickFirst(record,names) {
+    for (const name of names) {
+      if (record && record[name] != null && record[name] !== "") return record[name];
+    }
+    return null;
+  }
+
+  function rowMatches(row) {
+    const query = normalize(els.search.value);
+    if (query && !searchable(row).includes(query)) return false;
+    if (els.borough.value !== "all" && BORO[row[ROW.BORO_CODE]] !== els.borough.value) return false;
+    const reg = els.registration.value;
+    if (reg === "current" && row[ROW.REG] !== 2) return false;
+    if (reg === "not-current" && row[ROW.REG] !== 1) return false;
+    if (reg === "missing" && row[ROW.REG] !== 0) return false;
+    const y = row[ROW.YEAR];
+    const yf = els.year.value;
+    if (yf === "pre-1900" && !(y > 0 && y < 1900)) return false;
+    if (yf === "1900-1946" && !(y >= 1900 && y <= 1946)) return false;
+    if (yf === "1947-1973" && !(y >= 1947 && y <= 1973)) return false;
+    if (yf === "1974-plus" && !(y >= 1974)) return false;
+    if (yf === "unknown" && y !== 0) return false;
+    const u = row[ROW.UNITS];
+    const uf = els.units.value;
+    if (uf === "1-5" && !(u >= 1 && u <= 5)) return false;
+    if (uf === "6-20" && !(u >= 6 && u <= 20)) return false;
+    if (uf === "21-50" && !(u >= 21 && u <= 50)) return false;
+    if (uf === "51-100" && !(u >= 51 && u <= 100)) return false;
+    if (uf === "101-plus" && !(u >= 101)) return false;
+    if (uf === "unknown" && u !== 0) return false;
+    return true;
+  }
+
+  function pointColor(row) {
+    if (els.metric.value === "registration") {
+      return row[ROW.REG] === 2 ? COLOR.current : row[ROW.REG] === 1 ? COLOR.stale : COLOR.missing;
+    }
+    if (els.metric.value === "year") {
+      const y = row[ROW.YEAR];
+      if (!y) return COLOR.missing;
+      if (y < 1900) return "#72553b";
+      if (y <= 1946) return "#9b7234";
+      if (y <= 1973) return "#4f708f";
+      return "#3e6d50";
+    }
+    if (els.metric.value === "owner-portfolio") {
+      return portfolioColor(primaryPortfolioSize(row,"corporate"));
+    }
+    if (els.metric.value === "agent-portfolio") {
+      return portfolioColor(primaryPortfolioSize(row,"agent"));
+    }
+    return COLOR.teal;
+  }
+
+  function renderLegend() {
+    let items = [];
+    if (els.metric.value === "registration") {
+      items = [[COLOR.current,"Current HPD registration"],[COLOR.stale,"Registration not current"],[COLOR.missing,"No HPD match"]];
+    } else if (els.metric.value === "year") {
+      items = [["#72553b","Before 1900"],["#9b7234","1900–1946"],["#4f708f","1947–1973"],["#3e6d50","1974 or later"],[COLOR.missing,"Unavailable"]];
+    } else if (els.metric.value === "owner-portfolio" || els.metric.value === "agent-portfolio") {
+      items = [
+        ["#d6d2d9","No matched role"],
+        ["#d6e1ea","1 building"],
+        ["#a9bfd0","2–4 buildings"],
+        ["#7192aa","5–9 buildings"],
+        ["#3f5d80","10–24 buildings"],
+        ["#173a5e","25+ buildings"]
+      ];
+    } else {
+      items = [[COLOR.teal,"Source-confirmed property"]];
+    }
+    els.legend.innerHTML = `<strong>Map key</strong>${items.map(([c,l]) => `<div class="legend-row"><i class="legend-dot" style="background:${c}"></i><span>${esc(l)}</span></div>`).join("")}<div class="legend-row"><i class="legend-line"></i><span>Borough boundary</span></div>`;
+  }
+
+  function resizeCanvas() {
+    const rect = els.canvas.getBoundingClientRect();
+    view.dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    view.width = Math.max(1, Math.round(rect.width));
+    view.height = Math.max(1, Math.round(rect.height));
+    els.canvas.width = Math.round(view.width * view.dpr);
+    els.canvas.height = Math.round(view.height * view.dpr);
+    draw();
+  }
+
+
+  function clampLatitude(lat) {
+    return Math.max(-85.05112878, Math.min(85.05112878, lat));
+  }
+
+  function lonLatToWorld(lon,lat,z=view.zoom) {
+    const size=view.tileSize*Math.pow(2,z);
+    const safeLat=clampLatitude(lat);
+    const sin=Math.sin(safeLat*Math.PI/180);
+    return [
+      (lon+180)/360*size,
+      (0.5-Math.log((1+sin)/(1-sin))/(4*Math.PI))*size
+    ];
+  }
+
+  function worldToLonLat(x,y,z=view.zoom) {
+    const size=view.tileSize*Math.pow(2,z);
+    const lon=x/size*360-180;
+    const n=Math.PI-2*Math.PI*y/siz

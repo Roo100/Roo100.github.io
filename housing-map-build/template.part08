@@ -1,0 +1,218 @@
+<article class="covariate-card">
+          <div class="covariate-card-head"><h4>4. Executed-eviction pressure</h4><span class="covariate-tag">Live · DOI</span></div>
+          ${evictionHtml}
+        </article>
+        <article class="covariate-card">
+          <div class="covariate-card-head"><h4>5. Neighborhood rent burden and income</h4><span class="covariate-tag">Live · ACS via Census Reporter</span></div>
+          ${neighborhoodHtml}
+        </article>
+      </div>`;
+  }
+
+  async function loadCovariates(index) {
+    const requestId=++covariateRequestId;
+    const row=rows[index];
+    const target=$("liveCovariates");
+    if (!target) return;
+    target.className="covariate-status";
+    target.textContent="Loading five covariates from NYC Open Data, the embedded ownership inventory, and the Census ACS…";
+
+    const [complaints,violations,evictions,neighborhood]=await Promise.all([
+      fetchComplaintBurden(row[ROW.BBL]),
+      fetchViolations(row[ROW.BBL]),
+      fetchEvictionPressure(row),
+      fetchNeighborhoodContext(row)
+    ]);
+
+    if (requestId!==covariateRequestId || selectedIndex!==index) return;
+    target.className="";
+    target.innerHTML=renderCovariates(row,complaints,violations,evictions,neighborhood);
+
+    const retryButton=target.querySelector("[data-retry-acs]");
+    if (retryButton) {
+      retryButton.addEventListener("click",()=>{
+        const zip=String(row[ROW.ZIP] || "").replace(/\D/g,"").slice(0,5);
+        if (zip) neighborhoodCache.delete(zip);
+        loadCovariates(index);
+      });
+    }
+  }
+
+
+  function selectIndex(index,{zoom=false,showViolationPopup=false}={}) {
+    selectedIndex=index;
+    hoverIndex=-1;
+    if (showViolationPopup) openMiniViolationPopup(index);
+    else closeMiniViolationPopup();
+    renderDetail(index);
+    renderResults();
+    if (zoom) {
+      const r=rows[index];
+      view.centerLon=r[ROW.LON];view.centerLat=r[ROW.LAT];view.zoom=Math.max(view.zoom,16);
+    }
+    draw();
+    els.detail.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+  function clearSelection() {
+    selectedIndex=-1;violationRequestId++;covariateRequestId++;
+    closeMiniViolationPopup();
+    renderDetail(-1);renderResults();draw();
+  }
+
+  function showTooltip(index,x,y) {
+    if (index<0) {els.tooltip.hidden=true;return;}
+    const r=rows[index];
+    els.tooltip.innerHTML=`<strong>${esc(r[ROW.ADDRESS])}</strong><span>${esc(BORO[r[ROW.BORO_CODE]])} · ${esc(r[ROW.BBL])}</span>`;
+    els.tooltip.hidden=false;
+    const maxX=view.width-260, maxY=view.height-70;
+    els.tooltip.style.left=`${Math.max(8,Math.min(maxX,x+14))}px`;
+    els.tooltip.style.top=`${Math.max(8,Math.min(maxY,y+14))}px`;
+  }
+
+  function canvasPoint(event) {
+    const rect=els.canvas.getBoundingClientRect();
+    const touch=event.touches?.[0] || event.changedTouches?.[0];
+    const clientX=touch?touch.clientX:event.clientX, clientY=touch?touch.clientY:event.clientY;
+    return [clientX-rect.left,clientY-rect.top];
+  }
+
+
+  function setZoomAround(newZoom,x=view.width/2,y=view.height/2) {
+    newZoom=Math.max(view.minZoom,Math.min(view.maxZoom,Math.round(newZoom)));
+    if (newZoom===view.zoom) return;
+    const [targetLon,targetLat]=screenToWorld(x,y);
+    view.zoom=newZoom;
+    const [targetX,targetY]=lonLatToWorld(targetLon,targetLat,newZoom);
+    const centerX=targetX-(x-view.width/2);
+    const centerY=targetY-(y-view.height/2);
+    [view.centerLon,view.centerLat]=worldToLonLat(centerX,centerY,newZoom);
+    draw();
+  }
+
+  function bindMap() {
+    els.canvas.addEventListener("pointerdown",e=>{
+      const [x,y]=canvasPoint(e);
+      view.dragging=true;
+      view.startX=x;
+      view.startY=y;
+      view.startLon=view.centerLon;
+      view.startLat=view.centerLat;
+      view.startZoom=view.zoom;
+      els.canvas.classList.add("dragging");
+      els.canvas.setPointerCapture(e.pointerId);
+    });
+
+    els.canvas.addEventListener("pointermove",e=>{
+      const [x,y]=canvasPoint(e);
+      if (view.dragging) {
+        const [startWorldX,startWorldY]=lonLatToWorld(view.startLon,view.startLat,view.startZoom);
+        [view.centerLon,view.centerLat]=worldToLonLat(
+          startWorldX-(x-view.startX),
+          startWorldY-(y-view.startY),
+          view.startZoom
+        );
+        draw();
+        showTooltip(-1,0,0);
+      } else {
+        const hit=hitTest(x,y);
+        hoverIndex=hit;
+        els.canvas.style.cursor=hit>=0?"pointer":"grab";
+        showTooltip(hit,x,y);
+      }
+    });
+
+    els.canvas.addEventListener("pointerup",e=>{
+      const [x,y]=canvasPoint(e);
+      const moved=Math.hypot(x-view.startX,y-view.startY);
+      view.dragging=false;
+      els.canvas.classList.remove("dragging");
+      if (moved<5) {
+        const hit=hitTest(x,y);
+        if (hit>=0) selectIndex(hit,{showViolationPopup:true});
+      }
+    });
+
+    els.canvas.addEventListener("pointercancel",()=>{
+      view.dragging=false;
+      els.canvas.classList.remove("dragging");
+    });
+    els.canvas.addEventListener("mouseleave",()=>showTooltip(-1,0,0));
+
+    els.canvas.addEventListener("wheel",e=>{
+      e.preventDefault();
+      const [x,y]=canvasPoint(e);
+      setZoomAround(view.zoom+(e.deltaY<0?1:-1),x,y);
+    },{passive:false});
+
+    $("zoomIn").addEventListener("click",()=>setZoomAround(view.zoom+1));
+    $("zoomOut").addEventListener("click",()=>setZoomAround(view.zoom-1));
+    $("fitMap").addEventListener("click",()=>fitIndices(filtered));
+    window.addEventListener("resize",resizeCanvas);
+  }
+
+  function exportCsv() {
+    const headers=["BBL","Borough","Address","Year built","Residential units","HPD registration","PLUTO owner","HPD corporate owner","Corporate-owner matched buildings","HPD agent","Managing-agent matched buildings","Source"];
+    const q=v=>`"${String(v??"").replaceAll('"','""')}"`;
+    const lines=[headers.map(q).join(",")];
+    for (const i of filtered) {
+      const r=rows[i];
+      lines.push([r[ROW.BBL],BORO[r[ROW.BORO_CODE]],r[ROW.ADDRESS],r[ROW.YEAR],r[ROW.UNITS],registrationLabel(r),r[ROW.PLUTO_OWNER],r[ROW.CORP_OWNER],primaryPortfolioSize(r,"corporate"),r[ROW.AGENT],primaryPortfolioSize(r,"agent"),r[ROW.SOURCE_URL]].map(q).join(","));
+    }
+    const blob=new Blob([lines.join("\n")],{type:"text/csv;charset=utf-8"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="nyc-housing-intelligence-filtered.csv";a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }
+
+  function reset() {
+    els.search.value="";els.borough.value="all";els.registration.value="all";els.year.value="all";els.units.value="all";els.metric.value="source";els.sort.value="address";
+    clearSelection();applyFilters({fit:true});
+  }
+
+  function populateManifest() {
+    const sourceCount=manifest.source_property_count||rows.length;
+    const mapped=manifest.property_count||rows.length;
+    const years=Array.isArray(manifest.source_years)?manifest.source_years.join(", "):"2024";
+    $("heroSourceYear").textContent=years;$("heroMappedCount").textContent=fmt(mapped);$("heroPlutoVersion").textContent=manifest.pluto_version||"26v1";
+    els.sourceCount.textContent=fmt(sourceCount);els.mappedCount.textContent=fmt(mapped);els.sourceYear.textContent=years;els.plutoVersion.textContent=manifest.pluto_version||"Not available";
+  }
+
+  function bindControls() {
+    let timer;
+    els.search.addEventListener("input",()=>{clearTimeout(timer);timer=setTimeout(()=>applyFilters(),120)});
+    [els.borough,els.registration,els.year,els.units].forEach(e=>e.addEventListener("change",()=>applyFilters()));
+    els.metric.addEventListener("change",()=>{renderLegend();draw()});
+    els.sort.addEventListener("change",renderResults);
+    els.fit.addEventListener("click",()=>fitIndices(filtered));
+    els.reset.addEventListener("click",reset);
+    els.export.addEventListener("click",exportCsv);
+    els.results.addEventListener("click",e=>{
+      const tr=e.target.closest("tr[data-index]");
+      if (tr) selectIndex(Number(tr.dataset.index),{zoom:true});
+    });
+    els.detailClose.addEventListener("click",clearSelection);
+    els.violationPopupClose.addEventListener("click",closeMiniViolationPopup);
+    els.aboutButton.addEventListener("click",()=>els.dialog.showModal());
+  }
+
+  async function start() {
+    try {
+      els.loadingText.textContent="Unpacking 46,946 official mapped properties…";
+      const data=await unpackPayload(window.COMPRESSED_HOUSING_DATA);
+      rows=data.rows;boundaries=data.boundaries;manifest=data.manifest||{};
+      buildPortfolioIndex();
+      filtered=rows.map((_,i)=>i);
+      populateManifest();
+      bindControls();bindMap();resizeCanvas();renderLegend();updateMetrics();renderResults();renderDetail(-1);
+      fitIndices(filtered);
+      els.loading.hidden=true;
+    } catch (error) {
+      console.error(error);
+      els.loadingText.textContent=`The map could not initialize: ${error.message}`;
+      els.loading.querySelector(".spinner").style.display="none";
+    }
+  }
+  start();
+})();
+</script>
+</body>
+</html>

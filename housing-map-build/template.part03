@@ -1,0 +1,186 @@
+button id="zoomIn" type="button" aria-label="Zoom in">+</button>
+          <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
+          <button id="fitMap" type="button" aria-label="Fit visible properties">⌂</button>
+        </div>
+        <div id="legend" class="legend"></div>
+        <div id="tooltip" class="tooltip" hidden></div>
+        <div id="violationPopup" class="violation-popup" hidden aria-live="polite">
+          <button id="violationPopupClose" class="violation-popup-close" type="button" aria-label="Close HPD violations card">×</button>
+          <div id="violationPopupContent"></div>
+        </div>
+        <div class="map-attribution"><span id="basemapStatus">Loading street basemap</span> · © OpenStreetMap contributors · © CARTO</div>
+      </div>
+      <p class="map-caption">Drag to pan and zoom. Click a property point to open a mini HPD violations card; the complete property profile updates beside the map.</p>
+    </article>
+
+    <aside id="detailPanel" class="panel property-panel">
+      <div class="panel-head">
+        <div><p class="panel-kicker">Selected property</p><h2 id="detailTitle">Property profile</h2></div>
+        <button id="detailClose" class="clear-selection" type="button">Clear</button>
+      </div>
+      <div id="detailContent" class="detail-content"></div>
+    </aside>
+  </section>
+
+  <section class="metrics">
+    <div class="metric"><p class="metric-label">Visible properties</p><p id="visibleStat" class="metric-value">0</p><p class="metric-note">All matching points remain on the map.</p></div>
+    <div class="metric"><p class="metric-label">Boroughs represented</p><p id="boroughStat" class="metric-value">0</p><p class="metric-note">Based on active filters.</p></div>
+    <div class="metric"><p class="metric-label">Current HPD registration</p><p id="currentStat" class="metric-value">0</p><p class="metric-note">Latest matched registration extract.</p></div>
+    <div class="metric"><p class="metric-label">Owner or agent match</p><p id="contactStat" class="metric-value">0</p><p class="metric-note">Public administrative contact roles.</p></div>
+  </section>
+
+
+  <section class="violation-guide" aria-labelledby="violationGuideHeading">
+    <div class="violation-guide-head">
+      <div>
+        <p class="panel-kicker">Reading the HPD record</p>
+        <h2 id="violationGuideHeading">What the violation classes mean</h2>
+      </div>
+      <p class="violation-guide-intro">HPD uses three severity classes under the NYC Housing Maintenance Code. The class describes how serious the cited condition is.</p>
+    </div>
+
+    <div class="violation-class-grid">
+      <article class="violation-class-card">
+        <span class="violation-class-badge" aria-hidden="true">A</span>
+        <div>
+          <h3>Class A · Non-hazardous</h3>
+          <p>A lower-severity maintenance condition that must be corrected but is not classified as an immediate health or safety hazard.</p>
+        </div>
+      </article>
+
+      <article class="violation-class-card">
+        <span class="violation-class-badge" aria-hidden="true">B</span>
+        <div>
+          <h3>Class B · Hazardous</h3>
+          <p>A condition that presents a health or safety risk and is treated as more urgent than a Class A violation.</p>
+        </div>
+      </article>
+
+      <article class="violation-class-card">
+        <span class="violation-class-badge" aria-hidden="true">C</span>
+        <div>
+          <h3>Class C · Immediately hazardous</h3>
+          <p>The most serious category, used for conditions requiring urgent correction because they may immediately threaten health or safety.</p>
+        </div>
+      </article>
+
+      <article class="violation-class-card">
+        <span class="violation-class-badge" aria-hidden="true">RI</span>
+        <div>
+          <h3>Rent-impairing indicator</h3>
+          <p>A condition in a multiple dwelling that is, or may become if not promptly corrected, a fire hazard or a serious threat to occupants’ life, health, or safety.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="violation-guide-note"><strong>Source:</strong> NYC HPD Housing Maintenance Code Violations dataset, which defines the RentImpairing field by reference to New York State Multiple Dwelling Law § 302. The mini map card reports open violations returned by NYC HPD at the time of the request. Rent-impairing is a separate legal indicator, not a fourth violation class. Classification indicates severity; review the individual description and HPD Online record for the specific condition and current status.</p>
+  </section>
+
+
+  <section class="covariate-guide" aria-labelledby="covariateGuideHeading">
+    <div class="covariate-guide-head">
+      <div>
+        <p class="panel-kicker">Context beyond the raw violation count</p>
+        <h2 id="covariateGuideHeading">Five housing-condition covariates</h2>
+      </div>
+      <p class="covariate-guide-intro">Select a property to load building-level and neighborhood context. Counts and rates remain separate; the map does not create a composite landlord, danger, or housing-risk score.</p>
+    </div>
+
+    <div class="covariate-guide-grid">
+      <article class="covariate-guide-card">
+        <span class="covariate-guide-number">1</span>
+        <h3>Reported complaint burden</h3>
+        <p>HPD-related 311 service requests during the previous 12 months, shown as both a raw count and a rate per 100 residential units.</p>
+      </article>
+      <article class="covariate-guide-card">
+        <span class="covariate-guide-number">2</span>
+        <h3>Violation persistence and recurrence</h3>
+        <p>Open violations per 100 units, the earliest open NOV issue date, recent issuance, and repeated Class B or C condition descriptions.</p>
+      </article>
+      <article class="covariate-guide-card">
+        <span class="covariate-guide-number">3</span>
+        <h3>Ownership portfolio size</h3>
+        <p>The number of source-matched buildings and residential units linked separately to the HPD corporate owner and managing agent.</p>
+      </article>
+      <article class="covariate-guide-card">
+        <span class="covariate-guide-number">4</span>
+        <h3>Executed-eviction pressure</h3>
+        <p>Official executed-eviction records during the previous 12 months and three years. Court filing counts are not included in this release.</p>
+      </article>
+      <article class="covariate-guide-card">
+        <span class="covariate-guide-number">5</span>
+        <h3>Neighborhood rent burden and income</h3>
+        <p>ZIP/ZCTA median income, median gross rent, rent burden, severe rent burden, and poverty context from the ACS.</p>
+      </article>
+    </div>
+
+    <p class="covariate-guide-note"><strong>Interpretation:</strong> reported complaints may reflect differences in residents’ access to and willingness to use 311. Neighborhood ACS values describe the surrounding ZIP Code Tabulation Area, not the finances or circumstances of an individual tenant.</p>
+    <div class="source-link-row">
+      <a href="https://data.cityofnewyork.us/d/erm2-nwe9" target="_blank" rel="noopener">NYC 311 data ↗</a>
+      <a href="https://data.cityofnewyork.us/d/wvxf-dwi5" target="_blank" rel="noopener">HPD violations ↗</a>
+      <a href="https://data.cityofnewyork.us/d/6z8x-wfk4" target="_blank" rel="noopener">Executed evictions ↗</a>
+      <a href="https://censusreporter.org/" target="_blank" rel="noopener">Census Reporter ↗</a><a href="https://www.census.gov/programs-surveys/acs/data/summary-file.html" target="_blank" rel="noopener">Census ACS Summary File ↗</a>
+    </div>
+  </section>
+
+  <section class="panel results-panel">
+    <div class="panel-head results-head">
+      <div><p class="panel-kicker">Building inventory</p><h2><span id="visibleCount">0</span> matching properties</h2></div>
+      <div class="sort-wrap"><label for="sortSelect">Sort results</label><select id="sortSelect"><option value="address">Address</option><option value="borough">Borough</option><option value="year-oldest">Oldest first</option><option value="units-largest">Largest first</option></select></div>
+    </div>
+    <p id="resultNote" class="result-note"></p>
+    <div class="table-scroll">
+      <table><thead><tr><th>Address</th><th>Borough</th><th>BBL</th><th>Year</th><th>Units</th><th>HPD registration</th></tr></thead><tbody id="resultsList"></tbody></table>
+    </div>
+  </section>
+
+  <section class="method-grid">
+    <article class="panel method-card"><p class="panel-kicker">Methodology</p><h2>What the map includes</h2><p>Only properties appearing in the named NYC Rent Guidelines Board/NYS Homes and Community Renewal building lists are mapped. Records are joined by normalized ten-character BBL to PLUTO and HPD public records.</p><button id="aboutButton" class="button" type="button">Read methodology and limitations</button></article>
+    <article class="notice"><strong>Interpretation warning:</strong> HPD corporate owner, managing agent, site manager, individual owner, and joint owner are administrative roles. They are preserved separately and do not independently establish beneficial ownership.</article>
+  </section>
+  <footer>NYC Housing Intelligence · Public data and spatial research project</footer>
+</div>
+
+<dialog id="aboutDialog" class="dialog">
+<form method="dialog">
+<button class="dialog-close" aria-label="Close">×</button>
+<p class="panel-kicker">Methodology and limits</p>
+<h2>About this map</h2>
+<p>This map includes only properties appearing in named RGB/HCR rent-stabilized building lists. Inclusion is based on an exact normalized ten-character BBL match.</p>
+<div class="notice"><strong>Important limitation:</strong> A building-list match means at least one apartment was registered as rent stabilized. It does not identify the apartment, establish current legal status for every unit, or mean every apartment is stabilized.</div>
+<p>PLUTO supplies property characteristics. HPD registration and contact records identify public administrative roles. HPD violations, HPD-related 311 requests, executed-eviction records, and ZIP/ZCTA ACS context are requested when a property is selected. The ACS request is delivered through Census Reporter because the current Census API requires an API key. Ownership portfolio size is calculated from exact role-name matches within the embedded inventory. A failed live request is never interpreted as zero.</p>
+<div class="fact-grid">
+<div class="fact"><span>Source-confirmed BBLs</span><strong id="aboutSourceCount">0</strong></div>
+<div class="fact"><span>Mapped properties</span><strong id="aboutMappedCount">0</strong></div>
+<div class="fact"><span>Source year</span><strong id="aboutSourceYear">—</strong></div>
+<div class="fact"><span>PLUTO version</span><strong id="aboutPlutoVersion">—</strong></div>
+</div>
+<button class="control-button primary" value="close">Close</button>
+</form>
+</dialog>
+
+<script>window.COMPRESSED_HOUSING_DATA="__COMPRESSED_HOUSING_DATA__";</script>
+<script>
+(() => {
+  "use strict";
+
+  const ROW = {
+    LON:0,LAT:1,BBL:2,BORO_CODE:3,ADDRESS:4,YEAR:5,UNITS:6,REG:7,
+    HPD_BUILDING:8,HPD_REGISTRATION:9,REG_END:10,PLUTO_OWNER:11,
+    CORP_OWNER:12,AGENT:13,SITE_MANAGER:14,IND_OWNER:15,JOINT_OWNER:16,
+    SOURCE_URL:17,SOURCE_YEAR:18,BUILDING_CLASS:19,TOTAL_UNITS:20,
+    FLOORS:21,BIN:22,SOURCE_ADDRESS:23,ALIASES:24,ZIP:25
+  };
+  const BORO = {1:"Manhattan",2:"Bronx",3:"Brooklyn",4:"Queens",5:"Staten Island"};
+  const COLOR = {
+    gold:"#b98c43", goldDark:"#7d5d26", navy:"#0f1b2d", navy2:"#243b57",
+    land:"#f8f6f1", water:"#dfe8ec", current:"#3e6d50",
+    stale:"#b37d31", missing:"#777180", old:"#7f5f28", teal:"#3f5d80"
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const els = {
+    search:$("searchInput"), borough:$("boroughFilter"), registration:$("registrationFilter"),
+    year:$("yearFilter"), units:$("unitFilter"), metric:$("displayMetric"),
+    fit:$("fitButton"), reset:$("resetButton"), export:$("exportButton"),
+    c
