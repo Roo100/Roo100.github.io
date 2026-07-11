@@ -1,0 +1,364 @@
+t:1.5;
+}
+.violation-class-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.violation-class-card{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:11px;
+  align-items:start;
+  padding:13px;
+  border:1px solid var(--rule);
+  border-radius:14px;
+  background:#fff;
+}
+.violation-class-badge{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  background:var(--navy);
+  font-size:1rem;
+  font-weight:800;
+}
+.violation-class-card:nth-child(2) .violation-class-badge{background:#9b7234}
+.violation-class-card:nth-child(3) .violation-class-badge{background:#9c4135}
+.violation-class-card:nth-child(4) .violation-class-badge{
+  border-radius:10px;
+  background:#5d496b;
+  font-size:.78rem;
+}
+.violation-class-card h3{
+  margin:0 0 3px;
+  font-family:Inter,Arial,sans-serif;
+  font-size:.84rem;
+}
+.violation-class-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:.73rem;
+  line-height:1.45;
+}
+.violation-guide-note{
+  margin:12px 0 0;
+  color:var(--muted);
+  font-size:.69rem;
+  line-height:1.45;
+}
+@media(max-width:760px){
+  .violation-guide-head{display:block}
+  .violation-guide-intro{margin-top:8px}
+  .violation-class-grid{grid-template-columns:1fr}
+}
+
+.results-panel{margin-top:14px}
+.results-head{align-items:end}
+.sort-wrap{min-width:170px}
+.result-note{margin:0;padding:10px 16px;color:var(--muted);font-size:.72rem;border-bottom:1px solid var(--rule)}
+.table-scroll{max-height:390px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+thead{position:sticky;top:0;z-index:2;background:#f6f2e8}
+th,td{padding:9px 10px;border-bottom:1px solid #eee8dd;text-align:left;vertical-align:top}
+th{color:var(--muted);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase}
+tbody tr{cursor:pointer}
+tbody tr:hover,tbody tr.selected{background:#f3efe7}
+.address-cell{color:var(--navy);font-weight:800}
+.status-pill{display:inline-flex;padding:3px 7px;border-radius:999px;background:#edf2ed;color:#356145;font-size:.65rem;font-weight:800}
+.status-pill.warn{background:#f7ecd7;color:#815d24}
+.status-pill.missing{background:#eceaf0;color:#6a6572}
+.method-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}
+.method-card{padding:20px}
+.method-card h2{margin:5px 0 8px;font-size:2rem}
+.method-card p{color:#455365;font-size:.86rem}
+.notice{border-radius:18px;padding:20px;border-left:5px solid var(--gold);background:#fffaf1;color:#5e4a2a}
+footer{text-align:center;padding:24px 0 4px;color:var(--muted);font-size:.78rem}
+
+.covariate-status{
+  padding:11px;
+  border-radius:10px;
+  background:#f4f6f8;
+  color:var(--muted);
+  font-size:.76rem;
+  line-height:1.5;
+}
+.covariate-stack{
+  display:grid;
+  gap:10px;
+}
+.covariate-card{
+  padding:11px;
+  border:1px solid var(--rule);
+  border-radius:13px;
+  background:#fff;
+}
+.covariate-card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.covariate-card h4{
+  margin:0;
+  color:var(--navy);
+  font-size:.84rem;
+  line-height:1.25;
+}
+.covariate-tag{
+  flex:0 0 auto;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#edf2f7;
+  color:#405973;
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.covariate-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+}
+.covariate-metric{
+  padding:8px;
+  border-radius:9px;
+  background:#f8f7f3;
+}
+.covariate-metric span{
+  display:block;
+  color:var(--muted);
+  font-size:.57rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.covariate-metric strong{
+  display:block;
+  margin-top:3px;
+  color:var(--navy);
+  font-size:.88rem;
+  overflow-wrap:anywhere;
+}
+.covariate-list{
+  margin:8px 0 0;
+  padding-left:17px;
+  color:#475669;
+  font-size:.69rem;
+  line-height:1.45;
+}
+.covariate-note{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:.63rem;
+  line-height:1.45;
+}
+
+.covariate-retry{
+  margin-top:8px;
+  border:1px solid #d7c7ae;
+  border-radius:999px;
+  padding:6px 10px;
+  background:#fff;
+  color:#7a5728;
+  font-size:.66rem;
+  font-weight:800;
+}
+.covariate-retry:hover{background:#7a5728;color:#fff}
+
+.covariate-error{
+  padding:9px;
+  border-radius:9px;
+  background:#fff7ed;
+  color:#895d29;
+  font-size:.7rem;
+  line-height:1.45;
+}
+.covariate-guide{
+  margin:14px 0;
+  padding:20px;
+  border:1px solid var(--rule);
+  border-radius:20px;
+  background:var(--paper);
+  box-shadow:var(--shadow);
+}
+.covariate-guide-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:14px;
+}
+.covariate-guide h2{
+  margin:4px 0 0;
+  font-size:2rem;
+  line-height:1;
+}
+.covariate-guide-intro{
+  max-width:520px;
+  margin:0;
+  color:var(--muted);
+  font-size:.8rem;
+  line-height:1.5;
+}
+.covariate-guide-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:9px;
+}
+.covariate-guide-card{
+  padding:12px;
+  border:1px solid var(--rule);
+  border-radius:14px;
+  background:#fff;
+}
+.covariate-guide-number{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  margin-bottom:8px;
+  border-radius:50%;
+  background:var(--navy);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:800;
+}
+.covariate-guide-card h3{
+  margin:0 0 5px;
+  font-family:Inter,Arial,sans-serif;
+  font-size:.76rem;
+  line-height:1.3;
+}
+.covariate-guide-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:.66rem;
+  line-height:1.45;
+}
+.covariate-guide-note{
+  margin:12px 0 0;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  color:var(--muted);
+  font-size:.68rem;
+  line-height:1.5;
+}
+.source-link-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+.source-link-row a{
+  display:inline-flex;
+  padding:5px 8px;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:#fff;
+  color:var(--navy);
+  font-size:.62rem;
+  font-weight:700;
+  text-decoration:none;
+}
+@media(max-width:1050px){
+  .covariate-guide-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .covariate-guide-head{display:block}
+  .covariate-guide-intro{margin-top:8px}
+  .covariate-guide-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .covariate-metrics,.covariate-guide-grid{grid-template-columns:1fr}
+}
+
+.dialog{
+  width:min(680px,calc(100vw - 30px));border:0;border-radius:18px;padding:0;background:var(--paper);box-shadow:0 30px 80px rgba(15,27,45,.32)
+}
+.dialog::backdrop{background:rgba(15,27,45,.58)}
+.dialog form{padding:26px}
+.dialog h2{font-size:2.2rem;margin:4px 0 10px}
+.dialog-close{float:right;border:1px solid var(--rule);border-radius:9px;background:#fff;width:36px;height:36px;font-size:1.2rem}
+.clear-selection{border:1px solid var(--rule);border-radius:999px;background:#fff;color:var(--navy);padding:7px 11px;font-size:.75rem;font-weight:800}
+@media(max-width:1050px){
+  .controls{grid-template-columns:repeat(3,1fr)}
+  .dashboard{grid-template-columns:1fr}
+  .property-panel{min-height:0}
+  .detail-content{max-height:none}
+}
+@media(max-width:760px){
+  .page{width:min(96%,680px);padding-top:12px}
+  .hero{padding:22px}
+  .howto ol{grid-template-columns:1fr 1fr}
+  .controls{grid-template-columns:1fr 1fr}
+  .controls .search-control{grid-column:1/-1}
+  .map-shell{height:480px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .method-grid{grid-template-columns:1fr}
+  .table-scroll{max-height:330px}
+  th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5){display:none}
+}
+@media(max-width:480px){
+  .howto ol,.controls,.metrics{grid-template-columns:1fr}
+  .controls .search-control{grid-column:auto}
+  .map-shell{height:420px}
+  .fact-grid,.violation-grid,.action-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="hero-top">
+      <p class="eyebrow">Housing &amp; Public Records Dashboard</p>
+      <a class="top-link" href="https://roo100.github.io/" target="_blank" rel="noopener">Return to portfolio</a>
+    </div>
+    <h1>NYC Housing Intelligence Map</h1>
+    <p class="hero-subtitle">Source-confirmed rent-stabilized building-list properties, ownership records, and housing conditions across New York City.</p>
+    <p class="source-note"><strong>Important:</strong> A building-list match means at least one apartment was registered as rent stabilized in the named RGB/HCR source. It does not identify a specific apartment or establish that every apartment is stabilized.</p>
+    <div class="hero-meta">
+      <span>Official source year: <strong id="heroSourceYear">2024</strong></span>
+      <span>Mapped properties: <strong id="heroMappedCount">46,946</strong></span>
+      <span>PLUTO version: <strong id="heroPlutoVersion">26v1</strong></span>
+    </div>
+  </header>
+
+  <section class="howto">
+    <p class="howto-title">How to use this map</p>
+    <ol>
+      <li>Search or filter the building inventory.</li>
+      <li>Click a building point or table row.</li>
+      <li>Review the property and live HPD information.</li>
+      <li>Open HPD Online for the full agency record.</li>
+    </ol>
+  </section>
+
+  <section class="controls" aria-label="Map filters">
+    <div class="control search-control"><label for="searchInput">Address, BBL, owner, or manager</label><input id="searchInput" type="search" placeholder="Search the building inventory"></div>
+    <div class="control"><label for="boroughFilter">Borough</label><select id="boroughFilter"><option value="all">All boroughs</option><option>Manhattan</option><option value="Bronx">The Bronx</option><option>Brooklyn</option><option>Queens</option><option>Staten Island</option></select></div>
+    <div class="control"><label for="registrationFilter">HPD registration</label><select id="registrationFilter"><option value="all">All statuses</option><option value="current">Current</option><option value="not-current">Not current</option><option value="missing">No HPD match</option></select></div>
+    <div class="control"><label for="yearFilter">Year built</label><select id="yearFilter"><option value="all">All years</option><option value="pre-1900">Before 1900</option><option value="1900-1946">1900–1946</option><option value="1947-1973">1947–1973</option><option value="1974-plus">1974 or later</option><option value="unknown">Unavailable</option></select></div>
+    <div class="control"><label for="unitFilter">Residential units</label><select id="unitFilter"><option value="all">All sizes</option><option value="1-5">1–5</option><option value="6-20">6–20</option><option value="21-50">21–50</option><option value="51-100">51–100</option><option value="101-plus">101+</option><option value="unknown">Unavailable</option></select></div>
+    <div class="control"><label for="displayMetric">Color by</label><select id="displayMetric"><option value="source">Source inventory</option><option value="registration">HPD registration</option><option value="year">Year built</option><option value="owner-portfolio">Corporate-owner portfolio size</option><option value="agent-portfolio">Managing-agent portfolio size</option></select></div>
+    <button id="fitButton" class="control-button secondary" type="button">Fit visible</button>
+    <button id="resetButton" class="control-button secondary" type="button">Reset</button>
+    <button id="exportButton" class="control-button primary" type="button">Export CSV</button>
+  </section>
+
+  <section class="dashboard">
+    <article class="panel">
+      <div class="panel-head">
+        <div><p class="panel-kicker">Interactive map</p><h2>Interactive housing map</h2></div>
+        <div class="map-count"><strong id="mapVisibleCount">0</strong><span>buildings shown</span></div>
+      </div>
+      <div class="map-shell">
+        <canvas id="mapCanvas" aria-label="Interactive map of source-confirmed NYC properties"></canvas>
+        <div id="loading" class="loading"><div class="spinner"></div><strong id="loadingText">Loading official property data…</strong></div>
+        <div class="map-tools">
+          <
