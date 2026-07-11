@@ -1,0 +1,237 @@
+n(fallback.toString());
+
+        const targetAddress=normalize(row[ROW.ADDRESS] || row[ROW.SOURCE_ADDRESS] || "");
+        const targetBorough=normalize(BORO[row[ROW.BORO_CODE]] || "");
+        records=candidates.filter(record=>{
+          const candidateBbl=String(pickFirst(record,["bbl","borough_block_lot"]) || "");
+          if (candidateBbl && normalize(candidateBbl)===normalize(bbl)) return true;
+
+          const candidateAddress=normalize(pickFirst(record,[
+            "eviction_address","address","street_address","incident_address"
+          ]) || "");
+          const candidateBorough=normalize(pickFirst(record,["borough","boro"]) || "");
+          const addressMatch=candidateAddress && (
+            candidateAddress===targetAddress ||
+            candidateAddress.includes(targetAddress) ||
+            targetAddress.includes(candidateAddress)
+          );
+          const boroughMatch=!candidateBorough || !targetBorough ||
+            candidateBorough===targetBorough ||
+            (targetBorough==="BRONX" && candidateBorough==="THEBRONX");
+          return addressMatch && boroughMatch;
+        }).filter(record=>{
+          const executed=pickFirst(record,["executed_date","execution_date"]);
+          return executed && new Date(executed)>=new Date(cutoff3);
+        }).sort((a,b)=>new Date(
+          pickFirst(b,["executed_date","execution_date"]) || 0
+        )-new Date(
+          pickFirst(a,["executed_date","execution_date"]) || 0
+        ));
+      }
+
+      const cutoff12=new Date(isoDateMonthsAgo(12));
+      const residential=records.filter(record=>{
+        const value=pickFirst(record,[
+          "residential_commercial_ind",
+          "residential_commercial",
+          "residential_commercial_indicator"
+        ]);
+        return !value || String(value).toUpperCase().includes("RESIDENT");
+      });
+
+      const executionDate=record=>pickFirst(record,[
+        "executed_date","execution_date"
+      ]);
+
+      return {
+        threeYear:residential.length,
+        twelveMonth:residential.filter(record=>
+          new Date(executionDate(record) || 0)>=cutoff12
+        ).length,
+        latest:executionDate(residential[0]) || null
+      };
+    })().catch(error=>({
+      error:error.name==="AbortError"
+        ?"Request timed out"
+        :(error.message || "Unable to load")
+    }));
+
+    evictionCache.set(bbl,promise);
+    return promise;
+  }
+
+  async function fetchNeighborhoodContext(row) {
+    const zip=String(row[ROW.ZIP] || "").replace(/\D/g,"").slice(0,5);
+    const key=zip || `${row[ROW.LON]},${row[ROW.LAT]}`;
+    if (neighborhoodCache.has(key)) return neighborhoodCache.get(key);
+
+    const promise=(async()=>{
+      if (!zip) throw new Error("A matched PLUTO ZIP code was not available");
+
+      const geoid=`86000US${zip}`;
+      const tables="B19013,B25064,B17001,B25070";
+      const releases=["latest","acs2023_5yr","acs2022_5yr"];
+      let lastError=null;
+
+      for (const release of releases) {
+        try {
+          const url=new URL(`https://api.censusreporter.org/1.0/data/show/${release}`);
+          url.searchParams.set("table_ids",tables);
+          url.searchParams.set("geo_ids",geoid);
+
+          const response=await fetchJson(url.toString(),30000);
+          const geographyData=response?.data?.[geoid];
+
+          if (!geographyData) {
+            throw new Error(`No ACS data were returned for ZIP/ZCTA ${zip}`);
+          }
+
+          const estimate=(table,column)=>{
+            const value=Number(
+              geographyData?.[table]?.estimate?.[column]
+            );
+            return Number.isFinite(value) && value>=0 ? value : null;
+          };
+
+          const rentTotal=estimate("B25070","B25070001");
+          const notComputed=estimate("B25070","B25070011") || 0;
+          const denominator=rentTotal!=null
+            ? Math.max(0,rentTotal-notComputed)
+            : null;
+
+          const burdenParts=[
+            "B25070007",
+            "B25070008",
+            "B25070009",
+            "B25070010"
+          ].map(column=>estimate("B25070",column));
+
+          const burdenCount=burdenParts.every(value=>value!=null)
+            ? burdenParts.reduce((sum,value)=>sum+value,0)
+            : null;
+
+          const severeCount=estimate("B25070","B25070010");
+          const povertyUniverse=estimate("B17001","B17001001");
+          const povertyCount=estimate("B17001","B17001002");
+
+          return {
+            zip,
+            geoid,
+            name:response?.geography?.[geoid]?.name || `ZIP Code Tabulation Area ${zip}`,
+            medianIncome:estimate("B19013","B19013001"),
+            medianGrossRent:estimate("B25064","B25064001"),
+            rentBurdenPct:
+              denominator>0 && burdenCount!=null
+                ? burdenCount/denominator*100
+                : null,
+            severeRentBurdenPct:
+              denominator>0 && severeCount!=null
+                ? severeCount/denominator*100
+                : null,
+            povertyPct:
+              povertyUniverse>0 && povertyCount!=null
+                ? povertyCount/povertyUniverse*100
+                : null,
+            releaseId:response?.release?.id || release,
+            releaseName:response?.release?.name || release,
+            releaseYears:response?.release?.years || null,
+            source:"Census Reporter API using U.S. Census Bureau ACS data"
+          };
+        } catch (error) {
+          lastError=error;
+        }
+      }
+
+      throw lastError || new Error("ACS neighborhood context was not returned");
+    })().catch(error=>({
+      error:error.name==="AbortError"
+        ?"Request timed out"
+        :(error.message || "Unable to load")
+    }));
+
+    neighborhoodCache.set(key,promise);
+    return promise;
+  }
+
+  function portfolioCardHtml(row) {
+    const corporate=portfolioRecords(row,"corporate");
+    const agents=portfolioRecords(row,"agent");
+
+    const recordHtml=(label,records)=>{
+      if (!records.length) return `<div class="covariate-error">No matched ${esc(label.toLowerCase())} role was available for this property.</div>`;
+      return records.slice(0,2).map(rec=>`
+        <div class="role">
+          <span>${esc(label)} · ${esc(rec.name)}</span>
+          <strong>${fmt(rec.buildings.size)} buildings · ${fmt(rec.units)} residential units · ${fmt([...rec.boroughs].filter(Boolean).length)} boroughs</strong>
+        </div>`).join("");
+    };
+
+    return `
+      <article class="covariate-card">
+        <div class="covariate-card-head"><h4>3. Ownership portfolio size</h4><span class="covariate-tag">Embedded</span></div>
+        ${recordHtml("HPD corporate owner",corporate)}
+        ${recordHtml("HPD managing agent",agents)}
+        <p class="covariate-note">Exact public HPD role-name matches within the source-confirmed 46,946-property inventory. Corporate owner and managing agent remain separate.</p>
+      </article>`;
+  }
+
+  function metricHtml(label,value) {
+    return `<div class="covariate-metric"><span>${esc(label)}</span><strong>${esc(value)}</strong></div>`;
+  }
+
+  function renderCovariates(row,complaints,violations,evictions,neighborhood) {
+    const units=Number(row[ROW.UNITS] || 0);
+
+    const complaintHtml=complaints.error
+      ? `<div class="covariate-error">Reported complaints could not be retrieved: ${esc(complaints.error)}. No zero is inferred.</div>`
+      : `<div class="covariate-metrics">
+          ${metricHtml("Past 12 months",fmt(complaints.total))}
+          ${metricHtml("Per 100 units",ratePer100(complaints.total,units)==null?"Unavailable":percentFmt.format(ratePer100(complaints.total,units)))}
+        </div>
+        ${complaints.categories.length?`<ul class="covariate-list">${complaints.categories.slice(0,5).map(([name,count])=>`<li>${esc(name)}: ${fmt(count)}</li>`).join("")}</ul>`:""}
+        <p class="covariate-note">Reported HPD-related 311 requests; complaint volume may reflect reporting access and behavior as well as building conditions.</p>`;
+
+    const violationHtml=violations.error
+      ? `<div class="covariate-error">Violation persistence could not be retrieved: ${esc(violations.error)}. No zero is inferred.</div>`
+      : `<div class="covariate-metrics">
+          ${metricHtml("Open per 100 units",ratePer100(violations.openTotal,units)==null?"Unavailable":percentFmt.format(ratePer100(violations.openTotal,units)))}
+          ${metricHtml("Earliest open NOV issued",violations.earliestOpenNotice?dateFmt(violations.earliestOpenNotice):"None returned")}
+          ${metricHtml("Issued in past 12 months",fmt(violations.issued12m))}
+          ${metricHtml("Repeated B/C descriptions",fmt(violations.repeatBCDescriptions))}
+        </div>
+        <p class="covariate-note">${violations.earliestOpenNotice?`The earliest currently open NOV in the returned HPD record was issued ${recordAgeLabel(violations.earliestOpenNotice)}. This measures the age of the violation record, not proof that the physical condition remained continuously uncorrected.`:""} Repeated B/C counts identify condition descriptions appearing more than once in the previous three years; they do not independently prove that the same defect was reissued after correction.</p>`;
+
+    const evictionHtml=evictions.error
+      ? `<div class="covariate-error">Executed-eviction records could not be retrieved: ${esc(evictions.error)}. No zero is inferred.</div>`
+      : `<div class="covariate-metrics">
+          ${metricHtml("Past 12 months",fmt(evictions.twelveMonth))}
+          ${metricHtml("Past 3 years",fmt(evictions.threeYear))}
+          ${metricHtml("3-year rate per 100 units",ratePer100(evictions.threeYear,units)==null?"Unavailable":percentFmt.format(ratePer100(evictions.threeYear,units)))}
+          ${metricHtml("Latest executed record",evictions.latest?dateFmt(evictions.latest):"None returned")}
+        </div>
+        <p class="covariate-note">Official executed-eviction records only. Housing-court filing counts are not included in this release.</p>`;
+
+    const neighborhoodHtml=neighborhood.error
+      ? `<div class="covariate-error">Neighborhood ACS context could not be retrieved through Census Reporter: ${esc(neighborhood.error)}. No value is inferred.<br><button class="covariate-retry" type="button" data-retry-acs="${esc(row[ROW.BBL])}">Retry ACS</button></div>`
+      : `<div class="covariate-metrics">
+          ${metricHtml("Median household income",neighborhood.medianIncome==null?"Unavailable":currencyFmt.format(neighborhood.medianIncome))}
+          ${metricHtml("Median gross rent",neighborhood.medianGrossRent==null?"Unavailable":currencyFmt.format(neighborhood.medianGrossRent))}
+          ${metricHtml("Rent burden over 30%",neighborhood.rentBurdenPct==null?"Unavailable":`${percentFmt.format(neighborhood.rentBurdenPct)}%`)}
+          ${metricHtml("Severe burden 50%+",neighborhood.severeRentBurdenPct==null?"Unavailable":`${percentFmt.format(neighborhood.severeRentBurdenPct)}%`)}
+          ${metricHtml("Poverty rate",neighborhood.povertyPct==null?"Unavailable":`${percentFmt.format(neighborhood.povertyPct)}%`)}
+          ${metricHtml("ZIP / ZCTA",neighborhood.zip || "Unavailable")}
+        </div>
+        <p class="covariate-note">${esc(neighborhood.releaseName || "ACS 5-year")} ${neighborhood.releaseYears?`(${esc(neighborhood.releaseYears)})`:""} ZIP Code Tabulation Area context, delivered through Census Reporter from U.S. Census Bureau ACS data. These estimates describe the surrounding area, not an individual household.</p>`;
+
+    return `
+      <div class="covariate-stack">
+        <article class="covariate-card">
+          <div class="covariate-card-head"><h4>1. Reported complaint burden</h4><span class="covariate-tag">Live · 311</span></div>
+          ${complaintHtml}
+        </article>
+        <article class="covariate-card">
+          <div class="covariate-card-head"><h4>2. Violation persistence and recurrence</h4><span class="covariate-tag">Live · HPD</span></div>
+          ${violationHtml}
+        </article>
+        ${portfolioCardHtml(row)}
+        
