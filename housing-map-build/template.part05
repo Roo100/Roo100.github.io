@@ -6,7 +6,7 @@ e;
   function worldToScreen(lon,lat) {
     const [wx,wy]=lonLatToWorld(lon,lat);
     const [cx,cy]=lonLatToWorld(view.centerLon,view.centerLat);
-    return [view.width/2+(wx-cx),view.height/2-(wy-cy)];
+    return [view.width/2+(wx-cx),view.height/2+(wy-cy)];
   }
 
   function screenToWorld(x,y) {
