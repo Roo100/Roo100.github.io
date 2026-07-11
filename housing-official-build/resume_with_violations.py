@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pandas as pd
 
@@ -27,6 +28,43 @@ def numeric_strings(values) -> list[str]:
             seen.add(text)
             output.append(text)
     return sorted(output, key=int)
+
+
+def download_parallel(clauses: list[str], *, order: str, workers: int = 4) -> tuple[pd.DataFrame, int]:
+    if not clauses:
+        return pd.DataFrame(columns=b.DATASETS["violations"]["select"]), 0
+
+    cfg = b.DATASETS["violations"]
+    frames: dict[int, pd.DataFrame] = {}
+    request_total = 0
+    completed = 0
+
+    def fetch(index_clause: tuple[int, str]):
+        index, clause = index_clause
+        frame, requests_used = b.socrata_query(
+            cfg["id"], cfg["select"], where=clause, order=order
+        )
+        return index, frame, requests_used
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(fetch, pair): pair[0]
+            for pair in enumerate(clauses)
+        }
+        for future in as_completed(futures):
+            index, frame, requests_used = future.result()
+            frames[index] = frame
+            request_total += requests_used
+            completed += 1
+            if completed % 10 == 0 or completed == len(clauses):
+                rows = sum(len(frame) for frame in frames.values())
+                print(
+                    f"violations: {completed}/{len(clauses)} query groups; rows={rows:,}",
+                    flush=True,
+                )
+
+    ordered = [frames[index] for index in sorted(frames)]
+    return pd.concat(ordered, ignore_index=True), request_total
 
 
 def main() -> None:
@@ -70,32 +108,24 @@ def main() -> None:
     )
 
     print("Resume 2/2: retrieve open HPD violations and build production map assets")
-    # Building IDs are stable across registration cycles and allow materially shorter,
-    # faster queries than sending every 10-digit BBL as quoted text.
     building_clauses = [
         f"({b.in_clause('buildingid', group, numeric=True)}) and violationstatus='Open'"
         for group in b.chunks(building_ids, 500)
     ]
-    violations_by_building, building_requests = b.download_chunked(
-        "violations",
+    violations_by_building, building_requests = download_parallel(
         building_clauses,
         order="buildingid,inspectiondate desc,violationid desc",
+        workers=4,
     )
 
-    # Preserve coverage for the small number of source BBLs without a current HPD
-    # registration/building ID by querying those BBLs directly.
     bbl_clauses = [
         f"({b.in_clause('bbl', group, numeric=False)}) and violationstatus='Open'"
         for group in b.chunks(unregistered_bbls, 100)
     ]
-    violations_by_bbl, bbl_requests = (
-        b.download_chunked(
-            "violations",
-            bbl_clauses,
-            order="bbl,inspectiondate desc,violationid desc",
-        )
-        if bbl_clauses
-        else (pd.DataFrame(columns=b.DATASETS["violations"]["select"]), 0)
+    violations_by_bbl, bbl_requests = download_parallel(
+        bbl_clauses,
+        order="bbl,inspectiondate desc,violationid desc",
+        workers=2,
     )
 
     violations_raw = pd.concat(
