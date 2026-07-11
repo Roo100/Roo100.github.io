@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 540" role="img" aria-labelledby="title desc">
+<title id="title">NYC Housing Intelligence Map</title>
+<desc id="desc">Editorial map illustration showing New York City housing records.</desc>
+<rect width="1260" height="540" fill="#f7f5f0"/>
+<path d="M0 410C190 300 320 346 470 252S760 166 1260 86V540H0Z" fill="#dfe8ec"/>
+<g fill="#fcfbf8" stroke="#0f1b2d" stroke-width="5" opacity=".96">
+<path d="M86 420 242 272 406 236 492 322 398 500 198 510Z"/>
+<path d="m472 234 72-174 62 16-38 284-72 58Z"/>
+<path d="m588 302 186-144 206 44-44 176-206 104Z"/>
+<path d="m756 104 176-64 144 96-94 116-230-62Z"/>
+<path d="m106 226 90-70 124 28-60 86-126 24Z"/>
+</g>
+<g fill="#3f5d80">
+<circle cx="178" cy="389" r="9"/><circle cx="232" cy="326" r="8"/><circle cx="340" cy="286" r="8"/>
+<circle cx="520" cy="182" r="8"/><circle cx="540" cy="116" r="8"/><circle cx="654" cy="286" r="9"/>
+<circle cx="716" cy="240" r="8"/><circle cx="812" cy="210" r="9"/><circle cx="904" cy="246" r="8"/>
+<circle cx="896" cy="100" r="8"/><circle cx="1008" cy="150" r="9"/><circle cx="1100" cy="112" r="8"/>
+</g>
+<rect x="710" y="350" width="472" height="126" rx="24" fill="#fcfbf8" stroke="#d8d3ca" stroke-width="3"/>
+<text x="746" y="394" fill="#5f6775" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">HOUSING &amp; PUBLIC RECORDS</text>
+<text x="746" y="443" fill="#0f1b2d" font-family="Georgia,serif" font-size="43" font-weight="700">NYC Housing Intelligence</text>
+</svg>
