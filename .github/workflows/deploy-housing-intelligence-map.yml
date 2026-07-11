@@ -1,0 +1,86 @@
+name: Deploy NYC Housing Intelligence Map
+
+on:
+  push:
+    branches:
+      - deploy-housing-intelligence-map-20260711
+    paths:
+      - .github/workflows/deploy-housing-intelligence-map.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: deploy-housing-intelligence-map
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out deployment branch
+        uses: actions/checkout@v4
+        with:
+          ref: deploy-housing-intelligence-map-20260711
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install boundary dependencies
+        run: python -m pip install --upgrade pip geopandas geodatasets pyogrio
+
+      - name: Download verified official housing-data artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf housing-map-artifact housing-map-unpacked
+          mkdir -p housing-map-artifact
+          gh run download 29158370610 \
+            --repo Roo100/Roo100.github.io \
+            --name nyc-housing-official-data \
+            --dir housing-map-artifact
+          find housing-map-artifact -maxdepth 2 -type f -print
+
+      - name: Build production housing map
+        run: python housing-map-build/build_map.py
+
+      - name: Validate generated page
+        run: |
+          test -s nyc-housing-intelligence-map/index.html
+          grep -q 'NYC Housing Intelligence Map' nyc-housing-intelligence-map/index.html
+          grep -q 'COMPRESSED_HOUSING_DATA' nyc-housing-intelligence-map/index.html
+          grep -q 'Earliest open NOV issued' nyc-housing-intelligence-map/index.html
+          grep -q 'api.censusreporter.org' nyc-housing-intelligence-map/index.html
+          test -s nyc-housing-intelligence-map-cover.svg
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          text = Path('nyc-housing-intelligence-map/index.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script>(.*?)</script>', text, flags=re.S)
+          Path('/tmp/housing-map-app.js').write_text(scripts[-1], encoding='utf-8')
+          assert text.count('window.COMPRESSED_HOUSING_DATA=') == 1
+          assert 'nyc-housing-intelligence-map/' in Path('index.html').read_text(encoding='utf-8')
+          PY
+          node --check /tmp/housing-map-app.js
+
+      - name: Commit generated deployment
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nyc-housing-intelligence-map/index.html \
+                  nyc-housing-intelligence-map/.nojekyll \
+                  nyc-housing-intelligence-map-cover.svg \
+                  index.html
+          if git diff --cached --quiet; then
+            echo 'No deployment changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Deploy NYC Housing Intelligence Map'
+          git push origin HEAD:deploy-housing-intelligence-map-20260711
