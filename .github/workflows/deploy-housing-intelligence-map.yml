@@ -3,9 +3,14 @@ name: Deploy NYC Housing Intelligence Map
 on:
   push:
     branches:
-      - deploy-housing-intelligence-map-20260711
+      - main
+      - update-housing-popup-five-covariates-20260711
     paths:
       - .github/workflows/deploy-housing-intelligence-map.yml
+      - housing-map-build/build_map.py
+      - housing-map-build/template.part*
+      - housing-map-build/apply_popup_override.py
+      - housing-map-build/popup-five-covariates.html
   workflow_dispatch:
 
 permissions:
@@ -13,7 +18,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: deploy-housing-intelligence-map
+  group: deploy-housing-intelligence-map-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -22,10 +27,10 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - name: Check out deployment branch
+      - name: Check out current branch
         uses: actions/checkout@v4
         with:
-          ref: deploy-housing-intelligence-map-20260711
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - name: Set up Python
@@ -51,6 +56,9 @@ jobs:
       - name: Build production housing map
         run: python housing-map-build/build_map.py
 
+      - name: Apply five-covariate popup
+        run: python housing-map-build/apply_popup_override.py
+
       - name: Validate generated page
         run: |
           test -s nyc-housing-intelligence-map/index.html
@@ -58,17 +66,24 @@ jobs:
           grep -q 'COMPRESSED_HOUSING_DATA' nyc-housing-intelligence-map/index.html
           grep -q 'Earliest open NOV issued' nyc-housing-intelligence-map/index.html
           grep -q 'api.censusreporter.org' nyc-housing-intelligence-map/index.html
+          grep -q 'Five housing covariates' nyc-housing-intelligence-map/index.html
+          grep -q 'Reported complaint burden' nyc-housing-intelligence-map/index.html
+          grep -q 'Executed-eviction pressure' nyc-housing-intelligence-map/index.html
           test -s nyc-housing-intelligence-map-cover.svg
           python - <<'PY'
           from pathlib import Path
           import re
           text = Path('nyc-housing-intelligence-map/index.html').read_text(encoding='utf-8')
-          scripts = re.findall(r'<script>(.*?)</script>', text, flags=re.S)
-          Path('/tmp/housing-map-app.js').write_text(scripts[-1], encoding='utf-8')
+          scripts = re.findall(r'<script(?:[^>]*)>(.*?)</script>', text, flags=re.S)
+          assert len(scripts) >= 3
+          Path('/tmp/housing-map-app.js').write_text(scripts[-2], encoding='utf-8')
+          Path('/tmp/housing-map-popup.js').write_text(scripts[-1], encoding='utf-8')
           assert text.count('window.COMPRESSED_HOUSING_DATA=') == 1
+          assert text.count('FIVE_COVARIATE_POPUP_START') == 1
           assert 'nyc-housing-intelligence-map/' in Path('index.html').read_text(encoding='utf-8')
           PY
           node --check /tmp/housing-map-app.js
+          node --check /tmp/housing-map-popup.js
 
       - name: Commit generated deployment
         run: |
@@ -82,5 +97,5 @@ jobs:
             echo 'No deployment changes to commit.'
             exit 0
           fi
-          git commit -m 'Deploy NYC Housing Intelligence Map'
-          git push origin HEAD:deploy-housing-intelligence-map-20260711
+          git commit -m 'Show five covariates in map popup'
+          git push origin HEAD:${{ github.ref_name }}
