@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   build:
@@ -34,7 +35,25 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --upgrade pip pandas pdfplumber requests
 
-      - name: Build official source-confirmed dataset
+      - name: Restore verified partial official build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          rm -rf previous-artifact previous-unpacked official-data
+          mkdir -p previous-artifact previous-unpacked
+          gh run download 29158370610 \
+            --repo Roo100/Roo100.github.io \
+            --name nyc-housing-official-data \
+            --dir previous-artifact
+          unzip -q previous-artifact/nyc-housing-official-data.zip -d previous-unpacked
+          cp -R previous-unpacked/official-data ./official-data
+          test -f official-data/processed/rgb_properties.csv
+          test -f official-data/processed/pluto_properties.csv
+          test -f official-data/processed/hpd_registrations.csv
+          test -f official-data/processed/hpd_contacts.csv
+
+      - name: Complete official source-confirmed dataset
         id: official_build
         continue-on-error: true
         env:
@@ -44,7 +63,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          python housing-official-build/build_nyc_housing_official.py 2>&1 | tee official-build.log
+          python housing-official-build/resume_with_violations.py 2>&1 | tee official-build.log
           status=${PIPESTATUS[0]}
           echo "$status" > build-exit-code.txt
           exit "$status"
@@ -57,6 +76,7 @@ jobs:
           cp official-build.log artifact/official-build.log 2>/dev/null || true
           cp build-exit-code.txt artifact/build-exit-code.txt 2>/dev/null || true
           cp housing-official-build/build_nyc_housing_official.py artifact/
+          cp housing-official-build/resume_with_violations.py artifact/
           if [ -d official-data ]; then
             cp -R official-data artifact/official-data
           fi
