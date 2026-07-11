@@ -1,0 +1,56 @@
+name: Build official NYC housing data
+
+on:
+  push:
+    branches:
+      - housing-official-data-build-20260711
+    paths:
+      - housing-official-build/**
+      - .github/workflows/build-housing-official-data.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pandas pdfplumber requests
+
+      - name: Build official source-confirmed dataset
+        env:
+          OUTPUT_DIR: official-data
+          SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+        run: python housing-official-build/build_nyc_housing_official.py
+
+      - name: Create downloadable package
+        if: success()
+        run: |
+          mkdir -p artifact
+          cp -R official-data/processed artifact/processed
+          cp -R official-data/map artifact/map
+          cp -R official-data/qa artifact/qa
+          cp housing-official-build/build_nyc_housing_official.py artifact/
+          cd artifact
+          zip -r ../nyc-housing-official-data.zip .
+
+      - name: Upload official data artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nyc-housing-official-data
+          path: nyc-housing-official-data.zip
+          retention-days: 7
+          compression-level: 0
