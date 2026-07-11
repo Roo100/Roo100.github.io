@@ -111,13 +111,28 @@ def unpack_artifact() -> None:
 
 
 def load_boundaries() -> dict[str, Any]:
-    text = "".join(
-        path.read_text(encoding="utf-8")
-        for path in sorted(BUILD_DIR.glob("borough.part*"))
-    )
-    if not text:
-        raise FileNotFoundError("No borough boundary fragments were found")
-    boundaries = json.loads(text)
+    parts = sorted(BUILD_DIR.glob("borough.part*"))
+    if parts:
+        text = "".join(path.read_text(encoding="utf-8") for path in parts)
+        boundaries = json.loads(text)
+    else:
+        import geodatasets
+        import geopandas as gpd
+
+        source = geodatasets.get_path("nybb")
+        gdf = gpd.read_file(source).to_crs(4326)
+        gdf["geometry"] = gdf.geometry.make_valid().simplify(
+            0.00015,
+            preserve_topology=True,
+        )
+        name_col = "BoroName" if "BoroName" in gdf.columns else "boro_name"
+        gdf = gdf[[name_col, "geometry"]].rename(columns={name_col: "borough"})
+        boundaries = json.loads(gdf.to_json(drop_id=True))
+        for feature in boundaries.get("features", []):
+            feature["properties"] = {
+                "borough": feature.get("properties", {}).get("borough", "")
+            }
+
     if len(boundaries.get("features", [])) != 5:
         raise ValueError("Expected exactly five NYC borough boundary features")
     return boundaries
