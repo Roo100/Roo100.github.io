@@ -7,6 +7,12 @@ on:
     paths:
       - housing-official-build/**
       - .github/workflows/build-housing-official-data.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - housing-official-build/**
+      - .github/workflows/build-housing-official-data.yml
   workflow_dispatch:
 
 permissions:
