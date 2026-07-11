@@ -1,0 +1,239 @@
+<!-- FIVE_COVARIATE_POPUP_START -->
+<style id="five-covariate-popup-style">
+.violation-popup{
+  width:min(350px,calc(100% - 28px));
+  max-height:390px;
+  overflow:auto;
+}
+.five-cov-popup-address{
+  margin:-2px 30px 10px 0;
+  color:var(--muted);
+  font-size:.66rem;
+  line-height:1.35;
+}
+.five-cov-popup-list{
+  display:grid;
+  gap:7px;
+}
+.five-cov-popup-row{
+  display:grid;
+  grid-template-columns:22px minmax(0,1fr);
+  gap:8px;
+  align-items:start;
+  padding:8px;
+  border:1px solid var(--rule);
+  border-radius:10px;
+  background:#fff;
+}
+.five-cov-popup-number{
+  width:22px;
+  height:22px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--navy);
+  color:#fff;
+  font-size:.62rem;
+  font-weight:800;
+}
+.five-cov-popup-row strong{
+  display:block;
+  color:var(--navy);
+  font-size:.68rem;
+  line-height:1.25;
+}
+.five-cov-popup-row span{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:.62rem;
+  line-height:1.35;
+}
+.five-cov-popup-note{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:.56rem;
+  line-height:1.35;
+}
+@media(max-width:480px){
+  .violation-popup{
+    width:min(305px,calc(100% - 22px));
+    max-height:350px;
+  }
+}
+</style>
+<script id="five-covariate-popup-script">
+(() => {
+  "use strict";
+
+  const popup = document.getElementById("violationPopup");
+  const content = document.getElementById("violationPopupContent");
+  const detail = document.getElementById("detailContent");
+  const detailTitle = document.getElementById("detailTitle");
+  if (!popup || !content || !detail) return;
+
+  let scheduled = false;
+
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[character]));
+
+  function scheduleSync() {
+    if (scheduled) return;
+    scheduled = true;
+    setTimeout(() => {
+      scheduled = false;
+      syncPopup();
+    }, 0);
+  }
+
+  function cardByNumber(container, number) {
+    return [...container.querySelectorAll(".covariate-card")].find(card =>
+      card.querySelector("h4")?.textContent.trim().startsWith(`${number}.`)
+    ) || null;
+  }
+
+  function metrics(card) {
+    const result = new Map();
+    if (!card) return result;
+    card.querySelectorAll(".covariate-metric").forEach(metric => {
+      const label = metric.querySelector("span")?.textContent.trim() || "";
+      const value = metric.querySelector("strong")?.textContent.trim() || "Unavailable";
+      result.set(label, value);
+    });
+    return result;
+  }
+
+  function errorText(card) {
+    return card?.querySelector(".covariate-error")?.textContent
+      .replace(/Retry ACS/gi, "")
+      .replace(/No zero is inferred\.?/gi, "")
+      .replace(/No value is inferred\.?/gi, "")
+      .trim() || "Unavailable";
+  }
+
+  function portfolioCount(card, roleName) {
+    if (!card) return "Unavailable";
+    const roles = [...card.querySelectorAll(".role")];
+    const role = roles.find(item =>
+      item.querySelector("span")?.textContent.toLowerCase().includes(roleName)
+    );
+    const value = role?.querySelector("strong")?.textContent || "";
+    const match = value.match(/([\d,]+)\s+buildings?/i);
+    return match ? `${match[1]} buildings` : "Unavailable";
+  }
+
+  function row(number, title, value) {
+    return `<div class="five-cov-popup-row">
+      <span class="five-cov-popup-number">${number}</span>
+      <div><strong>${esc(title)}</strong><span>${esc(value)}</span></div>
+    </div>`;
+  }
+
+  function loadingHtml() {
+    const address = detailTitle?.textContent.trim() || "Selected property";
+    return `<h3 class="violation-popup-title">Five housing covariates</h3>
+      <p class="five-cov-popup-address">${esc(address)}</p>
+      <p class="violation-popup-loading">Loading complaint, violation, ownership, eviction, and neighborhood context…</p>`;
+  }
+
+  function clampPopup() {
+    const parent = popup.parentElement;
+    if (!parent || popup.hidden) return;
+    const margin = 10;
+    const width = popup.offsetWidth;
+    const height = popup.offsetHeight;
+    let left = Number.parseFloat(popup.style.left) || margin;
+    let top = Number.parseFloat(popup.style.top) || margin;
+    left = Math.max(margin, Math.min(parent.clientWidth - width - margin, left));
+    top = Math.max(margin, Math.min(parent.clientHeight - height - margin, top));
+    popup.style.left = `${Math.round(left)}px`;
+    popup.style.top = `${Math.round(top)}px`;
+  }
+
+  function syncPopup() {
+    if (popup.hidden) return;
+
+    const covariates = detail.querySelector("#liveCovariates");
+    const address = detailTitle?.textContent.trim() || "Selected property";
+    const cards = covariates ? covariates.querySelectorAll(".covariate-card") : [];
+
+    if (!covariates || cards.length < 5) {
+      if (!content.querySelector(".five-cov-popup-list")) {
+        content.innerHTML = loadingHtml();
+        content.dataset.covariateSignature = "loading";
+        requestAnimationFrame(clampPopup);
+      }
+      return;
+    }
+
+    const signature = `${address}|${covariates.textContent}`.slice(0, 5000);
+    if (
+      content.dataset.covariateSignature === signature &&
+      content.querySelector(".five-cov-popup-list")
+    ) return;
+
+    const complaintCard = cardByNumber(covariates, 1);
+    const violationCard = cardByNumber(covariates, 2);
+    const ownershipCard = cardByNumber(covariates, 3);
+    const evictionCard = cardByNumber(covariates, 4);
+    const neighborhoodCard = cardByNumber(covariates, 5);
+
+    const complaint = metrics(complaintCard);
+    const violation = metrics(violationCard);
+    const eviction = metrics(evictionCard);
+    const neighborhood = metrics(neighborhoodCard);
+
+    const complaintValue = complaintCard?.querySelector(".covariate-error")
+      ? errorText(complaintCard)
+      : `12 months: ${complaint.get("Past 12 months") || "Unavailable"} · ${complaint.get("Per 100 units") || "Unavailable"} per 100 units`;
+
+    const violationValue = violationCard?.querySelector(".covariate-error")
+      ? errorText(violationCard)
+      : `Open/100 units: ${violation.get("Open per 100 units") || "Unavailable"} · earliest NOV: ${violation.get("Earliest open NOV issued") || "Unavailable"}`;
+
+    const ownershipValue = ownershipCard?.querySelector(".covariate-error")
+      ? errorText(ownershipCard)
+      : `Corporate owner: ${portfolioCount(ownershipCard, "corporate owner")} · managing agent: ${portfolioCount(ownershipCard, "managing agent")}`;
+
+    const evictionValue = evictionCard?.querySelector(".covariate-error")
+      ? errorText(evictionCard)
+      : `12 months: ${eviction.get("Past 12 months") || "Unavailable"} · 3 years: ${eviction.get("Past 3 years") || "Unavailable"}`;
+
+    const neighborhoodValue = neighborhoodCard?.querySelector(".covariate-error")
+      ? errorText(neighborhoodCard)
+      : `Severe rent burden: ${neighborhood.get("Severe burden 50%+") || "Unavailable"} · median income: ${neighborhood.get("Median household income") || "Unavailable"}`;
+
+    content.innerHTML = `<h3 class="violation-popup-title">Five housing covariates</h3>
+      <p class="five-cov-popup-address">${esc(address)}</p>
+      <div class="five-cov-popup-list">
+        ${row(1, "Reported complaint burden", complaintValue)}
+        ${row(2, "Violation persistence", violationValue)}
+        ${row(3, "Ownership portfolio size", ownershipValue)}
+        ${row(4, "Executed-eviction pressure", evictionValue)}
+        ${row(5, "Rent burden and income", neighborhoodValue)}
+      </div>
+      <p class="five-cov-popup-note">Live public data and embedded ownership context. An unavailable request is not treated as zero.</p>`;
+    content.dataset.covariateSignature = signature;
+    requestAnimationFrame(clampPopup);
+  }
+
+  new MutationObserver(scheduleSync).observe(popup, {
+    attributes:true,
+    attributeFilter:["hidden"]
+  });
+  new MutationObserver(scheduleSync).observe(content, {
+    childList:true,
+    subtree:true,
+    characterData:true
+  });
+  new MutationObserver(scheduleSync).observe(detail, {
+    childList:true,
+    subtree:true,
+    characterData:true
+  });
+
+  scheduleSync();
+})();
+</script>
+<!-- FIVE_COVARIATE_POPUP_END -->
