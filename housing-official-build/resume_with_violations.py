@@ -48,10 +48,11 @@ def main() -> None:
     )
 
     print("Resume 2/2: retrieve open HPD violations and build production map assets")
-    # HPD stores BBL as text. Quote the values and keep each URL compact.
+    # HPD stores BBL as text. Quote values explicitly; 250 values keeps URLs compact
+    # while avoiding hundreds of unnecessary API calls.
     violation_clauses = [
         f"({b.in_clause('bbl', group, numeric=False)}) and violationstatus='Open'"
-        for group in b.chunks(bbls, 75)
+        for group in b.chunks(bbls, 250)
     ]
     violations_raw, violation_requests = b.download_chunked(
         "violations",
