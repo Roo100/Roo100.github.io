@@ -1,0 +1,260 @@
+div>
+      <section class="detail-section">
+        <h3>Live HPD open violations</h3>
+        <div id="liveViolations" class="live-status">Loading the current HPD violation record…</div>
+      </section>
+      <section class="detail-section">
+        <h3>Housing-condition covariates</h3>
+        <div id="liveCovariates" class="covariate-status">Loading reported complaints, violation persistence, ownership portfolio, executed evictions, and live ACS neighborhood context…</div>
+      </section>
+      <section class="detail-section">
+        <h3>Ownership and management roles</h3>
+        ${roleHtml("PLUTO owner",r[ROW.PLUTO_OWNER])}
+        ${roleHtml("HPD corporate owner",r[ROW.CORP_OWNER])}
+        ${roleHtml("HPD managing agent",r[ROW.AGENT])}
+        ${roleHtml("HPD site manager",r[ROW.SITE_MANAGER])}
+        ${roleHtml("HPD individual owner",r[ROW.IND_OWNER])}
+        ${roleHtml("HPD joint owner",r[ROW.JOINT_OWNER])}
+      </section>
+      <div class="action-row">
+        <a class="control-button primary" href="${esc(links.hpd)}" target="_blank" rel="noopener">HPD Online ↗</a>
+        <a class="control-button secondary" href="${esc(links.source)}" target="_blank" rel="noopener">RGB/HCR source ↗</a>
+      </div>`;
+    loadViolations(index);
+    loadCovariates(index);
+  }
+
+
+  function miniViolationLoading() {
+    return `
+      <h3 class="violation-popup-title">HPD open violations</h3>
+      <p class="violation-popup-loading">Loading current HPD violation records…</p>`;
+  }
+
+  function miniViolationHtml(result) {
+    if (result?.error) {
+      return `
+        <h3 class="violation-popup-title">HPD open violations</h3>
+        <p class="violation-popup-error">Live HPD violations could not be retrieved. This is not interpreted as zero.</p>`;
+    }
+
+    const recent=(result?.recent || []).slice(0,2);
+    return `
+      <h3 class="violation-popup-title">HPD open violations</h3>
+      <div class="violation-popup-grid">
+        <div class="violation-popup-stat"><span>Class A</span><strong>${fmt(result?.A || 0)}</strong></div>
+        <div class="violation-popup-stat"><span>Class B</span><strong>${fmt(result?.B || 0)}</strong></div>
+        <div class="violation-popup-stat"><span>Class C</span><strong>${fmt(result?.C || 0)}</strong></div>
+        <div class="violation-popup-stat"><span>Rent-impairing</span><strong>${fmt(result?.rent || 0)}</strong></div>
+      </div>
+      ${recent.length ? `
+        <ul class="violation-popup-recent">
+          ${recent.map(v=>`
+            <li>
+              <strong>Class ${esc(v.class || "—")} · ${esc(v.novdescription || "Open HPD violation")}</strong>
+              <small>${esc(dateFmt(v.inspectiondate || v.currentstatusdate))}${String(v.rentimpairing || "").toUpperCase()==="Y" ? " · Rent-impairing" : ""}</small>
+            </li>`).join("")}
+        </ul>` : `<p class="violation-popup-empty">No open Housing Maintenance Code violations were returned at the time of this request.</p>`}
+      <p class="violation-popup-source">Live NYC HPD Housing Maintenance Code Violations data.</p>`;
+  }
+
+  function positionMiniViolationPopup() {
+    if (miniPopupIndex < 0 || !rows[miniPopupIndex] || !els.violationPopup) {
+      els.violationPopup.hidden=true;
+      return;
+    }
+
+    const row=rows[miniPopupIndex];
+    const [x,y]=worldToScreen(row[ROW.LON],row[ROW.LAT]);
+    if (x < -20 || y < -20 || x > view.width+20 || y > view.height+20) {
+      els.violationPopup.hidden=true;
+      return;
+    }
+
+    els.violationPopup.hidden=false;
+    const popupWidth=els.violationPopup.offsetWidth || 286;
+    const popupHeight=els.violationPopup.offsetHeight || 180;
+    const margin=10;
+    const left=Math.max(
+      margin,
+      Math.min(view.width-popupWidth-margin, x-popupWidth/2)
+    );
+
+    let top=y-popupHeight-16;
+    let below=false;
+    if (top<margin) {
+      top=y+16;
+      below=true;
+    }
+    top=Math.max(margin,Math.min(view.height-popupHeight-margin,top));
+
+    els.violationPopup.style.left=`${Math.round(left)}px`;
+    els.violationPopup.style.top=`${Math.round(top)}px`;
+    els.violationPopup.classList.toggle("below",below);
+  }
+
+  function openMiniViolationPopup(index) {
+    miniPopupIndex=index;
+    els.violationPopupContent.innerHTML=miniViolationLoading();
+    els.violationPopup.hidden=false;
+    requestAnimationFrame(positionMiniViolationPopup);
+  }
+
+  function updateMiniViolationPopup(index,result) {
+    if (miniPopupIndex!==index) return;
+    els.violationPopupContent.innerHTML=miniViolationHtml(result);
+    requestAnimationFrame(positionMiniViolationPopup);
+  }
+
+  function closeMiniViolationPopup() {
+    miniPopupIndex=-1;
+    els.violationPopup.hidden=true;
+  }
+
+
+  async function fetchViolations(bbl) {
+    if (violationCache.has(bbl)) return violationCache.get(bbl);
+    const promise=(async()=>{
+      const openUrl=new URL("https://data.cityofnewyork.us/resource/wvxf-dwi5.json");
+      openUrl.searchParams.set("$select","violationid,class,inspectiondate,novissueddate,novdescription,violationstatus,rentimpairing,currentstatusdate");
+      openUrl.searchParams.set("$where",`bbl='${bbl}' AND violationstatus='Open'`);
+      openUrl.searchParams.set("$order","inspectiondate DESC,currentstatusdate DESC");
+      openUrl.searchParams.set("$limit","50000");
+
+      const historyUrl=new URL("https://data.cityofnewyork.us/resource/wvxf-dwi5.json");
+      historyUrl.searchParams.set("$select","violationid,class,inspectiondate,novissueddate,novdescription,violationstatus");
+      historyUrl.searchParams.set("$where",`bbl='${bbl}' AND inspectiondate >= '${isoDateYearsAgo(3)}'`);
+      historyUrl.searchParams.set("$order","inspectiondate DESC");
+      historyUrl.searchParams.set("$limit","50000");
+
+      const [openRecords,historyRecords]=await Promise.all([
+        fetchJson(openUrl.toString()),
+        fetchJson(historyUrl.toString())
+      ]);
+
+      const summary={
+        A:0,B:0,C:0,rent:0,recent:openRecords.slice(0,4),
+        openTotal:openRecords.length,
+        earliestOpenNotice:null,
+        issued12m:0,
+        repeatBCDescriptions:0
+      };
+
+      for (const record of openRecords) {
+        const c=String(record.class||"").toUpperCase();
+        if (c==="A"||c==="B"||c==="C") summary[c]++;
+        if (String(record.rentimpairing||"").toUpperCase()==="Y") summary.rent++;
+        const startDate=openRecordStartDate(record);
+        if (
+          startDate
+          && (
+            !summary.earliestOpenNotice
+            || startDate<new Date(summary.earliestOpenNotice)
+          )
+        ) {
+          summary.earliestOpenNotice=startDate.toISOString();
+        }
+      }
+
+      const cutoff12=new Date(isoDateMonthsAgo(12));
+      const repeats=new Map();
+      for (const record of historyRecords) {
+        const date=new Date(record.inspectiondate || 0);
+        if (date>=cutoff12) summary.issued12m++;
+        const c=String(record.class||"").toUpperCase();
+        if (c==="B"||c==="C") {
+          const description=normalize(record.novdescription || "");
+          if (description) {
+            const key=`${c}|${description}`;
+            repeats.set(key,(repeats.get(key)||0)+1);
+          }
+        }
+      }
+      summary.repeatBCDescriptions=[...repeats.values()].filter(count=>count>1).length;
+      return summary;
+    })().catch(error=>({error:error.name==="AbortError"?"Request timed out":(error.message||"Unable to load")}));
+    violationCache.set(bbl,promise);
+    return promise;
+  }
+
+  async function loadViolations(index) {
+    const requestId=++violationRequestId;
+    const r=rows[index];
+    const result=await fetchViolations(r[ROW.BBL]);
+    if (requestId!==violationRequestId || selectedIndex!==index) return;
+    updateMiniViolationPopup(index,result);
+    const target=$("liveViolations");
+    if (!target) return;
+    if (result.error) {
+      target.innerHTML=`Live HPD violations could not be retrieved in this preview. This is not interpreted as zero. Use the HPD Online button for the current agency profile.`;
+      return;
+    }
+    target.className="";
+    target.innerHTML=`
+      <div class="violation-grid">
+        <div class="violation-stat"><span>Open Class A</span><strong>${fmt(result.A)}</strong></div>
+        <div class="violation-stat"><span>Open Class B</span><strong>${fmt(result.B)}</strong></div>
+        <div class="violation-stat"><span>Open Class C</span><strong>${fmt(result.C)}</strong></div>
+        <div class="violation-stat"><span>Rent-impairing</span><strong>${fmt(result.rent)}</strong></div>
+      </div>
+      ${result.recent.length?`<ul class="recent-list">${result.recent.map(v=>`<li><strong>Class ${esc(v.class||"—")} · ${esc(v.novdescription||"Open HPD violation")}</strong><small>${esc(dateFmt(v.inspectiondate||v.currentstatusdate))}${String(v.rentimpairing||"").toUpperCase()==="Y"?" · Rent-impairing":""}</small></li>`).join("")}</ul>`:`<p class="live-status">No open Housing Maintenance Code violations were returned at the time of this request.</p>`}
+      <p class="metric-note">Live request to NYC HPD Housing Maintenance Code Violations. HPD Online remains the authoritative building profile.</p>`;
+  }
+
+
+  function classifyComplaint(record) {
+    const text=normalize(`${record.complaint_type || ""} ${record.descriptor || ""}`);
+    if (text.includes("HEAT") || text.includes("HOTWATER")) return "Heat / hot water";
+    if (text.includes("MOLD")) return "Mold";
+    if (text.includes("RODENT") || text.includes("PEST") || text.includes("MICE") || text.includes("ROACH") || text.includes("RAT")) return "Rodents / pests";
+    if (text.includes("PLUMBING") || text.includes("LEAK") || text.includes("SEWAGE") || text.includes("WATERLEAK")) return "Plumbing / leaks";
+    if (text.includes("LEAD")) return "Lead";
+    if (text.includes("ELEVATOR")) return "Elevator";
+    return "Other housing complaints";
+  }
+
+  async function fetchComplaintBurden(bbl) {
+    if (complaintCache.has(bbl)) return complaintCache.get(bbl);
+    const promise=(async()=>{
+      const url=new URL("https://data.cityofnewyork.us/resource/erm2-nwe9.json");
+      url.searchParams.set("$select","complaint_type,descriptor,created_date");
+      url.searchParams.set("$where",`bbl=${soqlQuote(bbl)} AND agency='HPD' AND created_date >= '${isoDateMonthsAgo(12)}'`);
+      url.searchParams.set("$order","created_date DESC");
+      url.searchParams.set("$limit","50000");
+      const records=await fetchJson(url.toString());
+      const categories={};
+      for (const record of records) {
+        const category=classifyComplaint(record);
+        categories[category]=(categories[category]||0)+1;
+      }
+      return {
+        total:records.length,
+        categories:Object.entries(categories).sort((a,b)=>b[1]-a[1])
+      };
+    })().catch(error=>({error:error.name==="AbortError"?"Request timed out":(error.message||"Unable to load")}));
+    complaintCache.set(bbl,promise);
+    return promise;
+  }
+
+  async function fetchEvictionPressure(row) {
+    const bbl=String(row[ROW.BBL] || "");
+    if (evictionCache.has(bbl)) return evictionCache.get(bbl);
+
+    const promise=(async()=>{
+      const cutoff3=isoDateYearsAgo(3);
+      let records=[];
+
+      // Primary query: exact text BBL match.
+      try {
+        const url=new URL("https://data.cityofnewyork.us/resource/6z8x-wfk4.json");
+        url.searchParams.set("$where",`bbl=${soqlQuote(bbl)} AND executed_date >= '${cutoff3}'`);
+        url.searchParams.set("$order","executed_date DESC");
+        url.searchParams.set("$limit","50000");
+        records=await fetchJson(url.toString());
+      } catch (primaryError) {
+        // Fallback: use the dataset's full-text search and filter the
+        // returned records client-side by BBL or normalized address.
+        const fallback=new URL("https://data.cityofnewyork.us/resource/6z8x-wfk4.json");
+        fallback.searchParams.set("$q",row[ROW.ADDRESS] || row[ROW.SOURCE_ADDRESS] || "");
+        fallback.searchParams.set("$limit","5000");
+        const candidates=await fetchJso
