@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main
-      - prominent-five-covariate-popup-20260711
+      - add-category-filters-20260712
     paths:
       - .github/workflows/deploy-housing-intelligence-map.yml
       - housing-map-build/build_map.py
       - housing-map-build/template.part*
+      - housing-map-build/apply_category_filters.py
       - housing-map-build/apply_popup_override.py
       - housing-map-build/popup-five-covariates.html
   workflow_dispatch:
@@ -56,6 +57,9 @@ jobs:
       - name: Build production housing map
         run: python housing-map-build/build_map.py
 
+      - name: Add citywide category-filter snapshot
+        run: python housing-map-build/apply_category_filters.py
+
       - name: Apply prominent five-covariate popup
         run: python housing-map-build/apply_popup_override.py
 
@@ -68,11 +72,18 @@ jobs:
           grep -q 'api.censusreporter.org' nyc-housing-intelligence-map/index.html
           grep -q 'Housing covariate profile' nyc-housing-intelligence-map/index.html
           grep -q 'View complete property profile' nyc-housing-intelligence-map/index.html
-          grep -q 'Reported complaint burden' nyc-housing-intelligence-map/index.html
-          grep -q 'Executed-eviction pressure' nyc-housing-intelligence-map/index.html
+          grep -q 'Filter by housing categories' nyc-housing-intelligence-map/index.html
+          grep -q 'violationCategoryFilter' nyc-housing-intelligence-map/index.html
+          grep -q 'portfolioCategoryFilter' nyc-housing-intelligence-map/index.html
+          grep -q 'evictionCategoryFilter' nyc-housing-intelligence-map/index.html
+          grep -q 'OPEN_TOTAL:26' nyc-housing-intelligence-map/index.html
+          grep -q 'categoryFilterMatches' nyc-housing-intelligence-map/index.html
           test -s nyc-housing-intelligence-map-cover.svg
           python - <<'PY'
           from pathlib import Path
+          import base64
+          import gzip
+          import json
           import re
           text = Path('nyc-housing-intelligence-map/index.html').read_text(encoding='utf-8')
           scripts = re.findall(r'<script(?:[^>]*)>(.*?)</script>', text, flags=re.S)
@@ -81,6 +92,11 @@ jobs:
           Path('/tmp/housing-map-popup.js').write_text(scripts[-1], encoding='utf-8')
           assert text.count('window.COMPRESSED_HOUSING_DATA=') == 1
           assert text.count('FIVE_COVARIATE_POPUP_START') == 1
+          match = re.search(r'window\.COMPRESSED_HOUSING_DATA="([^"]+)";', text)
+          payload = json.loads(gzip.decompress(base64.b64decode(match.group(1))))
+          assert len(payload['rows']) >= 46000
+          assert min(len(row) for row in payload['rows']) >= 33
+          assert payload['manifest']['category_filter_status'] == 'bundled_citywide_snapshot'
           assert 'nyc-housing-intelligence-map/' in Path('index.html').read_text(encoding='utf-8')
           PY
           node --check /tmp/housing-map-app.js
@@ -98,5 +114,5 @@ jobs:
             echo 'No deployment changes to commit.'
             exit 0
           fi
-          git commit -m 'Deploy prominent five-covariate popup'
+          git commit -m 'Deploy category filters for housing map'
           git push origin HEAD:${{ github.ref_name }}
