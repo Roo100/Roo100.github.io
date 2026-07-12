@@ -24,12 +24,23 @@ def main() -> None:
 
     text = text.replace(
         'aria-label="Close HPD violations card"',
-        'aria-label="Close five housing covariates card"',
+        'aria-label="Close five housing covariates profile"',
     )
     text = text.replace(
+        'aria-label="Close five housing covariates card"',
+        'aria-label="Close five housing covariates profile"',
+    )
+
+    caption_variants = (
         "Drag to pan and zoom. Click a property point to open a mini HPD violations card; the complete property profile updates beside the map.",
         "Drag to pan and zoom. Click a property point to open a mini card summarizing the five housing covariates; the complete property profile updates beside the map.",
     )
+    for caption in caption_variants:
+        text = text.replace(
+            caption,
+            "Drag to pan and zoom. Click a property point to open a prominent five-covariate profile; the complete property record remains beside the map.",
+        )
+
     text = text.replace(
         "The mini map card reports open violations returned by NYC HPD at the time of the request.",
         "The full property profile reports open violations returned by NYC HPD at the time of the request.",
@@ -43,8 +54,10 @@ def main() -> None:
 
     if text.count(START) != 1 or text.count(END) != 1:
         raise ValueError("Five-covariate popup fragment was not inserted exactly once")
-    if "Five housing covariates" not in text:
-        raise ValueError("Five-covariate popup title is missing")
+    if "Housing covariate profile" not in text:
+        raise ValueError("Prominent five-covariate popup title is missing")
+    if "View complete property profile" not in text:
+        raise ValueError("Prominent popup profile action is missing")
 
     print({"page": str(PAGE), "bytes": PAGE.stat().st_size})
 
