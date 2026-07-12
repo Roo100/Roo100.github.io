@@ -1,65 +1,214 @@
 <!-- FIVE_COVARIATE_POPUP_START -->
 <style id="five-covariate-popup-style">
 .violation-popup{
-  width:min(350px,calc(100% - 28px));
-  max-height:390px;
+  width:min(500px,calc(100% - 24px));
+  max-height:min(590px,calc(100% - 24px));
+  padding:0;
   overflow:auto;
+  border:1px solid #cfc7ba;
+  border-top:5px solid var(--gold);
+  border-radius:18px;
+  background:rgba(252,251,248,.99);
+  box-shadow:0 24px 64px rgba(15,27,45,.30);
+}
+.violation-popup-close{
+  top:12px;
+  right:12px;
+  width:30px;
+  height:30px;
+  z-index:4;
+  box-shadow:0 3px 10px rgba(15,27,45,.12);
+}
+.five-cov-popup-header{
+  position:sticky;
+  top:0;
+  z-index:3;
+  padding:16px 52px 13px 17px;
+  border-bottom:1px solid var(--rule);
+  background:linear-gradient(180deg,rgba(252,251,248,.99),rgba(247,243,235,.98));
+}
+.five-cov-popup-title{
+  margin:0;
+  color:var(--navy);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1.65rem;
+  line-height:1;
 }
 .five-cov-popup-address{
-  margin:-2px 30px 10px 0;
-  color:var(--muted);
-  font-size:.66rem;
+  margin:6px 0 0;
+  color:var(--ink);
+  font-size:.76rem;
+  font-weight:800;
   line-height:1.35;
+}
+.five-cov-popup-subtitle{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:.62rem;
+  line-height:1.35;
+}
+.five-cov-popup-body{
+  padding:13px;
 }
 .five-cov-popup-list{
   display:grid;
-  gap:7px;
+  gap:10px;
 }
-.five-cov-popup-row{
-  display:grid;
-  grid-template-columns:22px minmax(0,1fr);
-  gap:8px;
-  align-items:start;
-  padding:8px;
+.five-cov-popup-section{
+  padding:11px;
   border:1px solid var(--rule);
-  border-radius:10px;
+  border-radius:13px;
   background:#fff;
 }
+.five-cov-popup-section-head{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+  margin-bottom:9px;
+}
 .five-cov-popup-number{
-  width:22px;
-  height:22px;
+  width:28px;
+  height:28px;
   display:grid;
   place-items:center;
   border-radius:50%;
   background:var(--navy);
   color:#fff;
-  font-size:.62rem;
+  font-size:.7rem;
   font-weight:800;
 }
-.five-cov-popup-row strong{
-  display:block;
+.five-cov-popup-section h4{
+  margin:0;
   color:var(--navy);
-  font-size:.68rem;
+  font-size:.78rem;
   line-height:1.25;
 }
-.five-cov-popup-row span{
-  display:block;
-  margin-top:2px;
-  color:var(--muted);
-  font-size:.62rem;
-  line-height:1.35;
+.five-cov-popup-source-tag{
+  padding:3px 7px;
+  border-radius:999px;
+  background:#edf2f7;
+  color:#405973;
+  font-size:.52rem;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  white-space:nowrap;
 }
+.five-cov-popup-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+}
+.five-cov-popup-metric{
+  min-width:0;
+  padding:8px;
+  border-radius:9px;
+  background:#f7f6f2;
+}
+.five-cov-popup-metric span{
+  display:block;
+  color:var(--muted);
+  font-size:.52rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  line-height:1.25;
+  text-transform:uppercase;
+}
+.five-cov-popup-metric strong{
+  display:block;
+  margin-top:3px;
+  color:var(--navy);
+  font-size:.78rem;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+}
+.five-cov-popup-detail{
+  margin:8px 0 0;
+  color:#4b596a;
+  font-size:.62rem;
+  line-height:1.45;
+}
+.five-cov-popup-role{
+  padding:8px;
+  border-radius:9px;
+  background:#f7f6f2;
+}
+.five-cov-popup-role + .five-cov-popup-role{margin-top:7px}
+.five-cov-popup-role span{
+  display:block;
+  color:var(--gold-dark);
+  font-size:.52rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.five-cov-popup-role strong{
+  display:block;
+  margin-top:3px;
+  color:var(--navy);
+  font-size:.72rem;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.five-cov-popup-error{
+  padding:9px;
+  border-radius:9px;
+  background:#fff7ed;
+  color:#895d29;
+  font-size:.64rem;
+  line-height:1.45;
+}
+.five-cov-popup-footer{
+  margin-top:11px;
+  padding:11px;
+  border-radius:12px;
+  background:#f4f1ea;
+}
+.five-cov-popup-profile-button{
+  width:100%;
+  min-height:38px;
+  border:1px solid var(--navy);
+  border-radius:999px;
+  background:var(--navy);
+  color:#fff;
+  font-size:.68rem;
+  font-weight:800;
+}
+.five-cov-popup-profile-button:hover{background:#243b57}
 .five-cov-popup-note{
   margin:8px 0 0;
   color:var(--muted);
   font-size:.56rem;
-  line-height:1.35;
+  line-height:1.4;
+}
+.five-cov-popup-loading-wrap{padding:17px}
+.five-cov-popup-loading-title{
+  margin:0 36px 7px 0;
+  color:var(--navy);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1.55rem;
+  line-height:1;
+}
+@media(max-width:760px){
+  .violation-popup{
+    width:min(440px,calc(100% - 18px));
+    max-height:calc(100% - 18px);
+  }
 }
 @media(max-width:480px){
   .violation-popup{
-    width:min(305px,calc(100% - 22px));
-    max-height:350px;
+    width:calc(100% - 14px);
+    max-height:calc(100% - 14px);
+    border-radius:15px;
   }
+  .five-cov-popup-header{padding:14px 48px 11px 13px}
+  .five-cov-popup-title{font-size:1.42rem}
+  .five-cov-popup-body{padding:10px}
+  .five-cov-popup-section{padding:9px}
+  .five-cov-popup-section-head{grid-template-columns:26px minmax(0,1fr)}
+  .five-cov-popup-source-tag{grid-column:2;justify-self:start}
+  .five-cov-popup-metrics{grid-template-columns:1fr 1fr}
 }
 </style>
 <script id="five-covariate-popup-script">
@@ -70,6 +219,7 @@
   const content = document.getElementById("violationPopupContent");
   const detail = document.getElementById("detailContent");
   const detailTitle = document.getElementById("detailTitle");
+  const detailPanel = document.getElementById("detailPanel");
   if (!popup || !content || !detail) return;
 
   let scheduled = false;
@@ -112,35 +262,57 @@
       .trim() || "Unavailable";
   }
 
-  function portfolioCount(card, roleName) {
-    if (!card) return "Unavailable";
-    const roles = [...card.querySelectorAll(".role")];
-    const role = roles.find(item =>
-      item.querySelector("span")?.textContent.toLowerCase().includes(roleName)
-    );
-    const value = role?.querySelector("strong")?.textContent || "";
-    const match = value.match(/([\d,]+)\s+buildings?/i);
-    return match ? `${match[1]} buildings` : "Unavailable";
+  function metric(label, value) {
+    return `<div class="five-cov-popup-metric"><span>${esc(label)}</span><strong>${esc(value || "Unavailable")}</strong></div>`;
   }
 
-  function row(number, title, value) {
-    return `<div class="five-cov-popup-row">
-      <span class="five-cov-popup-number">${number}</span>
-      <div><strong>${esc(title)}</strong><span>${esc(value)}</span></div>
-    </div>`;
+  function section(number, title, source, body, detailText="") {
+    return `<section class="five-cov-popup-section">
+      <div class="five-cov-popup-section-head">
+        <span class="five-cov-popup-number">${number}</span>
+        <h4>${esc(title)}</h4>
+        <span class="five-cov-popup-source-tag">${esc(source)}</span>
+      </div>
+      ${body}
+      ${detailText ? `<p class="five-cov-popup-detail">${esc(detailText)}</p>` : ""}
+    </section>`;
+  }
+
+  function roleDetails(card, roleName, label) {
+    if (!card) return `<div class="five-cov-popup-role"><span>${esc(label)}</span><strong>Unavailable</strong></div>`;
+    const role = [...card.querySelectorAll(".role")].find(item =>
+      item.querySelector("span")?.textContent.toLowerCase().includes(roleName)
+    );
+    if (!role) return `<div class="five-cov-popup-role"><span>${esc(label)}</span><strong>No matched role</strong></div>`;
+    const heading = role.querySelector("span")?.textContent || label;
+    const summary = role.querySelector("strong")?.textContent || "Unavailable";
+    return `<div class="five-cov-popup-role"><span>${esc(heading)}</span><strong>${esc(summary)}</strong></div>`;
+  }
+
+  function topComplaint(card) {
+    return card?.querySelector(".covariate-list li")?.textContent.trim() || "No category returned";
   }
 
   function loadingHtml() {
     const address = detailTitle?.textContent.trim() || "Selected property";
-    return `<h3 class="violation-popup-title">Five housing covariates</h3>
+    return `<div class="five-cov-popup-loading-wrap">
+      <h3 class="five-cov-popup-loading-title">Housing covariate profile</h3>
       <p class="five-cov-popup-address">${esc(address)}</p>
-      <p class="violation-popup-loading">Loading complaint, violation, ownership, eviction, and neighborhood context…</p>`;
+      <p class="violation-popup-loading">Loading five building and neighborhood covariates…</p>
+    </div>`;
+  }
+
+  function repositionPopup() {
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new Event("resize"));
+      requestAnimationFrame(clampPopup);
+    });
   }
 
   function clampPopup() {
     const parent = popup.parentElement;
     if (!parent || popup.hidden) return;
-    const margin = 10;
+    const margin = 8;
     const width = popup.offsetWidth;
     const height = popup.offsetHeight;
     let left = Number.parseFloat(popup.style.left) || margin;
@@ -156,18 +328,19 @@
 
     const covariates = detail.querySelector("#liveCovariates");
     const address = detailTitle?.textContent.trim() || "Selected property";
+    const propertySubline = detail.querySelector(".property-subline")?.textContent.trim() || "";
     const cards = covariates ? covariates.querySelectorAll(".covariate-card") : [];
 
     if (!covariates || cards.length < 5) {
       if (!content.querySelector(".five-cov-popup-list")) {
         content.innerHTML = loadingHtml();
         content.dataset.covariateSignature = "loading";
-        requestAnimationFrame(clampPopup);
+        repositionPopup();
       }
       return;
     }
 
-    const signature = `${address}|${covariates.textContent}`.slice(0, 5000);
+    const signature = `${address}|${covariates.textContent}`.slice(0, 10000);
     if (
       content.dataset.covariateSignature === signature &&
       content.querySelector(".five-cov-popup-list")
@@ -184,38 +357,72 @@
     const eviction = metrics(evictionCard);
     const neighborhood = metrics(neighborhoodCard);
 
-    const complaintValue = complaintCard?.querySelector(".covariate-error")
-      ? errorText(complaintCard)
-      : `12 months: ${complaint.get("Past 12 months") || "Unavailable"} · ${complaint.get("Per 100 units") || "Unavailable"} per 100 units`;
+    const complaintBody = complaintCard?.querySelector(".covariate-error")
+      ? `<div class="five-cov-popup-error">${esc(errorText(complaintCard))}. Unavailable is not treated as zero.</div>`
+      : `<div class="five-cov-popup-metrics">
+          ${metric("Reported complaints · 12 months", complaint.get("Past 12 months"))}
+          ${metric("Complaints per 100 units", complaint.get("Per 100 units"))}
+        </div>`;
 
-    const violationValue = violationCard?.querySelector(".covariate-error")
-      ? errorText(violationCard)
-      : `Open/100 units: ${violation.get("Open per 100 units") || "Unavailable"} · earliest NOV: ${violation.get("Earliest open NOV issued") || "Unavailable"}`;
+    const violationBody = violationCard?.querySelector(".covariate-error")
+      ? `<div class="five-cov-popup-error">${esc(errorText(violationCard))}. Unavailable is not treated as zero.</div>`
+      : `<div class="five-cov-popup-metrics">
+          ${metric("Open violations per 100 units", violation.get("Open per 100 units"))}
+          ${metric("Earliest open NOV issued", violation.get("Earliest open NOV issued"))}
+          ${metric("Issued in past 12 months", violation.get("Issued in past 12 months"))}
+          ${metric("Repeated B/C descriptions", violation.get("Repeated B/C descriptions"))}
+        </div>`;
 
-    const ownershipValue = ownershipCard?.querySelector(".covariate-error")
-      ? errorText(ownershipCard)
-      : `Corporate owner: ${portfolioCount(ownershipCard, "corporate owner")} · managing agent: ${portfolioCount(ownershipCard, "managing agent")}`;
+    const ownershipBody = ownershipCard?.querySelector(".covariate-error")
+      ? `<div class="five-cov-popup-error">${esc(errorText(ownershipCard))}</div>`
+      : `${roleDetails(ownershipCard, "corporate owner", "HPD corporate owner")}
+         ${roleDetails(ownershipCard, "managing agent", "HPD managing agent")}`;
 
-    const evictionValue = evictionCard?.querySelector(".covariate-error")
-      ? errorText(evictionCard)
-      : `12 months: ${eviction.get("Past 12 months") || "Unavailable"} · 3 years: ${eviction.get("Past 3 years") || "Unavailable"}`;
+    const evictionBody = evictionCard?.querySelector(".covariate-error")
+      ? `<div class="five-cov-popup-error">${esc(errorText(evictionCard))}. Unavailable is not treated as zero.</div>`
+      : `<div class="five-cov-popup-metrics">
+          ${metric("Executed evictions · 12 months", eviction.get("Past 12 months"))}
+          ${metric("Executed evictions · 3 years", eviction.get("Past 3 years"))}
+          ${metric("3-year rate per 100 units", eviction.get("3-year rate per 100 units"))}
+          ${metric("Latest executed record", eviction.get("Latest executed record"))}
+        </div>`;
 
-    const neighborhoodValue = neighborhoodCard?.querySelector(".covariate-error")
-      ? errorText(neighborhoodCard)
-      : `Severe rent burden: ${neighborhood.get("Severe burden 50%+") || "Unavailable"} · median income: ${neighborhood.get("Median household income") || "Unavailable"}`;
+    const neighborhoodBody = neighborhoodCard?.querySelector(".covariate-error")
+      ? `<div class="five-cov-popup-error">${esc(errorText(neighborhoodCard))}. Unavailable is not treated as zero.</div>`
+      : `<div class="five-cov-popup-metrics">
+          ${metric("Median household income", neighborhood.get("Median household income"))}
+          ${metric("Median gross rent", neighborhood.get("Median gross rent"))}
+          ${metric("Rent burden over 30%", neighborhood.get("Rent burden over 30%"))}
+          ${metric("Severe burden 50%+", neighborhood.get("Severe burden 50%+"))}
+          ${metric("Poverty rate", neighborhood.get("Poverty rate"))}
+          ${metric("ZIP / ZCTA", neighborhood.get("ZIP / ZCTA"))}
+        </div>`;
 
-    content.innerHTML = `<h3 class="violation-popup-title">Five housing covariates</h3>
-      <p class="five-cov-popup-address">${esc(address)}</p>
-      <div class="five-cov-popup-list">
-        ${row(1, "Reported complaint burden", complaintValue)}
-        ${row(2, "Violation persistence", violationValue)}
-        ${row(3, "Ownership portfolio size", ownershipValue)}
-        ${row(4, "Executed-eviction pressure", evictionValue)}
-        ${row(5, "Rent burden and income", neighborhoodValue)}
+    content.innerHTML = `<div class="five-cov-popup-header">
+        <h3 class="five-cov-popup-title">Housing covariate profile</h3>
+        <p class="five-cov-popup-address">${esc(address)}</p>
+        <p class="five-cov-popup-subtitle">${esc(propertySubline || "Building-level and neighborhood context")}</p>
       </div>
-      <p class="five-cov-popup-note">Live public data and embedded ownership context. An unavailable request is not treated as zero.</p>`;
+      <div class="five-cov-popup-body">
+        <div class="five-cov-popup-list">
+          ${section(1, "Reported complaint burden", "311 · live", complaintBody, `Most frequent returned category: ${topComplaint(complaintCard)}. Complaint volume may reflect reporting behavior as well as conditions.`)}
+          ${section(2, "Violation persistence and recurrence", "HPD · live", violationBody, "The NOV date measures record age; it does not prove uninterrupted physical disrepair.")}
+          ${section(3, "Ownership portfolio size", "Embedded inventory", ownershipBody, "Corporate-owner and managing-agent roles are shown separately and are not a composite landlord score.")}
+          ${section(4, "Executed-eviction pressure", "DOI · live", evictionBody, "These are executed-eviction records, not all housing-court filings.")}
+          ${section(5, "Neighborhood rent burden and income", "ACS · live", neighborhoodBody, "ZIP/ZCTA estimates describe the surrounding area, not an individual household.")}
+        </div>
+        <div class="five-cov-popup-footer">
+          <button class="five-cov-popup-profile-button" type="button">View complete property profile</button>
+          <p class="five-cov-popup-note">Five covariates are displayed separately. The map does not create a landlord, danger, or housing-risk score. Failed live requests remain unavailable rather than being shown as zero.</p>
+        </div>
+      </div>`;
+
+    content.querySelector(".five-cov-popup-profile-button")?.addEventListener("click", () => {
+      detailPanel?.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+
     content.dataset.covariateSignature = signature;
-    requestAnimationFrame(clampPopup);
+    repositionPopup();
   }
 
   new MutationObserver(scheduleSync).observe(popup, {

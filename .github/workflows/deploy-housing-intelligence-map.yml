@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - update-housing-popup-five-covariates-20260711
+      - prominent-five-covariate-popup-20260711
     paths:
       - .github/workflows/deploy-housing-intelligence-map.yml
       - housing-map-build/build_map.py
@@ -56,7 +56,7 @@ jobs:
       - name: Build production housing map
         run: python housing-map-build/build_map.py
 
-      - name: Apply five-covariate popup
+      - name: Apply prominent five-covariate popup
         run: python housing-map-build/apply_popup_override.py
 
       - name: Validate generated page
@@ -66,7 +66,8 @@ jobs:
           grep -q 'COMPRESSED_HOUSING_DATA' nyc-housing-intelligence-map/index.html
           grep -q 'Earliest open NOV issued' nyc-housing-intelligence-map/index.html
           grep -q 'api.censusreporter.org' nyc-housing-intelligence-map/index.html
-          grep -q 'Five housing covariates' nyc-housing-intelligence-map/index.html
+          grep -q 'Housing covariate profile' nyc-housing-intelligence-map/index.html
+          grep -q 'View complete property profile' nyc-housing-intelligence-map/index.html
           grep -q 'Reported complaint burden' nyc-housing-intelligence-map/index.html
           grep -q 'Executed-eviction pressure' nyc-housing-intelligence-map/index.html
           test -s nyc-housing-intelligence-map-cover.svg
@@ -97,5 +98,5 @@ jobs:
             echo 'No deployment changes to commit.'
             exit 0
           fi
-          git commit -m 'Show five covariates in map popup'
+          git commit -m 'Deploy prominent five-covariate popup'
           git push origin HEAD:${{ github.ref_name }}
