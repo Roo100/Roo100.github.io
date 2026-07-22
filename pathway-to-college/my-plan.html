@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Create, save, and print a personal college action plan."/><title>My Plan | Pathway to College</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="styles.css"/><script src="translations.js" defer></script><script src="common.js" defer></script><script src="my-plan.js" defer></script></head><body data-page="my-plan"><a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <div class="utility-bar"><div class="container utility-inner">
+    <a class="portfolio-link" href="https://roo100.github.io/">← Raven O’Joy Leigertwood’s portfolio</a>
+    <span class="utility-label">2026–2027 fellowship creative submission</span>
+  </div></div>
+  <div class="main-nav-wrap"><div class="container main-nav">
+    <a class="brand" href="index.html" aria-label="Pathway to College home">
+      <span class="brand-mark" aria-hidden="true">P2C</span>
+      <span><strong>Pathway to College</strong><small>A student-centered guide for undocumented and immigrant students</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Open navigation</span><span aria-hidden="true">☰</span></button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation"><a data-nav="home" href="index.html">Home</a><a data-nav="college-list" href="college-list.html">College List</a><a data-nav="my-plan" href="my-plan.html">My Plan</a><a data-nav="college-journey" href="college-journey.html">College Journey</a><a data-nav="paying" href="paying-for-college.html">Paying for College</a><a data-nav="about" href="about.html">About</a></nav>
+  </div></div>
+</header><main id="main-content"><section class="page-hero"><div class="container page-hero-inner"><div><span class="eyebrow eyebrow-light">My College Action Plan</span><h1>Turn college goals into clear next steps.</h1><p>Choose your current stage and main concern, or use your saved college list to create a practical plan you can complete at your own pace.</p><div class="page-hero-actions"><a class="button button-primary" href="college-list.html">Review My College List</a></div></div></div></section><section class="section planner-section" id="plan">
+<div class="container planner-shell planner-shell-interactive">
+<div class="planner-intro">
+<span class="eyebrow eyebrow-light">My action plan</span>
+<h2>Turn my college list into the next steps.</h2>
+<p>Create a plan from your saved college list or choose a stage and challenge directly. The planner generates personal tasks, research steps, questions to answer, and a target review date.</p>
+<div class="privacy-note"><strong>No identifying information required.</strong><span>The tool does not ask for a name, address, or immigration status. Progress is stored only in this browser.</span></div>
+</div>
+<div aria-live="polite" class="planner-preview planner-app">
+<form class="planner-controls" id="planner-form">
+<div class="field-group">
+<label for="stage-select">Current college stage</label>
+<select id="stage-select" name="stage">
+<option value="explore">Beginning to think about college</option>
+<option value="choose">Deciding where to apply</option>
+<option selected="" value="apply">Preparing applications</option>
+<option value="funding">Finding ways to pay for college</option>
+<option value="decide">Reviewing admission decisions</option>
+<option value="enroll">Preparing to enroll</option>
+<option value="support">Enrolled and seeking support</option>
+</select>
+</div>
+<div class="field-group">
+<label for="challenge-select">Main concern right now</label>
+<select id="challenge-select" name="challenge">
+<option value="start">I do not know where to begin</option>
+<option value="firstgen">I am the first in my family to apply</option>
+<option value="fees">Application costs or fee waivers</option>
+<option value="time">Balancing school, work, and family</option>
+<option value="deadlines">Too many deadlines</option>
+<option value="cost">Understanding college costs</option>
+<option value="missing">Missing application materials</option>
+<option value="transition">What to do after choosing a college</option>
+</select>
+</div>
+<button class="button button-primary planner-generate" type="submit">Build My Action Plan</button>
+</form>
+<div class="planner-status"><span>Current action plan</span><strong id="plan-stage-label">Preparing applications</strong></div>
+<section class="college-list-context" hidden="" id="college-list-context">
+<div><span class="output-label">Connected college list</span><p id="college-context-summary"></p></div>
+<div class="college-context-chips" id="college-context-chips"></div>
+</section>
+<div aria-labelledby="progress-label" class="progress-wrap">
+<div class="progress-heading"><span id="progress-label">Plan progress</span><strong id="progress-text">0 of 6 completed</strong></div>
+<div aria-hidden="true" class="progress-track"><span id="progress-bar"></span></div>
+</div>
+<div class="plan-columns">
+<section aria-labelledby="my-steps-label" class="plan-column">
+<p class="output-label" id="my-steps-label">My next steps</p>
+<div class="task-list" id="my-task-list">
+<label class="task-item" for="my-0"><input data-task-id="my-0" id="my-0" type="checkbox"/><span>Finish or revise the personal statement and activity list.</span></label>
+<label class="task-item" for="my-1"><input data-task-id="my-1" id="my-1" type="checkbox"/><span>Request transcripts and recommendation letters.</span></label>
+<label class="task-item" for="my-2"><input data-task-id="my-2" id="my-2" type="checkbox"/><span>Choose one manageable task to complete in the next 48 hours.</span></label>
+</div>
+</section>
+<section aria-labelledby="research-steps-label" class="plan-column plan-column-blue">
+<p class="output-label" id="research-steps-label">Research and outreach</p>
+<div class="task-list" id="research-task-list">
+<label class="task-item" for="research-0"><input data-task-id="research-0" id="research-0" type="checkbox"/><span>Review the application calendar and identify the next deadline.</span></label>
+<label class="task-item" for="research-1"><input data-task-id="research-1" id="research-1" type="checkbox"/><span>Find the correct office or official page for missing information.</span></label>
+<label class="task-item" for="research-2"><input data-task-id="research-2" id="research-2" type="checkbox"/><span>Write down questions before contacting the college.</span></label>
+</div>
+</section>
+</div>
+<section aria-labelledby="questions-label" class="question-panel">
+<p class="output-label" id="questions-label">Questions I need answered</p>
+<ul id="question-list"><li>Which application is due first, and what is still incomplete?</li><li>Which office should I contact if a transcript or recommendation is missing?</li><li>What would make my next step feel clear and manageable?</li></ul>
+</section>
+<div class="follow-up-row follow-up-interactive">
+<span>Target review date</span><strong id="check-in-label">Within one week</strong>
+<label for="check-in-date">Optional target date</label><input id="check-in-date" type="date">
+</input></div>
+<div class="planner-actions">
+<button class="button button-dark" id="save-plan" type="button">Save Progress</button>
+<button class="button button-outline" id="print-plan" type="button">Print My Plan</button>
+<button class="text-button" id="reset-plan" type="button">Reset saved plan</button>
+</div>
+</div>
+</div>
+</section></main><footer class="site-footer">
+  <div class="container footer-grid">
+    <div><strong>Pathway to College</strong><p>A student-centered guide for undocumented and immigrant students navigating the postsecondary process.</p></div>
+    <div><h2>Explore</h2><a href="college-list.html">Build a college list</a><a href="my-plan.html">Build an action plan</a><a href="college-journey.html">Follow the college journey</a></div>
+    <div><h2>Project</h2><p>Created by Raven O’Joy Leigertwood for a 2026–2027 fellowship application.</p><p>Multi-page interactive prototype.</p></div>
+  </div>
+  <div class="container footer-bottom"><span>Interactive prototype revised July 2026</span><span>Designed for accessible use on desktop and mobile</span></div>
+</footer><div class="toast" id="toast" role="status" aria-live="polite"></div></body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="An interactive timeline of college preparation and transition milestones."/><title>College Journey | Pathway to College</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="styles.css"/><script src="translations.js" defer></script><script src="common.js" defer></script><script src="college-journey.js" defer></script></head><body data-page="college-journey"><a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <div class="utility-bar"><div class="container utility-inner">
+    <a class="portfolio-link" href="https://roo100.github.io/">← Raven O’Joy Leigertwood’s portfolio</a>
+    <span class="utility-label">2026–2027 fellowship creative submission</span>
+  </div></div>
+  <div class="main-nav-wrap"><div class="container main-nav">
+    <a class="brand" href="index.html" aria-label="Pathway to College home">
+      <span class="brand-mark" aria-hidden="true">P2C</span>
+      <span><strong>Pathway to College</strong><small>A student-centered guide for undocumented and immigrant students</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Open navigation</span><span aria-hidden="true">☰</span></button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation"><a data-nav="home" href="index.html">Home</a><a data-nav="college-list" href="college-list.html">College List</a><a data-nav="my-plan" href="my-plan.html">My Plan</a><a data-nav="college-journey" href="college-journey.html">College Journey</a><a data-nav="paying" href="paying-for-college.html">Paying for College</a><a data-nav="about" href="about.html">About</a></nav>
+  </div></div>
+</header><main id="main-content"><section class="page-hero"><div class="container page-hero-inner"><div><span class="eyebrow eyebrow-light">Interactive College Timeline</span><h1>See the next milestone before it becomes urgent.</h1><p>Move through seven stages from junior year to the first college semester and review what you can organize at each step.</p></div></div></section><section class="section section-white" id="timeline">
+<div class="container">
+<div class="section-heading centered-heading">
+<span class="eyebrow">Postsecondary pathway</span>
+<h2>Seven stages from exploration to college support</h2>
+<p>Select a stage to see your actions, research steps, documents to organize, and practical follow-up questions.</p>
+</div>
+<div aria-label="Student college preparation timeline" class="timeline" role="tablist">
+<button aria-controls="timeline-detail" aria-selected="true" class="timeline-card active" data-timeline="explore" role="tab" type="button"><span class="timeline-index">1</span><span class="timeline-period">Junior year</span><h3>Explore and prepare</h3><p><strong>Student:</strong> Consider interests and academic goals.</p><p><strong>Student:</strong> Explain pathways and help build a starting list.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="summer" role="tab" type="button"><span class="timeline-index">2</span><span class="timeline-period">Summer</span><h3>Build application materials</h3><p><strong>Student:</strong> Draft essays and collect activity details.</p><p><strong>Student:</strong> Create a preparation calendar and review progress.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="fall" role="tab" type="button"><span class="timeline-index">3</span><span class="timeline-period">Fall</span><h3>Submit applications</h3><p><strong>Student:</strong> Complete forms and request documents.</p><p><strong>Student:</strong> Track deadlines and help resolve missing steps.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="winter" role="tab" type="button"><span class="timeline-index">4</span><span class="timeline-period">Winter</span><h3>Complete funding steps</h3><p><strong>Student:</strong> Apply for scholarships and monitor portals.</p><p><strong>Student:</strong> Organize options and prepare questions for staff.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="spring" role="tab" type="button"><span class="timeline-index">5</span><span class="timeline-period">Spring</span><h3>Compare decisions</h3><p><strong>Student:</strong> Review admission offers and college costs.</p><p><strong>Student:</strong> Build a side-by-side comparison and flag deadlines.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="preenrollment" role="tab" type="button"><span class="timeline-index">6</span><span class="timeline-period">Pre-enrollment</span><h3>Complete the transition</h3><p><strong>Student:</strong> Complete enrollment, orientation, and registration.</p><p><strong>Student:</strong> Confirm tasks and identify campus supports.</p></button>
+<button aria-controls="timeline-detail" aria-selected="false" class="timeline-card" data-timeline="semester" role="tab" type="button"><span class="timeline-index">7</span><span class="timeline-period">First semester</span><h3>Stay connected</h3><p><strong>Student:</strong> Use academic and community resources.</p><p><strong>Student:</strong> Support the transition and connect you onward.</p></button>
+</div>
+<section aria-live="polite" class="timeline-detail" id="timeline-detail" role="tabpanel" tabindex="0">
+<div><span class="feature-label" id="timeline-detail-period">Junior year</span><h3 id="timeline-detail-title">Explore and prepare</h3><p id="timeline-detail-summary">Use this stage to understand postsecondary options and establish a manageable starting point.</p></div>
+<div class="timeline-detail-grid">
+<div><h4>My actions</h4><ul id="timeline-student-actions"><li>Consider interests, strengths, and possible fields of study.</li><li>Review graduation requirements and current academic progress.</li><li>Begin a list of colleges, programs, or training pathways.</li></ul></div>
+<div><h4>Research and support steps</h4><ul id="timeline-research-actions"><li>Learn the major postsecondary pathways.</li><li>Write research questions for each option.</li><li>Set a date to review the first college list.</li></ul></div>
+<div><h4>Documents to organize</h4><ul id="timeline-materials"><li>Unofficial transcript or course list</li><li>Activities and interests</li><li>Questions about college vocabulary</li></ul></div>
+<div><h4>Questions to answer</h4><ul id="timeline-prompts"><li>What would you like college to make possible?</li><li>What practical factors matter most to you and your family?</li></ul></div>
+</div>
+</section>
+</div>
+</section></main><footer class="site-footer">
+  <div class="container footer-grid">
+    <div><strong>Pathway to College</strong><p>A student-centered guide for undocumented and immigrant students navigating the postsecondary process.</p></div>
+    <div><h2>Explore</h2><a href="college-list.html">Build a college list</a><a href="my-plan.html">Build an action plan</a><a href="college-journey.html">Follow the college journey</a></div>
+    <div><h2>Project</h2><p>Created by Raven O’Joy Leigertwood for a 2026–2027 fellowship application.</p><p>Multi-page interactive prototype.</p></div>
+  </div>
+  <div class="container footer-bottom"><span>Interactive prototype revised July 2026</span><span>Designed for accessible use on desktop and mobile</span></div>
+</footer><div class="toast" id="toast" role="status" aria-live="polite"></div></body></html>

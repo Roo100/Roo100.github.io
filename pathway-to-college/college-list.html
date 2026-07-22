@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Build, compare, save, and print a college list with student support."/><title>College List Builder | Pathway to College</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="styles.css"/><script src="translations.js" defer></script><script src="common.js" defer></script><script src="college-list.js" defer></script></head><body data-page="college-list"><a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <div class="utility-bar"><div class="container utility-inner">
+    <a class="portfolio-link" href="https://roo100.github.io/">← Raven O’Joy Leigertwood’s portfolio</a>
+    <span class="utility-label">2026–2027 fellowship creative submission</span>
+  </div></div>
+  <div class="main-nav-wrap"><div class="container main-nav">
+    <a class="brand" href="index.html" aria-label="Pathway to College home">
+      <span class="brand-mark" aria-hidden="true">P2C</span>
+      <span><strong>Pathway to College</strong><small>A student-centered guide for undocumented and immigrant students</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Open navigation</span><span aria-hidden="true">☰</span></button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation"><a data-nav="home" href="index.html">Home</a><a data-nav="college-list" href="college-list.html">College List</a><a data-nav="my-plan" href="my-plan.html">My Plan</a><a data-nav="college-journey" href="college-journey.html">College Journey</a><a data-nav="paying" href="paying-for-college.html">Paying for College</a><a data-nav="about" href="about.html">About</a></nav>
+  </div></div>
+</header><main id="main-content"><section class="page-hero"><div class="container page-hero-inner"><div><span class="eyebrow eyebrow-light">College List Builder</span><h1>Build a college list that reflects your priorities.</h1><p>Search a built-in sample directory, add up to six colleges, compare fit and affordability, and connect the list to your action plan.</p></div></div></section><section class="section college-list-section" id="college-list">
+<div class="container">
+<div class="section-heading split-heading">
+<div>
+<span class="eyebrow">College List Builder</span>
+<h2>Build a college list with purpose.</h2>
+</div>
+<p>Identify your priorities, add up to six colleges, compare practical factors, and turn the list into a focused action plan.</p>
+</div>
+<div class="prototype-notice" role="note">
+<strong>Prototype tool:</strong>
+<span>You enter and control the college information in this prototype. A future version could connect verified college, scholarship, deadline, and support-resource data.</span>
+</div>
+<div class="college-builder-shell">
+<aside aria-label="College list builder steps" class="builder-stepper">
+<ol>
+<li class="active"><span>1</span><div><strong>Set priorities</strong><small>Define your college profile.</small></div></li>
+<li><span>2</span><div><strong>Add colleges</strong><small>Enter up to six options.</small></div></li>
+<li><span>3</span><div><strong>Balance the list</strong><small>Review likely, target, and reach choices.</small></div></li>
+<li><span>4</span><div><strong>Compare options</strong><small>Look across cost, deadlines, and support.</small></div></li>
+<li><span>5</span><div><strong>Build next steps</strong><small>Turn the list into next steps.</small></div></li>
+<li><span>6</span><div><strong>Save or print</strong><small>Return to the plan on this device.</small></div></li>
+</ol>
+</aside>
+<div class="college-builder-main">
+<section aria-labelledby="profile-heading" class="builder-panel">
+<div class="builder-panel-heading">
+<div><span class="step-label">Step 1</span><h3 id="profile-heading">What matters in a college?</h3></div>
+<p>Select the factors that should guide your research and comparison.</p>
+</div>
+<form class="profile-form" id="college-profile-form">
+<div class="field-group">
+<label for="interest-input">Major or career interest</label>
+<input id="interest-input" maxlength="80" name="interest" placeholder="Example: Criminal justice, nursing, undecided" type="text"/>
+</div>
+<div class="field-group">
+<label for="location-input">Preferred location</label>
+<input id="location-input" maxlength="80" name="location" placeholder="Example: New York City or within commuting distance" type="text"/>
+</div>
+<div class="field-group">
+<label for="college-type-select">College type</label>
+<select id="college-type-select" name="collegeType">
+<option value="Either two-year or four-year">Either two-year or four-year</option>
+<option value="Two-year college">Two-year college</option>
+<option value="Four-year college">Four-year college</option>
+</select>
+</div>
+<div class="field-group">
+<label for="campus-select">Living and travel preference</label>
+<select id="campus-select" name="campus">
+<option value="Commuter or residential">Commuter or residential</option>
+<option value="Commuter">Commuter</option>
+<option value="Residential">Residential</option>
+</select>
+</div>
+<fieldset class="priority-fieldset">
+<legend>Top priorities</legend>
+<div class="priority-options">
+<label><input name="priority" type="checkbox" value="Affordable overall cost"/> Affordable overall cost</label>
+<label><input name="priority" type="checkbox" value="Immigrant and undocumented student support"/> Immigrant and undocumented student support</label>
+<label><input name="priority" type="checkbox" value="Academic support and tutoring"/> Academic support and tutoring</label>
+<label><input name="priority" type="checkbox" value="Flexible scheduling"/> Flexible scheduling</label>
+<label><input name="priority" type="checkbox" value="Strong intended major"/> Strong intended major</label>
+<label><input name="priority" type="checkbox" value="Transportation or housing fit"/> Transportation or housing fit</label>
+</div>
+</fieldset>
+</form>
+<div aria-live="polite" class="student-profile-summary">
+<span class="output-label">Working student profile</span>
+<p id="profile-summary">Add preferences to create a short college-search profile.</p>
+</div>
+</section>
+<section aria-labelledby="add-college-heading" class="builder-panel">
+<div class="builder-panel-heading">
+<div><span class="step-label">Step 2</span><h3 id="add-college-heading">Add a college to compare</h3></div>
+<p><strong id="college-count">0 of 6 colleges saved</strong></p>
+</div>
+<form class="college-entry-form" id="college-form">
+<input id="college-edit-id" type="hidden"/>
+<div class="field-group college-name-field"><label for="college-name">College name *</label><input aria-autocomplete="list" aria-controls="college-suggestions" aria-expanded="false" autocomplete="off" id="college-name" maxlength="100" placeholder="Start typing a college name" required="" role="combobox"/><div class="autocomplete-list" hidden="" id="college-suggestions" role="listbox"></div></div>
+<div class="field-group"><label for="college-program">Program or major</label><input id="college-program" maxlength="100" placeholder="Program to research"/></div>
+<div class="field-group"><label for="college-deadline">Application deadline</label><input id="college-deadline" type="date"/></div>
+<div class="field-group"><label for="college-cost">Estimated cost or affordability note</label><input id="college-cost" maxlength="100" placeholder="Example: Needs more research"/></div>
+<div class="field-group"><label for="college-location">Location</label><input id="college-location" maxlength="100" placeholder="City, state, or travel note"/></div><div class="field-group"><label for="college-campus-setting">Campus setting</label><input id="college-campus-setting" maxlength="80" placeholder="Example: Primarily commuter"/></div><div class="field-group"><label for="college-institution-type">Institution type</label><input id="college-institution-type" maxlength="80" placeholder="Example: Public four-year college"/></div>
+<div class="field-group"><label for="college-fee">Application fee</label><select id="college-fee"><option value="Needs research">Needs research</option><option value="Fee waiver available">Fee waiver available</option><option value="No application fee">No application fee</option><option value="Application fee required">Application fee required</option></select></div>
+<div class="field-group"><label for="college-category">Planning category</label><select id="college-category"><option value="Target">Target</option><option value="Likely">Likely</option><option value="Reach">Reach</option></select></div>
+<div class="field-group"><label for="college-fit">Overall fit</label><select id="college-fit"><option value="Needs more research">Needs more research</option><option value="Strong fit">Strong fit</option><option value="Possible fit">Possible fit</option></select></div>
+<div class="field-group college-support-field"><label for="college-support">Support services to investigate</label><input id="college-support" maxlength="140" placeholder="Advising, immigrant student support, tutoring, emergency aid"/></div>
+<div class="field-group college-notes-field"><label for="college-notes">My notes</label><textarea id="college-notes" maxlength="300" placeholder="Questions, concerns, or next research steps" rows="3"></textarea></div>
+<div class="college-form-actions">
+<button class="button button-primary" id="college-submit" type="submit">Add College</button>
+<button class="text-button" hidden="" id="college-cancel-edit" type="button">Cancel edit</button>
+</div>
+</form>
+</section>
+<section aria-labelledby="balance-heading" class="builder-panel">
+<div class="builder-panel-heading">
+<div><span class="step-label">Step 3</span><h3 id="balance-heading">Is the list balanced?</h3></div>
+<p>These categories support planning only and do not predict admission.</p>
+</div>
+<div aria-live="polite" class="balance-grid">
+<div><span>Likely</span><strong id="likely-count">0</strong></div>
+<div><span>Target</span><strong id="target-count">0</strong></div>
+<div><span>Reach</span><strong id="reach-count">0</strong></div>
+</div>
+<div class="balance-message" id="balance-message">Add colleges to begin reviewing the balance of the list.</div>
+</section>
+<section aria-labelledby="comparison-heading" class="builder-panel comparison-panel">
+<div class="builder-panel-heading">
+<div><span class="step-label">Step 4</span><h3 id="comparison-heading">Compare saved colleges</h3></div>
+<p>Use the table to identify missing information and questions you still need answered.</p>
+</div>
+<div class="comparison-table-wrap">
+<table class="comparison-table">
+<thead><tr><th>College</th><th>Type</th><th>Program</th><th>Deadline</th><th>Cost</th><th>Location</th><th>Fee</th><th>Support</th><th>Category</th><th>Fit</th><th>Actions</th></tr></thead>
+<tbody id="college-table-body"><tr class="empty-college-row"><td colspan="11">No colleges added yet. Start with one option you want to explore.</td></tr></tbody>
+</table>
+</div>
+</section>
+<section aria-labelledby="finish-heading" class="builder-panel builder-finish">
+<div class="builder-panel-heading">
+<div><span class="step-label">Steps 5–6</span><h3 id="finish-heading">Turn the list into action</h3></div>
+<p>Your action plan will use the saved colleges, search priorities, missing information, and list balance.</p>
+</div>
+<div class="builder-finish-actions">
+<button class="button button-dark" id="connect-college-plan" type="button">Create a Plan from This List</button>
+<button class="button button-outline" id="save-college-list" type="button">Save College List</button>
+<button class="button button-outline" id="print-college-list" type="button">Print College List</button>
+<button class="text-button" id="reset-college-list" type="button">Reset college list</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section></main><footer class="site-footer">
+  <div class="container footer-grid">
+    <div><strong>Pathway to College</strong><p>A student-centered guide for undocumented and immigrant students navigating the postsecondary process.</p></div>
+    <div><h2>Explore</h2><a href="college-list.html">Build a college list</a><a href="my-plan.html">Build an action plan</a><a href="college-journey.html">Follow the college journey</a></div>
+    <div><h2>Project</h2><p>Created by Raven O’Joy Leigertwood for a 2026–2027 fellowship application.</p><p>Multi-page interactive prototype.</p></div>
+  </div>
+  <div class="container footer-bottom"><span>Interactive prototype revised July 2026</span><span>Designed for accessible use on desktop and mobile</span></div>
+</footer><div class="toast" id="toast" role="status" aria-live="polite"></div></body></html>
