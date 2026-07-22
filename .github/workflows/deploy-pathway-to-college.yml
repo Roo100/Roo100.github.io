@@ -1,0 +1,32 @@
+name: Deploy Pathway to College
+
+on:
+  push:
+    paths:
+      - '.github/workflows/deploy-pathway-to-college.yml'
+      - '.p2c-payload/**'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild site
+        run: |
+          rm -rf pathway-to-college
+          mkdir -p pathway-to-college
+          cat .p2c-payload/part-* | base64 -d > /tmp/pathway-to-college.tar.xz
+          tar -xJf /tmp/pathway-to-college.tar.xz -C pathway-to-college
+          touch pathway-to-college/.nojekyll
+          rm -rf .p2c-payload
+          rm -f .github/workflows/deploy-pathway-to-college.yml
+      - name: Commit published site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish student-forward Pathway to College prototype" || exit 0
+          git push
