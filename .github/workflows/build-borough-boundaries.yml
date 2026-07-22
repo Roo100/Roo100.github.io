@@ -1,0 +1,39 @@
+name: Build NYC borough boundaries
+
+on:
+  push:
+    branches:
+      - housing-official-data-build-20260711
+    paths:
+      - housing-official-build/build_borough_boundaries.py
+      - .github/workflows/build-borough-boundaries.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - housing-official-build/build_borough_boundaries.py
+      - .github/workflows/build-borough-boundaries.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geospatial dependencies
+        run: python -m pip install --upgrade pip geopandas geodatasets pyogrio
+      - name: Build simplified borough boundaries
+        run: python housing-official-build/build_borough_boundaries.py
+      - name: Upload borough boundary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nyc-borough-boundaries
+          path: borough-boundaries-output/
+          retention-days: 7

@@ -1,0 +1,100 @@
+name: Build official NYC housing data
+
+on:
+  push:
+    branches:
+      - housing-official-data-build-20260711
+    paths:
+      - housing-official-build/**
+      - .github/workflows/build-housing-official-data.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - housing-official-build/**
+      - .github/workflows/build-housing-official-data.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pandas pdfplumber requests
+
+      - name: Restore verified partial official build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          rm -rf previous-artifact previous-unpacked official-data
+          mkdir -p previous-artifact previous-unpacked
+          gh run download 29158370610 \
+            --repo Roo100/Roo100.github.io \
+            --name nyc-housing-official-data \
+            --dir previous-artifact
+          unzip -q previous-artifact/nyc-housing-official-data.zip -d previous-unpacked
+          cp -R previous-unpacked/official-data ./official-data
+          test -f official-data/processed/rgb_properties.csv
+          test -f official-data/processed/pluto_properties.csv
+          test -f official-data/processed/hpd_registrations.csv
+          test -f official-data/processed/hpd_contacts.csv
+
+      - name: Complete official source-confirmed dataset
+        id: official_build
+        continue-on-error: true
+        env:
+          OUTPUT_DIR: official-data
+          SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          PYTHONUNBUFFERED: '1'
+        shell: bash
+        run: |
+          set -o pipefail
+          python housing-official-build/resume_with_violations.py 2>&1 | tee official-build.log
+          status=${PIPESTATUS[0]}
+          echo "$status" > build-exit-code.txt
+          exit "$status"
+
+      - name: Create diagnostic or completed package
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifact
+          cp official-build.log artifact/official-build.log 2>/dev/null || true
+          cp build-exit-code.txt artifact/build-exit-code.txt 2>/dev/null || true
+          cp housing-official-build/build_nyc_housing_official.py artifact/
+          cp housing-official-build/resume_with_violations.py artifact/
+          if [ -d official-data ]; then
+            cp -R official-data artifact/official-data
+          fi
+          cd artifact
+          zip -r ../nyc-housing-official-data.zip .
+
+      - name: Upload official data artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nyc-housing-official-data
+          path: nyc-housing-official-data.zip
+          retention-days: 7
+          compression-level: 0
+
+      - name: Enforce build result
+        if: always()
+        shell: bash
+        run: |
+          status=$(cat build-exit-code.txt 2>/dev/null || echo 1)
+          exit "$status"
